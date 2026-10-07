@@ -70,6 +70,23 @@ function install({D,F,P,getLang,stop}){
  r(6,22,3,5,suit);r(23,22,3,5,suit);r(6,27,3,3,accent);r(23,27,3,3,accent);
  r(9,21,3,8,accent);r(20,21,3,8,accent);r(12,21,8,2,trim);r(15,23,1,7,ink);
  r(10,29,12,2,accent);r(14,19,4,3,skin);r(12,22,3,2,accent);r(18,23,3,1,trim);
+ // Team-specific suit construction: chest panels, piping, cuffs and boot trims.
+ r(9,21,14,9,suit);r(15,22,1,8,ink);r(13,20,6,2,accent);
+ const panel=(x,y,w,h)=>r(x,y,w,h,accent);
+ switch(d.team_id){
+ case 'mclaren': panel(9,26,4,4);panel(20,22,3,8);panel(6,25,3,3);panel(23,25,3,3);break;
+ case 'mercedes': panel(9,21,1,9);panel(22,21,1,9);panel(6,22,1,6);panel(25,22,1,6);r(11,23,3,1,trim);break;
+ case 'ferrari': panel(9,21,4,2);panel(19,21,4,2);r(11,24,2,3,trim);r(20,23,2,2,'#f3f1e5');r(9,29,14,1,ink);break;
+ case 'red-bull-racing': panel(9,22,2,8);panel(21,22,2,8);r(12,24,8,2,trim);r(14,24,4,2,accent);break;
+ case 'aston-martin': panel(9,22,1,8);panel(22,22,1,8);r(11,24,3,1,trim);r(18,24,3,1,trim);break;
+ case 'alpine': panel(9,21,14,3);panel(6,22,3,5);panel(23,22,3,5);r(11,25,10,1,trim);break;
+ case 'audi': panel(9,21,3,9);panel(20,21,3,9);r(12,24,8,2,trim);break;
+ case 'cadillac': panel(9,25,14,5);panel(6,23,3,5);panel(23,23,3,5);r(11,23,3,1,trim);break;
+ case 'williams': panel(9,21,3,3);panel(20,21,3,3);r(9,27,14,1,trim);break;
+ case 'racing-bulls': panel(9,21,4,9);panel(19,21,4,9);r(13,24,6,2,trim);break;
+ case 'haas-f1-team': panel(9,21,14,2);r(9,26,14,4,trim);panel(6,25,3,3);panel(23,25,3,3);break;
+ }
+ r(10,31,1,3,accent);r(21,31,1,3,accent);r(8,35,6,1,accent);r(18,35,6,1,accent);
  // Oversized head, ears, highlights, hairstyle and optional facial hair.
  r(9,3,14,16,ink);r(7,7,18,8,skin);r(10,5,12,14,skin);r(11,18,10,2,skin);
  r(9,4,14,5,hair);r(8,6,3,5,hair);r(22,6,2,5,hair);r(11,3,10,2,hair);
@@ -82,8 +99,28 @@ function install({D,F,P,getLang,stop}){
  if(beard==='beard'){r(10,16,2,3,hair);r(20,16,2,3,hair);r(12,18,8,2,hair)}
  if(beard==='stubble'){r(11,18,2,1,hair);r(19,18,2,1,hair)}
  if(beard==='moustache'){r(12,16,8,1,hair);r(12,17,2,1,hair);r(18,17,2,1,hair)}
+ // Individual face geometry, instead of the same eyes and jaw for every driver.
+ const faces={
+ 'lando-norris':[0,1,'smile'], 'max-verstappen':[1,0,'flat'], 'gabriel-bortoleto':[0,0,'smile'],
+ 'isack-hadjar':[0,1,'flat'],'pierre-gasly':[1,1,'flat'],'sergio-perez':[1,0,'smile'],
+ 'kimi-antonelli':[0,0,'smile'],'fernando-alonso':[1,1,'flat'],'charles-leclerc':[0,1,'smile'],
+ 'lance-stroll':[1,0,'flat'],'alexander-albon':[0,0,'smile'],'nico-hulkenberg':[1,1,'flat'],
+ 'liam-lawson':[0,1,'flat'],'esteban-ocon':[0,0,'flat'],'arvid-lindblad':[0,1,'smile'],
+ 'franco-colapinto':[1,0,'smile'],'lewis-hamilton':[1,1,'smile'],'carlos-sainz':[1,1,'flat'],
+ 'george-russell':[0,0,'smile'],'valtteri-bottas':[1,0,'flat'],'oscar-piastri':[0,0,'flat'],
+ 'oliver-bearman':[0,1,'smile'],'yuki-tsunoda':[1,1,'smile']};
+ const [wide,brow,expression]=faces[d.id]||[0,0,'flat'];
+ r(10,10,12,4,skin);r(11-wide,11-brow,3,1,hair);r(18+wide,11-brow,3,1,hair);
+ r(11-wide,12,3,2,'#f7eadb');r(18+wide,12,3,2,'#f7eadb');r(12-wide,12,1,2,ink);r(18+wide,12,1,2,ink);
+ r(11,14,2,1,'#c68b69');r(20,14,1,1,'#c68b69');
+ if(expression==='smile'&&beard!=='moustache'){r(13,17,6,1,'#a56049');r(14,17,4,1,'#f6e2ca');r(14,18,4,1,'#a56049')}
+ if(style==='curl'){r(9,4,2,1,'#977054');r(14,3,2,1,'#977054');r(19,4,2,1,'#977054');r(13,6,1,2,skin);r(18,6,1,2,skin)}
+ if(style==='sweep'){r(12,4,7,1,'#896445');r(10,5,5,1,'#896445')}
+ if(style==='short'){r(11,4,9,1,'#ad895d');r(9,8,2,1,skin);r(22,8,1,1,skin)}
+ if(d.id==='george-russell'){r(11,18,1,1,ink);r(20,18,1,1,ink)}
+ if(d.id==='lewis-hamilton'){r(8,14,1,1,'#dedbc5');r(23,14,1,1,'#dedbc5')}
  const digits=['111101101101111','010110010010111','111001111100111','111001111001111','101101111001001','111100111001111','111100111101111','111001001001001','111101111101111','111101111001111'];
- r(12,23,8,6,ink);const number=String(d.driver_number);const start=16-(number.length*4-1)/2;number.split('').forEach((n,i)=>digits[+n].split('').forEach((v,j)=>{if(v==='1')r(Math.floor(start)+i*4+j%3,24+Math.floor(j/3),1,1,'#ffffff')}));
+ r(12,30,8,5,ink);const number=String(d.driver_number);const start=16-(number.length*4-1)/2;number.split('').forEach((n,i)=>digits[+n].split('').forEach((v,j)=>{if(v==='1')r(Math.floor(start)+i*4+j%3,30+Math.floor(j/3),1,1,'#ffffff')}));
  let face=false;const paint=()=>{canvas.width=32;canvas.height=40;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,32,40);if(face)ctx.drawImage(sprite,6,1,20,20,0,4,32,32);else ctx.drawImage(sprite,0,0);canvas.dataset.loaded='true';canvas.dataset.mode=face?'face':'suit';canvas.dataset.character=d.id;};paint();
  const toggle=canvas.parentElement.querySelector('[data-pixel-toggle]');if(toggle)toggle.onclick=()=>{face=!face;toggle.setAttribute('aria-pressed',String(face));toggle.textContent=face?tr('캐릭터 전체','Full character'):tr('얼굴 확대','Zoom face');paint()};
  }
