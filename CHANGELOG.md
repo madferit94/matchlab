@@ -1,3 +1,8 @@
+## 0.20.2 / F1 0.8.2 — Character detail
+
+- Team-specific suit panels, collars, cuffs and boot piping; individual brows, eye spacing, hair highlights and expressions.
+- 팀 복장 패턴과 드라이버 얼굴 차이 보강. 숫자 배지를 허리 아래로 이동해 가슴 배색 유지.
+
 ## 0.20.1 / F1 0.8.1 — Mini game characters
 
 - 23 compact 32×40 driver sprites with team suit palettes, racing numbers, hairstyles and facial-hair accents. No remote portrait required.
