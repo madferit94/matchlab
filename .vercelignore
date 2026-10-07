@@ -24,3 +24,5 @@ viewer_selection.json
 **/*.log
 **/private/
 **/raw/
+
+f1/profiles/

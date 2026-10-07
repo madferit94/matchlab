@@ -1,3 +1,10 @@
+## 0.20.0 / F1 0.8.0 — Driver and team profiles
+
+- Pixel portraits/suits with face zoom, 23 season participants and 11 team profiles.
+- OpenF1 current championship and 2023–2025 final standings, GP histories and metric help.
+- Next-GP estimates and a separately labelled remaining-GP season scenario.
+- 드라이버·팀 클릭 상세, 한영·모바일·검색/필터 지원. 기존 레이스·모델 원본 보존.
+
 ## 0.19.7 — Vercel production
 
 - Fix nested API file inclusion; successful production build and GitHub integration.
