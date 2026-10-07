@@ -1,3 +1,10 @@
+# 현재 배포 / Live deployment
+
+- https://matchlab-zeta.vercel.app
+- F1: https://matchlab-zeta.vercel.app/f1/index.html
+- GitHub: madferit94/matchlab → Vercel madferit/matchlab 연결.
+- 최초 배포에서 서버 파일이 제외되는 문제를 명시적 제외 목록으로 수정했습니다. 비밀값은 Vercel 서버 환경변수에만 저장합니다.
+
 # Vercel 배포 안내 / Deployment
 
 현재 0.19.4는 기존 축구·F1 사이트를 배포하는 버전이며 2.0 개발은 아닙니다.

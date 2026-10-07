@@ -32,7 +32,7 @@ For the football AI analyst, copy `.env.example` to `.env`, set your credentials
 - Analysis uses saved data, not an automatic live feed. The football snapshot runs through 2026-09-20.
 - F1 metric queries use a deterministic parser. The football AI adapter requires separate configuration and live-call verification.
 - Predictions are experimental. Playback is not actual footage; F1 combines recorded coordinates with lap-based reconstruction.
-- Vercel configuration is ready; a public deployment still requires account connection and verification.
+- Live site: [matchlab-zeta.vercel.app](https://matchlab-zeta.vercel.app).
 
 ## Repository map
 
