@@ -8,7 +8,7 @@
 
 | Football · Premier League / LaLiga | Formula 1 |
 |---|---|
-| Team profiles, match records and metric charts | Grand Prix and driver metrics with explanations |
+| Team profiles, match records and metric charts | Pixel driver/team profiles, championship standings and metric explanations |
 | Fixtures and match previews | Conditional queries by lap range and pit-lap exclusion |
 | Experimental outcome probabilities and pixel replay | Predicted order, animated rank changes and circuit playback |
 | Korean/English viewers and an AI analyst adapter | Korean/English metric queries and charts |
