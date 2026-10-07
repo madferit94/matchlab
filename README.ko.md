@@ -1,52 +1,59 @@
 # MatchLab
 
-**축구와 F1 데이터를 비교하고, 지표와 경기 흐름을 시각화하는 스포츠 분석 프로젝트입니다.**
+**축구와 F1의 기록 조회, 시각화, 실험 예측을 한곳에서 제공하는 스포츠 분석 프로젝트입니다.**
 
-[English](README.md) · [실행·배포 안내](docs/VERCEL.ko.md) · [문서 안내](docs/README.md)
-
-**0.21.0:** 축구·F1 공통 디자인, 읽기 편한 글꼴과 구단·드라이버 이름 검색.
+[English](README.md) · [공개 사이트](https://matchlab-zeta.vercel.app/) · [현재 버전](VERSION) · [변경 이력](CHANGELOG.md)
 
 ## 주요 기능
 
-| 축구 · PL / 라리가 | F1 |
+| 축구 · 프리미어리그 / 라리가 | F1 |
 |---|---|
-| 팀·경기 기록과 지표별 차트 | 미니 8비트 드라이버 캐릭터·팀 프로필, 챔피언십 순위와 지표 설명 |
-| 경기 일정과 팀별 프리뷰 | 랩 구간·정차 제외 등 조건별 기록 조회 |
-| 실험 승무패 확률과 8비트 경기 연출 | 예측·실제 비교, 순위 이동 애니메이션과 서킷 재생 |
-| 한국어·영어 화면과 AI 분석관 연결 | 한국어·영어 지표 입력과 시각화 |
+| 구단 정보, 경기 일정과 프리뷰 | 미니 8비트 캐릭터와 드라이버·팀 정보 |
+| 지표별 차트, 필터와 용어 설명 | 챔피언십 순위와 경기별 상세 지표 |
+| 실험 승무패 예측 확률 | 경기 전 예측과 실제 결과 비교 |
+| 8비트 경기 재생 | 서킷 재생과 순위 변화 애니메이션 |
 
-## 실행하기
+두 종목 모두 화면 크기에 맞는 공통 디자인, 한글·영어 화면과 이름 검색을 제공합니다. 구단이나 드라이버 이름을 누르면 상세 기록으로 이동합니다.
 
-Node.js 22 환경에서 저장소 루트를 기준으로 실행합니다.
+[축구](https://matchlab-zeta.vercel.app/) · [축구 영어판](https://matchlab-zeta.vercel.app/index.en.html) · [F1](https://matchlab-zeta.vercel.app/f1/index.html) · [F1 영어판](https://matchlab-zeta.vercel.app/f1/index.html?lang=en)
+
+## 내 컴퓨터에서 실행
+
+**Node.js 22** 환경에서 저장소 최상위 폴더의 터미널에 입력합니다.
 
 ```sh
 npm start
 ```
 
-- 축구: http://127.0.0.1:8765/
-- 축구 영어판: http://127.0.0.1:8765/index.en.html
-- F1: http://127.0.0.1:8765/f1/index.html
+축구는 [localhost:8765](http://127.0.0.1:8765/), F1은 [localhost:8765/f1/](http://127.0.0.1:8765/f1/index.html)에서 확인합니다.
 
-축구 AI 분석관을 연결하려면 `.env.example`을 `.env`로 복사하고 인증값과 사용 가능한 모델을 설정한 뒤 `node --env-file=.env server/gemini.cjs`로 실행합니다. `.env`는 업로드하지 않습니다. [Vercel 배포 방법](docs/VERCEL.ko.md)
+<details>
+<summary>선택 사항: 축구 AI 분석관 연결</summary>
 
-## 알아두기
+`.env.example`을 `.env`로 복사하고 외부 서비스의 인증값과 사용 가능한 모델을 설정한 뒤 실행합니다.
 
-- 저장된 자료를 분석하며 자동 실시간 수집 서비스는 아닙니다. 축구 기록 기준일은 2026-09-20입니다.
-- F1 자연어 지표 조회는 규칙 기반입니다. 축구의 외부 AI 연결은 별도 설정과 실제 호출 확인이 필요합니다.
-- 예측은 실험 결과이며, 경기 연출은 실제 영상이 아닙니다. F1 재생에는 기록 좌표와 랩 기반 재구성이 함께 사용됩니다.
-- 공개 사이트: [matchlab-zeta.vercel.app](https://matchlab-zeta.vercel.app).
+```sh
+node --env-file=.env server/gemini.cjs
+```
 
-## 프로젝트 구성
+`.env`는 공개하지 않습니다. 저장된 이름 검색과 F1의 규칙 기반 지표 조회는 AI API 키 없이 사용할 수 있습니다.
 
-| 위치 | 내용 |
+</details>
+
+## 데이터와 예측 범위
+
+- 저장된 자료를 사용하며 자동 실시간 수집 서비스는 아닙니다. 제공 범위와 기준일은 자료마다 다릅니다.
+- 예측은 실험 결과입니다. F1 시즌 예상은 조건을 가정한 시나리오이며, 별도로 검증된 챔피언십 예측 모델은 아닙니다.
+- 재생 화면은 기록을 재구성하거나 예측을 표현한 것으로 실제 경기 영상이 아닙니다.
+
+## 문서 안내
+
+| 필요한 내용 | 문서 |
 |---|---|
-| `index.html`, `index.en.html`, `f1/` | 현재 축구·F1 화면과 F1 자료 |
-| `analysis/`, `modeling/`, `simulation/` | 지표 계산·예측 실험·경기 연출 |
-| `server/`, `api/`, `tools/` | 로컬 서버·Vercel 연결·빌드 및 검사 |
-| `agent-team-integrated-2026-10-06-v01/`, `skills/` | 에이전트 역할과 작업 절차 |
-| `docs/` | 설계·검증·배포 문서 |
-| `archive/` | 이전 화면과 디자인 버전 |
+| 실행과 Vercel 웹 배포 | [실행·배포 안내](docs/VERCEL.ko.md) |
+| 에이전트 역할과 스킬 | [에이전트·스킬 안내 (영문)](docs/AGENTS-AND-SKILLS.en.md) |
+| 저장소 폴더 구성 | [폴더 안내](docs/STRUCTURE.md) |
+| 버전 관리 방법 | [버전 정책](docs/VERSIONING.md) |
+| 상세 명세와 과거 기록 | [문서 목록](docs/README.md) |
 
-[에이전트·스킬 안내](docs/AGENTS-AND-SKILLS.en.md) · [폴더 안내](docs/STRUCTURE.md)
-
-현재 버전은 [VERSION](VERSION), 상세 변경 기록은 [CHANGELOG](CHANGELOG.md)에서 확인할 수 있습니다.
+세부 변경 이력은 [CHANGELOG](CHANGELOG.md)에 모으고, README에는 현재 프로젝트 소개만 유지합니다.
