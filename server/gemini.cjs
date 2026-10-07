@@ -17,14 +17,17 @@ function validatePlan(p,data){
  return {...p,last:p.last||null};
 }
 function loadData(){const html=fs.readFileSync(path.join(root,'index.html'),'utf8');return JSON.parse(html.match(/<script id="data" type="application\/json">([\s\S]*?)<\/script>/)[1])}
-function createServer({key=process.env.GEMINI_API_KEY||'',model=process.env.GEMINI_MODEL||'gemini-3.8-flash',fetchImpl=fetch,data=loadData()}={}){
+function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',model=process.env.GEMINI_MODEL||'gemini-3.8-flash',fetchImpl=fetch,data=loadData()}={}){
  if(!/^[a-zA-Z0-9._-]+$/.test(model))throw new ServiceError('invalid_model');
  const analyst=engine.create(data);let busy=false,lastCall=0;
  const send=(res,status,body,type='application/json; charset=utf-8')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(type.startsWith('application/json')?JSON.stringify(body):body)};
- return http.createServer(async(req,res)=>{
+ return async(req,res)=>{
   try{
-   const host=req.headers.host||'';if(!/^(127\.0\.0\.1|localhost):\d+$/.test(host))throw new ServiceError('invalid_host',403);
-   if(req.headers.origin&&req.headers.origin!==`http://${host}`)throw new ServiceError('invalid_origin',403);
+   const host=req.headers.host||'';
+   const local=/^(127\.0\.0\.1|localhost):\d+$/.test(host);
+   const expectedOrigin=local?`http://${host}`:publicOrigins.find(origin=>new URL(origin).host===host);
+   if(!expectedOrigin)throw new ServiceError('invalid_host',403);
+   if(req.headers.origin&&req.headers.origin!==expectedOrigin)throw new ServiceError('invalid_origin',403);
    const url=new URL(req.url,'http://'+host);
    if(req.method==='GET'&&url.pathname==='/api/health')return send(res,200,{provider:'gemini',configured:!!key,model,sql:false,python:false});
    if(req.method==='GET'&&['/','/index.html','/index.en.html'].includes(url.pathname))return send(res,200,fs.readFileSync(path.join(root,url.pathname==='/index.en.html'?'index.en.html':'index.html'),'utf8'),'text/html; charset=utf-8');
@@ -32,7 +35,8 @@ function createServer({key=process.env.GEMINI_API_KEY||'',model=process.env.GEMI
    if(url.pathname!=='/api/analyze'||req.method!=='POST')throw new ServiceError('not_found',404);
    if(!key)throw new ServiceError('key_missing',503);
    if(!String(req.headers['content-type']||'').startsWith('application/json'))throw new ServiceError('invalid_request');
-   let body='';for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>12000)throw new ServiceError('request_too_large',413)}
+   let body='';if(req.body!==undefined){body=typeof req.body==='string'?req.body:JSON.stringify(req.body)}else{for await(const chunk of req){body+=chunk;if(Buffer.byteLength(body)>12000)throw new ServiceError('request_too_large',413)}}
+   if(Buffer.byteLength(body)>12000)throw new ServiceError('request_too_large',413);
    let input;try{input=JSON.parse(body)}catch{throw new ServiceError('invalid_request')}
    if(typeof input.question!=='string'||!input.question.trim()||input.question.length>500)throw new ServiceError('invalid_request');
    // Keep only validated context: neither arbitrary prompts nor complete match datasets.
@@ -54,7 +58,8 @@ function createServer({key=process.env.GEMINI_API_KEY||'',model=process.env.GEMI
     return send(res,200,{...result,planner:'Gemini',model,engine:'JavaScript',plan,execution:'Gemini selected the validated tool parameters; server JavaScript calculated saved records.'});
    }finally{busy=false}
   }catch(error){send(res,error instanceof ServiceError?error.status:500,{error:error instanceof ServiceError?error.code:'internal_error'})}
- });
+ };
 }
+function createServer(options){return http.createServer(createHandler(options))}
 if(require.main===module){const port=Number(process.env.PORT||8765);if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('Invalid PORT');createServer().listen(port,'127.0.0.1',()=>console.log(`MatchLab local server: http://127.0.0.1:${port} (Gemini key ${process.env.GEMINI_API_KEY?'configured':'missing'})`))}
-module.exports={createServer,validatePlan,functionTool,loadData};
+module.exports={createHandler,createServer,validatePlan,functionTool,loadData};

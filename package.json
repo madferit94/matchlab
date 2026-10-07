@@ -1,0 +1,13 @@
+{
+  "name": "matchlab",
+  "version": "0.19.4",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "node tools/build-vercel.cjs",
+    "start": "node server/gemini.cjs",
+    "test:server": "node server/check.cjs"
+  }
+}

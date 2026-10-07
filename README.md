@@ -1,3 +1,7 @@
+## 0.19.4 — Vercel deployment support
+
+Existing football/F1 pages now have a minimal static build and serverless API adapter. [Deployment guide](docs/VERCEL.ko.md). Cloud deployment and live provider verification are separate from local tests.
+
 # MatchLab — Football & F1
 
 [한국어](README.ko.md) · [Repository](https://github.com/madferit94/matchlab)
