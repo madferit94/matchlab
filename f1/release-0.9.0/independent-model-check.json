@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "independent_feature_values": 4790,
+  "races": 24,
+  "winner_hits": 7,
+  "log_loss": 1.8890996627206107,
+  "rank_mae": 3.6289137365472506,
+  "frozen_training_year": 2024,
+  "prediction_year": 2025,
+  "target_result_mutation": "training script tests target copy; verifier derives inputs solely from earlier history",
+  "participant_confirmation": "pending"
+}

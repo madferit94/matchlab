@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "year": 2024,
+      "cards": 24
+    },
+    {
+      "year": 2025,
+      "cards": 24
+    },
+    {
+      "year": 2026,
+      "cards": 25
+    },
+    {
+      "lang": "ko",
+      "comparisonRows": 20,
+      "query": "historical winner probability"
+    },
+    {
+      "lang": "en",
+      "comparisonRows": 20,
+      "query": "historical winner probability"
+    }
+  ],
+  "pageErrors": []
+}

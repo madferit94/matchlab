@@ -427,6 +427,15 @@ syncLanguageLinks();
  const aliases={Arsenal:['\uc544\uc2a4\ub110','\uc544\uc2a4\ub0a0'],Barcelona:['\ubc14\ub974\uc140\ub85c\ub098','\ubc14\ub974\uc0e4'],Liverpool:['\ub9ac\ubc84\ud480'],'Manchester City':['\ub9e8\uccb4\uc2a4\ud130 \uc2dc\ud2f0','\ub9e8\uc2dc\ud2f0'],'Manchester United':['\ub9e8\uccb4\uc2a4\ud130 \uc720\ub098\uc774\ud2f0\ub4dc','\ub9e8\uc720'],'Real Madrid':['\ub808\uc54c \ub9c8\ub4dc\ub9ac\ub4dc','\ub808\uc54c\ub9c8\ub4dc\ub9ac\ub4dc'],Chelsea:['\uccbc\uc2dc'],Tottenham:['\ud1a0\ud2b8\ub118'],'Atletico Madrid':['\uc544\ud2c0\ub808\ud2f0\ucf54 \ub9c8\ub4dc\ub9ac\ub4dc'],Valencia:['\ubc1c\ub80c\uc2dc\uc544'],Sevilla:['\uc138\ube44\uc57c'],Leeds:['\ub9ac\uc988']};
  const metrics={xg:{ko:'\uae30\ub300 \ub4dd\uc810',en:'Expected goals',keys:['\uae30\ub300 \ub4dd\uc810','\uae30\ub300\ub4dd\uc810','xg','expected goals']},xga:{ko:'\uae30\ub300 \uc2e4\uc810',en:'Expected goals against',keys:['\uae30\ub300 \uc2e4\uc810','\uae30\ub300\uc2e4\uc810','xga','expected goals against']},gf:{ko:'\ub4dd\uc810',en:'Goals scored',keys:['\ub4dd\uc810','goals scored','goals']},ga:{ko:'\uc2e4\uc810',en:'Goals conceded',keys:['\uc2e4\uc810','goals conceded']},p:{ko:'\uc2b9\uc810',en:'Points',keys:['\uc2b9\uc810','points']},w:{ko:'\uc2b9\ub960',en:'Win rate',keys:['\uc2b9\ub960','win rate']}};
  const normalize=s=>String(s).toLowerCase().replace(/\s+/g,' ').trim();
+ function sortOrder(question,previous=null){
+  const q=normalize(question);
+  const asc=/\uc624\ub984\ucc28\uc21c|\uc801\uc740\s*(?:\ud300|\uc120\uc218|\ub4dc\ub77c\uc774\ubc84)?\s*(?:\ubd80\ud130|\uc21c)|\ub0ae\uc740\s*(?:\ud300|\uc120\uc218|\ub4dc\ub77c\uc774\ubc84)?\s*(?:\ubd80\ud130|\uc21c)|\uc791\uc740\s*(?:\uac12)?\s*(?:\ubd80\ud130|\uc21c)|ascending|fewest|lowest|least|smallest|low(?:est)? to high(?:est)?/.test(q);
+  const desc=/\ub0b4\ub9bc\ucc28\uc21c|\ub9ce\uc740\s*(?:\ud300|\uc120\uc218|\ub4dc\ub77c\uc774\ubc84)?\s*(?:\ubd80\ud130|\uc21c)|\ub192\uc740\s*(?:\ud300|\uc120\uc218|\ub4dc\ub77c\uc774\ubc84)?\s*(?:\ubd80\ud130|\uc21c)|\ud070\s*(?:\uac12)?\s*(?:\ubd80\ud130|\uc21c)|descending|most|highest|largest|high(?:est)? to low(?:est)?/.test(q);
+  if(asc&&desc)return 'conflict';
+  if(asc||desc)return asc?'asc':'desc';
+  if(/\ubc18\ub300\ub85c|\uc5ed\uc21c|reverse|opposite/.test(q))return previous?(previous==='asc'?'desc':'asc'):'missing';
+  return null;
+ }
  function summary(id,ms){const s={n:ms.length,gf:0,ga:0,xg:0,xga:0,p:0,w:0,d:0,l:0};for(const m of ms){const h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;s.gf+=f;s.ga+=a;s.xg+=h?m.hx:m.ax;s.xga+=h?m.ax:m.hx;s.w+=f>a;s.d+=f===a;s.l+=f<a;s.p+=f>a?3:f===a?1:0}return s}
  function create(data){
   const registry=new Map(),resolvers=[],teams=Object.entries(data.teams).map(([id,t])=>({...t,id}));
@@ -441,15 +450,16 @@ syncLanguageLinks();
    const seasonMatch=q.match(/(20\d{2})\s*[/\-]\s*(\d{2}|20\d{2})/);
    let season=seasonMatch?seasonMatch[1]+'/'+seasonMatch[2].slice(-2):/\uc774\ubc88\s?\uc2dc\uc98c|this season|current season/.test(q)?'2026/27':null;
    if(season&&!['2023/24','2024/25','2025/26','2026/27'].includes(season))return {error:'season'};
-   const recent=q.match(/(?:\ucd5c\uadfc|last|recent)\s*(\d+)\s*(?:\uacbd\uae30|matches|games)?/),follow=/\ub2e4\uc2dc|\uc774 \uacb0\uacfc|\uadf8 \uacb0\uacfc|\uc774\uac83|\ub2e4\ub978|\ub300\uc2e0|again|instead|same|those|only/.test(q)&&previous;
-   const plan=follow?{...previous}:{tool:'team',teams:[],league:explicitLeague||defaults.league||'EPL',season:defaults.season||'2026/27',last:null,venue:'all',metric:'xg',perMatch:false};
+   const recent=q.match(/(?:\ucd5c\uadfc|last|recent)\s*(\d+)\s*(?:\uacbd\uae30|matches|games)?/),follow=/\ub2e4\uc2dc|\uc774 \uacb0\uacfc|\uadf8 \uacb0\uacfc|\uc774\uac83|\ub2e4\ub978|\ub300\uc2e0|\ubc18\ub300\ub85c|\uc5ed\uc21c|reverse|opposite|\uadf8 \ube44\uad50|again|instead|same|those|only/.test(q)&&previous;
+   const plan=follow?{...previous}:{tool:'team',teams:[],league:explicitLeague||defaults.league||'EPL',season:defaults.season||'2026/27',last:null,venue:'all',metric:'xg',perMatch:false,order:'desc'};
+   const order=sortOrder(q,follow?(previous.order||'desc'):null);if(['conflict','missing'].includes(order))return {error:'unsupported'};if(order)plan.order=order;
    if(recognized.length){plan.teams=recognized.map(t=>t.id);if(!explicitLeague)plan.league=recognized[0].league}
    else if(!follow&&defaults.team)plan.teams=[defaults.team];
    if(explicitLeague)plan.league=explicitLeague;if(season)plan.season=season;
    if(recent){plan.last=Number(recent[1]);if(plan.last<1||plan.last>38)return {error:'range'}}
    else if(/\uc2dc\uc98c\s?\uc804\uccb4|full season|all matches/.test(q))plan.last=null;
    if(/\ud648.*\uc6d0\uc815|\uc6d0\uc815.*\ud648|home.*away|away.*home/.test(q))plan.tool='venue';
-   else if(/\uc21c\uc704|\ub192\uc740 \ud300|\uc0c1\uc704|ranking|rank|top teams|highest/.test(q))plan.tool='ranking';
+   else if((order&&!follow)||/\uc21c\uc704|\ub192\uc740 \ud300|\uc0c1\uc704|\ub9ce\uc740 \uc21c|\uc801\uc740 \uc21c|\ubd80\ud130 \uc21c|\uc624\ub984\ucc28\uc21c|\ub0b4\ub9bc\ucc28\uc21c|ranking|rank|top teams|highest|fewest|lowest/.test(q))plan.tool='ranking';
    else if(plan.teams.length>1||/\ube44\uad50|compare|comparison/.test(q))plan.tool='comparison';
    else if(!follow)plan.tool='team';
    if(plan.tool!=='venue'){if(/\uc6d0\uc815|\baway\b/.test(q))plan.venue='away';else if(/\ud648|\bhome\b/.test(q))plan.venue='home';else if(/\uc804\uccb4\s?\uc7a5\uc18c|all venues/.test(q))plan.venue='all'}
@@ -469,13 +479,13 @@ syncLanguageLinks();
   function clubRows(plan){return plan.teams.map(id=>{const ms=records(id,plan),s=summary(id,ms);return {id,label:data.teams[id].name,...s,value:value(s,plan),dates:ms.map(m=>m.date)}})}
   registry.set('team',plan=>base(plan,clubRows(plan)));
   registry.set('comparison',plan=>base(plan,clubRows(plan)));
-  registry.set('ranking',plan=>{const ids=teams.filter(t=>t.league===plan.league).map(t=>t.id);const r=clubRows({...plan,teams:ids}).filter(r=>r.n);r.sort((a,b)=>b.value-a.value||a.label.localeCompare(b.label));return base(plan,r)});
+  registry.set('ranking',plan=>{const ids=teams.filter(t=>t.league===plan.league).map(t=>t.id);const r=clubRows({...plan,teams:ids}).filter(r=>r.n);r.sort((a,b)=>(a.value-b.value)*(plan.order==='asc'?1:-1)||a.label.localeCompare(b.label));return base(plan,r)});
   registry.set('venue',plan=>{const id=plan.teams[0];return base(plan,['home','away'].map(venue=>{const ms=records(id,plan,venue),s=summary(id,ms);return {label:venue,...s,value:value(s,plan),dates:ms.map(m=>m.date)}}))});
   registry.set('trend',plan=>{const id=plan.teams[0],ms=records(id,plan);return base(plan,ms.map(m=>{const h=m.home===id;return {id:m.id,label:m.date,n:1,value:h?m.hx:m.ax,actual:h?m.hg:m.ag,opponent:data.teams[h?m.away:m.home].name}}))});
   function execute(plan){if(plan.error)return {status:'unsupported',reason:plan.error};const tool=registry.get(plan.tool);if(!tool)return {status:'unavailable',reason:plan.tool};return tool(plan)}
   return {parse,execute,records,register(name,handler,match){if(typeof handler!=='function')throw new TypeError('Handler required');if(match&&typeof match!=='function')throw new TypeError('Matcher must be a function');registry.set(name,handler);if(match)resolvers.push({name,match})},capabilities(){return [...registry.keys()]}};
  }
- const api={create,metrics,summary};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.MatchDeskAnalysis=api;
+ const api={create,metrics,summary,sortOrder};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.MatchDeskAnalysis=api;
 })(globalThis);
 
 const analystText={"title": "Ask the AI analyst", "hint": "Analyze stored records. Supported phrases are interpreted locally; an AI model is not connected yet.", "placeholder": "Compare Arsenal goals and xG in the last 10 matches", "submit": "Run analysis", "examples": ["Compare Arsenal goals and xG in the last 10 matches", "LaLiga this season xG per match ranking", "Compare Barcelona home and away"], "done": "Analysis complete · View the chart and table.", "running": "Calculating recorded matches.", "empty": "No completed matches meet these conditions.", "unsupported": "Enter a supported records request, or try an example below.", "prediction": "The win/draw/loss probability tool is not connected. It will require a validated prediction model.", "league": "Only Premier League and LaLiga records are supported.", "league_mismatch": "The club and league do not match. Specify another club or league.", "season": "Only 2023/24–2026/27 records are available.", "range": "Choose between 1 and 38 recent matches.", "metric": "This metric is not supported by the current tool. Try goals scored/conceded, xG/xGA, points or win rate.", "team": "Specify a club to analyze.", "full": "Full season", "last": "Last {n} matches", "split": "Home and away separately", "all": "All venues", "home": "Home", "away": "Away", "average": "Per-match average", "total": "Total", "actual": "Actual goals", "through": "Data through", "local": "Stored completed matches only", "series": "Green bars: expected goals · Yellow bars: actual goals", "tableBelow": "Exact values in the table below", "item": "Club / match", "matches": "Matches", "proof": "View calculation", "execution": "Executed in browser JavaScript. AI model, SQL and Python execution are not connected yet.", "formula": "Formula", "scopeNote": "Only displayed conditions apply. Custom dates and win/draw/loss filters are not supported here. Last N is within the selected season; venue comparisons use last N separately for each venue. Historical win rate is not future win probability."};const analystLanguage="en";
@@ -494,13 +504,14 @@ function renderAnalysis(result){
   output.innerHTML='';return;
  }
  const plan=result.plan,metric=MatchDeskAnalysis.metrics[result.metric][analystLanguage];
+ if(plan.tool==='ranking')plan.order=plan.order||'desc';
  const criterion=[plan.league==='EPL'?'Premier League':'LaLiga',plan.season,plan.last?analystText.last.replace('{n}',plan.last):analystText.full,plan.tool==='venue'?analystText.split:analystText[plan.venue],result.metric==='w'?'%':plan.perMatch?analystText.average:analystText.total].join(' · ');
  const labels=result.rows.map(r=>r.label==='home'?analystText.home:r.label==='away'?analystText.away:r.label);
  const max=Math.max(1,...result.rows.map(r=>Math.max(r.value||0,r.actual||0)));
  const chart=result.rows.map((r,i)=>`<div class="analystbar"><span>${esc(labels[i])}</span><div><div class="analysttrack"><span style="width:${(r.value||0)/max*100}%"></span></div>${r.actual!==undefined?`<div class="analysttrack actual"><span style="width:${r.actual/max*100}%"></span></div>`:''}</div><strong>${r.value===null?'—':r.value.toFixed(2)}${result.unit}${r.actual!==undefined?' / '+r.actual:''}</strong></div>`).join('');
  const rows=result.rows.map((r,i)=>`<tr><td>${r.id&&T[r.id]?teamName(r.id):esc(labels[i])}${r.opponent?'<br><small>'+esc(r.opponent)+'</small>':''}</td><td>${r.n}</td><td>${r.value===null?'—':r.value.toFixed(2)}${result.unit}</td>${r.actual!==undefined?'<td>'+r.actual+'</td>':''}</tr>`).join('');
  const actual=result.rows.some(r=>r.actual!==undefined);
- output.innerHTML=`<h3>${esc(metric)}${actual?' / '+esc(analystText.actual):''}</h3><p class="muted">${esc(criterion)}</p><p>${esc(analystText.through)} ${result.datasetThrough} · ${esc(analystText.local)}</p>${actual?`<p class="analystlegend">${esc(analystText.series)}</p>`:''}<div class="analystchart" role="img" aria-label="${esc(metric+' · '+analystText.tableBelow)}">${chart}</div><div class="tablewrap"><table><thead><tr><th>${esc(analystText.item)}</th><th>${esc(analystText.matches)}</th><th>${esc(metric)}</th>${actual?'<th>'+esc(analystText.actual)+'</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>`;
+ output.innerHTML=`<h3>${esc(metric)}${actual?' / '+esc(analystText.actual):''}</h3><p class="muted">${esc(criterion)}${plan.tool==='ranking'?' · '+(analystLanguage==='en'?(plan.order==='asc'?'Lowest first':'Highest first'):(plan.order==='asc'?'\uC791\uC740 \uAC12\uBD80\uD130':'\uD070 \uAC12\uBD80\uD130')):''}</p><p>${esc(analystText.through)} ${result.datasetThrough} · ${esc(analystText.local)}</p>${actual?`<p class="analystlegend">${esc(analystText.series)}</p>`:''}<div class="analystchart" role="img" aria-label="${esc(metric+' · '+analystText.tableBelow)}">${chart}</div><div class="tablewrap"><table><thead><tr><th>${esc(analystText.item)}</th><th>${esc(analystText.matches)}</th><th>${esc(metric)}</th>${actual?'<th>'+esc(analystText.actual)+'</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>`;
  $('analyststatus').textContent=analystText.done;
 }
 function submitAnalysis(question){

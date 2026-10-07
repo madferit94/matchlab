@@ -1,0 +1,19 @@
+{
+  "checks": 12,
+  "evidence": [
+    "all 24 saved record payloads are unchanged and embedded exactly",
+    "requested plain last-year query gives 2025 Australian result table",
+    "English same-GP request produces same historical records",
+    "Norris and Verstappen identity survives number changes",
+    "same drivers compared across 2025 and 2026 using result records only",
+    "missing historical lap and pit records never become zero",
+    "2024 per-GP record absence is explicit despite championship profiles existing",
+    "Bahrain GP identity and Sepang circuit scope are separate",
+    "Barcelona rename resolves Catalunya and never Madrid by country only",
+    "historical ranking reversal retains selected year and metric",
+    "unsupported conditions and different named race are refused",
+    "unavailable year does not prevent displaying available comparison year"
+  ],
+  "failures": 0,
+  "method": "Saved past/current records, independent driver/result joins; no model calls"
+}

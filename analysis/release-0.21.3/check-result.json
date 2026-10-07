@@ -1,0 +1,17 @@
+{
+  "checks": 10,
+  "tests": [
+    "original failing question resolves ascending ranking",
+    "all club values agree with independently counted scores",
+    "English and Korean numeric ranks agree",
+    "reverse retains league metric season and recent count",
+    "direction conflict and reverse without context are refused",
+    "F1 natural direction synonyms and numeric values",
+    "F1 fast and slow lap-time order reverses",
+    "F1 follow-up retains scope and excludes other race context",
+    "F1 contradictory sort and unsupported conditions are refused",
+    "Server enforces explicit order even if provider reverses it"
+  ],
+  "failures": 0,
+  "scope": "Real saved data, independent score/speed calculation; mocked planner safeguard"
+}

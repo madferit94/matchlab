@@ -1,0 +1,8 @@
+{
+  "history_source_sha256": "aa882fd9e9f11f405b93e163ea67fb2199a8ecbb2b453112a0b10e4675d4c600",
+  "original_race_count": 24,
+  "meeting_url": "https://api.openf1.org/v1/meetings?year=2025",
+  "metadata_checked_at": "2026-10-07T10:41:32.255007+00:00",
+  "meeting_count": 25,
+  "historical_records_unchanged": true
+}

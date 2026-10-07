@@ -1,0 +1,13 @@
+const {chromium}=require('playwright'),fs=require('fs'),assert=require('node:assert/strict');
+const {createServer}=require('../../server/gemini.cjs');
+(async()=>{const server=createServer({key:''});await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});const checks=[];
+try{const p=await browser.newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));
+for(const year of [2024,2025,2026]){await p.goto(base+'/f1/index.html?year='+year);assert.equal(await p.locator('#catalog [data-race]').count(),year===2026?25:24);checks.push({year,cards:year===2026?25:24})}
+let ko;
+for(const lang of ['ko','en']){await p.goto(base+'/f1/index.html?year=2025&lang='+lang+'#race=9693');await p.locator('[data-tab="comparison"]').click();assert.equal(await p.locator('#body tbody tr').count(),20);const numbers=await p.locator('#body tbody tr').evaluateAll(rows=>rows.map(r=>Array.from(r.cells).slice(1).map(c=>c.textContent)));if(lang==='ko')ko=numbers;else assert.deepEqual(numbers,ko);assert.equal(await p.locator('[data-tab="map"]').count(),0);assert.equal(await p.locator('#body a').count()>0,true);
+await p.locator('[data-tab="metrics"]').click();assert.equal(await p.locator('[data-metric-category] option').count(),2);await p.locator('[data-metric-category]').selectOption('prediction');assert.equal(await p.locator('.f1-metric-card').count()>0,true);
+await p.locator('[data-tab="analysis"]').click();await p.locator('#f1-question').fill(lang==='ko'?'2025년 노리스 우승 확률 보여줘':'2025 Norris win probability');await p.locator('.nl-form button[type="submit"]').click();assert((await p.locator('.nl-output').textContent()).includes('%'));checks.push({lang,comparisonRows:20,query:'historical winner probability'});
+for(const width of [390,768,1440]){await p.setViewportSize({width,height:900});await p.locator('[data-tab="comparison"]').click();assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false)}
+}
+await p.goto(base+'/f1/index.html#race=11234');assert.equal(await p.locator('[data-tab="map"]').count(),1);await p.locator('[data-tab="comparison"]').click();assert.equal(await p.locator('#comparisonhost').count(),1);assert.deepEqual(errors,[]);fs.writeFileSync(__dirname+'/browser-result.json',JSON.stringify({status:'PASS',checks,pageErrors:errors},null,2));console.log('PASS 2024–2026 catalogue; 2025 KO/EN prediction comparison, metrics, natural query; 2026 preserved; 3 widths');
+}finally{await browser.close();server.closeAllConnections();await new Promise(r=>server.close(r))}})().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,0 +1,754 @@
+{
+  "train_races": 19,
+  "warmup_races": 5,
+  "test_races": 24,
+  "training_rows": 380,
+  "features": {
+    "recent5_finish_score": {
+      "ko": "최근 5경기 완주 순위 점수",
+      "en": "Last-five finishing score"
+    },
+    "recent5_points": {
+      "ko": "최근 5경기 평균 포인트",
+      "en": "Last-five mean points"
+    },
+    "recent5_win_rate": {
+      "ko": "최근 5경기 우승 비율",
+      "en": "Last-five win rate"
+    },
+    "recent5_podium_rate": {
+      "ko": "최근 5경기 포디움 비율",
+      "en": "Last-five podium rate"
+    },
+    "recent5_nonfinish_rate": {
+      "ko": "최근 5경기 미완주·미출발·실격 비율",
+      "en": "Last-five DNF/DNS/DSQ rate"
+    },
+    "season_finish_score": {
+      "ko": "해당 시즌 이전 경기 순위 점수",
+      "en": "Season-to-date finishing score"
+    },
+    "team_recent5_finish_score": {
+      "ko": "팀 최근 5개 GP 순위 점수",
+      "en": "Team last-five GP finishing score"
+    },
+    "team_recent5_win_rate": {
+      "ko": "팀 최근 5개 GP 우승 비율",
+      "en": "Team last-five GP win rate per entrant"
+    },
+    "circuit_past_finish_score": {
+      "ko": "같은 서킷 이전 경기 순위 점수",
+      "en": "Earlier same-circuit finishing score"
+    },
+    "circuit_past_win_rate": {
+      "ko": "같은 서킷 이전 우승 비율",
+      "en": "Earlier same-circuit win rate"
+    }
+  },
+  "model_hyperparameters": {
+    "C": 1,
+    "max_iter": 1000,
+    "ridge_alpha": 10,
+    "prior_strength": 2
+  },
+  "source_sha256": "49cf958ed8c24503ad9a0a5ba507bc0d677ace0a06c9a725c463d4184730223f",
+  "inputs_sha256": {
+    "history-2024.json": "791b0a76874ef347e2f9d2469bb997b79b8a40765c986c9dadaaa49322458c45",
+    "query-history.json": "abf46c9a09984131e26fd018d83b541359367656510390c8f162862e2f8199c3"
+  },
+  "checks": [
+    {
+      "session_key": 9693,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-03-16T04:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9998,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-03-23T07:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 10006,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-04-06T05:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 10014,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-04-13T15:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 10022,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-04-20T17:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 10033,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-05-04T20:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9987,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-05-18T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9979,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-05-25T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9971,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-06-01T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9963,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-06-15T18:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9955,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-06-29T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9947,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-07-06T14:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9939,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-07-27T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9928,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-08-03T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9920,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-08-31T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9912,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-09-07T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9904,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-09-21T11:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9896,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-10-05T12:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9888,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-10-19T19:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9877,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-10-26T20:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9869,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-11-09T17:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9858,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-11-23T04:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9850,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-11-30T16:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    },
+    {
+      "session_key": 9839,
+      "training_latest_end": "2024-12-08T15:00:00+00:00",
+      "target_start": "2025-12-07T13:00:00+00:00",
+      "training_before_target": true,
+      "feature_before_target": true,
+      "target_result_mutation_invariant": true,
+      "future_results_not_read": true
+    }
+  ],
+  "per_race_metrics": [
+    {
+      "session_key": 9693,
+      "model": {
+        "log_loss": 2.0635672737148347,
+        "brier": 0.9215822589844791,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.9745018128996679,
+        "brier": 0.8591924184385877,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 4.714285714285714
+    },
+    {
+      "session_key": 9998,
+      "model": {
+        "log_loss": 3.3158557650908644,
+        "brier": 1.1033973976014122,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 4.31637638468362,
+        "brier": 1.1578481095668032,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.95,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.5
+    },
+    {
+      "session_key": 10006,
+      "model": {
+        "log_loss": 2.1217415758195752,
+        "brier": 0.975191658304366,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8877581172179212,
+        "brier": 0.8538936694566952,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.5
+    },
+    {
+      "session_key": 10014,
+      "model": {
+        "log_loss": 2.4236474184998142,
+        "brier": 1.01666053139107,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8699356341291566,
+        "brier": 0.8926361744556631,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.95,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.0555555555555554
+    },
+    {
+      "session_key": 10022,
+      "model": {
+        "log_loss": 2.7457529526098328,
+        "brier": 1.116216462428946,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.2110902720948,
+        "brier": 0.6096943480374898,
+        "top1_correct": 0.5
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.95,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 2.5555555555555554
+    },
+    {
+      "session_key": 10033,
+      "model": {
+        "log_loss": 2.072230812338456,
+        "brier": 0.9587092656201033,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 0.8145080375642126,
+        "brier": 0.363265306122449,
+        "top1_correct": 1.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.95,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 1.4375
+    },
+    {
+      "session_key": 9987,
+      "model": {
+        "log_loss": 2.1881895795200466,
+        "brier": 0.9800689881962372,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.850599969250988,
+        "brier": 1.057142857142857,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.0
+    },
+    {
+      "session_key": 9979,
+      "model": {
+        "log_loss": 1.2972776221087952,
+        "brier": 0.647950713889948,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 4.2484952420493585,
+        "brier": 1.2612244897959182,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.8333333333333335
+    },
+    {
+      "session_key": 9971,
+      "model": {
+        "log_loss": 1.4325453065369194,
+        "brier": 0.6963386556689688,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 0.8001193001121132,
+        "brier": 0.357487922705314,
+        "top1_correct": 1.0
+      },
+      "uniform": {
+        "log_loss": 2.9444389791664407,
+        "brier": 0.9473684210526316,
+        "top1_correct": 0.05263157894736842
+      },
+      "rank_mae": 4.0
+    },
+    {
+      "session_key": 9963,
+      "model": {
+        "log_loss": 3.031717272032109,
+        "brier": 1.1018725465804335,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 4.2484952420493585,
+        "brier": 1.220408163265306,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999998,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 4.555555555555555
+    },
+    {
+      "session_key": 9955,
+      "model": {
+        "log_loss": 1.902918443493787,
+        "brier": 0.8809896928994151,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8505999692509882,
+        "brier": 0.8530612244897958,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.9375
+    },
+    {
+      "session_key": 9947,
+      "model": {
+        "log_loss": 2.0675530845475714,
+        "brier": 0.9814620300441435,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.2039728043259361,
+        "brier": 0.5673469387755101,
+        "top1_correct": 1.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.8
+    },
+    {
+      "session_key": 9939,
+      "model": {
+        "log_loss": 1.307187022279286,
+        "brier": 0.6601783858889753,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8505999692509882,
+        "brier": 0.9346938775510204,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.95,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.5
+    },
+    {
+      "session_key": 9928,
+      "model": {
+        "log_loss": 2.0512619284537403,
+        "brier": 0.9324229588790176,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.2039728043259361,
+        "brier": 0.6081632653061224,
+        "top1_correct": 0.5
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.8947368421052633
+    },
+    {
+      "session_key": 9920,
+      "model": {
+        "log_loss": 1.1077427206241708,
+        "brier": 0.5286337476768618,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8505999692509882,
+        "brier": 0.9346938775510204,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.95,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 5.611111111111111
+    },
+    {
+      "session_key": 9912,
+      "model": {
+        "log_loss": 2.8058905616504006,
+        "brier": 1.1011282698378875,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 4.2484952420493585,
+        "brier": 1.2612244897959184,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 2.888888888888889
+    },
+    {
+      "session_key": 9904,
+      "model": {
+        "log_loss": 1.9736436685207486,
+        "brier": 0.9572479417968283,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8505999692509882,
+        "brier": 0.8938775510204081,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 4.684210526315789
+    },
+    {
+      "session_key": 9896,
+      "model": {
+        "log_loss": 1.0337956622164837,
+        "brier": 0.4812151870130514,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 4.2484952420493585,
+        "brier": 1.179591836734694,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999998,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 2.7
+    },
+    {
+      "session_key": 9888,
+      "model": {
+        "log_loss": 1.5400419404493166,
+        "brier": 0.783852209840776,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.2039728043259361,
+        "brier": 0.5673469387755101,
+        "top1_correct": 1.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.6315789473684212
+    },
+    {
+      "session_key": 9877,
+      "model": {
+        "log_loss": 1.9747246532847194,
+        "brier": 0.9242981456369413,
+        "top1_correct": 0.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 4.2484952420493585,
+        "brier": 1.220408163265306,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.588235294117647
+    },
+    {
+      "session_key": 9869,
+      "model": {
+        "log_loss": 1.1511836853562625,
+        "brier": 0.5587915359124672,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.8505999692509882,
+        "brier": 0.9346938775510204,
+        "top1_correct": 0.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.7058823529411766
+    },
+    {
+      "session_key": 9858,
+      "model": {
+        "log_loss": 1.1938879897898242,
+        "brier": 0.5988573448876635,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.203972804325936,
+        "brier": 0.6081632653061224,
+        "top1_correct": 0.5
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.6
+    },
+    {
+      "session_key": 9850,
+      "model": {
+        "log_loss": 1.1492908597799316,
+        "brier": 0.5598702451642962,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 1.203972804325936,
+        "brier": 0.6081632653061224,
+        "top1_correct": 0.5
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.5
+    },
+    {
+      "session_key": 9839,
+      "model": {
+        "log_loss": 1.3867441065771666,
+        "brier": 0.6758898377015748,
+        "top1_correct": 1.0
+      },
+      "recent_win_baseline": {
+        "log_loss": 0.8145080375642125,
+        "brier": 0.4040816326530612,
+        "top1_correct": 1.0
+      },
+      "uniform": {
+        "log_loss": 2.995732273553991,
+        "brier": 0.9499999999999997,
+        "top1_correct": 0.05
+      },
+      "rank_mae": 3.9
+    }
+  ],
+  "aggregate": {
+    "model": {
+      "log_loss": 1.8890996627206107,
+      "brier": 0.8392844171602443,
+      "top1_correct": 0.2916666666666667
+    },
+    "recent_win_baseline": {
+      "log_loss": 2.1689474018186714,
+      "brier": 0.8420126526278633,
+      "top1_correct": 0.2916666666666667
+    },
+    "uniform": {
+      "log_loss": 2.9935950529545097,
+      "brier": 0.9498903508771929,
+      "top1_correct": 0.05010964912280702
+    },
+    "rank_mae": 3.6289137365472506
+  },
+  "test_tuned": false
+}
