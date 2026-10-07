@@ -1,3 +1,8 @@
+## 0.19.7 — Vercel production
+
+- Fix nested API file inclusion; successful production build and GitHub integration.
+- 공개 주소 및 한영 배포 문서 갱신.
+
 ## 0.19.6 / F1 0.7.3 — Rank motion
 
 - Recorded comparison rows smoothly follow current rank during playback; seeking and reduced-motion use immediate ordering.
