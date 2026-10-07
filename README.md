@@ -4,6 +4,8 @@
 
 [한국어](README.ko.md) · [Run & deploy](docs/VERCEL.ko.md) · [Documentation](docs/README.md)
 
+**0.21.0:** Shared football/F1 layout, readable typography and team/driver name search.
+
 ## Features
 
 | Football · Premier League / LaLiga | Formula 1 |

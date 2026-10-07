@@ -1,0 +1,108 @@
+/* MatchLab shared dashboard — one visual contract for both sports. */
+html[data-design]{--ml-bg:#f3f5f9;--ml-card:#fff;--ml-ink:#17283e;--ml-muted:#5b6b80;--ml-line:#dfe5ed;--ml-accent:#265bc4;--ml-soft:#eef3ff;--ml-font:"Segoe UI Variable","Segoe UI","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;--ink:#17283e;--paper:#fff;--line:#dfe5ed;--mint:#f3f5f9;--yellow:#e4edff}
+html[data-design] body{background:var(--ml-bg)!important;background-image:none!important;color:var(--ml-ink);font-family:var(--ml-font)!important;font-size:16px;line-height:1.65;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+html[data-design] :is(h1,h2,h3,h4,p,a,button,input,select,textarea,summary,label,small,span,strong,td,th,div,svg text){font-family:var(--ml-font)!important;text-shadow:none!important}
+html[data-design] :is(h1,h2,h3,h4){letter-spacing:-.035em;line-height:1.35!important;word-break:keep-all;overflow-wrap:anywhere}
+html[data-design] h1{font-size:clamp(26px,3vw,36px)!important;font-weight:800!important}
+html[data-design] h2{font-size:clamp(22px,2.5vw,30px)!important;font-weight:750!important}
+html[data-design] h3{font-size:19px!important;font-weight:700!important}
+html[data-design] body>header{background:#12243a!important;border:0!important;box-shadow:none!important;padding:20px max(24px,calc((100vw - 1280px)/2))!important;gap:18px!important;flex-wrap:wrap;color:#fff}
+html[data-design] header strong{font-size:27px!important;letter-spacing:-1px}
+html[data-design] header :is(small,p){color:#b9c9de!important;font-size:13px!important}
+html[data-design] header .sport-switch{order:1}html[data-design] header>.sport-switch+div{order:0}html[data-design] header>nav{order:2}html[data-design] header .language-switch{order:3}
+html[data-design] header :is(nav,.sport-switch,.language-switch){background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;display:flex;flex-wrap:wrap;gap:6px}
+html[data-design] header :is(button,a){background:#1d344f!important;border:1px solid #405570!important;color:#e9f0fb!important;border-radius:9px!important;box-shadow:none!important;min-height:44px;padding:9px 13px!important;text-decoration:none;font-size:14px!important}
+html[data-design] header :is(.active,[aria-current=page]){background:#e6edff!important;color:#17365b!important;border-color:#e6edff!important;font-weight:700}
+html[data-design] main{max-width:1328px!important;padding:28px 24px 56px!important}
+html[data-design] :is(.panel,.fixture,.card,.overviewcard,.metriccard,.summary>div,.splitstats>div,.fp-card,.fp-hero,.fp-metric,.fp-chart,.md-pixel-simulation,.f1-map-replay,.f1-record-replay,.f1-metric-card){border:1px solid var(--ml-line)!important;border-radius:16px!important;box-shadow:0 4px 18px #17283e06!important;background:var(--ml-card)!important;color:var(--ml-ink)!important;min-width:0}
+html[data-design] :is(.panel,.card,.fixture,.overviewcard){padding:22px!important}
+html[data-design] :is(.fixture,.fp-card,.catalogitem){transition:border-color .16s,box-shadow .16s!important}
+html[data-design] :is(.fixture,.fp-card,.catalogitem):hover{border-color:#849fc7!important;box-shadow:0 6px 20px #14274312!important}
+html[data-design] .fixture.selected{outline:2px solid var(--ml-accent)!important;outline-offset:2px}
+html[data-design] :is(button,select,input:not([type=range]),textarea){border-radius:9px!important;box-shadow:none!important;font-size:15px!important;line-height:1.45!important;max-width:100%;color:var(--ml-ink);border-color:#c8d2df!important}
+html[data-design] :is(button,select,input:not([type=range])){min-height:44px}
+html[data-design] :is(select,input:not([type=range]),textarea){background:#fff!important;padding:10px 12px!important;border:1px solid #c8d2df!important}
+html[data-design] :is(.openmatch,.schedule-more,.analystinput button,.card>button){background:var(--ml-accent)!important;color:#fff!important;border:1px solid var(--ml-accent)!important;font-weight:650!important;box-shadow:none!important}
+html[data-design] :is(.tabs button,.chart-groups button,.analystexamples button,.md-sim-controls button){background:#f0f4f9!important;border:1px solid var(--ml-line)!important;color:#23405d!important;padding:10px 14px!important}
+html[data-design] :is(.tabs button[aria-selected=true],.tabs button.active,.chart-groups button[aria-pressed=true]){background:#234e91!important;color:#fff!important}
+html[data-design] :is(.f1-profile-nav){gap:6px!important;background:#e7ecf4;padding:5px;border-radius:13px;width:fit-content;max-width:100%}
+html[data-design] .f1-profile-nav a{border:0!important;border-radius:9px!important;box-shadow:none!important;background:transparent!important;color:#50617a!important;font-weight:600!important;padding:10px 16px!important;font-size:15px}
+html[data-design] .f1-profile-nav a[aria-current=page]{background:#fff!important;color:#19477f!important;box-shadow:0 2px 6px #15263c12!important}
+html[data-design] :is(.filterdeck,.historyname,.catalogitem,.metric-reading,.empty){background:#edf2f8!important;border:1px solid var(--ml-line)!important;border-radius:12px!important;box-shadow:none!important}
+html[data-design] .catalogitem.active{background:#e8effc!important;border-color:#265bc4!important}
+html[data-design] :is(.metriccard strong,.summary strong,.fp-metric strong,.f1-metric-value){font-size:clamp(26px,2.7vw,34px)!important;font-weight:750!important;letter-spacing:-.04em!important;line-height:1.3!important;font-variant-numeric:tabular-nums;white-space:nowrap}
+html[data-design] :is(.metric-trigger,.f1-metric-trigger,.fp-metric summary){font-size:14px!important;font-weight:600!important;line-height:1.55!important;background:transparent!important;color:#43566d!important;border:0!important;box-shadow:none!important}
+html[data-design] :is(.muted,.fp-muted,.note,.chart-scope,.metric-note,.overviewcaption,footer){color:var(--ml-muted)!important;line-height:1.65}
+html[data-design] :is(.status,.badge,.fp-badge){background:#eef3fa!important;color:#385576!important;border:1px solid #d5e0ee!important;border-radius:6px!important;font-size:12px!important;font-weight:600;padding:4px 8px}
+html[data-design] .form span{border-radius:6px!important;box-shadow:none!important}
+html[data-design] .form span.result-loss{background:#fee5e7!important;color:#902336!important;border-color:#edbac2!important}
+html[data-design] .form span.result-draw{background:#fff0bc!important;color:#755100!important;border-color:#e4d084!important}
+html[data-design] :is(.logolink,.logolink.big){border:1px solid #e0e6ef!important;border-radius:12px!important;background:#fff!important;box-shadow:none!important}
+html[data-design] :is(.fp-card-text){padding:17px!important}
+html[data-design] #f1-profiles{font-family:var(--ml-font)!important;color:var(--ml-ink)!important}
+html[data-design] .fp-card h3{font-size:20px!important;margin-bottom:8px!important}
+html[data-design] .fp-pixel{background-color:#152d42!important;border-top-width:4px!important}
+html[data-design] .fp-pixel:has([data-driver-sprite]){background:radial-gradient(ellipse at 50% 85%,#385367 0 22%,transparent 23%),linear-gradient(130deg,#263f56,#142b41)!important}
+html[data-design] .fp-hero>.fp-pixel{border-radius:12px;overflow:hidden}
+html[data-design] .fp-driver-number{background:#f0f5ff!important;color:#19334f!important;border:1px solid #b9cade!important;border-radius:6px;box-shadow:none!important;font-weight:800!important}
+html[data-design] .fp-face-toggle{background:#edf3ff!important;color:#23466d!important;border:1px solid #b5c7df!important;min-height:36px!important;font-size:12px!important}
+html[data-design] :is(.fp-table table,table){background:#fff!important}
+html[data-design] :is(th,.fp-table th){background:#eff3f8!important;color:#53677f!important;font-size:13px!important;font-weight:650!important;border-bottom:1px solid #dce4ed!important;padding:13px 12px!important}
+html[data-design] td{border-bottom:1px solid #e8edf3!important;padding:13px 12px!important;font-size:14px}
+html[data-design] tbody tr:hover{background:#f5f8fc}
+html[data-design] :is(.tablewrap,.table-wrap,.fp-table){border-radius:10px}
+html[data-design] :is(.fp-scenario){border-radius:12px;background:#fff7e1!important;border-left:3px solid #bf8b29!important;font-size:14px;color:#735419}
+html[data-design] :is(.metric-popover,#f1-metric-bubble){border:1px solid #c7d3e4!important;border-radius:14px!important;background:#fff!important;color:#253950!important;box-shadow:0 12px 40px #15294024!important}
+html[data-design] .arcade-hero{background:linear-gradient(115deg,#132c48,#22456a)!important;border:0!important;border-radius:20px!important;box-shadow:none!important;padding:30px!important;margin-bottom:28px!important;grid-template-columns:minmax(0,1fr) 230px!important}
+html[data-design] .arcade-hero h2{font-size:clamp(26px,3vw,36px)!important;color:#fff!important;margin:8px 0!important}
+html[data-design] .arcade-kicker{font-size:11px!important;letter-spacing:.14em!important;color:#a4c7f9!important}
+html[data-design] .arcade-hero p{color:#c6d9ee!important;font-size:15px!important}
+html[data-design] .pixel-pitch{border:1px solid #50718a!important;border-radius:12px;opacity:.85}
+html[data-design] .pixel-tag{background:#28466a!important;color:#c5ddff!important;border-radius:5px;font-size:10px!important;padding:3px 6px!important}
+html[data-design] .track:not(img){border-radius:6px!important}
+html[data-design] :is(.fp-metric,.f1-metric-card,.metriccard){padding:17px!important}
+html[data-design] :focus-visible{outline:3px solid #2d6ad0!important;outline-offset:3px!important}
+html[data-design] header :focus-visible{outline-color:#c4daff!important}
+@media(max-width:750px){html[data-design] main{padding:20px 14px 40px!important}html[data-design] body>header{padding:18px 16px!important;gap:14px!important}html[data-design] :is(.panel,.fixture,.card,.overviewcard){padding:16px!important}html[data-design] .arcade-hero{grid-template-columns:1fr!important;padding:24px!important}html[data-design] .pixel-pitch{display:none}html[data-design] .fp-card h3{font-size:17px!important}html[data-design] .fp-card-text{padding:12px!important}html[data-design] .fp-grid{gap:12px!important}html[data-design] .f1-profile-nav a{padding:9px 11px!important}html[data-design] header small{display:none!important}}
+@media(prefers-reduced-motion:reduce){html[data-design] *{transition:none!important;scroll-behavior:auto!important}}
+/* Reference-informed layout: quiet surfaces, persistent navigation, prominent search. */
+html[data-design]{--ml-bg:#f6f7f8;--ml-ink:#202a34;--ml-muted:#606c78;--ml-line:#e4e7eb;--ml-accent:#087f96;--ml-soft:#e8f7fa}
+html[data-design] body>header{background:#fff!important;color:#202a34!important;border:1px solid #e4e7eb!important;border-radius:18px!important}
+html[data-design] header :is(small,p){color:#63707c!important}
+html[data-design] header :is(button,a){background:transparent!important;color:#35404d!important;border:0!important;border-radius:10px!important;text-align:left;font-weight:550}
+html[data-design] header :is(.active,[aria-current=page]){background:#e6f7fb!important;color:#006c82!important}
+html[data-design] header :is(button,a):hover{background:#f0f4f6!important}
+html[data-design] .arcade-hero{background:#eff8fa!important;color:#163f4a!important;padding:24px!important;margin:0 0 24px!important;border:1px solid #d9edf0!important}
+html[data-design] .arcade-hero h2{color:#173e48!important;font-size:30px!important}
+html[data-design] .arcade-hero p{color:#4f727b!important}
+html[data-design] .arcade-kicker{color:#267586!important}
+html[data-design] .pixel-tag{display:none}
+html[data-design] .fp-card{box-shadow:none!important}
+html[data-design] .fp-card .fp-pixel:has([data-driver-sprite]){background:radial-gradient(ellipse at 50% 86%,#d5e2e4 0 22%,transparent 23%),#edf3f4!important}
+html[data-design] .ml-searchbox{position:relative;margin:0 0 24px;max-width:100%}
+html[data-design] .ml-searchbar{display:flex;gap:10px;align-items:center;background:#fff;border:2px solid #21a5bb;border-radius:28px;padding:3px 8px 3px 18px;box-shadow:0 2px 8px #162e3710}
+html[data-design] .ml-searchbar input{border:0!important;border-radius:24px!important;box-shadow:none!important;flex:1;min-width:0;font-size:16px!important;background:transparent!important;outline-offset:0!important}
+html[data-design] .ml-searchbar button{border:0!important;background:#e6f6f9!important;color:#006d84!important;padding:8px 15px;border-radius:22px!important;flex:none}
+html[data-design] .ml-searchlabel{font-size:13px;color:#657681;display:block;margin:0 0 7px 4px}
+html[data-design] .ml-searchresults{position:absolute;z-index:30;top:100%;left:0;right:0;background:white;border:1px solid #cfdde4;border-radius:16px;padding:8px;box-shadow:0 10px 30px #203a5020;max-height:320px;overflow:auto}
+html[data-design] .ml-searchresults a{display:flex;justify-content:space-between;gap:15px;padding:12px;border-radius:8px;color:#253e4d;text-decoration:none;font-weight:600}
+html[data-design] .ml-searchresults a:hover{background:#edf7fa}
+html[data-design] .ml-searchresults small{color:#647786;font-size:12px}
+html[data-design] .ml-searchresults p{padding:8px;font-size:14px}
+html[data-design] .analyst-workbench{border-top:3px solid #21a5bb!important}
+@media(min-width:1050px){html[data-design] body>header{position:fixed;left:20px;top:20px;bottom:20px;width:206px;max-height:calc(100dvh - 40px);overflow-y:auto;display:flex!important;flex-direction:column;align-items:stretch!important;justify-content:flex-start!important;padding:20px 14px!important;gap:24px!important;z-index:40}
+html[data-design] header :is(.sport-switch,nav,.language-switch){flex-direction:column!important;width:100%}
+html[data-design] header>.toolbar{flex-direction:column;align-items:stretch}
+html[data-design] header :is(strong,h1){font-size:25px!important;white-space:nowrap}
+html[data-design] header .language-switch{margin-top:auto}
+html[data-design] header small{display:block;margin:6px 0 0!important}
+html[data-design] main{margin-left:244px!important;margin-right:20px!important;max-width:1400px!important;padding:22px 12px 56px!important}
+html[data-design] .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+html[data-design] .fp-grid{grid-template-columns:repeat(auto-fit,minmax(205px,1fr))!important}}
+@media(max-width:1049px){html[data-design] body>header{margin:12px 14px 0!important}html[data-design] main{margin:auto!important}html[data-design] .ml-searchlabel{font-size:12px}}
+@media(max-width:600px){html[data-design] .ml-searchbar{padding-left:8px}html[data-design] .ml-searchbar input{font-size:14px!important}.ml-searchbar button{font-size:13px!important}html[data-design] .arcade-hero h2{font-size:24px!important}}
+html[data-design] header h1 span{color:#087f96!important}
+html[data-design] .analyst-workbench h2{font-size:23px!important}
+html[data-design] .cards{margin-top:24px}
+html[data-design] .badge.cancelled{background:#fee7e9!important;color:#8c2636!important;border-color:#edc5cb!important}
+html[data-design] .badge.scheduled{background:#fff4d5!important;color:#735600!important;border-color:#e9dbb2!important}
