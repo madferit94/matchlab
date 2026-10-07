@@ -1,10 +1,3 @@
-## 0.22.0 / F1 0.9.0 — 2024 training → 2025 predictions
-
-- Collect 24 OpenF1 2024 GPs; train on 19 after five warm-up races, freeze model weights and evaluate 24 GPs in 2025.
-- 2024년 수집·학습, 2025년 예측/실제 비교·지표·자연어 조회. 기존 2026년 자료와 모델 보존.
-- Winner hits 7/24; rank MAE 3.63. Independent feature/weight/metric checks and bilingual browser checks passed.
-- [Specification / 명세](docs/SPEC-0.22.0.md). Includes reproducible collection, training and verification evidence.
-
 ## 0.21.5 / F1 0.8.7 — Past GP catalogue
 
 - Season selector, 24 archived GP cards and dedicated historical results/metrics/analysis pages; preserve season on direct links, back and refresh.

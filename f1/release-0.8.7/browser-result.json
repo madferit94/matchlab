@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "evidence": [
+    {
+      "case": "2025 card to result",
+      "first": "1Lando NORRISMcLaren57025완주"
+    },
+    {
+      "width": 390,
+      "route": "?year=2025",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "?year=2025&lang=en#race=9693",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "?year=2025",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "?year=2025&lang=en#race=9693",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "?year=2025",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "?year=2025&lang=en#race=9693",
+      "overflow": false
+    }
+  ],
+  "pageErrors": [],
+  "scope": "24 archived GP records + 25 current entries; real DOM interactions; direct route/back/reload/year/language/metrics/analysis and 3 widths"
+}

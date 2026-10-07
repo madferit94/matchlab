@@ -6,8 +6,6 @@
 
 ## Explore
 
-F1 includes 24 archived GPs each from 2024 and 2025. The 2025 experiment trains on 19 GPs from 2024 (five initial warm-up races), then evaluates 24 GPs from 2025: 7/24 winner hits and 3.63 mean rank error. These are retrospective experimental estimates.
-
 | Football · Premier League / LaLiga | Formula 1 |
 |---|---|
 | Team profiles, fixtures and match previews | Driver and team profiles with mini pixel characters |

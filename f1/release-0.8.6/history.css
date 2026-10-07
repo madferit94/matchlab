@@ -1,0 +1,8 @@
+.nl-history,.nl-history-season,.nl-history-table{min-width:0;max-width:100%}
+.nl-history-season{margin-top:24px}
+.nl-history-season h4{font-size:20px;line-height:1.4;overflow-wrap:anywhere}
+.nl-history-table{overflow-x:auto;overscroll-behavior-x:contain}
+.nl-history-table table{min-width:580px;width:100%}
+.nl-history-table th,.nl-history-table td{padding:12px;text-align:left}
+.nl-history-missing{padding:12px;border-left:3px solid #b57817;background:#fff6e4;color:#654817;overflow-wrap:anywhere}
+.nl-history .muted{overflow-wrap:anywhere}
