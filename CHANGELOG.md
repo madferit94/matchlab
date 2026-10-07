@@ -1,3 +1,8 @@
+## 0.19.6 / F1 0.7.3 — Rank motion
+
+- Recorded comparison rows smoothly follow current rank during playback; seeking and reduced-motion use immediate ordering.
+- 실제 기록 패널에서 순위 변화에 따라 드라이버 행이 위아래로 이동. 랩 진행·예측·원본 자료 보존.
+
 ## 0.19.5 — Repository organization / 저장소 정리
 
 - Short bilingual README; preserve original text in docs/history.

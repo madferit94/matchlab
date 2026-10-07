@@ -10,7 +10,7 @@
 |---|---|
 | Team profiles, match records and metric charts | Grand Prix and driver metrics with explanations |
 | Fixtures and match previews | Conditional queries by lap range and pit-lap exclusion |
-| Experimental outcome probabilities and pixel replay | Predicted order versus recorded progress and circuit playback |
+| Experimental outcome probabilities and pixel replay | Predicted order, animated rank changes and circuit playback |
 | Korean/English viewers and an AI analyst adapter | Korean/English metric queries and charts |
 
 ## Run locally
