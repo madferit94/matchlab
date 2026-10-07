@@ -1,3 +1,7 @@
+## 0.19.4 — Vercel 배포 지원
+
+기존 축구·F1 화면과 AI 서버의 Vercel 배포 설정을 추가했습니다. 2.0 개발은 아닙니다. [배포 안내](docs/VERCEL.ko.md). 실제 배포와 제공자 호출 여부는 로컬 검사와 별도로 확인합니다.
+
 # MatchLab — 축구 & F1
 
 [English](README.md) · [GitHub 저장소](https://github.com/madferit94/matchlab)

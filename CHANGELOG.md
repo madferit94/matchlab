@@ -1,3 +1,8 @@
+## 0.19.4 · Vercel
+
+- Static page allowlist and Node function adapter; exact HTTPS origins and parsed JSON handling.
+- 기존 사이트 배포 설정, 서버 호환성 검사, 한영 배포 안내 추가.
+
 ## 0.19.3 · 2026-10-07
 
 - Dedicated madferit94/matchlab repository; retained football/F1 subtree history and prior snapshots.
