@@ -1,3 +1,9 @@
+## 0.19.5 — Repository organization / 저장소 정리
+
+- Short bilingual README; preserve original text in docs/history.
+- Move 45 dated screen folders into archive/visualizations and update links/check paths.
+- Runtime pages, data and models unchanged.
+
 ## 0.19.4 · Vercel
 
 - Static page allowlist and Node function adapter; exact HTTPS origins and parsed JSON handling.

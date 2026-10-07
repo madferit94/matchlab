@@ -22,4 +22,4 @@ This version contains a new configuration and checking code. The existing actual
 
 To review: inspect the role consolidation in the table above. Future work uses the configuration selected by team_selection_2026-10-06-v02.json in the repository root.
 
-Start with [TEAM-PROTOCOL.md](TEAM-PROTOCOL.md), [team.json](team.json), and the corresponding [role](roles/) and [skill](skills/). Shared tools are in ../tools/, shared contracts are ../*.json, and primary data is ../../source-unified-2026-10-06-v01. Relative paths in role and skill instructions are resolved from this English package directory.
+Start with [TEAM-PROTOCOL.md](TEAM-PROTOCOL.md), [team.json](team.json), and the corresponding [role](roles) and [skill](skills). Shared tools are in ../tools/, shared contracts are ../*.json, and primary data is ../../source-unified-2026-10-06-v01. Relative paths in role and skill instructions are resolved from this English package directory.

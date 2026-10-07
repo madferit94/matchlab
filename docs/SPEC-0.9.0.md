@@ -24,7 +24,7 @@ Stored records were not refreshed: 2,399 completed matches, 641 scheduled fixtur
 
 ## 파일 / Files
 
-- [Korean site](../index.html) · [English site](../index.en.html) · [v23](../visualization-design-2026-10-06-v23/index.html)
+- [Korean site](../index.html) · [English site](../index.en.html) · [v23](../archive/visualizations/visualization-design-2026-10-06-v23/index.html)
 - [Prediction model KO](../modeling/prematch-v2-2026-10-06-v01/README.ko.md) · [Prediction model EN](../modeling/prematch-v2-2026-10-06-v01/README.md)
 - [Feature fact check](feature-factcheck-2026-10-06-v01/RESULTS.ko.md)
 - [Simulation source](../simulation/pixel-v2-2026-10-06-v01/pixel-simulation.js) · [Simulation checks](../simulation/pixel-v2-2026-10-06-v01/check.cjs)

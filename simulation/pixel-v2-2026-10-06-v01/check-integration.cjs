@@ -8,7 +8,7 @@ for(const file of ['index.html','index.en.html']){
  test(file+' 641 forecasts',()=>assert.equal(bundle.predictions.length,641));
  test(file+' all forecasts model validated and identity matched',()=>{const rows=new Map(D.scheduled.map(m=>[m.id,m]));for(const p of bundle.predictions){sim.validate({model:p.model_id,status:p.status,probabilities:[p.probabilities.home,p.probabilities.draw,p.probabilities.away]});const m=rows.get(p.match_key);assert.ok(m,p.match_key);assert.equal(m.home,p.home_team_key);assert.equal(m.away,p.away_team_key);assert.equal(m.date,p.date);assert.equal(m.league,p.league);}});
  test(file+' executable scripts parse',()=>{for(const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)){if(!/application\/json/.test(match[1]))new vm.Script(match[2]);}});
- test(file+' canonical equals new snapshot',()=>assert.equal(html,fs.readFileSync(path.join(P,'visualization-design-2026-10-06-v23',file),'utf8')));
+ test(file+' canonical equals new snapshot',()=>assert.equal(html,fs.readFileSync(path.join(P,'archive/visualizations/visualization-design-2026-10-06-v23',file),'utf8')));
 }
 function fakeDOM(reduced){
  let callback=null,cancelled=0;const win={matchMedia:()=>({matches:reduced}),requestAnimationFrame:fn=>{callback=fn;return 1;},cancelAnimationFrame:()=>{cancelled++;}};

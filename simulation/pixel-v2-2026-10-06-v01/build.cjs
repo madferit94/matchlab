@@ -1,5 +1,5 @@
 'use strict';
-const fs=require('node:fs'),path=require('node:path');const P=path.resolve(__dirname,'../..'),target=path.join(P,'visualization-design-2026-10-06-v23');
+const fs=require('node:fs'),path=require('node:path');const P=path.resolve(__dirname,'../..'),target=path.join(P,'archive/visualizations/visualization-design-2026-10-06-v23');
 if(fs.existsSync(target))throw new Error('v23 exists; do not overwrite.');
 const oldJs=fs.readFileSync(path.join(P,'simulation/pixel-v1-2026-10-06-v01/pixel-simulation.js'),'utf8'),newJs=fs.readFileSync(path.join(__dirname,'pixel-simulation.js'),'utf8');
 const normalize=s=>s.replace(/\r\n/g,'\n');fs.mkdirSync(target);

@@ -2,10 +2,10 @@
 from pathlib import Path
 import json,re
 p=Path(__file__).resolve().parents[1]
-d=p/'visualization-design-2026-10-06-v16'
+d=p/'archive/visualizations/visualization-design-2026-10-06-v16'
 assert not d.exists() or not any(d.iterdir()), 'Preserve existing version'
 d.mkdir(exist_ok=True)
-s=(p/'visualization-design-2026-10-06-v15/index.html').read_text(encoding='utf8')
+s=(p/'archive/visualizations/visualization-design-2026-10-06-v15/index.html').read_text(encoding='utf8')
 switch='<div class="language-switch" aria-label="Language"><a id="language-ko" href="index.html" lang="ko" hreflang="ko">한국어</a><a id="language-en" href="index.en.html" lang="en" hreflang="en">English</a></div>'
 s=s.replace('</nav></header>','</nav>'+switch+'</header>')
 s=s.replace('</style></head>',' .language-switch{display:flex;gap:8px;flex-wrap:wrap}.language-switch a{color:#fff9e7;padding:8px;border:2px solid #fff9e7;text-decoration:none;font-size:14px}.language-switch a[aria-current]{background:#ffe08a;color:#182b3b}.language-switch a:focus-visible{outline:3px solid #ffe08a;outline-offset:3px}header{flex-wrap:wrap} </style></head>')
@@ -121,5 +121,5 @@ for name,content in [('index.html',s),('index.en.html',en)]:
  (d/name).write_text(content,encoding='utf8');(p/name).write_text(content,encoding='utf8')
 (d/'ui-translations.en.json').write_text(json.dumps(translations,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 (d/'metric-language.en.json').write_text(json.dumps(en_data['metric_meta'],ensure_ascii=False,indent=2)+'\n',encoding='utf8')
-(d/'check.cjs').write_bytes((p/'visualization-design-2026-10-06-v15/check.cjs').read_bytes())
+(d/'check.cjs').write_bytes((p/'archive/visualizations/visualization-design-2026-10-06-v15/check.cjs').read_bytes())
 print('Built v16: Korean + English, 27 EPL and 29 LaLiga clubs, 47 metric definitions.')

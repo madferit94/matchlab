@@ -24,7 +24,7 @@ history=[
 def table(ko):
     rows=['| UI version | Change / 변경 |','|---|---|']
     for v,en,kr in history:
-        target=f'visualization-design-2026-10-06-{v}/'+('index-v02.html' if v=='v04' else 'index.html')
+        target=f'archive/visualizations/visualization-design-2026-10-06-{v}/'+('index-v02.html' if v=='v04' else 'index.html')
         rows.append(f'| [{v}]({target}) | {kr if ko else en} |')
     return '\n'.join(rows)
 en='''# MatchDesk — Football Analytics Agent Team
@@ -35,9 +35,9 @@ en='''# MatchDesk — Football Analytics Agent Team
 
 ## Open a viewer
 
-- [Current functional viewer — v12](visualization-design-2026-10-06-v12/index.html).
-- [Soft app design preview — v13](visualization-design-2026-10-06-v13/index.html).
-- [8-bit pixel clubhouse preview — v14](visualization-design-2026-10-06-v14/index.html).
+- [Current functional viewer — v12](archive/visualizations/visualization-design-2026-10-06-v12/index.html).
+- [Soft app design preview — v13](archive/visualizations/visualization-design-2026-10-06-v13/index.html).
+- [8-bit pixel clubhouse preview — v14](archive/visualizations/visualization-design-2026-10-06-v14/index.html).
 - [Three design directions](design-candidates-2026-10-06-v01/index.html).
 
 Download/open HTML locally; GitHub's source view does not run it. This release does not host a website. Choose Matches, Teams or League. Team names/logos open the team overview; metric names open a meaning/reading-tip bubble. Search accepts Korean labels or original codes. The source/collection panel and external match links are removed from v11/v12 onwards.
@@ -75,7 +75,7 @@ The actual representative Arsenal–Leeds/Malaga–Espanyol run used the previou
 python -m unittest discover -s agent-team-2026-10-06-v01/tests -v
 python -m unittest discover -s agent-team-integrated-2026-10-06-v01/tests -v
 python -m unittest discover -s modeling/tests -v
-node visualization-design-2026-10-06-v14/check.cjs
+node archive/visualizations/visualization-design-2026-10-06-v14/check.cjs
 ```
 
 Python 3.11+ with the pinned NumPy requirement is needed for model tests; agent tests use the standard library. Node runs 36 calculation/navigation/interaction checks with a DOM stub. **Real-browser rendering, mobile touch, remote logo/font loading and user acceptance are pending.** A separate local source report is not an authenticated admin area. Historical snapshots still preserve earlier provenance. Team hex colours are UI choices, not verified official brand hex codes.
@@ -96,9 +96,9 @@ ko='''# MatchDesk — AI 경기 분석실 에이전트 팀
 
 ## 화면 열기
 
-- [기능 개선 완료 화면 — v12](visualization-design-2026-10-06-v12/index.html)
-- [부드러운 앱 디자인 예시 — v13](visualization-design-2026-10-06-v13/index.html)
-- [8비트 게임 디자인 미리보기 — v14](visualization-design-2026-10-06-v14/index.html)
+- [기능 개선 완료 화면 — v12](archive/visualizations/visualization-design-2026-10-06-v12/index.html)
+- [부드러운 앱 디자인 예시 — v13](archive/visualizations/visualization-design-2026-10-06-v13/index.html)
+- [8비트 게임 디자인 미리보기 — v14](archive/visualizations/visualization-design-2026-10-06-v14/index.html)
 - [디자인 후보 3개 비교](design-candidates-2026-10-06-v01/index.html)
 
 HTML을 내려받아 브라우저에서 엽니다. GitHub의 코드 보기에서는 실행되지 않으며 인터넷에 서비스로 올린 상태도 아닙니다. 경기·팀·리그 메뉴와 팀 이름/로고로 탐색하고, 지표 이름을 누르면 뜻과 읽는 법이 열립니다. 한글 이름과 원본 약어 모두 검색할 수 있습니다. v11부터 출처·수집 시점 영역을 제거했고 v12부터 외부 경기 링크를 제거했습니다.
@@ -136,7 +136,7 @@ HTML에는 **완료 2,399경기·예정 641경기·56개 팀**, 팀별 경기 �
 python -m unittest discover -s agent-team-2026-10-06-v01/tests -v
 python -m unittest discover -s agent-team-integrated-2026-10-06-v01/tests -v
 python -m unittest discover -s modeling/tests -v
-node visualization-design-2026-10-06-v14/check.cjs
+node archive/visualizations/visualization-design-2026-10-06-v14/check.cjs
 ```
 
 모델 검사는 Python 3.11 이상과 지정 NumPy가 필요합니다. 화면은 Node에서 화면 요소를 흉내 내는 검사로 계산·검색·이동·말풍선 36항목을 확인합니다. **실제 화면 모양·모바일 터치·외부 로고/글꼴 로딩·참가자 확인은 별도이며 미확인입니다.** 관리자용 로컬 파일 분리는 로그인 권한 검사가 아닙니다. 이전 화면의 출처 기록은 보존합니다. 팀 강조색의 정확한 색상 값은 디자인 선택값입니다.
@@ -161,7 +161,7 @@ policy=p/'docs/VERSIONING.md'
 text=policy.read_text(encoding='utf8').replace('current version is0.2.1','current version is0.3.0')
 text+='\n## 0.3.0 publication scope\n\nViewer revisions v01–v14 remain immutable comparisons. viewer_selection.json separates functional v12 from soft v13 and pixel v14 previews. The HTML now embeds a larger display dataset; the CSV demo is unchanged. Full provider caches, complete modeling CSV and the local admin source report remain outside this release. Archived reviewer command records may retain generic machine paths describing the original execution environment. docs/publication_manifest-0.2.1.json preserves the previous file listing.\n'
 policy.write_text(text,encoding='utf8')
-(p/'viewer_selection.json').write_text(json.dumps(dict(release='0.3.0',functional_viewer='visualization-design-2026-10-06-v12/index.html',soft_preview='visualization-design-2026-10-06-v13/index.html',pixel_preview='visualization-design-2026-10-06-v14/index.html',design_acceptance='pending',administrator_authentication=False,model_adopted=False),indent=2)+'\n',encoding='utf8')
+(p/'viewer_selection.json').write_text(json.dumps(dict(release='0.3.0',functional_viewer='archive/visualizations/visualization-design-2026-10-06-v12/index.html',soft_preview='archive/visualizations/visualization-design-2026-10-06-v13/index.html',pixel_preview='archive/visualizations/visualization-design-2026-10-06-v14/index.html',design_acceptance='pending',administrator_authentication=False,model_adopted=False),indent=2)+'\n',encoding='utf8')
 for name,section in [('README.md','''\n## MatchDesk football agent project · 0.3.0\n\n[Project and version history](football/matchdesk-ai-agents/README.md) · [Release SPEC](football/matchdesk-ai-agents/docs/SPEC-0.3.0.md) · [8-bit HTML preview](football/matchdesk-ai-agents/visualization-design-2026-10-06-v14/index.html). Team analytics with Korean metric explanations, filters and two design previews. Experimental prediction adoption remains false. Download HTML to view; no hosted service is claimed.\n'''),('README.ko.md','''\n## MatchDesk AI 경기 분석실 · 0.3.0\n\n[프로젝트·버전 이력](football/matchdesk-ai-agents/README.ko.md) · [요구사항·검증 SPEC](football/matchdesk-ai-agents/docs/SPEC-0.3.0.md) · [8비트 HTML 미리보기](football/matchdesk-ai-agents/visualization-design-2026-10-06-v14/index.html). 팀 통계·한글 지표 풀이·필터·디자인 예시를 제공합니다. 예측 모델 채택은 보류이며 HTML을 내려받아 확인합니다. 공개 서비스로 배포한 상태는 아닙니다.\n''')]:
     target=repo/name
     text=target.read_text(encoding='utf8')
