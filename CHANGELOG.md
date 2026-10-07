@@ -1,3 +1,8 @@
+## 0.21.1 / F1 0.8.4 — Comparison profile links
+
+- Remove the expandable explanation panel in both comparison renderers; driver names open existing profiles.
+- 표현 방식과 한계 칸 제거, 비교표 드라이버 이름 클릭 이동.
+
 ## 0.21.0 — Shared sports dashboard
 
 - StatMuse-inspired navigation/search and quiet rounded cards across football KO/EN and F1. Shared system typography; local name search links to existing profiles.
