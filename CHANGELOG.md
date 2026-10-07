@@ -1,3 +1,8 @@
+## 0.20.1 / F1 0.8.1 — Mini game characters
+
+- 23 compact 32×40 driver sprites with team suit palettes, racing numbers, hairstyles and facial-hair accents. No remote portrait required.
+- 드라이버별 미니 게임 캐릭터, 얼굴 확대·한영·모바일 지원. 경기 데이터와 순위 계산 유지.
+
 ## 0.20.0 / F1 0.8.0 — Driver and team profiles
 
 - Pixel portraits/suits with face zoom, 23 season participants and 11 team profiles.
