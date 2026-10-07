@@ -1,3 +1,8 @@
+## 0.20.3 / F1 0.8.3 — Floating driver numbers
+
+- Move driver numbers off the suit into an upper-right badge on cards and profiles.
+- 등번호를 캐릭터 오른쪽 위 별도 배지로 이동, 복장 가림 제거.
+
 ## 0.20.2 / F1 0.8.2 — Character detail
 
 - Team-specific suit panels, collars, cuffs and boot piping; individual brows, eye spacing, hair highlights and expressions.
