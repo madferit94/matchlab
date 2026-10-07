@@ -1,25 +1,12 @@
-# Version policy / 버전 규칙
+# Version policy / 버전 관리
 
-The project VERSION uses major.minor.patch. Preserve original date/version snapshot directories; point the selection JSON at the current package. Use Git commits for tracked changes, never rewrite earlier snapshots to imply a different execution history. The current version is0.4.0; the legacy definition is0.1.0. A repository-wide tag is not created because this project shares a monorepo with unrelated work.
+- [VERSION](../VERSION) is the single current release number; `package.json` must match. / 현재 버전은 VERSION 한 곳을 기준으로 하며 package.json과 맞춥니다.
+- Use `major.minor.patch`: incompatible changes / features / fixes or documentation updates. / 큰 구조 변경·기능 추가·수정 순서로 번호를 올립니다.
+- Keep both root READMEs aligned in section order and meaning. Describe current capabilities; put release-by-release details in [CHANGELOG](../CHANGELOG.md). / 한영 README 구성을 맞추고 상세 이력은 CHANGELOG에 기록합니다.
+- Work on a branch, verify the change, then merge a pull request into `main`. Website changes also require deployment verification; a documentation merge alone does not prove a new deployment. / 브랜치에서 수정·검증 후 main에 병합합니다. 웹 화면 변경은 배포 결과도 확인합니다.
+- Preserve historical snapshots and SPEC files. Use new versioned evidence files; do not revise old records to imply a different past result. / 과거 화면·명세·검증 기록은 보존합니다.
+- Refresh `publication_manifest.json` with the release checker. It records file hashes and excludes itself; secrets such as `.env` stay outside publication. / 검사기로 파일 목록·해시를 갱신하며 비밀 설정은 공개하지 않습니다.
 
-VERSION은 큰변경.기능변경.수정 번호입니다. 기존날짜/버전 폴더는 보존하고 선택JSON으로현재구성을 지정합니다. Git커밋으로변경내역을 남기며 과거 실행주체를 바꾸어기록하지 않습니다. 이프로젝트와무관한작업이공존하는통합저장소이므로 저장소전체태그는 생성하지 않습니다.
+This is the standalone `madferit94/matchlab` repository. Earlier monorepo rules and historical version notes are preserved in [the previous policy](history/VERSIONING-before-0.21.2.md), not current instructions.
 
-publication_manifest.json contains relative paths, byte counts, SHA-256 content hashes and snapshot labels. It excludes itself to avoid a recursive hash. Original local files remain unchanged. Website bodies, personal paths, credentials, workshop materials and unrelated repositories are not part of the public export. Public paths preserve validator compatibility; the included core-data folder is a clearly labelled demonstration subset.
-
-Text hashes describe the published UTF-8/LF representation; binary files retain their original bytes. 공개 텍스트의 해시는 GitHub에 저장한 UTF-8/LF 줄바꿈 기준입니다.
-
-## 0.3.0 publication scope
-
-Viewer revisions v01–v14 remain immutable comparisons. viewer_selection.json separates functional v12 from soft v13 and pixel v14 previews. The HTML now embeds a larger display dataset; the CSV demo is unchanged. Full provider caches, complete modeling CSV and the local admin source report remain outside this release. Archived reviewer command records may retain generic machine paths describing the original execution environment. docs/publication_manifest-0.2.1.json preserves the previous file listing.
-
-## 0.4.0 adopted design
-
-The user adopted the pixel design. index.html is identical to v15, and viewer_selection.json points to it. v13/v14 stay preserved previews, not the current entry. docs/publication_manifest-0.3.0.json preserves the preceding release. No repository-wide tag is used in this multi-project repository.
-
-## 0.5.0 bilingual interface
-
-Both canonical language entries match the preserved v16 snapshots. The 0.4.0 manifest remains in docs/publication_manifest-0.4.0.json. English changes presentation metadata only, preserving all statistics.
-
-## 0.8.0 Gemini server
-
-Canonical bilingual viewers match v19. Local .env is ignored and excluded from public snapshots; only the empty .env.example is published. Live API verification is tracked separately from mocked-provider tests.
+현재는 독립 저장소이며 이전 통합 저장소 기준과 과거 버전 설명은 위 보관 문서에 남깁니다.

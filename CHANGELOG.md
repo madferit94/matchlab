@@ -1,3 +1,8 @@
+## 0.21.2 — Documentation / 문서 정리
+
+- Matching Korean/English README structure, direct sport links, optional AI setup and concise documentation navigation.
+- 한영 README 통일, 지난 버전 소개 제거, 현재 버전 정책 정리와 이전 정책 보관. 런타임 변경 없음.
+
 ## 0.21.1 / F1 0.8.4 — Comparison profile links
 
 - Remove the expandable explanation panel in both comparison renderers; driver names open existing profiles.

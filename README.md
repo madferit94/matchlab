@@ -1,52 +1,59 @@
 # MatchLab
 
-**Explore football and F1 records through metric comparisons, visual analysis and race playback.**
+**Football and F1 records, visual analysis, and experimental predictions in one place.**
 
-[한국어](README.ko.md) · [Run & deploy](docs/VERCEL.ko.md) · [Documentation](docs/README.md)
+[한국어](README.ko.md) · [Live site](https://matchlab-zeta.vercel.app/) · [Current version](VERSION) · [Release history](CHANGELOG.md)
 
-**0.21.0:** Shared football/F1 layout, readable typography and team/driver name search.
-
-## Features
+## Explore
 
 | Football · Premier League / LaLiga | Formula 1 |
 |---|---|
-| Team profiles, match records and metric charts | Mini pixel driver characters and team profiles, championship standings and metric explanations |
-| Fixtures and match previews | Conditional queries by lap range and pit-lap exclusion |
-| Experimental outcome probabilities and pixel replay | Predicted order, animated rank changes and circuit playback |
-| Korean/English viewers and an AI analyst adapter | Korean/English metric queries and charts |
+| Team profiles, fixtures and match previews | Driver and team profiles with mini pixel characters |
+| Metric charts, filters and explanations | Championship standings and race metrics |
+| Experimental outcome probabilities | Pre-race predictions compared with recorded results |
+| Pixel match playback | Circuit playback and animated rank changes |
+
+Both sports share a responsive layout, Korean/English views and local name search. Click team or driver names to explore their records.
+
+[Football](https://matchlab-zeta.vercel.app/) · [Football in English](https://matchlab-zeta.vercel.app/index.en.html) · [F1](https://matchlab-zeta.vercel.app/f1/index.html) · [F1 in English](https://matchlab-zeta.vercel.app/f1/index.html?lang=en)
 
 ## Run locally
 
-Use Node.js 22 and run from the repository root:
+With **Node.js 22**, run from the repository root:
 
 ```sh
 npm start
 ```
 
-- Football: http://127.0.0.1:8765/
-- English football: http://127.0.0.1:8765/index.en.html
-- F1: http://127.0.0.1:8765/f1/index.html
+Open [localhost:8765](http://127.0.0.1:8765/) for football or [localhost:8765/f1/](http://127.0.0.1:8765/f1/index.html) for F1.
 
-For the football AI analyst, copy `.env.example` to `.env`, set your credentials and an available model, then run `node --env-file=.env server/gemini.cjs`. Never publish `.env`. See the [Vercel deployment guide](docs/VERCEL.ko.md).
+<details>
+<summary>Optional: connect the football AI analyst</summary>
 
-## Scope
+Copy `.env.example` to `.env`, set the provider credentials and an available model, then run:
 
-- Analysis uses saved data, not an automatic live feed. The football snapshot runs through 2026-09-20.
-- F1 metric queries use a deterministic parser. The football AI adapter requires separate configuration and live-call verification.
-- Predictions are experimental. Playback is not actual footage; F1 combines recorded coordinates with lap-based reconstruction.
-- Live site: [matchlab-zeta.vercel.app](https://matchlab-zeta.vercel.app).
+```sh
+node --env-file=.env server/gemini.cjs
+```
 
-## Repository map
+Keep `.env` private. Local name search and F1 rule-based metric queries do not require an AI API key.
 
-| Location | Purpose |
+</details>
+
+## Data and prediction scope
+
+- Screens use saved datasets, not an automatic live feed. Coverage and dates depend on the dataset.
+- Predictions are experimental. The F1 season outlook is a conditional scenario, not a calibrated championship forecast.
+- Playback reconstructs records or illustrates predictions; it is not actual race footage.
+
+## Documentation
+
+| Looking for… | Open |
 |---|---|
-| `index.html`, `index.en.html`, `f1/` | Current viewers and F1 assets |
-| `analysis/`, `modeling/`, `simulation/` | Calculations, prediction experiments and playback |
-| `server/`, `api/`, `tools/` | Local server, Vercel adapter, build and checks |
-| `agent-team-integrated-2026-10-06-v01/`, `skills/` | Agent responsibilities and workflows |
-| `docs/` | Design, verification and deployment documentation |
-| `archive/` | Previous viewer and design snapshots |
+| Setup and Vercel deployment | [Deployment guide (Korean)](docs/VERCEL.ko.md) |
+| Agent roles and skills | [Agent & skill guide](docs/AGENTS-AND-SKILLS.en.md) |
+| Repository folders | [Folder guide](docs/STRUCTURE.md) |
+| Version management | [Version policy](docs/VERSIONING.md) |
+| Specifications and older records | [Documentation index](docs/README.md) |
 
-[Agent & skill guide](docs/AGENTS-AND-SKILLS.en.md) · [Folder guide](docs/STRUCTURE.md)
-
-See [VERSION](VERSION) for the current release and [CHANGELOG](CHANGELOG.md) for detailed history.
+Feature history belongs in [CHANGELOG](CHANGELOG.md); this README describes the current project.
