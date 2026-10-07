@@ -3,10 +3,10 @@ from pathlib import Path
 import hashlib,json,re,subprocess,sys
 
 p=Path(__file__).resolve().parents[1]
-repo=p.parents[1]
-prefix=p.relative_to(repo).as_posix()+'/'
-tracked=subprocess.check_output(['git','ls-files','-z','--',prefix],cwd=repo).decode().split('\0')
-extra=subprocess.check_output(['git','ls-files','--others','--exclude-standard','-z','--',prefix],cwd=repo).decode().split('\0')
+repo=Path(subprocess.check_output(['git','rev-parse','--show-toplevel'],cwd=p,text=True).strip())
+prefix='' if p==repo else p.relative_to(repo).as_posix()+'/'
+tracked=subprocess.check_output(['git','ls-files','-z','--',prefix or '.'],cwd=repo).decode().split('\0')
+extra=subprocess.check_output(['git','ls-files','--others','--exclude-standard','-z','--',prefix or '.'],cwd=repo).decode().split('\0')
 files=sorted(set(x for x in tracked+extra if x and (repo/x).is_file()))
 patterns=[re.compile(rb'gh[pousr]_[A-Za-z0-9]{30,}'),re.compile(rb'github_pat_[A-Za-z0-9_]{30,}'),re.compile(rb'AIza[A-Za-z0-9_-]{30,}'),re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')]
 for f in files:
@@ -15,7 +15,7 @@ for f in files:
     blob=(repo/f).read_bytes()
     assert not any(rx.search(blob) for rx in patterns), f'Credential-like content in {f}'
     assert (repo/f).stat().st_size<95*1024*1024, f'Oversize file: {f}'
-link_docs=[repo/'README.md',repo/'README.ko.md',p/'README.md',p/'README.ko.md',p/'docs/SPEC-0.19.2.md']
+link_docs=list(dict.fromkeys([repo/'README.md',repo/'README.ko.md',p/'README.md',p/'README.ko.md',p/'docs/SPEC-0.19.3.md']))
 links=0
 for doc in link_docs:
     for target in re.findall(r'\]\(([^)]+)\)',doc.read_text(encoding='utf8')):
@@ -62,9 +62,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'}:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.19.2'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.19.3'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.19.2',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.19.3',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:

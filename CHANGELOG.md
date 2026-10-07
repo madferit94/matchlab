@@ -1,3 +1,9 @@
+## 0.19.3 · 2026-10-07
+
+- Dedicated madferit94/matchlab repository; retained football/F1 subtree history and prior snapshots.
+- 축구·F1 독립 저장소 이전, 한영 실행 안내 및 저장소 위치와 무관한 릴리스 검사 개선.
+- No API, model or visualization behavior changes.
+
 ## 0.19.2 / F1 0.7.2
 
 - Repair Barcelona GP circuit image (old URL returned 404).

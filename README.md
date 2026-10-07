@@ -1,3 +1,21 @@
+# MatchLab — Football & F1
+
+[한국어](README.ko.md) · [Repository](https://github.com/madferit94/matchlab)
+
+## 0.19.3 — Standalone repository (2026-10-07)
+
+Football and F1 now share this dedicated repository. The project-specific commit history, agents, skills, bilingual documentation, published datasets, model artifacts and version snapshots are retained. F1 remains version 0.7.2; this release changes repository packaging, not analysis behavior. Earlier notes below describe the state at each release date.
+
+### Run locally
+
+With a current Node.js runtime, run `node server/gemini.cjs` from this repository. Open `http://127.0.0.1:8765/` for football or `http://127.0.0.1:8765/f1/index.html` for F1. English football: `/index.en.html`.
+
+For the football AI analyst, copy `.env.example` to `.env`, configure your own provider credentials and supported model, then run `node --env-file=.env server/gemini.cjs`. API connectivity is not repaired or verified by this migration. F1's deterministic metric queries do not call an AI API. The local address is not a public deployment.
+
+Original repository retained: [all-sports-analytics](https://github.com/madferit94/all-sports-analytics). Only the published MatchLab subtree is migrated; unrelated standalone F1/NFL experiments and private provider caches are excluded. [Migration specification](docs/SPEC-0.19.3.md).
+
+---
+
 ## MatchLab 0.19.2 / F1 0.7.2 — Barcelona circuit image repair
 
 Replaced the obsolete 404 image URL with the official 2026 circuit image. On failure, an aspect-preserving outline uses the recorded coordinates for the same session and circuit. Original data and models preserved.
