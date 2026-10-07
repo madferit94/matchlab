@@ -5,7 +5,7 @@
 ## 범위와 구현
 
 - 프리미어리그 27개·라리가 29개 팀: 현재와 과거 시즌에 수집된 팀의 합계입니다. 현 시즌 참가팀 수를 뜻하지 않습니다. 두 리그 모두 같은 8비트 화면·팀 색·24×24 로고 표시 방식입니다.
-- [한국어 기본 화면](../index.html)과 [영어 기본 화면](../index.en.html). [v16 한국어](../visualization-design-2026-10-06-v16/index.html)·[v16 영어](../visualization-design-2026-10-06-v16/index.en.html)를 보존합니다.
+- [한국어 기본 화면](../index.html)과 [영어 기본 화면](../index.en.html). [v16 한국어](../archive/visualizations/visualization-design-2026-10-06-v16/index.html)·[v16 영어](../archive/visualizations/visualization-design-2026-10-06-v16/index.en.html)를 보존합니다.
 - 영어판: 메뉴·날짜/장소/결과/시즌 필터·검색·표·차트 설명·오류·빈 자료 안내·접근성 이름·47개 지표 이름/의미/읽는 법을 제공합니다.
 - 영어 이름·설명·원본 코드로 지표 검색 가능. PKC는 페널티킥 실점이 아닌 허용 횟수이며 TKL-LM은 최종 수비 태클입니다. SH-BLK의 공격/수비 방향 미확인 상태도 번역에 유지합니다.
 - 상단 한국어/English 링크. 팀 상세 주소의 팀 선택은 유지합니다. 언어 전환은 별도 HTML 이동이므로 시즌 등 기타 필터는 기본값으로 돌아갑니다.

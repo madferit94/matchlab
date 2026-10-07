@@ -16,7 +16,7 @@ test('mount drawing at start middle and finish has ten outfield shirts and one k
  for(let i=1;i<=180;i++){tick=pending;pending=null;assert.ok(tick);tick(1+i*100);if(i===90||i===180)assertShirts();}handle.destroy();
 });
 const P=path.resolve(__dirname,'../..');
-for(const file of ['index.html','index.en.html'])test(file+' original forecast and record payload unchanged',()=>{const now=fs.readFileSync(path.join(P,file),'utf8'),previous=fs.readFileSync(path.join(P,'visualization-design-2026-10-06-v22',file),'utf8');for(const id of ['data','prematch-predictions-v22']){const re=new RegExp('<script[^>]*id="'+id+'"[^>]*>([\\s\\S]*?)</script>');assert.equal(now.match(re)[1],previous.match(re)[1]);}});
+for(const file of ['index.html','index.en.html'])test(file+' original forecast and record payload unchanged',()=>{const now=fs.readFileSync(path.join(P,file),'utf8'),previous=fs.readFileSync(path.join(P,'archive/visualizations/visualization-design-2026-10-06-v22',file),'utf8');for(const id of ['data','prematch-predictions-v22']){const re=new RegExp('<script[^>]*id="'+id+'"[^>]*>([\\s\\S]*?)</script>');assert.equal(now.match(re)[1],previous.match(re)[1]);}});
 test('DOM stub integration cleans animation on team and league transitions',()=>{
  const html=fs.readFileSync(path.join(P,'index.html'),'utf8'),bundle=JSON.parse(html.match(/<script id="prematch-predictions-v22" type="application\/json">([\s\S]*?)<\/script>/)[1]);
  let mounts=0,destroys=0;const host={appendChild(){},remove(){},textContent:''};const doc={documentElement:{lang:'ko'},createElement:()=>({append(){},appendChild(){},remove(){},className:'',textContent:''}),getElementById:id=>id==='prematch-predictions-v22'?{textContent:JSON.stringify(bundle)}:host};

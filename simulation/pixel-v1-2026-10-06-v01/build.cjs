@@ -1,5 +1,5 @@
 'use strict';
-const fs=require('node:fs'),path=require('node:path');const P=path.resolve(__dirname,'../..'),target=path.join(P,'visualization-design-2026-10-06-v22');
+const fs=require('node:fs'),path=require('node:path');const P=path.resolve(__dirname,'../..'),target=path.join(P,'archive/visualizations/visualization-design-2026-10-06-v22');
 if(fs.existsSync(target))throw new Error('v22 exists; do not overwrite.');
 const prediction=JSON.parse(fs.readFileSync(path.join(P,'modeling/prematch-v2-2026-10-06-v01/future-predictions.json'),'utf8'));
 const payload=JSON.stringify({...prediction,predictions:prediction.predictions.map(({evidence,...p})=>p)}).replace(/</g,'\\u003c');

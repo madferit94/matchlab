@@ -1,6 +1,6 @@
 from pathlib import Path
 import json,re
-p=Path(__file__).resolve().parents[1];d=p/'visualization-design-2026-10-06-v17'
+p=Path(__file__).resolve().parents[1];d=p/'archive/visualizations/visualization-design-2026-10-06-v17'
 assert not d.exists();d.mkdir()
 definitions={
  'npxg_for':[
@@ -23,7 +23,7 @@ definitions={
   ['Passes per defensive action (PPDA)','Ratio of provider opponent passes (att) to defensive actions (def). Selected-match components are summed before division.','Lower values generally mean defensive actions occur more frequently between opposition passes. This is not a defensive quality score; zero defensive actions produce no ratio.']]
 }
 for lang,name in [('ko','index.html'),('en','index.en.html')]:
- s=(p/'visualization-design-2026-10-06-v16'/name).read_text(encoding='utf8')
+ s=(p/'archive/visualizations/visualization-design-2026-10-06-v16'/name).read_text(encoding='utf8')
  meta={('detail:'+key):dict(zip(['label','description','reading'],vals[lang=='en'])) for key,vals in definitions.items()}
  s=s.replace('const metricReadingTips={','const detailMetricMeta='+json.dumps(meta,ensure_ascii=False)+';\nconst metricReadingTips={')
  s=s.replace('const meta=D.metric_meta[code];if(!meta)return;','const meta=detailMetricMeta[code]||D.metric_meta[code];if(!meta)return;')
@@ -47,7 +47,7 @@ function detailedMatchStats(id,ms){const cards=['npxg_for','npxg_against','expec
  s=s.replace('</style></head>','.match-link{display:block;width:fit-content;font-size:12px;line-height:1.4;padding:12px 4px;min-height:44px;box-sizing:border-box;color:inherit;opacity:.8}.match-link:focus-visible{outline:3px solid #a47700;outline-offset:2px}.metric-trigger{overflow-wrap:anywhere} </style></head>')
  (d/name).write_text(s,encoding='utf8');(p/name).write_text(s,encoding='utf8')
 for name in ['check.cjs','check-en.cjs']:
- s=(p/'visualization-design-2026-10-06-v16'/name).read_text(encoding='utf8')
+ s=(p/'archive/visualizations/visualization-design-2026-10-06-v16'/name).read_text(encoding='utf8')
  s=s.replace("assert(!table.includes('target=\"_blank\"'));assert(!table.includes('href=\"https://understat.com'));", "assert(table.includes('class=\"match-link\"'));assert(table.includes('rel=\"noopener noreferrer\"'));assert(table.includes('data-team='));")
  (d/name).write_text(s,encoding='utf8')
 print('Built v17 bilingual navigation and six detailed metric explanations.')

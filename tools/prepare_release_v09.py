@@ -10,7 +10,7 @@ if not backup.exists():
     backup.write_bytes((p/'publication_manifest.json').read_bytes())
 (p/'VERSION').write_text('0.9.0\n',encoding='utf8')
 selection=json.loads((p/'viewer_selection.json').read_text(encoding='utf8'))
-selection.update(release='0.9.0',versioned_viewer='visualization-design-2026-10-06-v23/index.html',experimental_prediction_implemented=True,prediction_model='prematch-v2-2026-10-06-v01',prediction_status='EXPERIMENTAL_NOT_ADOPTED',simulation_version='pixel-v2-2026-10-06-v01',players_per_team=11)
+selection.update(release='0.9.0',versioned_viewer='archive/visualizations/visualization-design-2026-10-06-v23/index.html',experimental_prediction_implemented=True,prediction_model='prematch-v2-2026-10-06-v01',prediction_status='EXPERIMENTAL_NOT_ADOPTED',simulation_version='pixel-v2-2026-10-06-v01',players_per_team=11)
 # Configured credentials and live-account access are runtime state, not public configuration.
 selection['model_adopted']=False
 selection['ai_model_connected']=False
@@ -20,9 +20,9 @@ for lang in ('md','ko.md'):
     path=p/f'README.{lang}'
     text=path.read_text(encoding='utf8')
     text=text.replace('**Release 0.8.0','**Release 0.9.0').replace('**버전 0.8.0','**버전 0.9.0')
-    text=text.replace('[versioned v19](visualization-design-2026-10-06-v19/index.html)','[versioned v23](visualization-design-2026-10-06-v23/index.html)').replace('[v19 버전](visualization-design-2026-10-06-v19/index.html)','[v23 버전](visualization-design-2026-10-06-v23/index.html)')
+    text=text.replace('[versioned v19](archive/visualizations/visualization-design-2026-10-06-v19/index.html)','[versioned v23](archive/visualizations/visualization-design-2026-10-06-v23/index.html)').replace('[v19 버전](archive/visualizations/visualization-design-2026-10-06-v19/index.html)','[v23 버전](archive/visualizations/visualization-design-2026-10-06-v23/index.html)')
     text=text.replace('docs/SPEC-0.8.0.md','docs/SPEC-0.9.0.md')
-    text=text.replace('node visualization-design-2026-10-06-v19/','node visualization-design-2026-10-06-v23/')
+    text=text.replace('node archive/visualizations/visualization-design-2026-10-06-v19/','node archive/visualizations/visualization-design-2026-10-06-v23/')
     text=text.replace('UI v01–v19 are preserved. Release 0.8.0 provides Korean index.html and English index.en.html identical to their v19 snapshots;','UI v01–v23 are preserved. Release 0.9.0 provides Korean index.html and English index.en.html identical to their v23 snapshots;')
     text=text.replace('화면 v01~v19을 보존하며 이번 버전은 0.8.0입니다. 한국어 index.html과 영어 index.en.html은 v19의 각 언어 화면과 동일합니다.','화면 v01~v23을 보존하며 이번 버전은 0.9.0입니다. 한국어 index.html과 영어 index.en.html은 v23의 각 언어 화면과 동일합니다.')
     text=text.replace('and probabilities are not shown in the viewer. Automatic refresh, administrator authentication, prediction API, hosting and a new five-agent runtime run are not implemented.','and the first model is not adopted. The newer experimental v2 probabilities are displayed with an explicit non-adopted status. Automatic refresh, administrator authentication and hosting are not implemented.')
@@ -37,7 +37,7 @@ for lang in ('md','ko.md'):
         rows=['AI 요청 오류 안내 개선','패배 붉은색·무승부 노란색 가독성','실험 승부 확률·가상 재생','각 팀 골키퍼 1명·필드 선수 10명']
     marker='**Day13' if lang=='md' else '**Day13'
     text=text.replace(marker,intro+marker,1)
-    text+='\n'+''.join(f'| [v{n}](visualization-design-2026-10-06-v{n}/index.html) · [English](visualization-design-2026-10-06-v{n}/index.en.html) | {label} |\n' for n,label in zip(range(20,24),rows))
+    text+='\n'+''.join(f'| [v{n}](archive/visualizations/visualization-design-2026-10-06-v{n}/index.html) · [English](archive/visualizations/visualization-design-2026-10-06-v{n}/index.en.html) | {label} |\n' for n,label in zip(range(20,24),rows))
     # Code check totals are version-specific evidence, not browser verification.
     text=text.replace('44 Korean + 19 English Node VM checks passed;','Versioned Node VM checks are preserved;').replace('한국어 44개·영어 19개 코드 동작 검사 통과.','버전별 코드 동작 검사 결과를 보존했습니다.')
     text=text.replace('Node runs 40 calculation/navigation/interaction checks with a DOM stub.','Node checks calculations/navigation/interactions with a DOM stub.').replace('화면은 Node에서 화면 요소를 흉내 내는 검사로 계산·검색·이동·말풍선과 로고 렌더링 40항목을 확인합니다.','화면은 Node에서 화면 요소를 흉내 내는 검사로 계산·검색·이동·말풍선과 로고 렌더링을 확인합니다.')
