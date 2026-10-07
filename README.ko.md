@@ -4,6 +4,8 @@
 
 [English](README.md) · [실행·배포 안내](docs/VERCEL.ko.md) · [문서 안내](docs/README.md)
 
+**0.21.0:** 축구·F1 공통 디자인, 읽기 편한 글꼴과 구단·드라이버 이름 검색.
+
 ## 주요 기능
 
 | 축구 · PL / 라리가 | F1 |

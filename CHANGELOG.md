@@ -1,3 +1,8 @@
+## 0.21.0 — Shared sports dashboard
+
+- StatMuse-inspired navigation/search and quiet rounded cards across football KO/EN and F1. Shared system typography; local name search links to existing profiles.
+- 축구·F1 디자인 통일, 8비트 자산·팀 색상·기존 계산 유지. 작은 화면에서는 메뉴가 상단으로 이동.
+
 ## 0.20.3 / F1 0.8.3 — Floating driver numbers
 
 - Move driver numbers off the suit into an upper-right badge on cards and profiles.
