@@ -1,7 +1,5 @@
 # MatchLab
 
-**0.22.1** · F1 GP names now use consistent English event titles in both views. A prominent question shortcut opens a larger, higher-contrast natural-language input.
-
 **Football and F1 records, visual analysis, and experimental predictions in one place.**
 
 [한국어](README.ko.md) · [Live site](https://matchlab-zeta.vercel.app/) · [Current version](VERSION) · [Release history](CHANGELOG.md)

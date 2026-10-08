@@ -1,7 +1,5 @@
 # MatchLab
 
-**0.22.1** · F1 대회 이름의 영문 표기를 통일하고, 경기 상세의 질문 바로가기와 크고 선명한 자연어 입력창을 추가했습니다.
-
 **축구와 F1의 기록 조회, 시각화, 실험 예측을 한곳에서 제공하는 스포츠 분석 프로젝트입니다.**
 
 [English](README.md) · [공개 사이트](https://matchlab-zeta.vercel.app/) · [현재 버전](VERSION) · [변경 이력](CHANGELOG.md)
