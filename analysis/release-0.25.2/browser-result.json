@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 390,
+      "immediate": true,
+      "followup": true,
+      "leagueSwitch": true,
+      "clarificationOnlyWhenNeeded": true,
+      "reset": true,
+      "invalidClearsResult": true
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 390,
+      "immediate": true,
+      "followupYearAndCount": true,
+      "comparison": true,
+      "clarification": true,
+      "noData": true,
+      "history": true
+    },
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 1440,
+      "immediate": true,
+      "followup": true,
+      "leagueSwitch": true,
+      "clarificationOnlyWhenNeeded": true,
+      "reset": true,
+      "invalidClearsResult": true
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 1440,
+      "immediate": true,
+      "followupYearAndCount": true,
+      "comparison": true,
+      "clarification": true,
+      "noData": true,
+      "history": true
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 390,
+      "immediate": true,
+      "followup": true,
+      "leagueSwitch": true,
+      "clarificationOnlyWhenNeeded": true,
+      "reset": true,
+      "invalidClearsResult": true
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 390,
+      "immediate": true,
+      "followupYearAndCount": true,
+      "comparison": true,
+      "clarification": true,
+      "noData": true,
+      "history": true
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 1440,
+      "immediate": true,
+      "followup": true,
+      "leagueSwitch": true,
+      "clarificationOnlyWhenNeeded": true,
+      "reset": true,
+      "invalidClearsResult": true
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 1440,
+      "immediate": true,
+      "followupYearAndCount": true,
+      "comparison": true,
+      "clarification": true,
+      "noData": true,
+      "history": true
+    },
+    {
+      "sport": "football",
+      "mode": "mocked Gemini",
+      "immediate": true,
+      "providerCalls": 1
+    }
+  ],
+  "pageErrors": [],
+  "provider": "mocked; no external AI calls"
+}

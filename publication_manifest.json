@@ -1,5 +1,5 @@
 {
-  "version": "0.25.1",
+  "version": "0.25.2",
   "public_export": true,
   "files": [
     {
@@ -28,9 +28,9 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 19439,
-      "sha256": "361c44ccc7cbd1676ae92bbf447f7c7a88dc4f098a7cc3d762840a9b1e1b428a",
-      "snapshot": "0.25.1"
+      "bytes": 19716,
+      "sha256": "302b1aad3c853f3e3a95efff93f7244d71afe5244d43e34a1e20065c5cc927f8",
+      "snapshot": "0.25.2"
     },
     {
       "path": "README.ko.md",
@@ -40,15 +40,15 @@
     },
     {
       "path": "README.md",
-      "bytes": 1245,
-      "sha256": "8a090686f88e7f097ecc107dc25e4b36ddfddf361df52debc16687a5aa6299c2",
-      "snapshot": "0.25.1"
+      "bytes": 1252,
+      "sha256": "ca87f232cd35a0f06c1a49e1da2135560934fdf82fbe021cb5f436e4e89a0ccc",
+      "snapshot": "0.25.2"
     },
     {
       "path": "VERSION",
       "bytes": 7,
-      "sha256": "5c16bbb207e00d0464f132505997bc8db3e6a3943b5e2b03c8e05d5f4518009b",
-      "snapshot": "0.25.1"
+      "sha256": "a56f4175adda57e67a5c44c97032c2e40d7852973e9091897a48a02b79a328a7",
+      "snapshot": "0.25.2"
     },
     {
       "path": "agent-team-2026-10-06-v01/.agents/skills/matchdesk-analysis/SKILL.md",
@@ -1459,6 +1459,84 @@
       "bytes": 35305,
       "sha256": "73db84a4429e34525bec2dcb9e4c9cb828275916c6fa7153f64298d617c9d0af",
       "snapshot": "0.25.1"
+    },
+    {
+      "path": "analysis/release-0.25.2/browser-result.json",
+      "bytes": 2187,
+      "sha256": "9f0f16f59e217c435f6bcfcc3374ebbad71e916671ec795c745048dd491d3dba",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/check-browser.cjs",
+      "bytes": 6653,
+      "sha256": "36c05718ac361af77861ea31a9102b83e2ec7f56bc1a0e1a5635078aac6dbca6",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/check-core.cjs",
+      "bytes": 3905,
+      "sha256": "67bd46cc82c48d0ccb672921ec7c5f6c77b64f3167ff7b1542e9b789609b453e",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/core-result.json",
+      "bytes": 546,
+      "sha256": "abe021113451c6a97076218a2903749e28d3fde0b322dbd98d8db53266ac93fb",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/f1-en-1440.png",
+      "bytes": 19808,
+      "sha256": "c0f7dbf4e1b3ec81ebcf98ac633c9418da4caa6a7693d73935e57f2e7a0fd1d1",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/f1-en-390.png",
+      "bytes": 18038,
+      "sha256": "6e9e32f1412c33450fd402c966a19bd79f60bbbbec1a0c436031f95d083eff7c",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/f1-ko-1440.png",
+      "bytes": 17985,
+      "sha256": "10e216cae7b73fa0dcaccab840aba4b67588176ba903b5aa25460d729b97a041",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/f1-ko-390.png",
+      "bytes": 15730,
+      "sha256": "aed221ac0f758df95102fc05a9d45c396af2a256ffa9869d2977691d95e65e31",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/football-en-1440.png",
+      "bytes": 17451,
+      "sha256": "a8637dc6e1719d067d4d6c9ff0371886d6776ab6ed9283eafd3481b7bbb652f9",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/football-en-390.png",
+      "bytes": 15869,
+      "sha256": "584ee3fa16903beb329434fa6b199075280d896c7eae9004db3a93afb30b0368",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/football-ko-1440.png",
+      "bytes": 14979,
+      "sha256": "8e2531eb848eb2af4b180bb21efe14d9d27686741df0b7f4907a1ba3d6e9ede4",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/football-ko-390.png",
+      "bytes": 13321,
+      "sha256": "8c3d315f410f7d40bf82bfabdda4cc6298bed27727d937eeaecd123327080b9a",
+      "snapshot": "0.25.2"
+    },
+    {
+      "path": "analysis/release-0.25.2/workbench.js",
+      "bytes": 24635,
+      "sha256": "76f9b6a5313cb7b5410b97771ac7c1b5eada2477b0f21795cbd72383ac3f5ee7",
+      "snapshot": "0.25.2"
     },
     {
       "path": "analysis/workbench.js",
@@ -5073,6 +5151,12 @@
       "snapshot": "0.25.1"
     },
     {
+      "path": "docs/SPEC-0.25.2.md",
+      "bytes": 2417,
+      "sha256": "bf709231b8c30cbe19ee6a37c3b4485fb361d2613ef31062d51c915f41d904eb",
+      "snapshot": "0.25.2"
+    },
+    {
       "path": "docs/SPEC-0.3.0.md",
       "bytes": 4796,
       "sha256": "59e690fc9fe747ba8df86577ce92b20f788877d48b08f036f28e122fb79856ad",
@@ -5440,9 +5524,9 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 19762635,
-      "sha256": "7ec5d0b24a9714eb90eb6c2722bd9bf7f1686c451be52b17fa60cdd6cfc961ed",
-      "snapshot": "0.25.1"
+      "bytes": 19751965,
+      "sha256": "2762addfa2b8076e20d46b903f849a79287698d8d5ebd8460ea2de5360d0320c",
+      "snapshot": "0.25.2"
     },
     {
       "path": "f1/profiles/README.md",
@@ -8368,15 +8452,15 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 8801279,
-      "sha256": "cca3b9f06dac8185c5e21ff55a4da14b34095128d8a7389c5b3d59bd7cf9f333",
-      "snapshot": "0.25.1"
+      "bytes": 8790609,
+      "sha256": "d42f824c4e9ebf93364b1c1698da91889bcb8c1bff6e6c328d1311f7641c0fd4",
+      "snapshot": "0.25.2"
     },
     {
       "path": "index.html",
-      "bytes": 8803034,
-      "sha256": "601373829bec43d1ef2c8cd016d3c477c0ffdfe2229792a50ef688c593d97b77",
-      "snapshot": "0.25.1"
+      "bytes": 8792364,
+      "sha256": "89d61c3ff61bf75e340bb74cb7629dff4d9d919026657a6395bae22e7f24b3ef",
+      "snapshot": "0.25.2"
     },
     {
       "path": "modeling/.gitignore",
@@ -9023,8 +9107,8 @@
     {
       "path": "package.json",
       "bytes": 442,
-      "sha256": "f000ed9437a64232cbc8dfedd0fce3d8edf4399dad9788a22406c11f3183d2d7",
-      "snapshot": "0.25.1"
+      "sha256": "cabd96c924ce750b637191f86ca13699a5a80c76c5a4a136c81449ad9cf98ce5",
+      "snapshot": "0.25.2"
     },
     {
       "path": "reports/release-0.25.0/README.md",
@@ -9755,8 +9839,8 @@
     {
       "path": "tools/check_release.py",
       "bytes": 10879,
-      "sha256": "8836d9ddc0ed47522a4aa20745cc461718540be5d68d10ff9a4598c5dfea8f8a",
-      "snapshot": "0.25.1"
+      "sha256": "b3353aec58d80cc38f76e9b0ede45649239bf8c550a18db29bf6aaa627ae3cc7",
+      "snapshot": "0.25.2"
     },
     {
       "path": "tools/prepare_release_v03.py",

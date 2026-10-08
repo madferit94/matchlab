@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Explicit Chelsea/Barcelona questions retain named club and equal independently summed goals",
+    "Cross-league follow-up clears inherited clubs and computes correct league",
+    "Historical points equal raw results; current opening GP excludes later races",
+    "Uncollected archived laps are unavailable, not a successful empty analysis",
+    "GP-year follow-up clears previous session identifier",
+    "All embedded football/F1 source and prediction JSON remains identical after LF normalization"
+  ]
+}
