@@ -2,7 +2,7 @@
 
 축구와 F1 기록을 조회하고, 자연어로 지표를 골라 차트와 실험 예측을 확인하는 웹 서비스입니다.
 
-**[사이트 바로가기](https://matchlab-zeta.vercel.app/)** · [F1 보기](https://matchlab-zeta.vercel.app/f1/index.html)
+**[사이트 바로가기](https://matchlab-zeta.vercel.app/)** · [F1 보기](https://matchlab-zeta.vercel.app/f1/index.html) · **[발표자료 PDF](docs/presentations/matchlab-2026-10-08-v16.pdf)** · [PPT 다운로드](docs/presentations/matchlab-2026-10-08-v16.pptx)
 
 ## 주요 기능
 
