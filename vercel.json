@@ -11,6 +11,10 @@
   },
   "rewrites": [
     {
+      "source": "/api/report",
+      "destination": "/api/handler?action=report"
+    },
+    {
       "source": "/api/health",
       "destination": "/api/handler?action=health"
     },

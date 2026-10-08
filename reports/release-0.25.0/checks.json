@@ -1,0 +1,62 @@
+{
+  "testedAt": "2026-10-08T02:43:52.425Z",
+  "method": "real local HTTP and mocked provider; not live news",
+  "checks": [
+    {
+      "name": "canonical probabilities and highest-probability final pick preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "future and post-input-cutoff records cannot change report statistics",
+      "status": "PASS"
+    },
+    {
+      "name": "missing metrics remain missing, not zero",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid prediction identity, probabilities and cutoff rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "tied probabilities produce no single favored team",
+      "status": "PASS"
+    },
+    {
+      "name": "no API key keeps data report and never invents injury clearance",
+      "status": "PASS"
+    },
+    {
+      "name": "concurrent identical requests coalesce and cached report makes no provider calls",
+      "status": "PASS"
+    },
+    {
+      "name": "source dates verified and unsafe redirects never fetched",
+      "status": "PASS"
+    },
+    {
+      "name": "unsupported AI evidence IDs fall back without changing final outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "only cited statements with recent dates and safe URLs can be shown",
+      "status": "PASS"
+    },
+    {
+      "name": "quota and timeout yield usable facts with explicit unavailable status",
+      "status": "PASS"
+    },
+    {
+      "name": "old and distant fixtures do not trigger present-day injury search",
+      "status": "PASS"
+    },
+    {
+      "name": "HTTP report succeeds without key; extra numbers, unknown IDs, foreign origins and oversized input are rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Vercel pre-parsed report body and route mapping work",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 /* Local Gemini planner + deterministic recorded-data execution; no external packages. */
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 const engine=require('../analysis/record-engine.cjs');
+const {createReportService,ReportError}=require('../reports/release-0.25.0/report.cjs');
 const root=path.resolve(__dirname,'..');
 class ServiceError extends Error{constructor(code,status=400){super(code);this.code=code;this.status=status}}
 const functionTool={type:'function',name:'analyze_records',description:'Select supported recorded-football calculation. Do not invent metrics, dates or probabilities. Choose unsupported for unsupported requests, prediction for future probabilities.',parameters:{type:'object',properties:{tool:{type:'string',enum:['team','comparison','ranking','venue','trend','prediction','unsupported']},teams:{type:'array',items:{type:'string'},maxItems:4},league:{type:'string',enum:['EPL','La_liga']},season:{type:'string',enum:['2023/24','2024/25','2025/26','2026/27']},last:{type:'integer',description:'0 means full season; otherwise 1 to 38',minimum:0,maximum:38},venue:{type:'string',enum:['all','home','away']},metric:{type:'string',enum:['gf','ga','xg','xga','p','w']},perMatch:{type:'boolean'},compareGoals:{type:'boolean'},order:{type:'string',enum:['asc','desc'],description:'Sort numeric values low to high (asc) or high to low (desc); retain previous order for follow-ups'}},required:['tool','teams','league','season','last','venue','metric','perMatch','compareGoals','order']}};
@@ -18,9 +19,10 @@ function validatePlan(p,data){
  return {...p,last:p.last||null};
 }
 function loadData(){const html=fs.readFileSync(path.join(root,'index.html'),'utf8');return JSON.parse(html.match(/<script id="data" type="application\/json">([\s\S]*?)<\/script>/)[1])}
-function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',model=process.env.GEMINI_MODEL||'gemini-3.8-flash',fetchImpl=fetch,data=loadData()}={}){
+function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',model=process.env.GEMINI_MODEL||'gemini-3.8-flash',fetchImpl=fetch,data=loadData(),reportBundle,reportNow}={}){
  if(!/^[a-zA-Z0-9._-]+$/.test(model))throw new ServiceError('invalid_model');
  const analyst=engine.create(data);let busy=false,lastCall=0;
+ const reports=createReportService({data,key,model,fetchImpl,bundle:reportBundle,now:reportNow});
  const send=(res,status,body,type='application/json; charset=utf-8')=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(type.startsWith('application/json')?JSON.stringify(body):body)};
  return async(req,res)=>{
   try{
@@ -33,6 +35,13 @@ function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',mode
    if(req.method==='GET'&&url.pathname==='/api/health')return send(res,200,{provider:'gemini',configured:!!key,model,sql:false,python:false});
    if(req.method==='GET'&&['/','/index.html','/index.en.html'].includes(url.pathname))return send(res,200,fs.readFileSync(path.join(root,url.pathname==='/index.en.html'?'index.en.html':'index.html'),'utf8'),'text/html; charset=utf-8');
    if(req.method==='GET'&&url.pathname==='/f1/index.html')return send(res,200,fs.readFileSync(path.join(root,'f1/index.html'),'utf8'),'text/html; charset=utf-8');
+   if(url.pathname==='/api/report'&&req.method==='POST'){
+    if(!String(req.headers['content-type']||'').startsWith('application/json'))throw new ServiceError('invalid_request');
+    let raw='';if(req.body!==undefined){raw=typeof req.body==='string'?req.body:JSON.stringify(req.body)}else{for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>1024)throw new ServiceError('request_too_large',413)}}
+    if(Buffer.byteLength(raw)>1024)throw new ServiceError('request_too_large',413);
+    let input;try{input=JSON.parse(raw)}catch{throw new ServiceError('invalid_request')}
+    return send(res,200,await reports.get(input));
+   }
    if(url.pathname!=='/api/analyze'||req.method!=='POST')throw new ServiceError('not_found',404);
    if(!key)throw new ServiceError('key_missing',503);
    if(!String(req.headers['content-type']||'').startsWith('application/json'))throw new ServiceError('invalid_request');
@@ -61,7 +70,7 @@ function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',mode
     const result=plan.tool==='unsupported'?{status:'unsupported',reason:'unsupported'}:analyst.execute(plan);
     return send(res,200,{...result,planner:'Gemini',model,engine:'JavaScript',plan,execution:'Gemini selected the validated tool parameters; server JavaScript calculated saved records.'});
    }finally{busy=false}
-  }catch(error){send(res,error instanceof ServiceError?error.status:500,{error:error instanceof ServiceError?error.code:'internal_error'})}
+  }catch(error){const known=error instanceof ServiceError||error instanceof ReportError;send(res,known?error.status:500,{error:known?error.code:'internal_error'})}
  };
 }
 function createServer(options){return http.createServer(createHandler(options))}
