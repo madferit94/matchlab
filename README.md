@@ -1,65 +1,27 @@
 # MatchLab
 
-**0.22.3** · Click F1 tyre names to see short, official-source explanations in Korean or English, in stint records and live replay.
+축구와 F1 기록을 조회하고, 자연어로 지표를 골라 차트와 실험 예측을 확인하는 웹 서비스입니다.
 
-**Football and F1 records, visual analysis, and experimental predictions in one place.**
+**[사이트 바로가기](https://matchlab-zeta.vercel.app/)** · [F1 보기](https://matchlab-zeta.vercel.app/f1/index.html)
 
-[한국어](README.ko.md) · [Live site](https://matchlab-zeta.vercel.app/) · [Current version](VERSION) · [Release history](CHANGELOG.md)
+## 주요 기능
 
-## Explore
+- **축구** — 프리미어리그·라리가 구단 기록, 경기 프리뷰, 승무패 예측
+- **F1** — 드라이버 기록, 과거 GP 조회, 예측과 실제 결과 비교·재생
+- **데이터 조회** — 지원하는 자연어 질문으로 지표·조건 선택, 차트와 용어 설명 확인
 
-F1 includes 24 archived GPs each from 2024 and 2025. The 2025 experiment trains on 19 GPs from 2024 (five initial warm-up races), then evaluates 24 GPs from 2025: 7/24 winner hits and 3.63 mean rank error. These are retrospective experimental estimates.
+저장된 자료를 사용합니다. 예측은 실험 결과이며, 재생은 기록을 재구성한 화면입니다.
 
-| Football · Premier League / LaLiga | Formula 1 |
-|---|---|
-| Team profiles, fixtures and match previews | Driver and team profiles with mini pixel characters |
-| Metric charts, filters and explanations | Championship standings and race metrics |
-| Experimental outcome probabilities | Pre-race predictions compared with recorded results |
-| Pixel match playback | Circuit playback and animated rank changes |
+## 실행 방법
 
-Both sports support low/high ordering and reverse follow-ups in their records analysis. F1 also supports browsing all 24 collected 2025 GPs, race results and year comparisons.
-
-Both sports share a responsive layout, Korean/English views and local name search. Click team or driver names to explore their records.
-
-[Football](https://matchlab-zeta.vercel.app/) · [Football in English](https://matchlab-zeta.vercel.app/index.en.html) · [F1](https://matchlab-zeta.vercel.app/f1/index.html) · [F1 in English](https://matchlab-zeta.vercel.app/f1/index.html?lang=en)
-
-## Run locally
-
-With **Node.js 22**, run from the repository root:
+Node.js 22(실행에 필요한 프로그램)를 설치한 뒤, 저장소 폴더의 터미널에서 실행합니다.
 
 ```sh
 npm start
 ```
 
-Open [localhost:8765](http://127.0.0.1:8765/) for football or [localhost:8765/f1/](http://127.0.0.1:8765/f1/index.html) for F1.
+브라우저에서 [localhost:8765](http://127.0.0.1:8765/)를 엽니다.
 
-<details>
-<summary>Optional: connect the football AI analyst</summary>
+[설정·배포 안내](docs/VERCEL.ko.md) · [상세 문서](docs/README.md) · [변경 이력](CHANGELOG.md)
 
-Copy `.env.example` to `.env`, set the provider credentials and an available model, then run:
-
-```sh
-node --env-file=.env server/gemini.cjs
-```
-
-Keep `.env` private. Local name search and F1 rule-based metric queries do not require an AI API key.
-
-</details>
-
-## Data and prediction scope
-
-- Screens use saved datasets, not an automatic live feed. Coverage and dates depend on the dataset.
-- Predictions are experimental. The F1 season outlook is a conditional scenario, not a calibrated championship forecast.
-- Playback reconstructs records or illustrates predictions; it is not actual race footage.
-
-## Documentation
-
-| Looking for… | Open |
-|---|---|
-| Setup and Vercel deployment | [Deployment guide (Korean)](docs/VERCEL.ko.md) |
-| Agent roles and skills | [Agent & skill guide](docs/AGENTS-AND-SKILLS.en.md) |
-| Repository folders | [Folder guide](docs/STRUCTURE.md) |
-| Version management | [Version policy](docs/VERSIONING.md) |
-| Specifications and older records | [Documentation index](docs/README.md) |
-
-Feature history belongs in [CHANGELOG](CHANGELOG.md); this README describes the current project.
+현재 버전: **0.22.4**
