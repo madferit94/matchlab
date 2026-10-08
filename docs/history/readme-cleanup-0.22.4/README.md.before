@@ -1,0 +1,65 @@
+# MatchLab
+
+**0.22.3** · Click F1 tyre names to see short, official-source explanations in Korean or English, in stint records and live replay.
+
+**Football and F1 records, visual analysis, and experimental predictions in one place.**
+
+[한국어](README.ko.md) · [Live site](https://matchlab-zeta.vercel.app/) · [Current version](VERSION) · [Release history](CHANGELOG.md)
+
+## Explore
+
+F1 includes 24 archived GPs each from 2024 and 2025. The 2025 experiment trains on 19 GPs from 2024 (five initial warm-up races), then evaluates 24 GPs from 2025: 7/24 winner hits and 3.63 mean rank error. These are retrospective experimental estimates.
+
+| Football · Premier League / LaLiga | Formula 1 |
+|---|---|
+| Team profiles, fixtures and match previews | Driver and team profiles with mini pixel characters |
+| Metric charts, filters and explanations | Championship standings and race metrics |
+| Experimental outcome probabilities | Pre-race predictions compared with recorded results |
+| Pixel match playback | Circuit playback and animated rank changes |
+
+Both sports support low/high ordering and reverse follow-ups in their records analysis. F1 also supports browsing all 24 collected 2025 GPs, race results and year comparisons.
+
+Both sports share a responsive layout, Korean/English views and local name search. Click team or driver names to explore their records.
+
+[Football](https://matchlab-zeta.vercel.app/) · [Football in English](https://matchlab-zeta.vercel.app/index.en.html) · [F1](https://matchlab-zeta.vercel.app/f1/index.html) · [F1 in English](https://matchlab-zeta.vercel.app/f1/index.html?lang=en)
+
+## Run locally
+
+With **Node.js 22**, run from the repository root:
+
+```sh
+npm start
+```
+
+Open [localhost:8765](http://127.0.0.1:8765/) for football or [localhost:8765/f1/](http://127.0.0.1:8765/f1/index.html) for F1.
+
+<details>
+<summary>Optional: connect the football AI analyst</summary>
+
+Copy `.env.example` to `.env`, set the provider credentials and an available model, then run:
+
+```sh
+node --env-file=.env server/gemini.cjs
+```
+
+Keep `.env` private. Local name search and F1 rule-based metric queries do not require an AI API key.
+
+</details>
+
+## Data and prediction scope
+
+- Screens use saved datasets, not an automatic live feed. Coverage and dates depend on the dataset.
+- Predictions are experimental. The F1 season outlook is a conditional scenario, not a calibrated championship forecast.
+- Playback reconstructs records or illustrates predictions; it is not actual race footage.
+
+## Documentation
+
+| Looking for… | Open |
+|---|---|
+| Setup and Vercel deployment | [Deployment guide (Korean)](docs/VERCEL.ko.md) |
+| Agent roles and skills | [Agent & skill guide](docs/AGENTS-AND-SKILLS.en.md) |
+| Repository folders | [Folder guide](docs/STRUCTURE.md) |
+| Version management | [Version policy](docs/VERSIONING.md) |
+| Specifications and older records | [Documentation index](docs/README.md) |
+
+Feature history belongs in [CHANGELOG](CHANGELOG.md); this README describes the current project.
