@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 390,
+      "explicitTeam": true,
+      "leagueAndSeasonRoster": true,
+      "search": true,
+      "ranking": true,
+      "followup": true
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 390,
+      "periodRoster": true,
+      "metricCoverage": true,
+      "gpSelection": true,
+      "staleConditionsCleared": true,
+      "missingDataExplained": true
+    },
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 1440,
+      "explicitTeam": true,
+      "leagueAndSeasonRoster": true,
+      "search": true,
+      "ranking": true,
+      "followup": true
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 1440,
+      "periodRoster": true,
+      "metricCoverage": true,
+      "gpSelection": true,
+      "staleConditionsCleared": true,
+      "missingDataExplained": true
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 390,
+      "explicitTeam": true,
+      "leagueAndSeasonRoster": true,
+      "search": true,
+      "ranking": true,
+      "followup": true
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 390,
+      "periodRoster": true,
+      "metricCoverage": true,
+      "gpSelection": true,
+      "staleConditionsCleared": true,
+      "missingDataExplained": true
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 1440,
+      "explicitTeam": true,
+      "leagueAndSeasonRoster": true,
+      "search": true,
+      "ranking": true,
+      "followup": true
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 1440,
+      "periodRoster": true,
+      "metricCoverage": true,
+      "gpSelection": true,
+      "staleConditionsCleared": true,
+      "missingDataExplained": true
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,6 +1,6 @@
 {
   "name": "matchlab",
-  "version": "0.25.0",
+  "version": "0.25.1",
   "private": true,
   "engines": {
     "node": "22.x"
@@ -10,6 +10,7 @@
     "start": "node server/gemini.cjs",
     "test:server": "node server/check.cjs",
     "test:odds": "node modeling/odds-0.24.0/check.cjs",
-    "test:report": "node reports/release-0.25.0/check.cjs"
+    "test:report": "node reports/release-0.25.0/check.cjs",
+    "test:analysis-ui": "node analysis/release-0.25.1/check-browser.cjs"
   }
 }
