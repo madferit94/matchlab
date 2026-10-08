@@ -1,0 +1,373 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "lang": "ko",
+      "width": 390,
+      "key": "SOFT",
+      "rect": {
+        "x": 31,
+        "y": 294.640625,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "key": "MEDIUM",
+      "rect": {
+        "x": 42,
+        "y": 294.640625,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "key": "HARD",
+      "rect": {
+        "x": 42,
+        "y": 294.640625,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "key": "INTERMEDIATE",
+      "rect": {
+        "x": 31,
+        "y": 338.640625,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "key": "WET",
+      "rect": {
+        "x": 42,
+        "y": 338.640625,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "actualReplayCompound": "MEDIUM",
+      "redraw": "PASS"
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "key": "SOFT",
+      "rect": {
+        "x": 47,
+        "y": 320.828125,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "key": "MEDIUM",
+      "rect": {
+        "x": 150,
+        "y": 320.828125,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "key": "HARD",
+      "rect": {
+        "x": 253,
+        "y": 320.828125,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "key": "INTERMEDIATE",
+      "rect": {
+        "x": 341,
+        "y": 320.828125,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "key": "WET",
+      "rect": {
+        "x": 420,
+        "y": 320.828125,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "actualReplayCompound": "MEDIUM",
+      "redraw": "PASS"
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "key": "SOFT",
+      "rect": {
+        "x": 279,
+        "y": 411.671875,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "key": "MEDIUM",
+      "rect": {
+        "x": 382,
+        "y": 411.671875,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "key": "HARD",
+      "rect": {
+        "x": 485,
+        "y": 438.0625,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "key": "INTERMEDIATE",
+      "rect": {
+        "x": 573,
+        "y": 475.984375,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "key": "WET",
+      "rect": {
+        "x": 721,
+        "y": 475.984375,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "actualReplayCompound": "MEDIUM",
+      "redraw": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "key": "SOFT",
+      "rect": {
+        "x": 31,
+        "y": 294.03125,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "key": "MEDIUM",
+      "rect": {
+        "x": 42,
+        "y": 294.03125,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "key": "HARD",
+      "rect": {
+        "x": 42,
+        "y": 294.03125,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "key": "INTERMEDIATE",
+      "rect": {
+        "x": 31,
+        "y": 338.03125,
+        "width": 340,
+        "height": 210.5625
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "key": "WET",
+      "rect": {
+        "x": 42,
+        "y": 338.03125,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "actualReplayCompound": "MEDIUM",
+      "redraw": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "key": "SOFT",
+      "rect": {
+        "x": 47,
+        "y": 320.828125,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "key": "MEDIUM",
+      "rect": {
+        "x": 131.546875,
+        "y": 320.828125,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "key": "HARD",
+      "rect": {
+        "x": 244.75,
+        "y": 320.828125,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "key": "INTERMEDIATE",
+      "rect": {
+        "x": 335.09375,
+        "y": 320.828125,
+        "width": 340,
+        "height": 210.5625
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "key": "WET",
+      "rect": {
+        "x": 420,
+        "y": 320.828125,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "actualReplayCompound": "MEDIUM",
+      "redraw": "PASS"
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "key": "SOFT",
+      "rect": {
+        "x": 279,
+        "y": 438.0625,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "key": "MEDIUM",
+      "rect": {
+        "x": 363.546875,
+        "y": 438.0625,
+        "width": 340,
+        "height": 274.875
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "key": "HARD",
+      "rect": {
+        "x": 476.75,
+        "y": 411.671875,
+        "width": 340,
+        "height": 301.265625
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "key": "INTERMEDIATE",
+      "rect": {
+        "x": 567.09375,
+        "y": 502.375,
+        "width": 340,
+        "height": 210.5625
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "key": "WET",
+      "rect": {
+        "x": 709.515625,
+        "y": 475.984375,
+        "width": 340,
+        "height": 236.953125
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "actualReplayCompound": "MEDIUM",
+      "redraw": "PASS"
+    }
+  ],
+  "unchangedPayloads": 9,
+  "pageErrors": []
+}
