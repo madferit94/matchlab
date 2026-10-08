@@ -34,16 +34,16 @@
    const plan=follow?{...previous}:{tool:'team',teams:[],league:explicitLeague||defaults.league||'EPL',season:defaults.season||'2026/27',last:null,venue:'all',metric:'xg',perMatch:false,order:'desc'};
    const order=sortOrder(q,follow?(previous.order||'desc'):null);if(['conflict','missing'].includes(order))return {error:'unsupported'};if(order)plan.order=order;
    if(recognized.length){const ids=recognized.map(t=>t.id);plan.teams=follow&&/추가|더해|\badd\b/.test(q)?[...new Set([...plan.teams,...ids])]:follow&&/제거|빼\s?줘|\bremove\b/.test(q)?plan.teams.filter(id=>!ids.includes(id)):ids;if(!explicitLeague)plan.league=recognized[0].league}
+   if(explicitLeague)plan.league=explicitLeague;if(season)plan.season=season;
+   if(!recognized.length){if(explicitLeague&&follow&&explicitLeague!==previous.league)plan.teams=[];else if(!follow&&defaults.team&&data.teams[defaults.team]?.league===plan.league)plan.teams=[defaults.team];}
    if(plan.teams.length>4)return {error:'too_many'};
    if(plan.teams.some(id=>data.teams[id]?.league!==plan.league))return {error:'league_mismatch'};
-   else if(!follow&&defaults.team)plan.teams=[defaults.team];
-   if(explicitLeague)plan.league=explicitLeague;if(season)plan.season=season;
    if(recent){plan.last=Number(recent[1]);if(plan.last<1||plan.last>38)return {error:'range'}}
    else if(/시즌\s?전체|full season|all matches/.test(q))plan.last=null;
    if(/홈.*원정|원정.*홈|home.*away|away.*home/.test(q))plan.tool='venue';
    else if((order&&!follow)||/순위|높은 팀|상위|많은 순|적은 순|부터 순|오름차순|내림차순|ranking|rank|top teams|highest|fewest|lowest/.test(q))plan.tool='ranking';
    else if(plan.teams.length>1||/비교|compare|comparison/.test(q))plan.tool='comparison';
-   else if(!follow)plan.tool='team';
+   else if(recognized.length||!follow)plan.tool='team';
    if(plan.tool!=='venue'){if(/원정|\baway\b/.test(q))plan.venue='away';else if(/홈|\bhome\b/.test(q))plan.venue='home';else if(/전체\s?장소|all venues/.test(q))plan.venue='all'}
    const matches=Object.entries(metrics).sort((a,b)=>Math.max(...b[1].keys.map(k=>k.length))-Math.max(...a[1].keys.map(k=>k.length))).filter(([,m])=>m.keys.some(k=>q.includes(k)));
    if(matches.length)plan.metric=matches[0][0];
@@ -52,6 +52,8 @@
    plan.perMatch=/경기당|per match|per game|평균|average/.test(q)?true:/합계|total/.test(q)?false:plan.perMatch;
    if(/슈팅|점유|패스|선수|포메이션|부상|시장|날씨|shot|possession|pass|player|formation|injur|weather|npxg|페널티 제외|20\d{2}-\d{2}-\d{2}|승리한 경기|패배한 경기|무승부 경기|won matches|lost matches|drop table|delete from/.test(q))return {error:'metric'};
    if(!recognized.length&&!follow&&!/xg|기대|득점|실점|승점|승률|최근|시즌|홈|원정|리그|순위|goals|points|rate|matches|season|home|away|rank|league/.test(q))return {error:'unsupported'};
+   if(!plan.teams.length&&explicitLeague)plan.tool='ranking';
+   if(plan.tool==='ranking')plan.teams=[];
    if(plan.tool!=='ranking'&&!plan.teams.length)return {error:'team'};
    plan.question=question;return plan;
   }

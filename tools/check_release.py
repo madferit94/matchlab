@@ -28,14 +28,29 @@ def payload(version):
     return json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>',html,re.S)[1])
 assert all(payload(f'v{n}')==payload('v12') for n in range(13,24)), 'Design preview changed source data'
 # Verify the exact shared presentation layer before comparing preserved application code.
-def presentation_base(name):
+def presentation_base(name, normalize_analysis=True):
     html=(p/name).read_text(encoding='utf8')
     for tag, ident, source in [('style','matchlab-shared-theme','theme.css'),('script','matchlab-shared-search','search.js')]:
         pattern='<'+tag+' id="'+ident+'">([\\s\\S]*?)</'+tag+'>'
         blocks=re.findall(pattern,html)
         assert len(blocks)==1 and blocks[0]==(p/'design/release-0.21.0'/source).read_text(encoding='utf-8-sig'), 'Shared presentation drift: '+name
         html=re.sub(pattern,'',html)
-    return html.replace(' data-design="matchlab-2026"','',1)
+    html=html.replace(' data-design="matchlab-2026"','',1)
+    # Compare all unrelated markup against v50, normalizing only the two patched modules.
+    if normalize_analysis and name in ['index.html','index.en.html']:
+        archived=(p/'archive/visualizations/visualization-design-2026-10-08-v50'/name).read_text(encoding='utf8')
+        pattern=r'<script id="matchlab-analysis-workbench">([\s\S]*?)</script>'
+        original=re.search(pattern,archived)
+        assert original, 'Archived workbench missing'
+        html=re.sub(pattern,lambda m:original[0],html)
+        live_engine=(p/'analysis/record-engine.cjs').read_text(encoding='utf8')
+        start=archived.index('/* Browser-native recorded-data analysis.')
+        closing=live_engine.rstrip().splitlines()[-1]
+        original_engine=archived[start:archived.index(closing,start)+len(closing)]+'\n'
+        if name=='index.en.html': live_engine=re.sub('[가-힣]',lambda m:'\\u%04x'%ord(m[0]),live_engine)
+        assert live_engine in html, 'Live engine missing before archive comparison'
+        html=html.replace(live_engine,original_engine)
+    return html
 for page in ['index.html','index.en.html','f1/index.html']: presentation_base(page)
 engine_source=(p/'analysis/record-engine.cjs').read_text(encoding='utf8')
 assert engine_source in (p/'index.html').read_text(encoding='utf8'), 'Korean analysis engine drift'
@@ -43,7 +58,7 @@ engine_en=re.sub('[가-힣]',lambda m:'\\u%04x'%ord(m[0]),engine_source)
 assert engine_en in (p/'index.en.html').read_text(encoding='utf8'), 'English analysis engine drift'
 assert (p/'analysis/release-0.23.0/f1-natural-analysis.js').read_text(encoding='utf8').strip() in (p/'f1/index.html').read_text(encoding='utf8'), 'F1 analysis engine drift'
 for entry in ['index.html','index.en.html','f1/index.html']:
-    assert (p/'analysis/release-0.23.0/workbench.js').read_text(encoding='utf8') in (p/entry).read_text(encoding='utf8'), 'Analysis workbench drift: '+entry
+    assert (p/'analysis/release-0.25.1/workbench.js').read_text(encoding='utf8') in (p/entry).read_text(encoding='utf8'), 'Analysis workbench drift: '+entry
 f1_html=(p/'f1/index.html').read_text(encoding='utf8')
 assert (p/'f1/release-0.9.3/tyre-help.js').read_text(encoding='utf8') in f1_html, 'Tyre help module drift'
 for tag,ident,source in [('script','f1-archive-catalog','archive-catalog.js'),('style','f1-archive-catalog-styles','archive.css')]:
@@ -68,7 +83,8 @@ assert len(english['metric_meta'])==47
 # The simulation contains a shared bilingual module. Verify its exact source
 # identity before excluding that code from the static English-label check;
 # dynamic English rendering is covered by the simulation integration checks.
-english_labels=re.sub(r'<script id="data" type="application/json">.*?</script>','',en_html,flags=re.S)
+english_live=presentation_base('index.en.html', normalize_analysis=False)
+english_labels=re.sub(r'<script id="data" type="application/json">.*?</script>','',english_live,flags=re.S)
 for module in ('pixel-simulation.js','integration.js'):
     shared=(p/'simulation/pixel-v2-2026-10-06-v01'/module).read_text(encoding='utf8').strip()
     assert shared in english_labels, f'Shared module differs: {module}'
@@ -77,7 +93,7 @@ for module in ('team-chart-engine.cjs','team-chart-ui.js'):
     shared=(p/'archive/visualizations/visualization-design-2026-10-07-v31'/module).read_text(encoding='utf8')
     assert shared in english_labels, f'Chart module differs: {module}'
     english_labels=english_labels.replace(shared,'')
-shared=(p/'analysis/release-0.23.0/workbench.js').read_text(encoding='utf8')
+shared=(p/'analysis/release-0.25.1/workbench.js').read_text(encoding='utf8')
 assert shared in english_labels, 'Shared analysis review module differs'
 english_labels=english_labels.replace(shared,'')
 # Odds are model inputs, not a separate public comparison interface.
@@ -94,6 +110,12 @@ english_labels=english_labels.replace(report_ui,'')
 assert not re.search('[가-힣]',english_labels.replace('한국어',''))
 
 old=json.loads((p/'docs/publication_manifest-0.9.0.json').read_text(encoding='utf8'))
+# Preserve the last committed version label for unchanged file hashes.
+try:
+    committed=json.loads(subprocess.check_output(['git','show','HEAD:'+prefix+'publication_manifest.json'],cwd=repo,text=True,encoding='utf8'))
+    old['files'].extend(committed['files'])
+except (subprocess.CalledProcessError, KeyError, json.JSONDecodeError):
+    pass
 labels={item['path']:item['snapshot'] for item in old['files']}
 old_hashes={item['path']:item['sha256'] for item in old['files']}
 text_ext={'.md','.json','.py','.cjs','.js','.css','.ps1','.example','.html','.txt','.yaml','.yml','.csv','.gitattributes','.gitignore'}
@@ -105,9 +127,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'}:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.0'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.1'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.25.0',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.25.1',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
