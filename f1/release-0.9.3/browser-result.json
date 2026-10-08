@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "lang": "ko",
+      "title": "Bahrain GP in Malaysia"
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "styles": {
+        "height": 144,
+        "fontSize": "18px",
+        "border": "2px",
+        "color": "rgb(22, 46, 55)"
+      },
+      "comparison": [
+        15,
+        25
+      ]
+    },
+    {
+      "lang": "ko",
+      "width": 768,
+      "styles": {
+        "height": 144,
+        "fontSize": "18px",
+        "border": "2px",
+        "color": "rgb(22, 46, 55)"
+      },
+      "comparison": [
+        15,
+        25
+      ]
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "styles": {
+        "height": 144,
+        "fontSize": "18px",
+        "border": "2px",
+        "color": "rgb(22, 46, 55)"
+      },
+      "comparison": [
+        15,
+        25
+      ]
+    },
+    {
+      "lang": "en",
+      "title": "Bahrain GP in Malaysia"
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "styles": {
+        "height": 144,
+        "fontSize": "18px",
+        "border": "2px",
+        "color": "rgb(22, 46, 55)"
+      },
+      "comparison": [
+        15,
+        25
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "styles": {
+        "height": 144,
+        "fontSize": "18px",
+        "border": "2px",
+        "color": "rgb(22, 46, 55)"
+      },
+      "comparison": [
+        15,
+        25
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "styles": {
+        "height": 144,
+        "fontSize": "18px",
+        "border": "2px",
+        "color": "rgb(22, 46, 55)"
+      },
+      "comparison": [
+        15,
+        25
+      ]
+    },
+    {
+      "lang": "ko",
+      "driverQuery": "획득 포인트\nⓘ\n\n막스 베르스타펜\n\n18"
+    },
+    {
+      "lang": "en",
+      "driverQuery": "Points\nⓘ\n\nMax VERSTAPPEN\n\n18"
+    }
+  ],
+  "pageErrors": []
+}
