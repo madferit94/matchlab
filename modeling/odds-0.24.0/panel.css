@@ -1,0 +1,13 @@
+.odds-review{margin-top:20px;min-width:0;overflow-wrap:anywhere}
+.odds-review h2{font-size:clamp(20px,3vw,26px);line-height:1.4;margin:0 0 8px}
+.odds-review p{line-height:1.6}.odds-review .odds-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.odds-review button{min-height:44px;padding:10px 14px;border:1px solid #8a999e;border-radius:8px;background:#fff;color:#203943;font:inherit;cursor:pointer}
+.odds-review .odds-tabs button[aria-pressed=true]{background:#203943!important;color:#fff!important;border-color:#203943}
+.odds-review button:focus-visible,.odds-review summary:focus-visible{outline:3px solid #2079d4;outline-offset:3px}
+.odds-probabilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.odds-probabilities>div{min-width:0;background:#f1f5f6;padding:14px 10px;border-radius:10px;color:#203943}
+.odds-probabilities span{display:block;font-size:14px}.odds-probabilities strong{display:block;white-space:nowrap;font-size:clamp(22px,4vw,32px);line-height:1.5;font-variant-numeric:tabular-nums}
+.odds-probabilities progress{display:block;width:100%;height:8px;accent-color:#365f81;margin-top:8px}
+.odds-review summary{cursor:pointer;min-height:44px;padding:12px 0;line-height:1.5}
+.odds-review .odds-fineprint{font-size:14px;color:#405761}.odds-fallback{font-size:14px;color:#405761;line-height:1.5}
+@media(max-width:480px){.odds-probabilities{gap:6px}.odds-probabilities>div{padding:12px 8px}.odds-review .odds-tabs button{flex:1 1 auto;font-size:14px}}

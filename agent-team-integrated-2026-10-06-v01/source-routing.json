@@ -41,5 +41,17 @@
     }
   ],
   "actual_new_context_records_collected": 0,
-  "changes_primary_schedule": false
+  "changes_primary_schedule": false,
+  "authorized_odds_exception": {
+    "effective_date": "2026-10-08",
+    "source": "Football-Data",
+    "scope": [
+      "identity_matching",
+      "closing_odds_retrospective_training"
+    ],
+    "model_package": "../modeling/odds-0.24.0",
+    "changes_primary_schedule": false,
+    "observation_timestamps_verified": false,
+    "future_odds_available": false
+  }
 }

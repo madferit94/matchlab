@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "leagues": 2,
+      "probabilitySwitches": 8,
+      "heldHidden": true,
+      "trainingHidden": true,
+      "futureFallback": true,
+      "panelOverflow": false,
+      "pageErrors": [],
+      "apiCalls": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1440,
+      "leagues": 2,
+      "probabilitySwitches": 8,
+      "heldHidden": true,
+      "trainingHidden": true,
+      "futureFallback": true,
+      "panelOverflow": false,
+      "pageErrors": [],
+      "apiCalls": 0
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "leagues": 2,
+      "probabilitySwitches": 8,
+      "heldHidden": true,
+      "trainingHidden": true,
+      "futureFallback": true,
+      "panelOverflow": false,
+      "pageErrors": [],
+      "apiCalls": 0
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "leagues": 2,
+      "probabilitySwitches": 8,
+      "heldHidden": true,
+      "trainingHidden": true,
+      "futureFallback": true,
+      "panelOverflow": false,
+      "pageErrors": [],
+      "apiCalls": 0
+    }
+  ]
+}

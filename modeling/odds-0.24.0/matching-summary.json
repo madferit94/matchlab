@@ -1,0 +1,33 @@
+{
+  "total": 2399,
+  "matched": 2397,
+  "eligible": 2395,
+  "by_season": {
+    "2023/24": {
+      "total": 760,
+      "matched": 759,
+      "eligible": 759
+    },
+    "2024/25": {
+      "total": 760,
+      "matched": 760,
+      "eligible": 759
+    },
+    "2025/26": {
+      "total": 760,
+      "matched": 759,
+      "eligible": 758
+    },
+    "2026/27": {
+      "total": 119,
+      "matched": 119,
+      "eligible": 119
+    }
+  },
+  "hold_reasons": {
+    "UNMATCHED": 2,
+    "EXISTING_MODEL_REVIEW_EXCLUSION": 4
+  },
+  "matching_compute_seconds": 0.06353069999750005,
+  "raw_source_rows": 2399
+}

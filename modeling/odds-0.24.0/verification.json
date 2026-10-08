@@ -1,0 +1,391 @@
+{
+  "passed": 66,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "original_training_source_hash_combined_four_season_completed_matches-v01.csv",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "original_training_source_hash_combined_four_season_team_match_stats-v01.csv",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "111_features_reproduce",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_inputs_strictly_prior",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "current_and_future_mutation_does_not_change_inputs",
+      "passed": true,
+      "details": {
+        "pivot": "2025-08-16",
+        "compared_rows": 1529,
+        "mutated_matches": 876
+      }
+    },
+    {
+      "name": "all_eligible_match_exact_existing_features",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "labels_dates_seasons_identical",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "feature_schema_matches_active_model",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "chronological_disjoint_splits",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_preprocess_train_only_759_0.01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_scale_train_only_759_0.01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_converged_759_0.01",
+      "passed": true,
+      "details": {
+        "iterations": 22559,
+        "max_gradient": 9.997342321739836e-08,
+        "initial_residual": 0.00026386503854832193
+      }
+    },
+    {
+      "name": "stats_only_preprocess_train_only_759_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_scale_train_only_759_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_converged_759_0.1",
+      "passed": true,
+      "details": {
+        "iterations": 2612,
+        "max_gradient": 9.995805301359073e-08,
+        "initial_residual": 9.995805301359073e-08
+      }
+    },
+    {
+      "name": "stats_only_preprocess_train_only_759_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_scale_train_only_759_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_converged_759_1.0",
+      "passed": true,
+      "details": {
+        "iterations": 1432,
+        "max_gradient": 9.991693542811382e-08,
+        "initial_residual": 9.991693542811382e-08
+      }
+    },
+    {
+      "name": "stats_only_preprocess_train_only_1518_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_scale_train_only_1518_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_converged_1518_1.0",
+      "passed": true,
+      "details": {
+        "iterations": 1453,
+        "max_gradient": 9.928624909754884e-08,
+        "initial_residual": 9.928624909754884e-08
+      }
+    },
+    {
+      "name": "stats_only_serialization",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_preprocess_train_only_759_0.01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_scale_train_only_759_0.01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_converged_759_0.01",
+      "passed": true,
+      "details": {
+        "iterations": 1331,
+        "max_gradient": 9.95729279817904e-08,
+        "initial_residual": 9.95729279817904e-08
+      }
+    },
+    {
+      "name": "odds_only_preprocess_train_only_759_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_scale_train_only_759_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_converged_759_0.1",
+      "passed": true,
+      "details": {
+        "iterations": 212,
+        "max_gradient": 9.75861745181137e-08,
+        "initial_residual": 9.75861745181137e-08
+      }
+    },
+    {
+      "name": "odds_only_preprocess_train_only_759_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_scale_train_only_759_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_converged_759_1.0",
+      "passed": true,
+      "details": {
+        "iterations": 171,
+        "max_gradient": 9.529300907256069e-08,
+        "initial_residual": 9.529300907256069e-08
+      }
+    },
+    {
+      "name": "odds_only_preprocess_train_only_1518_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_scale_train_only_1518_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_converged_1518_0.1",
+      "passed": true,
+      "details": {
+        "iterations": 215,
+        "max_gradient": 9.671786437069705e-08,
+        "initial_residual": 9.671786437069705e-08
+      }
+    },
+    {
+      "name": "odds_only_serialization",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_preprocess_train_only_759_0.01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_scale_train_only_759_0.01",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_converged_759_0.01",
+      "passed": true,
+      "details": {
+        "iterations": 23189,
+        "max_gradient": 9.997271241152673e-08,
+        "initial_residual": 0.0002510103758700953
+      }
+    },
+    {
+      "name": "stats_plus_odds_preprocess_train_only_759_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_scale_train_only_759_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_converged_759_0.1",
+      "passed": true,
+      "details": {
+        "iterations": 2674,
+        "max_gradient": 9.986634290966995e-08,
+        "initial_residual": 9.986634290966995e-08
+      }
+    },
+    {
+      "name": "stats_plus_odds_preprocess_train_only_759_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_scale_train_only_759_1.0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_converged_759_1.0",
+      "passed": true,
+      "details": {
+        "iterations": 1474,
+        "max_gradient": 9.931815323432529e-08,
+        "initial_residual": 9.931815323432529e-08
+      }
+    },
+    {
+      "name": "stats_plus_odds_preprocess_train_only_1518_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_scale_train_only_1518_0.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_converged_1518_0.1",
+      "passed": true,
+      "details": {
+        "iterations": 2809,
+        "max_gradient": 9.990113598087186e-08,
+        "initial_residual": 9.990113598087186e-08
+      }
+    },
+    {
+      "name": "stats_plus_odds_serialization",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reproduce_adopted_model_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_valid_probability_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_valid_probability_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_valid_probability_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "market_probability_valid_probability_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_team_swap_symmetry_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_team_swap_symmetry_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_team_swap_symmetry_2025/26",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reproduce_adopted_model_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_valid_probability_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_valid_probability_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_valid_probability_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "market_probability_valid_probability_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_only_team_swap_symmetry_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "odds_only_team_swap_symmetry_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stats_plus_odds_team_swap_symmetry_2026/27",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all_original_inputs_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no_current_match_results_in_features",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "independent_reviewer": false,
+  "participant_confirmation": "PENDING",
+  "odds_timestamp_verified": false
+}

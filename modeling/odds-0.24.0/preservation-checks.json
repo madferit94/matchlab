@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "index.html:data unchanged",
+    "index.html:prematch-predictions-v22 unchanged",
+    "index.en.html:data unchanged",
+    "index.en.html:prematch-predictions-v22 unchanged",
+    "F1 byte-for-byte unchanged"
+  ]
+}
