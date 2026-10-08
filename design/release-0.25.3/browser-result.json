@@ -1,0 +1,803 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "en": false,
+      "width": 390,
+      "league": "EPL",
+      "rows": [
+        {
+          "values": [
+            "12",
+            "9"
+          ],
+          "label": "승점",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 75,
+              "actual": 75,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.6",
+            "1.4"
+          ],
+          "label": "경기당 득점",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 87.5,
+              "actual": 87.5,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "0.8",
+            "0.6"
+          ],
+          "label": "경기당 실점낮을수록 좋음",
+          "bars": [
+            {
+              "expected": 80,
+              "actual": 79.99415887850468,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 60,
+              "actual": 59.98831775700935,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.88",
+            "1.45"
+          ],
+          "label": "경기당 기대 득점",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 76.7655,
+              "actual": 76.75233644859813,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": false,
+      "width": 390,
+      "league": "La_liga",
+      "rows": [
+        {
+          "values": [
+            "7",
+            "12"
+          ],
+          "label": "승점",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.32359813084113,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.4",
+            "2.4"
+          ],
+          "label": "경기당 득점",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.32359813084113,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.0",
+            "1.0"
+          ],
+          "label": "경기당 실점낮을수록 좋음",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.23",
+            "2.32"
+          ],
+          "label": "경기당 기대 득점",
+          "bars": [
+            {
+              "expected": 52.9159,
+              "actual": 52.90595794392523,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": false,
+      "width": 1440,
+      "league": "EPL",
+      "rows": [
+        {
+          "values": [
+            "12",
+            "9"
+          ],
+          "label": "승점",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 75,
+              "actual": 75,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.6",
+            "1.4"
+          ],
+          "label": "경기당 득점",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 87.5,
+              "actual": 87.5,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "0.8",
+            "0.6"
+          ],
+          "label": "경기당 실점낮을수록 좋음",
+          "bars": [
+            {
+              "expected": 80,
+              "actual": 79.99866167023555,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 60,
+              "actual": 59.997323340471084,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.88",
+            "1.45"
+          ],
+          "label": "경기당 기대 득점",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 76.7655,
+              "actual": 76.76324946466809,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": false,
+      "width": 1440,
+      "league": "La_liga",
+      "rows": [
+        {
+          "values": [
+            "7",
+            "12"
+          ],
+          "label": "승점",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.33110278372591,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.4",
+            "2.4"
+          ],
+          "label": "경기당 득점",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.33110278372591,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.0",
+            "1.0"
+          ],
+          "label": "경기당 실점낮을수록 좋음",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.23",
+            "2.32"
+          ],
+          "label": "경기당 기대 득점",
+          "bars": [
+            {
+              "expected": 52.9159,
+              "actual": 52.914213062098504,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": true,
+      "width": 390,
+      "league": "EPL",
+      "rows": [
+        {
+          "values": [
+            "12",
+            "9"
+          ],
+          "label": "Points",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 75,
+              "actual": 75,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.6",
+            "1.4"
+          ],
+          "label": "Goals per match",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 87.5,
+              "actual": 87.5,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "0.8",
+            "0.6"
+          ],
+          "label": "Goals conceded per matchLower is better",
+          "bars": [
+            {
+              "expected": 80,
+              "actual": 79.99415887850468,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 60,
+              "actual": 59.98831775700935,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.88",
+            "1.45"
+          ],
+          "label": "xG per match",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 76.7655,
+              "actual": 76.75233644859813,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": true,
+      "width": 390,
+      "league": "La_liga",
+      "rows": [
+        {
+          "values": [
+            "7",
+            "12"
+          ],
+          "label": "Points",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.32359813084113,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.4",
+            "2.4"
+          ],
+          "label": "Goals per match",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.32359813084113,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.0",
+            "1.0"
+          ],
+          "label": "Goals conceded per matchLower is better",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.23",
+            "2.32"
+          ],
+          "label": "xG per match",
+          "bars": [
+            {
+              "expected": 52.9159,
+              "actual": 52.90595794392523,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": true,
+      "width": 1440,
+      "league": "EPL",
+      "rows": [
+        {
+          "values": [
+            "12",
+            "9"
+          ],
+          "label": "Points",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 75,
+              "actual": 75,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.6",
+            "1.4"
+          ],
+          "label": "Goals per match",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 87.5,
+              "actual": 87.5,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "0.8",
+            "0.6"
+          ],
+          "label": "Goals conceded per matchLower is better",
+          "bars": [
+            {
+              "expected": 80,
+              "actual": 79.99866167023555,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 60,
+              "actual": 59.997323340471084,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.88",
+            "1.45"
+          ],
+          "label": "xG per match",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(215, 25, 32)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 76.7655,
+              "actual": 76.76324946466809,
+              "color": "rgb(36, 74, 155)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "en": true,
+      "width": 1440,
+      "league": "La_liga",
+      "rows": [
+        {
+          "values": [
+            "7",
+            "12"
+          ],
+          "label": "Points",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.33110278372591,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.4",
+            "2.4"
+          ],
+          "label": "Goals per match",
+          "bars": [
+            {
+              "expected": 58.3333,
+              "actual": 58.33110278372591,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.0",
+            "1.0"
+          ],
+          "label": "Goals conceded per matchLower is better",
+          "bars": [
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "values": [
+            "1.23",
+            "2.32"
+          ],
+          "label": "xG per match",
+          "bars": [
+            {
+              "expected": 52.9159,
+              "actual": 52.914213062098504,
+              "color": "rgb(0, 85, 164)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            },
+            {
+              "expected": 100,
+              "actual": 100,
+              "color": "rgb(203, 53, 36)",
+              "bg": "rgb(237, 241, 245)",
+              "display": "block"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "originalDefect": {
+    "display": "inline",
+    "actualWidth": 2,
+    "expectedWidth": 356.25
+  },
+  "errors": []
+}

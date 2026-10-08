@@ -35,6 +35,14 @@ def presentation_base(name, normalize_analysis=True):
         blocks=re.findall(pattern,html)
         assert len(blocks)==1 and blocks[0]==(p/'design/release-0.21.0'/source).read_text(encoding='utf-8-sig'), 'Shared presentation drift: '+name
         html=re.sub(pattern,'',html)
+    if name in ['index.html','index.en.html']:
+        css=(p/'design/release-0.25.3/comparison.css').read_text(encoding='utf8')
+        block='<style id="matchlab-comparison-bars">'+css+'</style>'
+        assert html.count(block)==1, 'Comparison bar styles drift: '+name
+        html=html.replace(block,'')
+        patch=json.loads((p/'design/release-0.25.3/render-patch.json').read_text(encoding='utf8'))[name]
+        assert html.count(patch['after'])==1, 'Comparison row render drift: '+name
+        if normalize_analysis: html=html.replace(patch['after'],patch['before'])
     html=html.replace(' data-design="matchlab-2026"','',1)
     # Compare all unrelated markup against v50, normalizing only the two patched modules.
     if normalize_analysis and name in ['index.html','index.en.html']:
@@ -127,9 +135,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'}:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.2'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.3'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.25.2',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.25.3',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:

@@ -1,0 +1,12 @@
+/* Mirrored team bars: both fills must obey percentage width. */
+#comparison .stat{grid-template-columns:64px minmax(0,1fr) 64px;gap:16px;margin-top:24px}
+#comparison .stat>div{min-width:0}
+#comparison .stat strong{white-space:nowrap;font-variant-numeric:tabular-nums}
+#comparison .bars{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+#comparison .track{height:12px;background:#edf1f5;border:1px solid #d6dee7;display:flex;min-width:0}
+#comparison .track.left{justify-content:flex-end}
+#comparison .track .fill{display:block;flex:0 0 auto;min-width:0;height:100%;border:0;border-radius:4px}
+#comparison .stat label{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+#comparison .stat label small{font-size:12px;line-height:1.5;color:#536174;font-weight:400}
+@media(max-width:480px){#comparison .stat{grid-template-columns:44px minmax(0,1fr) 44px;gap:8px}#comparison .stat strong{font-size:20px}#comparison .bars{gap:6px}#comparison .stat label{font-size:13px}}
+@media(max-width:480px){#comparison>.matchhead:last-child{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}#comparison>.matchhead:last-child>span{display:none}#comparison>.matchhead:last-child>div{min-width:0;width:100%}#comparison .form{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}#comparison .form span{min-width:0;width:100%;font-size:12px}}

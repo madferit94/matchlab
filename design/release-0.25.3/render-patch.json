@@ -1,0 +1,10 @@
+{
+  "index.html": {
+    "before": "${stats.map(([label,x,y,n])=>{let max=Math.max(x||0,y||0,1);return `<div class=\"stat\"><strong>${x===null?'—':x.toFixed(n)}</strong><div><label>${label}</label><div class=\"bars\"><div class=\"track left\"><span class=\"fill\" style=\"width:${(x||0)/max*100}%;background:${c1}\"></span></div><div class=\"track\"><span class=\"fill\" style=\"width:${(y||0)/max*100}%;background:${c2};border-style:dashed\"></span></div></div></div><strong>${y===null?'—':y.toFixed(n)}</strong></div>`}).join('')}",
+    "after": "${stats.map(([label,x,y,n],i)=>{let max=Math.max(x||0,y||0,1);return `<div class=\"stat\"><strong>${x===null?'—':x.toFixed(n)}</strong><div><label>${label}${i===2?'<small>낮을수록 좋음</small>':''}</label><div class=\"bars\"><div class=\"track left\"><span class=\"fill\" style=\"width:${(x||0)/max*100}%;background:${c1}\"></span></div><div class=\"track\"><span class=\"fill\" style=\"width:${(y||0)/max*100}%;background:${c2}\"></span></div></div></div><strong>${y===null?'—':y.toFixed(n)}</strong></div>`}).join('')}"
+  },
+  "index.en.html": {
+    "before": "${stats.map(([label,x,y,n])=>{let max=Math.max(x||0,y||0,1);return `<div class=\"stat\"><strong>${x===null?'—':x.toFixed(n)}</strong><div><label>${label}</label><div class=\"bars\"><div class=\"track left\"><span class=\"fill\" style=\"width:${(x||0)/max*100}%;background:${c1}\"></span></div><div class=\"track\"><span class=\"fill\" style=\"width:${(y||0)/max*100}%;background:${c2};border-style:dashed\"></span></div></div></div><strong>${y===null?'—':y.toFixed(n)}</strong></div>`}).join('')}",
+    "after": "${stats.map(([label,x,y,n],i)=>{let max=Math.max(x||0,y||0,1);return `<div class=\"stat\"><strong>${x===null?'—':x.toFixed(n)}</strong><div><label>${label}${i===2?'<small>Lower is better</small>':''}</label><div class=\"bars\"><div class=\"track left\"><span class=\"fill\" style=\"width:${(x||0)/max*100}%;background:${c1}\"></span></div><div class=\"track\"><span class=\"fill\" style=\"width:${(y||0)/max*100}%;background:${c2}\"></span></div></div></div><strong>${y===null?'—':y.toFixed(n)}</strong></div>`}).join('')}"
+  }
+}
