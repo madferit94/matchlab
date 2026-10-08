@@ -58,7 +58,7 @@ engine_en=re.sub('[가-힣]',lambda m:'\\u%04x'%ord(m[0]),engine_source)
 assert engine_en in (p/'index.en.html').read_text(encoding='utf8'), 'English analysis engine drift'
 assert (p/'analysis/release-0.23.0/f1-natural-analysis.js').read_text(encoding='utf8').strip() in (p/'f1/index.html').read_text(encoding='utf8'), 'F1 analysis engine drift'
 for entry in ['index.html','index.en.html','f1/index.html']:
-    assert (p/'analysis/release-0.25.1/workbench.js').read_text(encoding='utf8') in (p/entry).read_text(encoding='utf8'), 'Analysis workbench drift: '+entry
+    assert (p/'analysis/release-0.25.2/workbench.js').read_text(encoding='utf8') in (p/entry).read_text(encoding='utf8'), 'Analysis workbench drift: '+entry
 f1_html=(p/'f1/index.html').read_text(encoding='utf8')
 assert (p/'f1/release-0.9.3/tyre-help.js').read_text(encoding='utf8') in f1_html, 'Tyre help module drift'
 for tag,ident,source in [('script','f1-archive-catalog','archive-catalog.js'),('style','f1-archive-catalog-styles','archive.css')]:
@@ -93,7 +93,7 @@ for module in ('team-chart-engine.cjs','team-chart-ui.js'):
     shared=(p/'archive/visualizations/visualization-design-2026-10-07-v31'/module).read_text(encoding='utf8')
     assert shared in english_labels, f'Chart module differs: {module}'
     english_labels=english_labels.replace(shared,'')
-shared=(p/'analysis/release-0.25.1/workbench.js').read_text(encoding='utf8')
+shared=(p/'analysis/release-0.25.2/workbench.js').read_text(encoding='utf8')
 assert shared in english_labels, 'Shared analysis review module differs'
 english_labels=english_labels.replace(shared,'')
 # Odds are model inputs, not a separate public comparison interface.
@@ -127,9 +127,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'}:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.1'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.2'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.25.1',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.25.2',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
