@@ -1,0 +1,42 @@
+{
+  "testedAt": "2026-10-08T02:35:28.005Z",
+  "method": "live Gemini generateContent and Google Search; no mocked provider",
+  "elapsedMs": 21325,
+  "match": {
+    "id": "understat:31230",
+    "date": "2026-10-10",
+    "league": "EPL",
+    "home": "Arsenal",
+    "away": "Leeds"
+  },
+  "choice": "home",
+  "probabilities": [
+    0.6085747997883622,
+    0.22077050835147805,
+    0.1706546918601598
+  ],
+  "narrativeStatus": "ai_curated",
+  "narrativeError": null,
+  "newsStatus": "sourced",
+  "newsReason": null,
+  "newsCount": 4,
+  "newsSources": [
+    {
+      "title": "sportsmole.co.uk",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLNVoF6ITWrplWHYDCWgjcJE9VNcxaaEi8zTLqPS1ibtrO-ZrTb3zWseJNUMN2nRSqDhVHw8vVAAfFQ_LIAz1_tXSahZpjpOMt26ctmlaLm0aw_ESSCh6f51OdE2uP9jfhuPEIPE49iGYULIMjfS_tUEbxWCuuQ9D0PagC5IlYtwguZfWWG-6ZrHzGmw1VUiotajQnJEmkMFn_vI8dU4CUhzLbumJ5N56wRgWlK_46KbnR0sB8PjLEVrlsoxWalahMoRcNaRvn72rAS8QIckqjqB8kXtGZ7qelkBffgcY="
+    },
+    {
+      "title": "lastwordonsports.com",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGsGb9J-yC3IWeS_NAxF2ixXyYiwwAaINiNz5OF2-ZNkDThoC8llA_keGGzGQKicx4l-CicbsAXslN4ZSTKB6n_99GqTHhVEdzPNUDpMK4AqQAhY1WXmxZ_Sqx6ycNYU19R48i71oqmOr3tOxrHccZbfiV4Oze0ZnIIr-Eo"
+    },
+    {
+      "title": "sportsmole.co.uk",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQyeJ4RLqdOItOxXo0qBmRK-aTVI52IDAj-IMeTNQvvriFakdiJzXs1eMGWKhgOLPuKI9r4ZGQkvabTGVPQPQ7v3t00JfofhaIv3l3Ca84S1aofbdkU-Of80DahkZmPGrhbSV2NzZOcfzxUwcTElE56-LfgsfWMk5guR5Lf9GBR5ljELhABPwOjGj5Erwf04M3Y--UW5v_FkvnQ_bLJygLQNTzGj5DJJwrYykximsIv2AXscvxUVlbWM13jgU4uNYROgMD_pGPpHcOmw58hO04"
+    },
+    {
+      "title": "sportsmole.co.uk",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQyeJ4RLqdOItOxXo0qBmRK-aTVI52IDAj-IMeTNQvvriFakdiJzXs1eMGWKhgOLPuKI9r4ZGQkvabTGVPQPQ7v3t00JfofhaIv3l3Ca84S1aofbdkU-Of80DahkZmPGrhbSV2NzZOcfzxUwcTElE56-LfgsfWMk5guR5Lf9GBR5ljELhABPwOjGj5Erwf04M3Y--UW5v_FkvnQ_bLJygLQNTzGj5DJJwrYykximsIv2AXscvxUVlbWM13jgU4uNYROgMD_pGPpHcOmw58hO04"
+    }
+  ],
+  "reportStoredPrivately": true
+}

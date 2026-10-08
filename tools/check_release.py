@@ -56,10 +56,10 @@ f1_before=(p/'f1/release-0.8.6/index-before.html').read_text(encoding='utf8')
 for ident in ['dataset','forecasts','historical','maps','tracks']:
     rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'
     assert re.search(rx,f1_html)[1]==re.search(rx,f1_before)[1], 'F1 original data drift: '+ident
-assert presentation_base('index.html')==(p/'archive/visualizations/visualization-design-2026-10-08-v49/index.html').read_text(encoding='utf8'), 'Default entry differs from adopted v49'
+assert presentation_base('index.html')==(p/'archive/visualizations/visualization-design-2026-10-08-v50/index.html').read_text(encoding='utf8'), 'Default entry differs from adopted v50'
 
 en_html=presentation_base('index.en.html')
-assert presentation_base('index.en.html')==(p/'archive/visualizations/visualization-design-2026-10-08-v49/index.en.html').read_text(encoding='utf8')
+assert presentation_base('index.en.html')==(p/'archive/visualizations/visualization-design-2026-10-08-v50/index.en.html').read_text(encoding='utf8')
 english=json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>',en_html,re.S)[1])
 korean=payload('v23')
 for key in korean:
@@ -85,6 +85,12 @@ for entry in ['index.html','index.en.html']:
     html=(p/entry).read_text(encoding='utf8')
     for ident in ['football-odds-style','football-odds-data','football-odds-panel']:
         assert 'id="'+ident+'"' not in html, 'Removed odds UI returned: '+entry
+report_ui=(p/'reports/release-0.25.0/report-ui.js').read_text(encoding='utf8')
+report_css=(p/'reports/release-0.25.0/report.css').read_text(encoding='utf8')
+for entry in ['index.html','index.en.html']:
+    html=(p/entry).read_text(encoding='utf8')
+    assert report_ui in html and report_css in html, 'Automatic report module drift: '+entry
+english_labels=english_labels.replace(report_ui,'')
 assert not re.search('[가-힣]',english_labels.replace('한국어',''))
 
 old=json.loads((p/'docs/publication_manifest-0.9.0.json').read_text(encoding='utf8'))
@@ -99,9 +105,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'}:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.24.1'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.0'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.24.1',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.25.0',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:

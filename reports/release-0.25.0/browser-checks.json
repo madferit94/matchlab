@@ -1,0 +1,54 @@
+{
+  "testedAt": "2026-10-08T02:47:18.522Z",
+  "method": "isolated local HTTP server, browser API fixtures; Korean screenshot renders previously retrieved live response; no new AI calls",
+  "results": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "automatic": true,
+      "probabilitiesMatch": true,
+      "sessionCache": true,
+      "staleResponseIgnored": true,
+      "retry": true,
+      "keyboard": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "locale": "ko",
+      "width": 1440,
+      "automatic": true,
+      "probabilitiesMatch": true,
+      "sessionCache": true,
+      "staleResponseIgnored": true,
+      "retry": true,
+      "keyboard": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "automatic": true,
+      "probabilitiesMatch": true,
+      "sessionCache": true,
+      "staleResponseIgnored": true,
+      "retry": true,
+      "keyboard": true,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "automatic": true,
+      "probabilitiesMatch": true,
+      "sessionCache": true,
+      "staleResponseIgnored": true,
+      "retry": true,
+      "keyboard": true,
+      "overflow": false,
+      "errors": []
+    }
+  ]
+}
