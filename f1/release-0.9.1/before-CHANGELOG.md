@@ -1,9 +1,3 @@
-## 0.22.1 / F1 0.9.1 — GP titles and visible analysis input
-
-- Consistent English GP titles; prominent question entry, focus shortcut and higher-contrast input.
-- 대회명 표기 통일·자연어 질문 진입·입력창 가독성 개선.
-- [Specification / 명세](docs/SPEC-0.22.1.md) · KO/EN, 390/768/1440px checks passed.
-
 ## 0.22.0 / F1 0.9.0 — 2024 training → 2025 predictions
 
 - Collect 24 OpenF1 2024 GPs; train on 19 after five warm-up races, freeze model weights and evaluate 24 GPs in 2025.
