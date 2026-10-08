@@ -1,5 +1,7 @@
 # 상세 문서
 
+- [축구 지표·배당 결합](SPEC-0.24.0.md)
+
 - [자연어 분석 조건 확인·연속 질문](SPEC-0.23.0.md)
 - [실행·배포 안내](VERCEL.ko.md)
 - [에이전트 역할](../agent-team-integrated-2026-10-06-v01/README.md)

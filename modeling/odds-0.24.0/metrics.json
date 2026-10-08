@@ -1,0 +1,353 @@
+{
+  "trials": {
+    "stats_only": [
+      {
+        "regularization": 0.01,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.49538866930171277,
+          "log_loss": 1.0713526400957913,
+          "brier": 0.6311303932882578,
+          "ece_10bins": 0.10361273878770909
+        }
+      },
+      {
+        "regularization": 0.1,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.525691699604743,
+          "log_loss": 1.0164475514536149,
+          "brier": 0.6043895463387857,
+          "ece_10bins": 0.07101198260777192
+        }
+      },
+      {
+        "regularization": 1.0,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.5191040843214756,
+          "log_loss": 0.9964531249787161,
+          "brier": 0.5945904995559681,
+          "ece_10bins": 0.03422895602005362
+        }
+      }
+    ],
+    "odds_only": [
+      {
+        "regularization": 0.01,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.5586297760210803,
+          "log_loss": 0.959795983902006,
+          "brier": 0.5695423305588527,
+          "ece_10bins": 0.039532950554327644
+        }
+      },
+      {
+        "regularization": 0.1,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.5573122529644269,
+          "log_loss": 0.957278561937798,
+          "brier": 0.5682667600458907,
+          "ece_10bins": 0.045938168408982315
+        }
+      },
+      {
+        "regularization": 1.0,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.5586297760210803,
+          "log_loss": 0.998302590758138,
+          "brier": 0.5941773972715562,
+          "ece_10bins": 0.10560045852407558
+        }
+      }
+    ],
+    "stats_plus_odds": [
+      {
+        "regularization": 0.01,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.4927536231884058,
+          "log_loss": 1.0433879074030135,
+          "brier": 0.619883823850184,
+          "ece_10bins": 0.09128685535883785
+        }
+      },
+      {
+        "regularization": 0.1,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.5270092226613966,
+          "log_loss": 0.9809457893378818,
+          "brier": 0.5834454494018858,
+          "ece_10bins": 0.047062989478635534
+        }
+      },
+      {
+        "regularization": 1.0,
+        "validation": {
+          "n": 759,
+          "accuracy": 0.5349143610013175,
+          "log_loss": 0.982471818574013,
+          "brier": 0.5853278094695449,
+          "ece_10bins": 0.029222467740206582
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "2025/26": {
+      "stats_only": {
+        "n": 758,
+        "accuracy": 0.4815303430079156,
+        "log_loss": 1.0228537715439148,
+        "brier": 0.6138552301848237,
+        "ece_10bins": 0.02604785061204428
+      },
+      "odds_only": {
+        "n": 758,
+        "accuracy": 0.521108179419525,
+        "log_loss": 0.9862291866342857,
+        "brier": 0.588223410714811,
+        "ece_10bins": 0.023164722593297788
+      },
+      "stats_plus_odds": {
+        "n": 758,
+        "accuracy": 0.5,
+        "log_loss": 1.0008308604669647,
+        "brier": 0.598856585761507,
+        "ece_10bins": 0.048915298486985934
+      },
+      "market_probability": {
+        "n": 758,
+        "accuracy": 0.5184696569920845,
+        "log_loss": 0.9875563876876945,
+        "brier": 0.5890282060169056,
+        "ece_10bins": 0.016400016921543376
+      },
+      "by_league": {
+        "EPL": {
+          "stats_only": {
+            "n": 380,
+            "accuracy": 0.4710526315789474,
+            "log_loss": 1.0349056287028888,
+            "brier": 0.6248147290989854,
+            "ece_10bins": 0.03401184795234793
+          },
+          "odds_only": {
+            "n": 380,
+            "accuracy": 0.49736842105263157,
+            "log_loss": 1.011783515613843,
+            "brier": 0.6072288300916003,
+            "ece_10bins": 0.04217836199021979
+          },
+          "stats_plus_odds": {
+            "n": 380,
+            "accuracy": 0.48157894736842105,
+            "log_loss": 1.0224377033883059,
+            "brier": 0.6163537151922887,
+            "ece_10bins": 0.06685290081467438
+          },
+          "market_probability": {
+            "n": 380,
+            "accuracy": 0.49736842105263157,
+            "log_loss": 1.013128138181448,
+            "brier": 0.608242745873826,
+            "ece_10bins": 0.03825886739982405
+          }
+        },
+        "La_liga": {
+          "stats_only": {
+            "n": 378,
+            "accuracy": 0.49206349206349204,
+            "log_loss": 1.0107381479449462,
+            "brier": 0.6028377445039204,
+            "ece_10bins": 0.03149941911945198
+          },
+          "odds_only": {
+            "n": 378,
+            "accuracy": 0.544973544973545,
+            "log_loss": 0.9605396495648897,
+            "brier": 0.5691174335635414,
+            "ece_10bins": 0.04386682993764494
+          },
+          "stats_plus_odds": {
+            "n": 378,
+            "accuracy": 0.5185185185185185,
+            "log_loss": 0.9791096956254047,
+            "brier": 0.5812668789263297,
+            "ece_10bins": 0.04203958443872218
+          },
+          "market_probability": {
+            "n": 378,
+            "accuracy": 0.5396825396825397,
+            "log_loss": 0.9618493369267787,
+            "brier": 0.569712001927938,
+            "ece_10bins": 0.036912385707845344
+          }
+        }
+      }
+    },
+    "2026/27": {
+      "stats_only": {
+        "n": 119,
+        "accuracy": 0.42857142857142855,
+        "log_loss": 1.0024646762789275,
+        "brier": 0.5978570678759265,
+        "ece_10bins": 0.1479692500608775
+      },
+      "odds_only": {
+        "n": 119,
+        "accuracy": 0.5126050420168067,
+        "log_loss": 0.981041385233939,
+        "brier": 0.5854251969327664,
+        "ece_10bins": 0.08195223185245538
+      },
+      "stats_plus_odds": {
+        "n": 119,
+        "accuracy": 0.5042016806722689,
+        "log_loss": 0.9891142460510409,
+        "brier": 0.5890406064825604,
+        "ece_10bins": 0.10541798612518902
+      },
+      "market_probability": {
+        "n": 119,
+        "accuracy": 0.5126050420168067,
+        "log_loss": 0.9841903687893732,
+        "brier": 0.5872765504352867,
+        "ece_10bins": 0.10635303318786005
+      },
+      "by_league": {
+        "EPL": {
+          "stats_only": {
+            "n": 50,
+            "accuracy": 0.42,
+            "log_loss": 1.0259059852959973,
+            "brier": 0.6143354141857221,
+            "ece_10bins": 0.17091280665853908
+          },
+          "odds_only": {
+            "n": 50,
+            "accuracy": 0.46,
+            "log_loss": 1.0474634838573258,
+            "brier": 0.6309035750538279,
+            "ece_10bins": 0.08733988678158755
+          },
+          "stats_plus_odds": {
+            "n": 50,
+            "accuracy": 0.48,
+            "log_loss": 1.0363858068293355,
+            "brier": 0.6210503371252972,
+            "ece_10bins": 0.1449260427282381
+          },
+          "market_probability": {
+            "n": 50,
+            "accuracy": 0.46,
+            "log_loss": 1.0531368302049529,
+            "brier": 0.6341120528669113,
+            "ece_10bins": 0.08007829003350897
+          }
+        },
+        "La_liga": {
+          "stats_only": {
+            "n": 69,
+            "accuracy": 0.43478260869565216,
+            "log_loss": 0.9854782204694568,
+            "brier": 0.5859162372166543,
+            "ece_10bins": 0.13134348441039803
+          },
+          "odds_only": {
+            "n": 69,
+            "accuracy": 0.5507246376811594,
+            "log_loss": 0.932909429709745,
+            "brier": 0.5524698504682289,
+            "ece_10bins": 0.1858687083758862
+          },
+          "stats_plus_odds": {
+            "n": 69,
+            "accuracy": 0.5217391304347826,
+            "log_loss": 0.9548594918638711,
+            "brier": 0.5658451494950703,
+            "ece_10bins": 0.13827691886559684
+          },
+          "market_probability": {
+            "n": 69,
+            "accuracy": 0.5507246376811594,
+            "log_loss": 0.9342291648650397,
+            "brier": 0.553337780557298,
+            "ece_10bins": 0.1740020964225937
+          }
+        }
+      }
+    }
+  },
+  "bootstrap": {
+    "2025/26": {
+      "stats_only": {
+        "delta_log_loss_combined_minus_reference": -0.022022911076950133,
+        "date_clustered_95pct_interval": [
+          -0.033984546364258884,
+          -0.009547736495049605
+        ],
+        "replicates": 2000,
+        "interpretation": "negative favours combined; descriptive retrospective uncertainty, no guaranteed future improvement"
+      },
+      "market_probability": {
+        "delta_log_loss_combined_minus_reference": 0.013274472779270128,
+        "date_clustered_95pct_interval": [
+          0.0025185160870446945,
+          0.0240859018545849
+        ],
+        "replicates": 2000,
+        "interpretation": "negative favours combined; descriptive retrospective uncertainty, no guaranteed future improvement"
+      },
+      "odds_only": {
+        "delta_log_loss_combined_minus_reference": 0.014601673832678927,
+        "date_clustered_95pct_interval": [
+          0.004099853680361362,
+          0.025646732469988682
+        ],
+        "replicates": 2000,
+        "interpretation": "negative favours combined; descriptive retrospective uncertainty, no guaranteed future improvement"
+      }
+    },
+    "2026/27": {
+      "stats_only": {
+        "delta_log_loss_combined_minus_reference": -0.013350430227886567,
+        "date_clustered_95pct_interval": [
+          -0.04958665260987905,
+          0.017465377055436927
+        ],
+        "replicates": 2000,
+        "interpretation": "negative favours combined; descriptive retrospective uncertainty, no guaranteed future improvement"
+      },
+      "market_probability": {
+        "delta_log_loss_combined_minus_reference": 0.004923877261667921,
+        "date_clustered_95pct_interval": [
+          -0.017031280580816644,
+          0.028388465127611943
+        ],
+        "replicates": 2000,
+        "interpretation": "negative favours combined; descriptive retrospective uncertainty, no guaranteed future improvement"
+      },
+      "odds_only": {
+        "delta_log_loss_combined_minus_reference": 0.008072860817102314,
+        "date_clustered_95pct_interval": [
+          -0.018075863276793648,
+          0.03156745423133099
+        ],
+        "replicates": 2000,
+        "interpretation": "negative favours combined; descriptive retrospective uncertainty, no guaranteed future improvement"
+      }
+    }
+  },
+  "scope": "retrospective previously observed periods",
+  "timings": {
+    "feature_rebuild_seconds": 1.015214900005958,
+    "temporal_mutation_check_seconds": 1.167028299998492,
+    "all_fits_seconds": 21.90414089999831,
+    "experiment_seconds": 24.51263189999736
+  }
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "attempt": "train.py",
+    "status": "FAILED_BEFORE_ANY_MODEL_SAVED",
+    "cause": "Original fixed 4000-step optimiser did not meet 1e-6 gradient convergence for stats_only training759 reg0.01.",
+    "correction": "train-v02.py continues same deterministic optimiser on training rows only when residual exceeds threshold; max40000 additional steps; validation untouched."
+  }
+]

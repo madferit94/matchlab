@@ -1,0 +1,92 @@
+{
+  "sha256": [
+    {
+      "name": "combined_four_season_completed_matches-v01.csv",
+      "sha256": "8d3d45ee5f214bbace51a5326eab6212557cb110d0bbad77e3f707a2c99f81bc"
+    },
+    {
+      "name": "combined_four_season_team_match_stats-v01.csv",
+      "sha256": "15a4f7b917c8a53ec9f83302dc421439ab910d35ae6bd978f51bfb46c3891ffe"
+    },
+    {
+      "name": "historical-features.json",
+      "sha256": "decb0bb2d21f3a1d6965e903db61f2b49a2d6a0816ff52c911d91f4a969fd89d"
+    },
+    {
+      "name": "model.json",
+      "sha256": "e913facc6c2f6ad44161c2097136ed8d85ce995f687eaa62c07ae4591bd34dfb"
+    },
+    {
+      "name": "index.html",
+      "sha256": "b5801b6bb5b6178b5f09b2365bd768a2f87fe25cdfdb8fd5bf4b58b76d506c1b"
+    },
+    {
+      "name": "train.py",
+      "sha256": "539b9b7583df3b48ee2c0e6254c2cbc47c2d228ee9fc34bccef0e1f22f12d5bb"
+    },
+    {
+      "name": "official-registry.json",
+      "sha256": "0171bbb4d7910a87e5d863d6713e11230b995e148a64758c238a2eb5a431ddb7"
+    },
+    {
+      "name": "metric-coverage.csv",
+      "sha256": "e31cb4a9bc5c867e1ff00fb32783fce8aa01013aff80da535bf5fe7c311a98be"
+    },
+    {
+      "name": "train_baseline.py",
+      "sha256": "6f0650eda88b4d2f19ea2ae4780cddecc60121eadcd5cb29975df0676d6bf782"
+    },
+    {
+      "name": "matched-all.json",
+      "sha256": "adc0aa8f68a377179691fc3e47c73849bcb364ff2c1d76106075219b8fc7b209"
+    },
+    {
+      "name": "2324-E0.csv",
+      "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3"
+    },
+    {
+      "name": "2324-SP1.csv",
+      "sha256": "5323f596c7ed318e4bce95557a369d809d98501fa499ea5f41350cd45cf3c7d9"
+    },
+    {
+      "name": "2425-E0.csv",
+      "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4"
+    },
+    {
+      "name": "2425-SP1.csv",
+      "sha256": "c086e96d6a53f6e6c0fce4e35db0d1728c773b4362323da0161a34769e315a36"
+    },
+    {
+      "name": "2526-E0.csv",
+      "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62"
+    },
+    {
+      "name": "2526-SP1.csv",
+      "sha256": "4ca2e285f3ee0702f6bc55fcaa4f5a15cb3aef6220735a1d15398131e21d63f5"
+    },
+    {
+      "name": "2627-E0.csv",
+      "sha256": "8e21d4821be776332f3504f55f85b4277f326f03513b2c7501fbdedf92b8b1a2"
+    },
+    {
+      "name": "2627-SP1.csv",
+      "sha256": "cd180e04621abee4aeb9725d984882d719ec5f943d2874b8d2215a05cac88dfa"
+    }
+  ],
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.3.5",
+  "used_feature_builder_without_unused_catboost_import": true,
+  "leakage_limitations": [
+    "Historical snapshots downloaded now; historical publication/correction timing not verified",
+    "Closing odds semantic per supplier; no row-level observation timestamp",
+    "Previously observed evaluation periods; not prospective validation"
+  ],
+  "timings": {
+    "feature_rebuild_seconds": 1.015214900005958,
+    "temporal_mutation_check_seconds": 1.167028299998492,
+    "all_fits_seconds": 21.90414089999831,
+    "experiment_seconds": 24.51263189999736
+  },
+  "finished_utc": "2026-10-08T01:59:48.730703+00:00",
+  "training_inputs_sha256": "394bb1e90d56da3496e916434419da6597d101597d372f23a4c78194c49afd29"
+}

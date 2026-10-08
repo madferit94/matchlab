@@ -1,0 +1,115 @@
+{
+  "checks": [
+    {
+      "name": "2025/26 stats_only independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 758,
+        "correct": 365,
+        "accuracy": 0.4815303430079156,
+        "log_loss": 1.022853771543915,
+        "brier": 0.6138552301848237
+      }
+    },
+    {
+      "name": "2025/26 odds_only independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 758,
+        "correct": 395,
+        "accuracy": 0.521108179419525,
+        "log_loss": 0.9862291866342857,
+        "brier": 0.5882234107148111
+      }
+    },
+    {
+      "name": "2025/26 stats_plus_odds independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 758,
+        "correct": 379,
+        "accuracy": 0.5,
+        "log_loss": 1.0008308604669647,
+        "brier": 0.598856585761507
+      }
+    },
+    {
+      "name": "2025/26 market_probability independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 758,
+        "correct": 393,
+        "accuracy": 0.5184696569920845,
+        "log_loss": 0.9875563876876946,
+        "brier": 0.5890282060169056
+      }
+    },
+    {
+      "name": "2026/27 stats_only independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 119,
+        "correct": 51,
+        "accuracy": 0.42857142857142855,
+        "log_loss": 1.0024646762789275,
+        "brier": 0.5978570678759264
+      }
+    },
+    {
+      "name": "2026/27 odds_only independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 119,
+        "correct": 61,
+        "accuracy": 0.5126050420168067,
+        "log_loss": 0.9810413852339387,
+        "brier": 0.5854251969327663
+      }
+    },
+    {
+      "name": "2026/27 stats_plus_odds independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 119,
+        "correct": 60,
+        "accuracy": 0.5042016806722689,
+        "log_loss": 0.989114246051041,
+        "brier": 0.5890406064825604
+      }
+    },
+    {
+      "name": "2026/27 market_probability independently recalculated",
+      "passed": true,
+      "details": {
+        "n": 119,
+        "correct": 61,
+        "accuracy": 0.5126050420168067,
+        "log_loss": 0.9841903687893732,
+        "brier": 0.5872765504352868
+      }
+    },
+    {
+      "name": "unique prediction IDs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "no ineligible prediction",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all input hashes preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "2395 accepted raw source rows rechecked",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "passed": 12,
+  "failed": 0,
+  "verification_method": "Separate implementation of metrics and raw joins by same assistant; not independent agent review"
+}

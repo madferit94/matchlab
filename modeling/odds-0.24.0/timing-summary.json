@@ -1,0 +1,10 @@
+{
+  "start_utc": "2026-10-08T01:56:55.822729+00:00",
+  "report_utc": "2026-10-08T02:01:37.179150+00:00",
+  "wall_seconds_from_experiment_setup": 281.35642099380493,
+  "matching_seconds": 0.06353069999750005,
+  "feature_rebuild_seconds": 1.015214900005958,
+  "temporal_mutation_check_seconds": 1.167028299998492,
+  "all_fits_seconds": 21.90414089999831,
+  "experiment_seconds": 24.51263189999736
+}

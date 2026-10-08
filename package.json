@@ -1,6 +1,6 @@
 {
   "name": "matchlab",
-  "version": "0.23.1",
+  "version": "0.24.0",
   "private": true,
   "engines": {
     "node": "22.x"
@@ -8,6 +8,7 @@
   "scripts": {
     "build": "node tools/build-vercel.cjs",
     "start": "node server/gemini.cjs",
-    "test:server": "node server/check.cjs"
+    "test:server": "node server/check.cjs",
+    "test:odds": "node modeling/odds-0.24.0/check.cjs"
   }
 }
