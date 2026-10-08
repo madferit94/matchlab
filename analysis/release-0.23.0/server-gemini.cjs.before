@@ -57,7 +57,6 @@ function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',mode
     let response;try{response=await remote.json()}catch{throw new ServiceError('provider_response',502)}
     const calls=(response.steps||[]).filter(step=>step.type==='function_call');if(calls.length!==1||calls[0].name!=='analyze_records')throw new ServiceError('provider_response',502);
     const plan=validatePlan(calls[0].arguments,data);if(explicitOrder)plan.order=explicitOrder;plan.question=input.question;
-    if(input.planOnly===true)return send(res,200,plan.tool==='unsupported'?{status:'unsupported',reason:'unsupported'}:{status:'planned',plan,planner:'Gemini',model});
     const result=plan.tool==='unsupported'?{status:'unsupported',reason:'unsupported'}:analyst.execute(plan);
     return send(res,200,{...result,planner:'Gemini',model,engine:'JavaScript',plan,execution:'Gemini selected the validated tool parameters; server JavaScript calculated saved records.'});
    }finally{busy=false}

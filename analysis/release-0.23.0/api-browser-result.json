@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "provider": "mocked; no real Gemini call",
+  "calls": 1,
+  "checks": [
+    "mocked provider returns plan-only; manual correction runs locally with no second API call",
+    "carried threshold shown; incompatible metric/unit rejected until restriction is cleared",
+    "apply button has readable white foreground"
+  ],
+  "css": {
+    "color": "rgb(255, 255, 255)",
+    "background": "rgb(9, 107, 130)"
+  }
+}
