@@ -1,5 +1,6 @@
 # 상세 문서
 
+- [자연어 분석 조건 확인·연속 질문](SPEC-0.23.0.md)
 - [실행·배포 안내](VERCEL.ko.md)
 - [에이전트 역할](../agent-team-integrated-2026-10-06-v01/README.md)
 - [분석 도구 규격](ANALYSIS-TOOLS.md)

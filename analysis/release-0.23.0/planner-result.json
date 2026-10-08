@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "football add/year/period retains conditions; added team not silently dropped; unsupported metric rejected",
+    "F1 add/year retains conditions; current means independently calculated; missing archived laps remain null",
+    "invalid period, no prior context, future year and arbitrary code rejected",
+    "historical identity matched by name despite jersey-number change",
+    "existing multi-year same-GP query preserved",
+    "all football/F1 embedded recorded and predicted JSON unchanged"
+  ]
+}

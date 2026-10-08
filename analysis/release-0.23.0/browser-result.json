@@ -1,0 +1,145 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 390,
+      "review": "PASS",
+      "manualEdit": "10 matches",
+      "followUp": "Chelsea + previous season",
+      "clarification": "PASS",
+      "reset": "PASS"
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 390,
+      "review": "PASS",
+      "followUp": "Piastri + 2025",
+      "actualRecentGPs": 5,
+      "multiYear": [
+        15,
+        25
+      ],
+      "clarification": "PASS"
+    },
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 768,
+      "review": "PASS",
+      "manualEdit": "10 matches",
+      "followUp": "Chelsea + previous season",
+      "clarification": "PASS",
+      "reset": "PASS"
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 768,
+      "review": "PASS",
+      "followUp": "Piastri + 2025",
+      "actualRecentGPs": 5,
+      "multiYear": [
+        15,
+        25
+      ],
+      "clarification": "PASS"
+    },
+    {
+      "sport": "football",
+      "lang": "ko",
+      "width": 1440,
+      "review": "PASS",
+      "manualEdit": "10 matches",
+      "followUp": "Chelsea + previous season",
+      "clarification": "PASS",
+      "reset": "PASS"
+    },
+    {
+      "sport": "F1",
+      "lang": "ko",
+      "width": 1440,
+      "review": "PASS",
+      "followUp": "Piastri + 2025",
+      "actualRecentGPs": 5,
+      "multiYear": [
+        15,
+        25
+      ],
+      "clarification": "PASS"
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 390,
+      "review": "PASS",
+      "manualEdit": "10 matches",
+      "followUp": "Chelsea + previous season",
+      "clarification": "PASS",
+      "reset": "PASS"
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 390,
+      "review": "PASS",
+      "followUp": "Piastri + 2025",
+      "actualRecentGPs": 5,
+      "multiYear": [
+        15,
+        25
+      ],
+      "clarification": "PASS"
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 768,
+      "review": "PASS",
+      "manualEdit": "10 matches",
+      "followUp": "Chelsea + previous season",
+      "clarification": "PASS",
+      "reset": "PASS"
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 768,
+      "review": "PASS",
+      "followUp": "Piastri + 2025",
+      "actualRecentGPs": 5,
+      "multiYear": [
+        15,
+        25
+      ],
+      "clarification": "PASS"
+    },
+    {
+      "sport": "football",
+      "lang": "en",
+      "width": 1440,
+      "review": "PASS",
+      "manualEdit": "10 matches",
+      "followUp": "Chelsea + previous season",
+      "clarification": "PASS",
+      "reset": "PASS"
+    },
+    {
+      "sport": "F1",
+      "lang": "en",
+      "width": 1440,
+      "review": "PASS",
+      "followUp": "Piastri + 2025",
+      "actualRecentGPs": 5,
+      "multiYear": [
+        15,
+        25
+      ],
+      "clarification": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "localAnalysisAPICalls": 0
+}
