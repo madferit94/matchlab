@@ -1,5 +1,5 @@
 {
-  "version": "0.25.3",
+  "version": "0.25.4",
   "public_export": true,
   "files": [
     {
@@ -22,33 +22,33 @@
     },
     {
       "path": ".vercelignore",
-      "bytes": 358,
-      "sha256": "8c817cec1caf598f9ce4803e929a9eb878cec4d0e5eaba09cae5181955a50d91",
-      "snapshot": "0.25.0"
+      "bytes": 328,
+      "sha256": "43b66593bc1308f4d1b82960c1b4df7ab7c394aa9ac4df864dfaed48be8c80d9",
+      "snapshot": "0.25.4"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 19930,
-      "sha256": "e64cc3e113912995bb8c1a18586c93f6e386b44b70078b103d42123693b78776",
-      "snapshot": "0.25.3"
+      "bytes": 20218,
+      "sha256": "bd5ed381461405fb656e8ce338f3c253acea4df952e504a61a0cad01653ed323",
+      "snapshot": "0.25.4"
     },
     {
       "path": "README.ko.md",
-      "bytes": 96,
-      "sha256": "e1ee3a25047a664689fb4e8ed2c98875d36de4e892094d8f379faa017e186501",
-      "snapshot": "0.25.0"
+      "bytes": 1291,
+      "sha256": "4f0595c34fc6e64630af30b08a8d0ea90784c6495b7d514d2f4ee51b5db5c628",
+      "snapshot": "0.25.4"
     },
     {
       "path": "README.md",
-      "bytes": 1252,
-      "sha256": "05da715c021674f578a3fc49be939dedfd559e68204c9d57e5554b3d6e6661fe",
-      "snapshot": "0.25.3"
+      "bytes": 1356,
+      "sha256": "5a29a1b0d5986541f9598404e28db4bd5a34ecdceed390cd468893b6c11e9471",
+      "snapshot": "0.25.4"
     },
     {
       "path": "VERSION",
       "bytes": 7,
-      "sha256": "98c9e27ccefc72e9fe151671f865b91b381eac25a9bc03baa7db45a8658781e3",
-      "snapshot": "0.25.3"
+      "sha256": "3f2be9bca37af466485828dfb077d440fdc0891e7f7b9721aae1fb2b3c5b709c",
+      "snapshot": "0.25.4"
     },
     {
       "path": "agent-team-2026-10-06-v01/.agents/skills/matchdesk-analysis/SKILL.md",
@@ -1228,9 +1228,9 @@
     },
     {
       "path": "analysis/release-0.23.0/CHANGELOG.md.before",
-      "bytes": 18467,
-      "sha256": "4b64e9d2fbc709e83bbcee5e28b14a97705a98893fcbc0372e3f6a93a9d363fc",
-      "snapshot": "0.25.0"
+      "bytes": 18162,
+      "sha256": "32f443279ed49ebfa5df62205c018c8645df7fa42b3e37a005e884d55d02530c",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/README.md",
@@ -1240,21 +1240,21 @@
     },
     {
       "path": "analysis/release-0.23.0/README.md.before",
-      "bytes": 1111,
-      "sha256": "115786cfec5df74a6c33db02942bbaab38d06acb6faab4fe44eb4fb6f7149f2b",
-      "snapshot": "0.25.0"
+      "bytes": 1084,
+      "sha256": "c772cf9375c57986f1c68df9c09da9d59712230b676b033f94b959fc6925abb4",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/VERSION.before",
-      "bytes": 8,
-      "sha256": "335db1e09186ba00fe61791e44247b105d205f95a81babfaef1a2e585c13e747",
-      "snapshot": "0.25.0"
+      "bytes": 7,
+      "sha256": "f9e4717709f00ca251a74fc9b8138bd1d482b8eb3457330644c042cb0458ce54",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/analysis-record-engine.cjs.before",
-      "bytes": 9017,
-      "sha256": "179284ed61a666924c886c0aba5d2d36a4a3e3300155ad051a8c635f2d84a951",
-      "snapshot": "0.25.0"
+      "bytes": 8951,
+      "sha256": "53ff71a4b53793a29276577aed87e55ec62987904582886d2b901e516454349b",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/api-browser-result.json",
@@ -1300,9 +1300,9 @@
     },
     {
       "path": "analysis/release-0.23.0/f1-index.html.before",
-      "bytes": 19750862,
-      "sha256": "ab65fcd4137d62bc155099b66c8130c39476d491c89e0132094b4266e9794a9b",
-      "snapshot": "0.25.0"
+      "bytes": 19729313,
+      "sha256": "8d5a5d9f72146ec5b9aca73f87bb56e291e3baad37336f8123679c7151b0bc6f",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/f1-natural-analysis.js",
@@ -1336,15 +1336,15 @@
     },
     {
       "path": "analysis/release-0.23.0/index.en.html.before",
-      "bytes": 8750278,
-      "sha256": "25f23bdc58b24f31707f71aaa7515eb607fa14d5124103b18e25a029c252792a",
-      "snapshot": "0.25.0"
+      "bytes": 8749483,
+      "sha256": "371a8afe2790833428c18f37e4564d6ea48c8df7557c5d9a157bfcb6b7505d2d",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/index.html.before",
-      "bytes": 8752147,
-      "sha256": "bda4908281fee3f3a97a62711592272c170734c44b5956de262e89056ea57a0c",
-      "snapshot": "0.25.0"
+      "bytes": 8751352,
+      "sha256": "87d781f962e48f02331af5c8a46aa4a94ea23a96a0c61531935b14928c4675bc",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/inspect-browser.cjs",
@@ -1354,9 +1354,9 @@
     },
     {
       "path": "analysis/release-0.23.0/package.json.before",
-      "bytes": 265,
-      "sha256": "4c99af383d692667a665307a1e4ae28d3e098505cae3cf2c7a8f4acdbe0c941d",
-      "snapshot": "0.25.0"
+      "bytes": 252,
+      "sha256": "e19f555ec779dd8c3c42c4d58cd0c88b47e67ca4b1cfa1b027ea54c071877a75",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/planner-result.json",
@@ -1366,15 +1366,15 @@
     },
     {
       "path": "analysis/release-0.23.0/server-gemini.cjs.before",
-      "bytes": 9537,
-      "sha256": "8445d56e01dcf96ea04b3e0ac85c20b36a827b2d5185357fbb17a8eab98bf43c",
-      "snapshot": "0.25.0"
+      "bytes": 9469,
+      "sha256": "6939d4828a3d7a4dd9b391a753fe9be0b7364d2bb3a57233882432698343d977",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/tools-check_release.py.before",
-      "bytes": 8324,
-      "sha256": "645a402e530ea173158f56c086eb0e54b21502d5a100ae796a394e706bc522a7",
-      "snapshot": "0.25.0"
+      "bytes": 8221,
+      "sha256": "391fa27dffbda5ed8cfdfdf421cc6adcd56b271ebf07934d36cf4b2258c26a79",
+      "snapshot": "0.25.4"
     },
     {
       "path": "analysis/release-0.23.0/workbench.js",
@@ -5211,6 +5211,12 @@
       "snapshot": "0.25.3"
     },
     {
+      "path": "docs/SPEC-0.25.4.md",
+      "bytes": 1240,
+      "sha256": "a0afdbdc43f881d096f2e5a7f1f9a95f6b6de353f76360da583a4f9c2d1b0a4b",
+      "snapshot": "0.25.4"
+    },
+    {
       "path": "docs/SPEC-0.3.0.md",
       "bytes": 4796,
       "sha256": "59e690fc9fe747ba8df86577ce92b20f788877d48b08f036f28e122fb79856ad",
@@ -5374,45 +5380,45 @@
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/CHANGELOG.md.before",
-      "bytes": 18316,
-      "sha256": "5cbf432e726ed325a398a8b389731ac094d18aeb4529fe161daa3fda12567920",
-      "snapshot": "0.25.0"
+      "bytes": 18014,
+      "sha256": "3a71c86baa5744f721d2f6164c47dbc9772bee5f08525b52137a6ff7b0ae02e8",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/README.ko.md.before",
-      "bytes": 3628,
-      "sha256": "c8061c9bc72f1ddb1217398eccbd7c4cdaf86de087a4b45a2fdc1ac2e9c93f77",
-      "snapshot": "0.25.0"
+      "bytes": 3563,
+      "sha256": "95bee6954adbd41fa453b2384b8aa6552ff1c5b7dcc3323d45c52326d7085f86",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/README.md.before",
-      "bytes": 3093,
-      "sha256": "b61b08d1ad08d831f1d49e636cc3076c08d341d7c50223576ba7603d8a8c53cd",
-      "snapshot": "0.25.0"
+      "bytes": 3028,
+      "sha256": "621d346bec467927b618a33230d62c01d9c81d9b3dcd75f323cf1439ec17a494",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/VERSION.before",
-      "bytes": 8,
-      "sha256": "343415c87b02fabcdef585c9836c3f443c4ff38ee9d871310220f925d2d1b5d0",
-      "snapshot": "0.25.0"
+      "bytes": 7,
+      "sha256": "af76ba6061bebbaf64f9505fb4eafd30594a58db183904285c6b7e8f8c6a7701",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/docs-README.md.before",
-      "bytes": 1228,
-      "sha256": "cf822427619bdba5468636e0a5302029ae14c4067feee2cb942d8585275410e7",
-      "snapshot": "0.25.0"
+      "bytes": 1203,
+      "sha256": "1c744af0e997ac6bc3d73303db7ec79b5faf2c17457502996cca12e8db4525aa",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/package.json.before",
-      "bytes": 265,
-      "sha256": "ee6489dd82f50837484b7d09560bec19a8da903ebfa2f519351f1328a6796f92",
-      "snapshot": "0.25.0"
+      "bytes": 252,
+      "sha256": "d7421c83798d7519209f53929fa2bd688982b33913be0d10fbceae592a9262c4",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/history/readme-cleanup-0.22.4/tools-check_release.py.before",
-      "bytes": 8324,
-      "sha256": "f48c1a42081f75e76107fbba3b03f66a03bd5da3863ae0a700142f7a85f2840c",
-      "snapshot": "0.25.0"
+      "bytes": 8221,
+      "sha256": "688799e903731349687074b0ce58b94859789b557e5a9aab69dcf5bc17529931",
+      "snapshot": "0.25.4"
     },
     {
       "path": "docs/prediction-research-2026-10-06-v01/README.en.md",
@@ -8020,9 +8026,9 @@
     },
     {
       "path": "f1/release-0.9.0/before-VERSION",
-      "bytes": 8,
-      "sha256": "982752c0823d99212e732d09edebb77f953da5f8b98172559ecf494b43a92ce3",
-      "snapshot": "0.25.0"
+      "bytes": 7,
+      "sha256": "c8bf1fa5078e6cd5cd635e7d3bb1e36e43fe5f6e3e497f9746bbaf8155a9b9ec",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.0/before-package.json",
@@ -8170,9 +8176,9 @@
     },
     {
       "path": "f1/release-0.9.1/before-VERSION",
-      "bytes": 8,
-      "sha256": "fb598f4d300045284da98a53b6e11fce2530b00e034cee6dff2a7765c8edd7d9",
-      "snapshot": "0.25.0"
+      "bytes": 7,
+      "sha256": "464863ee696ca862f6ae2bfee9728ebbd84463597825442efc62838d945b00fb",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.1/before-package.json",
@@ -8230,21 +8236,21 @@
     },
     {
       "path": "f1/release-0.9.2/CHANGELOG.md.before",
-      "bytes": 17885,
-      "sha256": "a51a4d7e3368628abef300bee85ba5c15b1424b8b99a59db31b6d22290be1135",
-      "snapshot": "0.25.0"
+      "bytes": 17591,
+      "sha256": "d30ab023a9c57b507331fa4e56bcb54b4945598861a852dd1df1aa70064c4f29",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.2/README.ko.md.before",
-      "bytes": 3589,
-      "sha256": "5c45db980a31aa8d8ce33dd5549bd3f7adde56ed2095a712c96b8c9eb418fc36",
-      "snapshot": "0.25.0"
+      "bytes": 3524,
+      "sha256": "01bb831ce556dbe803e8a7ca4e164ec8d2678143b51f8d71d0fcb97c9801b278",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.2/README.md.before",
-      "bytes": 3127,
-      "sha256": "c811b13453ba1ab13a0864fbcf2c5ee6e9a3b16df8f3a9a9988b4048f433b179",
-      "snapshot": "0.25.0"
+      "bytes": 3062,
+      "sha256": "7cd4596d36038b0b05a50f3bb434e879097256421f67d66b36f292a0afcbb5a2",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.2/SPEC.en.md",
@@ -8260,9 +8266,9 @@
     },
     {
       "path": "f1/release-0.9.2/VERSION.before",
-      "bytes": 8,
-      "sha256": "dfebd4298f453c9ac9913d54810b1b0fcce7fea5baae5b37959131e52de3d915",
-      "snapshot": "0.25.0"
+      "bytes": 7,
+      "sha256": "cc001c7b0f7e3ddacdc145fb6e4101e66a11e1bc82399f59d9ed020c0cc30273",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.2/analysis-en-1440.png",
@@ -8308,9 +8314,9 @@
     },
     {
       "path": "f1/release-0.9.2/check_release.py.before",
-      "bytes": 8216,
-      "sha256": "3dfce6091c41ffd9a0cbfc6d68e97365aa8c7519485ca1a1480220033591d4e5",
-      "snapshot": "0.25.0"
+      "bytes": 8114,
+      "sha256": "a4f9a1888c83a90d4bf55dfe9ee704d6f903e439a6ff4cddd7e10195aa54c3ac",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.2/driver-names.js",
@@ -8356,27 +8362,27 @@
     },
     {
       "path": "f1/release-0.9.2/package.json.before",
-      "bytes": 265,
-      "sha256": "2cb5a802ad649fc785d0d07aa08124a68788a0bc609bd05fdb267ed211aa4662",
-      "snapshot": "0.25.0"
+      "bytes": 252,
+      "sha256": "12d095763b9564a88fc34a86ad8d2b6ed26b6ed061b7dc8bf96d06889db32eb4",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/CHANGELOG.md.before",
-      "bytes": 18097,
-      "sha256": "18c2b180b8da80d8a92fb6095aa0056ddffb6cb9336935aae5c184341000a3b4",
-      "snapshot": "0.25.0"
+      "bytes": 17799,
+      "sha256": "8e990060492210357efa8bfbda1160bbcd1bc316d6e20deb4bce7897209f9650",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/README.ko.md.before",
-      "bytes": 3632,
-      "sha256": "9bfba3a5d10ff5bbd19ce8dc315ec9d1e4c2f8474f70ab1e3142c4ced2c81e2a",
-      "snapshot": "0.25.0"
+      "bytes": 3567,
+      "sha256": "9e6cdd058f2dea5d83f72f6064a5e1113622f7d07acedb823057de2eb0075edb",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/README.md.before",
-      "bytes": 3154,
-      "sha256": "e26a7ef36afc09b31a4296074663504f692534c1b521402f59075f3a884ab1de",
-      "snapshot": "0.25.0"
+      "bytes": 3089,
+      "sha256": "c1c7a8ed18d9e775097a9680f0e296bdf9daec3a4ae95748c7f980780a3c87d5",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/SPEC.en.md",
@@ -8392,9 +8398,9 @@
     },
     {
       "path": "f1/release-0.9.3/VERSION.before",
-      "bytes": 8,
-      "sha256": "efd6606de6d5c28c8777f21987867a202426afb825acce57571359b851ffa1ee",
-      "snapshot": "0.25.0"
+      "bytes": 7,
+      "sha256": "76dff43b6331e7f1a4f0d1b14bbc1c3e001190af5a7ed008ab165bbc3c815e12",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/analysis-en-1440.png",
@@ -8440,9 +8446,9 @@
     },
     {
       "path": "f1/release-0.9.3/check_release.py.before",
-      "bytes": 8216,
-      "sha256": "9fd818743b866a434fd7b6a9ed96f346261e359684642304a44bb4fccaba6c9b",
-      "snapshot": "0.25.0"
+      "bytes": 8114,
+      "sha256": "79a3fa80df53c8d400c9d92e5ed7d5fbc6f9624c8b04573222bac4a5b3ea52b0",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/index-before.html",
@@ -8470,9 +8476,9 @@
     },
     {
       "path": "f1/release-0.9.3/package.json.before",
-      "bytes": 265,
-      "sha256": "d91cc017154d6d52955d74c89993d7706c869849410bf0b317aea4762ffdf929",
-      "snapshot": "0.25.0"
+      "bytes": 252,
+      "sha256": "f95fa560a798e43e97b34af7109112f8a3b350f1a7e69aab38f644f795b0c45c",
+      "snapshot": "0.25.4"
     },
     {
       "path": "f1/release-0.9.3/tyre-browser-result.json",
@@ -9161,8 +9167,8 @@
     {
       "path": "package.json",
       "bytes": 442,
-      "sha256": "1ccc17da8333dbab77e79de9df618c3f0121b5378e71eaff464136f1ba2512be",
-      "snapshot": "0.25.3"
+      "sha256": "d46aa9763705f10ad620a6937678e1ddced6f8943791bd056d06f6c54e4fde4c",
+      "snapshot": "0.25.4"
     },
     {
       "path": "reports/release-0.25.0/README.md",
@@ -9892,9 +9898,9 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 11456,
-      "sha256": "ba19c521ccac4bda0c9eff82c1d4e46d201f103a9e9c0baaf50ba19ceafd7c65",
-      "snapshot": "0.25.3"
+      "bytes": 11597,
+      "sha256": "197f1fca692f3baab99c3e7fd5cf9b52ee43a1e8642996962766d96a03afd11c",
+      "snapshot": "0.25.4"
     },
     {
       "path": "tools/prepare_release_v03.py",

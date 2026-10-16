@@ -132,12 +132,13 @@ for f in files:
     relative=Path(f).relative_to(p.relative_to(repo)).as_posix()
     if relative=='publication_manifest.json': continue
     b=(repo/f).read_bytes()
-    if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'}:
+    # Normalise line endings for every non-binary file so the manifest matches on Windows and macOS/Linux checkouts alike.
+    if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'} or b'\0' not in b:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.3'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.4'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.25.3',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.25.4',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
