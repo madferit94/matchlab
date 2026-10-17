@@ -2,6 +2,7 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 const engine=require('../analysis/record-engine.cjs');
 const {createReportService,ReportError}=require('../reports/release-0.25.0/report.cjs');
+const footballData=require('./football-data.cjs');
 const root=path.resolve(__dirname,'..');
 class ServiceError extends Error{constructor(code,status=400){super(code);this.code=code;this.status=status}}
 const functionTool={type:'function',name:'analyze_records',description:'Select supported recorded-football calculation. Do not invent metrics, dates or probabilities. Choose unsupported for unsupported requests, prediction for future probabilities.',parameters:{type:'object',properties:{tool:{type:'string',enum:['team','comparison','ranking','venue','trend','prediction','unsupported']},teams:{type:'array',items:{type:'string'},maxItems:4},league:{type:'string',enum:['EPL','La_liga']},season:{type:'string',enum:['2023/24','2024/25','2025/26','2026/27']},last:{type:'integer',description:'0 means full season; otherwise 1 to 38',minimum:0,maximum:38},venue:{type:'string',enum:['all','home','away']},metric:{type:'string',enum:['gf','ga','xg','xga','p','w']},perMatch:{type:'boolean'},compareGoals:{type:'boolean'},order:{type:'string',enum:['asc','desc'],description:'Sort numeric values low to high (asc) or high to low (desc); retain previous order for follow-ups'}},required:['tool','teams','league','season','last','venue','metric','perMatch','compareGoals','order']}};
@@ -18,7 +19,7 @@ function validatePlan(p,data){
  if(p.tool==='trend'&&(p.metric!=='xg'||!p.compareGoals||p.perMatch))throw new ServiceError('invalid_plan');
  return {...p,last:p.last||null};
 }
-function loadData(){const html=fs.readFileSync(path.join(root,'index.html'),'utf8');return JSON.parse(html.match(/<script id="data" type="application\/json">([\s\S]*?)<\/script>/)[1])}
+function loadData(){return footballData.readJson('data.ko.js')}
 function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',model=process.env.GEMINI_MODEL||'gemini-3.8-flash',fetchImpl=fetch,data=loadData(),reportBundle,reportNow}={}){
  if(!/^[a-zA-Z0-9._-]+$/.test(model))throw new ServiceError('invalid_model');
  const analyst=engine.create(data);let busy=false,lastCall=0;
@@ -34,6 +35,8 @@ function createHandler({publicOrigins=[],key=process.env.GEMINI_API_KEY||'',mode
    const url=new URL(req.url,'http://'+host);
    if(req.method==='GET'&&url.pathname==='/api/health')return send(res,200,{provider:'gemini',configured:!!key,model,sql:false,python:false});
    if(req.method==='GET'&&['/','/index.html','/index.en.html'].includes(url.pathname))return send(res,200,fs.readFileSync(path.join(root,url.pathname==='/index.en.html'?'index.en.html':'index.html'),'utf8'),'text/html; charset=utf-8');
+   // Public football data: exact file names only; every other /data/ path stays 404.
+   if(req.method==='GET'&&footballData.PUBLIC_PATHS.has(url.pathname))return send(res,200,footballData.readSource(footballData.PUBLIC_PATHS.get(url.pathname)),'application/javascript; charset=utf-8');
    if(req.method==='GET'&&url.pathname==='/f1/index.html')return send(res,200,fs.readFileSync(path.join(root,'f1/index.html'),'utf8'),'text/html; charset=utf-8');
    if(url.pathname==='/api/report'&&req.method==='POST'){
     if(!String(req.headers['content-type']||'').startsWith('application/json'))throw new ServiceError('invalid_request');

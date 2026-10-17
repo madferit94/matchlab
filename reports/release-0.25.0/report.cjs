@@ -2,7 +2,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const VERSION='0.25.0',TTL=30*60*1000;
 class ReportError extends Error{constructor(code,status=400){super(code);this.code=code;this.status=status;}}
-function loadBundle(){const html=fs.readFileSync(path.resolve(__dirname,'../../index.html'),'utf8');return JSON.parse(html.match(/<script id="prematch-predictions-v22" type="application\/json">([\s\S]*?)<\/script>/)[1]);}
+function loadBundle(){return require('../../server/football-data.cjs').readJson('predictions.js');}
 const finite=v=>typeof v==='number'&&Number.isFinite(v);
 function stats(data,team,date,cutoff){
  const rows=data.completed.filter(m=>(m.home===team||m.away===team)&&m.date<date&&m.date<=cutoff&&finite(m.hg)&&finite(m.ag)).sort((a,b)=>a.date.localeCompare(b.date)||a.id.localeCompare(b.id)).slice(-5);
