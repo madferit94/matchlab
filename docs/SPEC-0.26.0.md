@@ -65,11 +65,18 @@
 - `npm run test:server`: 21개 PASS(기존 17 + 자료 파일 제공, 그 밖의 `/data/`·우회 차단, 자료 값이 v50 보관 화면의 블록과 바이트 동일·완료 2399/예정 641/예측 641/기준일 2026-09-20/아스널–리즈 0.6085747997883622·0.22077050835147805·0.1706546918601598, 해시 붙은 script 순서).
 - `node server/check-vercel.cjs`: 5개 PASS(`dist`에 화면 3개+자료 파일 3개만 있음, 함수 `includeFiles`=`data/football/*.js`).
 - `npm run test:report` 14개 PASS, `npm run test:odds` PASS(877경기).
+- `node analysis/check.cjs`: 15개 PASS(main과 같음). 이 현재 엔진 검사도 `index.html`에서 JSON을 정규식으로 꺼내고 있어 처음에는 TypeError로 멈췄다(독립 검증 R2). 공용 읽기 함수(`server/football-data.cjs`)로 `data.ko.js`를 읽도록 고쳤다.
 - `python3 -I tools/check_release.py`: PASS. 현재 화면+자료 파일로 이전 내장 HTML을 복원해 v50 보관 화면과 바이트 동일 비교를 그대로 실행한다. 자료 숫자 한 자리 변경, 오래된 `?v=`, 화면 글자 변경을 일부러 넣으면 각각 실패함을 확인했다.
 - 브라우저(`design/release-0.26.0/check-browser.cjs`, Playwright Chromium 143): main(0.25.4)과 현재 버전을 한영 × 390/1440px로 비교. 예정 경기 목록(PL·라리가), 경기 프리뷰, 시뮬레이션 확률, 자동 보고서, 자연어 질문 결과 글자가 4개 조합 모두 같다. 페이지 오류 0, 가로 넘침 없음. 예측 확률 하나를 바꾸면 시뮬레이션·보고서 차이를 잡는 것도 확인했다. 결과: `design/release-0.26.0/browser-result.json`.
 - `npm start` 후 `/`, `/index.en.html`, `/f1/index.html`, `/api/health`, 자료 파일 3개 모두 200, `/data/football/x.js`·`/data/`·`../` 우회는 404.
 
 ### 남은 확인
 - Vercel 미리보기 배포 미확인(`includeFiles` 패턴과 정적 자료 파일 응답은 실제 배포에서 확인 필요).
-- 과거 버전 검사 스크립트 중 현재 `index.html`에서 JSON 블록을 직접 꺼내는 것(예: `analysis/release-0.25.2/check-core.cjs`)은 이제 실패한다. 과거 기록 보존 원칙에 따라 고치지 않았다.
+- 0.26.0부터 `index.html` 내장 JSON을 읽는 과거 버전 검사 4개는 동작하지 않는다. main 화면 파일로는 PASS하고 이 브랜치에서는 실패함을 직접 실행해 확인했다. 과거 기록 보존 원칙에 따라 고치지 않았다.
+  - `analysis/release-0.23.0/check-planner.cjs` (main: 6개 그룹 PASS → TypeError)
+  - `analysis/release-0.25.1/check-core.cjs` (main: 6개 그룹 PASS → TypeError)
+  - `analysis/release-0.25.2/check-core.cjs` (main: 6개 그룹 PASS → TypeError)
+  - `modeling/prematch-v2-review-2026-10-06-v01/check-ui.cjs` (main: 7/7 → 5/7, 내장 블록을 찾지 못한 2개 실패)
+- 함께 실행한 다른 과거 검사 중 `analysis/release-0.21.3/check-order.cjs`는 계속 PASS다. `analysis/release-0.21.3/gemini-before.cjs`, `simulation/pixel-v1·v2` 검사 3개, `docs/eleven-release-review-2026-10-06-v01/independent-check.cjs`, `modeling/prematch-v2-review-2026-10-06-v01/check.py`는 main에서도 이미 실패하므로 이번 변경과 관계없다.
+- Windows Edge 경로를 쓰는 과거 브라우저 검사는 이 Mac에서 실행하지 않았다. 코드상 `analysis/release-0.25.1/check-browser.cjs`, `modeling/odds-0.24.0/check-browser.cjs`도 `index.html`에서 내장 JSON을 꺼내므로 동작하지 않을 것으로 보이지만 실행으로 확인하지는 않았다.
 - 브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단했다. 이미지 표시는 비교하지 않았다.

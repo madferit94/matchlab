@@ -61,6 +61,10 @@
       "description": "checks 21, failures 0"
     },
     {
+      "path": "analysis/check.cjs",
+      "description": "현재 엔진 검사가 공용 읽기 함수로 data.ko.js를 읽음, 15개 PASS(main과 같음)"
+    },
+    {
       "path": "server/check-vercel.cjs",
       "description": "dist 허용 목록에 data/football 3개, includeFiles 확인"
     },
@@ -113,7 +117,7 @@
     "SPEC은 바뀌는 화면 코드가 두 줄이라고 했지만 공용 검색 모듈(matchlab-shared-search)도 read('data')로 자료 블록을 읽어 세 번째 식을 축구 페이지에서만 바꿨다. F1과 design/release-0.21.0/search.js는 그대로이며 검사기는 복원본 기준으로 원본 일치를 확인한다. 팀장 확인 필요.",
     ".gitattributes에 data/football/*.js text eol=lf 한 줄을 추가했다(SPEC에 없던 공유 설정 변경).",
     "Vercel 미리보기 배포는 확인하지 않았다(includeFiles 패턴 data/football/*.js와 정적 자료 파일 응답 미확인).",
-    "과거 버전 검사 스크립트 중 현재 index.html에서 JSON 블록을 직접 꺼내는 것(analysis/release-0.25.2/check-core.cjs 실행 시 실패 확인, 그 외 analysis/release-0.25.1, modeling/odds-0.24.0/check-browser.cjs, reports/release-0.25.0/check-browser.cjs 등)은 새 구조에서 동작하지 않는다. 과거 기록 보존을 위해 수정하지 않았다.",
+    "0.26.0부터 index.html 내장 JSON을 읽는 과거 버전 검사 4개는 동작하지 않는다(main 화면으로는 PASS, 이 브랜치에서 실패를 직접 확인): analysis/release-0.23.0/check-planner.cjs, analysis/release-0.25.1/check-core.cjs, analysis/release-0.25.2/check-core.cjs, modeling/prematch-v2-review-2026-10-06-v01/check-ui.cjs(7/7→5/7). 과거 기록 보존을 위해 수정하지 않았다. 이전 보고에서 '옛 버전별 검사만 깨진다'고 쓴 것은 틀렸다. 현재 엔진 검사 analysis/check.cjs도 깨져 있었고(독립 검증 R2) 이번에 고쳤다. 또 이전 보고에서 reports/release-0.25.0/check-browser.cjs도 깨진다고 썼지만, 이 검사는 서버의 loadData/loadBundle로 읽으므로 내장 JSON 때문에 깨지지는 않는다(Windows 경로라 실행은 안 함). Windows Edge 경로를 쓰는 analysis/release-0.25.1/check-browser.cjs, modeling/odds-0.24.0/check-browser.cjs는 코드상 내장 JSON을 읽어 동작하지 않을 것으로 보이나 실행 확인은 안 했다. 그 밖에 analysis/release-0.21.3/gemini-before.cjs, simulation 검사 3개, docs/eleven-release-review independent-check.cjs, modeling/prematch-v2-review check.py는 main에서도 이미 실패한다.",
     "브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단해 이미지 표시는 비교하지 않았다. 콘솔에는 그로 인한 리소스 실패가 두 버전 모두 13건씩 같게 기록됐다.",
     "Playwright 1.57.0은 저장소 밖(scratchpad/pw)에 설치해 NODE_PATH로 실행했다. 실제 Gemini·뉴스 호출은 하지 않았다(키 없음).",
     "npm start 확인은 기본 포트 8765 대신 PORT=8799로 실행했다.",
@@ -141,6 +145,10 @@
       "result": "PASS evaluated 877"
     },
     {
+      "command": "node analysis/check.cjs",
+      "result": "PASS 15 (수정 전 이 브랜치에서는 TypeError, main 15 PASS)"
+    },
+    {
       "command": "python3 -I tools/check_release.py",
       "result": "PASS (manifest 갱신 후). 변조 3종(자료 한 자리, 오래된 ?v=, 화면 글자) 각각 실패 확인"
     },
@@ -153,8 +161,8 @@
       "result": "/ 200 181,604; /index.en.html 200 180,719; /f1/index.html 200 19,751,965; /api/health 200; data.ko.js 200 1,823,065; data.en.js 200 1,822,191; predictions.js 200 6,789,268; /data/football/x.js·/data/·/server/gemini.cjs·raw ../ 우회 404"
     },
     {
-      "command": "node analysis/release-0.25.2/check-core.cjs",
-      "result": "FAIL(예상): 과거 스크립트가 index.html 내장 JSON을 찾지 못함. 수정하지 않음"
+      "command": "과거 버전 검사 11개를 이 브랜치와 main 화면 파일로 각각 실행",
+      "result": "이 브랜치에서만 실패 4개: 0.23.0 check-planner, 0.25.1 check-core, 0.25.2 check-core, prematch-v2-review check-ui. 실행으로 바뀐 과거 결과 파일은 되돌림"
     }
   ]
 }
