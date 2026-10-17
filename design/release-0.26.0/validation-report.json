@@ -63,5 +63,24 @@
     {"command": "Sizes: wc -c and gzip -9 -n on main/branch files", "result": "PASS. Matches SPEC-0.26.0 'Execution results' exactly: index.html 8,793,835/1,729,292 -> 181,604/55,321; index.en.html 8,792,076/1,728,286 -> 180,719/54,787; data.ko.js 1,823,065/219,402; data.en.js 1,822,191/219,186; predictions.js 6,789,268/1,453,025; f1 19,751,965/2,413,597 unchanged; ko first visit 8,793,937/1,727,748; en switch 273,973. Test counts in the SPEC (21, 5, 14, 877) match."},
     {"command": "VERSION, package.json, CHANGELOG.md top entry", "result": "PASS. 0.26.0 in all three; CHANGELOG 0.26.0 · 2026-10-17 links SPEC-0.26.0. README current-version line still 0.25.3 (issue N4)."},
     {"command": "Vercel preview / production deployment", "result": "UNVERIFIED (not deployed by the reviewer)."}
-  ]
+  ],
+  "recheck": {
+    "observed_at": "2026-10-17",
+    "scope": "Independent recheck of builder fix commit b694bb6 (on top of reviewer commit 66ff821), requested by the director for R2 and the manifest note. Builder report not relied on.",
+    "tests": [
+      {"command": "git diff --stat 66ff821..b694bb6", "result": "PASS. Exactly 4 files changed: analysis/check.cjs, docs/SPEC-0.26.0.md, design/release-0.26.0/builder-report.json, publication_manifest.json. validation-report.json and design/release-0.26.0/review/ unchanged (git diff --quiet). analysis/check.cjs change is one line: the regex read of index.html replaced by require('../server/football-data.cjs').readJson('data.ko.js'). Manifest diff: hash/size updates for the 3 changed files plus new entries for the reviewer files; no entry removed."},
+      {"command": "node analysis/check.cjs (real tree at b694bb6; main and b694bb6 in throwaway worktrees)", "result": "PASS 15 on b694bb6 and PASS 15 on main (same count)."},
+      {"command": "Past checks listed in SPEC-0.26.0 as 'PASS on main, fail on this branch', run on main and b694bb6 worktrees (all 4 run, not only a sample)", "result": "List confirmed. analysis/release-0.23.0/check-planner.cjs main PASS 6 -> TypeError; analysis/release-0.25.1/check-core.cjs main PASS 6 -> TypeError; analysis/release-0.25.2/check-core.cjs main PASS 6 -> TypeError; modeling/prematch-v2-review-2026-10-06-v01/check-ui.cjs main passed 7/failed 0 -> passed 5/failed 2. SPEC claims also confirmed: analysis/release-0.21.3/check-order.cjs PASS on both; gemini-before.cjs, simulation pixel-v1/v2 check-integration.cjs, pixel-v2 check-roster.cjs and docs/eleven-release-review independent-check.cjs already fail on main."},
+      {"command": "npm run test:server", "result": "PASS 21."},
+      {"command": "npm run build && node server/check-vercel.cjs", "result": "PASS build (3 pages + 3 data files); check-vercel PASS 5."},
+      {"command": "python3 -I tools/check_release.py (real tree at b694bb6, before this recheck entry was added)", "result": "PASS release audit: 1685 hashed files, 12 local documentation links."}
+    ],
+    "result": "R2 resolved for the current check (analysis/check.cjs). The remaining 4 broken checks are versioned past-release scripts, correctly listed in the SPEC and left unchanged under the history-preservation rule; acceptable. Earlier note N1 (manifest) resolved by b694bb6. No new problem found in the fix commit.",
+    "remaining": [
+      "Manifest regeneration needed: this recheck entry changes validation-report.json, so check_release.py will report 'Manifest differs' until the owner runs 'python3 -I tools/check_release.py --write-manifest'. The reviewer did not touch publication_manifest.json.",
+      "R1 (silent breakage when a data file fails to load) still open, follow-up.",
+      "R3 (Vercel preview deployment) still unverified; required before production.",
+      "Notes D1, N2-N6 unchanged."
+    ]
+  }
 }
