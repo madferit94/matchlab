@@ -5050,8 +5050,8 @@
     },
     {
       "path": "design/release-0.26.0/validation-report.json",
-      "bytes": 17642,
-      "sha256": "9b0c64ee1de60e963dc60bfbebcd8214878d68ae6ae2e07558fa7944447f7f7f",
+      "bytes": 20599,
+      "sha256": "33a411eba648e3eec2081fce17ca6e4132b712060d6e38c84f64b3728245efdb",
       "snapshot": "0.26.0"
     },
     {
