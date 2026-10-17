@@ -1,0 +1,160 @@
+{
+  "run_id": "matchlab-0.26.0-2026-10-17",
+  "match_key": "ALL_FOOTBALL_PAGES",
+  "role": "builder",
+  "producer_id": "builder-subagent-2026-10-17",
+  "status": "DONE",
+  "summary": "축구 index.html·index.en.html의 JSON 블록 2개를 data/football/data.ko.js·data.en.js·predictions.js로 바이트 그대로 옮기고 해시 붙은 일반 script로 같은 위치에서 불러오게 했다. 화면 파일 8.79MB→0.18MB. 서버·보고서는 공용 읽기 함수로 자료 파일을 읽고, 서버는 정확한 3개 이름만 제공한다. 빌드·Vercel·릴리스 검사(복원본==v50 바이트 동일)·서버 검사·브라우저 비교를 갱신·실행했다. 설계와 달리 자료를 읽는 화면 코드가 3곳(공용 검색 모듈 포함)이었다. 자가 점검이며 독립 검증이 아니다.",
+  "cutoff_at": "2026-09-20",
+  "observed_at": "2026-10-17",
+  "evidence": [
+    {
+      "path": "data/football/data.ko.js",
+      "description": "한국어 data 블록 원문(1,823,065 바이트, sha256 앞16 c57e411d877ac4dc)"
+    },
+    {
+      "path": "data/football/data.en.js",
+      "description": "영어 data 블록 원문(1,822,191 바이트, 19f6185266ebbf41), metric_meta만 한국어와 다름"
+    },
+    {
+      "path": "data/football/predictions.js",
+      "description": "한영 공용 prematch-predictions-v22 원문(6,789,268 바이트, 287805684a395bfc)"
+    },
+    {
+      "path": "index.html",
+      "description": "181,604 바이트. JSON 블록 대신 data.ko.js·predictions.js script, 읽는 식 3곳 변경"
+    },
+    {
+      "path": "index.en.html",
+      "description": "180,719 바이트. data.en.js·predictions.js script, 읽는 식 3곳 변경"
+    },
+    {
+      "path": "server/football-data.cjs",
+      "description": "자료 파일 공용 읽기 함수와 정확한 공개 경로 목록"
+    },
+    {
+      "path": "server/gemini.cjs",
+      "description": "loadData()가 data.ko.js를 읽고 3개 자료 파일만 application/javascript로 제공"
+    },
+    {
+      "path": "reports/release-0.25.0/report.cjs",
+      "description": "loadBundle()이 predictions.js를 읽음"
+    },
+    {
+      "path": "tools/build-vercel.cjs",
+      "description": "dist/data/football에 자료 파일 3개만 복사"
+    },
+    {
+      "path": "vercel.json",
+      "description": "API 함수 includeFiles를 data/football/*.js로 변경(index.html 불필요)"
+    },
+    {
+      "path": ".gitattributes",
+      "description": "data/football/*.js LF 고정(Windows 해시 일치)"
+    },
+    {
+      "path": "server/check.cjs",
+      "description": "서버 검사 17→21개"
+    },
+    {
+      "path": "server/check-result.json",
+      "description": "checks 21, failures 0"
+    },
+    {
+      "path": "server/check-vercel.cjs",
+      "description": "dist 허용 목록에 data/football 3개, includeFiles 확인"
+    },
+    {
+      "path": "tools/check_release.py",
+      "description": "복원본 생성 후 기존 v50 바이트 비교 유지, 자료 파일·해시·공용 예측 검사 추가, 버전 0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/check-browser.cjs",
+      "description": "main(0.25.4)과 현재 버전 화면 글자 비교 검사"
+    },
+    {
+      "path": "design/release-0.26.0/browser-result.json",
+      "description": "PASS, 한영×390/1440 4조합 동일, 페이지 오류 0, 가로 넘침 없음"
+    },
+    {
+      "path": "design/release-0.26.0/preview-ko-390.png",
+      "description": "한국어 390px 아스널–리즈 프리뷰·시뮬레이션·보고서"
+    },
+    {
+      "path": "design/release-0.26.0/preview-en-1440.png",
+      "description": "영어 1440px 프리뷰"
+    },
+    {
+      "path": "design/release-0.26.0/analysis-ko-390.png",
+      "description": "한국어 390px 자연어 질문 결과"
+    },
+    {
+      "path": "design/release-0.26.0/analysis-en-1440.png",
+      "description": "영어 1440px 자연어 질문 결과"
+    },
+    {
+      "path": "docs/SPEC-0.26.0.md",
+      "description": "상태와 실행 결과(크기·검사 수·설계와 다른 점)"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "description": "0.26.0 항목"
+    },
+    {
+      "path": "VERSION",
+      "description": "0.26.0 (package.json 동일)"
+    },
+    {
+      "path": "publication_manifest.json",
+      "description": "check_release --write-manifest로 갱신"
+    }
+  ],
+  "issues": [
+    "SPEC은 바뀌는 화면 코드가 두 줄이라고 했지만 공용 검색 모듈(matchlab-shared-search)도 read('data')로 자료 블록을 읽어 세 번째 식을 축구 페이지에서만 바꿨다. F1과 design/release-0.21.0/search.js는 그대로이며 검사기는 복원본 기준으로 원본 일치를 확인한다. 팀장 확인 필요.",
+    ".gitattributes에 data/football/*.js text eol=lf 한 줄을 추가했다(SPEC에 없던 공유 설정 변경).",
+    "Vercel 미리보기 배포는 확인하지 않았다(includeFiles 패턴 data/football/*.js와 정적 자료 파일 응답 미확인).",
+    "과거 버전 검사 스크립트 중 현재 index.html에서 JSON 블록을 직접 꺼내는 것(analysis/release-0.25.2/check-core.cjs 실행 시 실패 확인, 그 외 analysis/release-0.25.1, modeling/odds-0.24.0/check-browser.cjs, reports/release-0.25.0/check-browser.cjs 등)은 새 구조에서 동작하지 않는다. 과거 기록 보존을 위해 수정하지 않았다.",
+    "브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단해 이미지 표시는 비교하지 않았다. 콘솔에는 그로 인한 리소스 실패가 두 버전 모두 13건씩 같게 기록됐다.",
+    "Playwright 1.57.0은 저장소 밖(scratchpad/pw)에 설치해 NODE_PATH로 실행했다. 실제 Gemini·뉴스 호출은 하지 않았다(키 없음).",
+    "npm start 확인은 기본 포트 8765 대신 PORT=8799로 실행했다.",
+    "자가 점검 결과이며 독립 검증이 아니다."
+  ],
+  "tests": [
+    {
+      "command": "npm run test:server",
+      "result": "PASS 21 server checks (기존 17 + 신규 4)"
+    },
+    {
+      "command": "node server/check-vercel.cjs",
+      "result": "PASS 5 (dist 허용 목록에 data/football 3개 포함, includeFiles 확인)"
+    },
+    {
+      "command": "npm run build",
+      "result": "PASS: dist에 index.html, index.en.html, f1/index.html, data/football/data.ko.js·data.en.js·predictions.js"
+    },
+    {
+      "command": "npm run test:report",
+      "result": "PASS 14"
+    },
+    {
+      "command": "npm run test:odds",
+      "result": "PASS evaluated 877"
+    },
+    {
+      "command": "python3 -I tools/check_release.py",
+      "result": "PASS (manifest 갱신 후). 변조 3종(자료 한 자리, 오래된 ?v=, 화면 글자) 각각 실패 확인"
+    },
+    {
+      "command": "NODE_PATH=<scratchpad>/pw/node_modules node design/release-0.26.0/check-browser.cjs",
+      "result": "PASS 4 combinations identical; 음성 대조(예측 확률 변경) 시 simulation·report 차이 검출"
+    },
+    {
+      "command": "PORT=8799 npm start + curl",
+      "result": "/ 200 181,604; /index.en.html 200 180,719; /f1/index.html 200 19,751,965; /api/health 200; data.ko.js 200 1,823,065; data.en.js 200 1,822,191; predictions.js 200 6,789,268; /data/football/x.js·/data/·/server/gemini.cjs·raw ../ 우회 404"
+    },
+    {
+      "command": "node analysis/release-0.25.2/check-core.cjs",
+      "result": "FAIL(예상): 과거 스크립트가 index.html 내장 JSON을 찾지 못함. 수정하지 않음"
+    }
+  ]
+}

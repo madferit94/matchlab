@@ -40,4 +40,36 @@
 - Vercel 미리보기 배포에서 `/`, `/index.en.html`, `/f1/index.html`, `/api/health`, 자료 파일 3개 응답 확인.
 
 ## 상태
-실행 전 설계. 사용자 승인 후 브랜치 `feat/split-football-data-0.26.0`에서 진행한다.
+구현·자체 검사 완료(시각화·웹 담당, 2026-10-17). 브랜치 `feat/split-football-data-0.26.0`에만 커밋했고 push·PR·배포는 하지 않았다. 독립 검증과 Vercel 미리보기 확인, main 병합 결재가 남아 있다.
+
+## 실행 결과 (2026-10-17)
+### 크기 (원본 / gzip -9)
+| 파일 | 0.25.4 (main) | 0.26.0 |
+|---|---:|---:|
+| index.html | 8,793,835 / 1,729,292 | 181,604 / 55,321 |
+| index.en.html | 8,792,076 / 1,728,286 | 180,719 / 54,787 |
+| data/football/data.ko.js | – | 1,823,065 / 219,402 |
+| data/football/data.en.js | – | 1,822,191 / 219,186 |
+| data/football/predictions.js (한영 공용) | – | 6,789,268 / 1,453,025 |
+| f1/index.html (변경 없음) | 19,751,965 / 2,413,597 | 같음 |
+
+- 한국어 첫 방문 합계: 8,793,937 / 1,727,748 바이트로 이전과 거의 같다(예상대로).
+- 한국어 방문 후 영어 전환 시 새로 받는 양: 화면+영어 자료 273,973 바이트(gzip). 예측 파일은 같은 주소라 다시 받지 않는다.
+- 자료 파일 해시(`?v=`, sha256 앞 16자리): data.ko.js `c57e411d877ac4dc`, data.en.js `19f6185266ebbf41`, predictions.js `287805684a395bfc`.
+
+### 설계와 다른 점
+- 자료를 읽는 화면 코드는 두 곳이 아니라 **세 곳**이었다. 공용 검색 모듈(`matchlab-shared-search`)의 구단 목록도 `read('data')`로 블록을 읽는다. 축구 페이지에서만 `Object.values(window.MatchLabData.data.teams)`로 바꿨다. 이 모듈은 DOMContentLoaded 뒤에 실행되므로 자료 파일이 먼저 실행된다. F1 페이지와 `design/release-0.21.0/search.js` 원본은 그대로이며, 검사기는 복원본에서 원본과 바이트 동일함을 계속 확인한다.
+- Windows 작업 사본에서 줄바꿈이 바뀌면 해시와 파일 형식이 달라지므로 `.gitattributes`에 `data/football/*.js text eol=lf`를 추가했다.
+
+### 검사
+- `npm run test:server`: 21개 PASS(기존 17 + 자료 파일 제공, 그 밖의 `/data/`·우회 차단, 자료 값이 v50 보관 화면의 블록과 바이트 동일·완료 2399/예정 641/예측 641/기준일 2026-09-20/아스널–리즈 0.6085747997883622·0.22077050835147805·0.1706546918601598, 해시 붙은 script 순서).
+- `node server/check-vercel.cjs`: 5개 PASS(`dist`에 화면 3개+자료 파일 3개만 있음, 함수 `includeFiles`=`data/football/*.js`).
+- `npm run test:report` 14개 PASS, `npm run test:odds` PASS(877경기).
+- `python3 -I tools/check_release.py`: PASS. 현재 화면+자료 파일로 이전 내장 HTML을 복원해 v50 보관 화면과 바이트 동일 비교를 그대로 실행한다. 자료 숫자 한 자리 변경, 오래된 `?v=`, 화면 글자 변경을 일부러 넣으면 각각 실패함을 확인했다.
+- 브라우저(`design/release-0.26.0/check-browser.cjs`, Playwright Chromium 143): main(0.25.4)과 현재 버전을 한영 × 390/1440px로 비교. 예정 경기 목록(PL·라리가), 경기 프리뷰, 시뮬레이션 확률, 자동 보고서, 자연어 질문 결과 글자가 4개 조합 모두 같다. 페이지 오류 0, 가로 넘침 없음. 예측 확률 하나를 바꾸면 시뮬레이션·보고서 차이를 잡는 것도 확인했다. 결과: `design/release-0.26.0/browser-result.json`.
+- `npm start` 후 `/`, `/index.en.html`, `/f1/index.html`, `/api/health`, 자료 파일 3개 모두 200, `/data/football/x.js`·`/data/`·`../` 우회는 404.
+
+### 남은 확인
+- Vercel 미리보기 배포 미확인(`includeFiles` 패턴과 정적 자료 파일 응답은 실제 배포에서 확인 필요).
+- 과거 버전 검사 스크립트 중 현재 `index.html`에서 JSON 블록을 직접 꺼내는 것(예: `analysis/release-0.25.2/check-core.cjs`)은 이제 실패한다. 과거 기록 보존 원칙에 따라 고치지 않았다.
+- 브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단했다. 이미지 표시는 비교하지 않았다.

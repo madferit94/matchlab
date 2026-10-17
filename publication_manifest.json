@@ -1,5 +1,5 @@
 {
-  "version": "0.25.4",
+  "version": "0.26.0",
   "public_export": true,
   "files": [
     {
@@ -10,9 +10,9 @@
     },
     {
       "path": ".gitattributes",
-      "bytes": 84,
-      "sha256": "b4aa1b590299d3490850e8a8e9cfe00da64fd8b817c1a7788277f8ce6d05bcde",
-      "snapshot": "0.2.0"
+      "bytes": 115,
+      "sha256": "cee728fdffebebd0c915d9e7ef816086a74e5ab9d5461c9e5963526a5cb23572",
+      "snapshot": "0.26.0"
     },
     {
       "path": ".gitignore",
@@ -28,9 +28,9 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 20218,
-      "sha256": "bd5ed381461405fb656e8ce338f3c253acea4df952e504a61a0cad01653ed323",
-      "snapshot": "0.25.4"
+      "bytes": 20511,
+      "sha256": "1bbe727a4d4287be6bf0e7f4ce8d9ed523bb25b26a67ee37cd3ff8f014795b38",
+      "snapshot": "0.26.0"
     },
     {
       "path": "README.ko.md",
@@ -47,8 +47,8 @@
     {
       "path": "VERSION",
       "bytes": 7,
-      "sha256": "3f2be9bca37af466485828dfb077d440fdc0891e7f7b9721aae1fb2b3c5b709c",
-      "snapshot": "0.25.4"
+      "sha256": "8cbb8cbe0eca7be97a239a2dd808c0b06f9f7b9bf40b38291bdd78eced81164b",
+      "snapshot": "0.26.0"
     },
     {
       "path": "agent-team-2026-10-06-v01/.agents/skills/matchdesk-analysis/SKILL.md",
@@ -4761,6 +4761,24 @@
       "snapshot": "0.25.0"
     },
     {
+      "path": "data/football/data.en.js",
+      "bytes": 1822191,
+      "sha256": "19f6185266ebbf41dc9cb8757582017d551e9d6274ea528bde6e1e6a90bc43c0",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "data/football/data.ko.js",
+      "bytes": 1823065,
+      "sha256": "c57e411d877ac4dcbe64222ee3652ec677f0c9800bd3f353207e5d41d5239b7b",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "data/football/predictions.js",
+      "bytes": 6789268,
+      "sha256": "287805684a395bfca2174bcf4b86c5a079935f811c89c83708484499d2923db6",
+      "snapshot": "0.26.0"
+    },
+    {
       "path": "dataset_selection_2026-10-06-v01.json",
       "bytes": 415,
       "sha256": "3b3c3498496d9da9932a002cdfe4bebffbb10845c6346de185a3669f03554451",
@@ -4891,6 +4909,48 @@
       "bytes": 2176,
       "sha256": "d64f3bde410b5ac44b0ccf9897f3e20371994d0df44118cfcdff51fc359b96da",
       "snapshot": "0.25.3"
+    },
+    {
+      "path": "design/release-0.26.0/analysis-en-1440.png",
+      "bytes": 30638,
+      "sha256": "fc0b67920782c1a59026da1098d442b05eb7f1e99b1643a7e45ed0eff9eaae2e",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/analysis-ko-390.png",
+      "bytes": 53640,
+      "sha256": "e606dbed4a05265b095eedfc62034d6f696e53799678b4192eab4bd33a421822",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/browser-result.json",
+      "bytes": 12556,
+      "sha256": "4f95f9ca976d52be65c47efb91c6e199c2c506d03e3bf897e97a4c86e803fb45",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/builder-report.json",
+      "bytes": 7543,
+      "sha256": "4674aa47d27021c977b6b651774b458979e3d30f54b0b6f84adaad8cc40f3996",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/check-browser.cjs",
+      "bytes": 8440,
+      "sha256": "0c8dd13e25549dd8cdbfcc725cee6bee2bcaca71ad84302b0a64c9644cf7f57d",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/preview-en-1440.png",
+      "bytes": 280425,
+      "sha256": "574726625b32cfaecb794b8f0ab10f860c04297dd2653fb83094d964d1ffaf19",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "design/release-0.26.0/preview-ko-390.png",
+      "bytes": 251088,
+      "sha256": "9bf84a9307dc4a69538abe2b937f76df7e90a713033022c1d961080dcbd372f3",
+      "snapshot": "0.26.0"
     },
     {
       "path": "docs/AGENTS-AND-SKILLS.en.md",
@@ -5215,6 +5275,12 @@
       "bytes": 1240,
       "sha256": "a0afdbdc43f881d096f2e5a7f1f9a95f6b6de353f76360da583a4f9c2d1b0a4b",
       "snapshot": "0.25.4"
+    },
+    {
+      "path": "docs/SPEC-0.26.0.md",
+      "bytes": 8702,
+      "sha256": "60e37da4d501533b28b9b1c0a050f98920c28fd1478f81a69e572050507cc6e3",
+      "snapshot": "0.26.0"
     },
     {
       "path": "docs/SPEC-0.3.0.md",
@@ -8512,15 +8578,15 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 8792076,
-      "sha256": "ffd3fe6215303fa1225e6d10f7bc726fe70cd888aba2374435ea5056985662e2",
-      "snapshot": "0.25.3"
+      "bytes": 180719,
+      "sha256": "ae99024a6fa74fb52d3cd4880f7629486d7dcc19fc7085165530d0b339fc0430",
+      "snapshot": "0.26.0"
     },
     {
       "path": "index.html",
-      "bytes": 8793835,
-      "sha256": "8093281f71121292dad77367dfcf9ac2b1a04b4ccf5cb68422194e6eb75340f2",
-      "snapshot": "0.25.3"
+      "bytes": 181604,
+      "sha256": "08bd622b5112832292a6cc10889758eda33358e3e391e5ca5e7558a07da1527c",
+      "snapshot": "0.26.0"
     },
     {
       "path": "modeling/.gitignore",
@@ -9167,8 +9233,8 @@
     {
       "path": "package.json",
       "bytes": 442,
-      "sha256": "d46aa9763705f10ad620a6937678e1ddced6f8943791bd056d06f6c54e4fde4c",
-      "snapshot": "0.25.4"
+      "sha256": "ca0c157cd170ca3af94dac7124d44ce8be174a05a9753bad27bee5eb9ccf761b",
+      "snapshot": "0.26.0"
     },
     {
       "path": "reports/release-0.25.0/README.md",
@@ -9244,9 +9310,9 @@
     },
     {
       "path": "reports/release-0.25.0/report.cjs",
-      "bytes": 14190,
-      "sha256": "8aab8faadabd7ee72884e1abf79e92425c6984d5cf3218ab3435cce4c1a7dd02",
-      "snapshot": "0.25.0"
+      "bytes": 14068,
+      "sha256": "90b5e5d649cf30b031e1d59182f2f52b9b04f5bc3a7e22622f68f7f75dec5377",
+      "snapshot": "0.26.0"
     },
     {
       "path": "reports/release-0.25.0/report.css",
@@ -9275,26 +9341,32 @@
     {
       "path": "server/check-result.json",
       "bytes": 139,
-      "sha256": "a064377cee901a876d9795e30f298fc84f2b6a4ad09e7b8cef56d985cc1e1fd0",
-      "snapshot": "0.25.0"
+      "sha256": "3e2ecd836f97df5a60acb1ef221dd10ce49d94a924f73a84bdbabd4ac21986e1",
+      "snapshot": "0.26.0"
     },
     {
       "path": "server/check-vercel.cjs",
-      "bytes": 2816,
-      "sha256": "cc50c42ce781833f2d69fee1d350fc2f2c0286e2052ba70371eae96f3f529ea4",
-      "snapshot": "0.25.0"
+      "bytes": 3420,
+      "sha256": "37d0b62f0fd75be6205671a12ae27dc1097bfdec25f91d0e9fda660bf0625204",
+      "snapshot": "0.26.0"
     },
     {
       "path": "server/check.cjs",
-      "bytes": 7917,
-      "sha256": "8cdd3502ad593cbe863d6ae53a10a441d58b79c626b75f330364c81f56d7de40",
-      "snapshot": "0.25.0"
+      "bytes": 12259,
+      "sha256": "7cff1c56b12bae1076ab165232bd6ee17903dcfe6144f48816b5fed8728dca06",
+      "snapshot": "0.26.0"
+    },
+    {
+      "path": "server/football-data.cjs",
+      "bytes": 1326,
+      "sha256": "a5222bbd222f502b02ec1f43d8bbde13d6636a5a47a91e700074b09be8a6a864",
+      "snapshot": "0.26.0"
     },
     {
       "path": "server/gemini.cjs",
-      "bytes": 10512,
-      "sha256": "b7800e097dd5964d7c9065d088220c2c73e4bf7f670398e861f55a932cb6e059",
-      "snapshot": "0.25.0"
+      "bytes": 10729,
+      "sha256": "e37da02da10eccfd55c8693b831d6b3ef9796224fb326b2d159300044aa29f0a",
+      "snapshot": "0.26.0"
     },
     {
       "path": "server/start.ps1",
@@ -9868,9 +9940,9 @@
     },
     {
       "path": "tools/build-vercel.cjs",
-      "bytes": 376,
-      "sha256": "6f3261860513db88e6542b42a33d675c8f0262aaeb9655ba51eb2c13a885cedb",
-      "snapshot": "0.25.0"
+      "bytes": 778,
+      "sha256": "f0161a86186b870eff136c63b46d8be30084e613541ffa79d0203172f6248e02",
+      "snapshot": "0.26.0"
     },
     {
       "path": "tools/build_analyst_v18.py",
@@ -9898,9 +9970,9 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 11597,
-      "sha256": "197f1fca692f3baab99c3e7fd5cf9b52ee43a1e8642996962766d96a03afd11c",
-      "snapshot": "0.25.4"
+      "bytes": 15007,
+      "sha256": "9502f90309fdf506aa909acf703f6674abaaaa56aca247830f4fe0c4d8ce4230",
+      "snapshot": "0.26.0"
     },
     {
       "path": "tools/prepare_release_v03.py",
@@ -9928,9 +10000,9 @@
     },
     {
       "path": "vercel.json",
-      "bytes": 844,
-      "sha256": "85079ae0cdc0131d12960b0df4fe6563c85d7e15c242fe4d74ac3d0eae4a694b",
-      "snapshot": "0.25.0"
+      "bytes": 852,
+      "sha256": "d1ae9d70d52b2d8cff1e94de1dc40d8d64ba01471cf4b7b46ff51ade591eee95",
+      "snapshot": "0.26.0"
     },
     {
       "path": "viewer_selection.json",
