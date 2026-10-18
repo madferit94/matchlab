@@ -1,0 +1,397 @@
+{
+  "status": "PASS",
+  "testedAt": "2026-10-17T02:18:57.212Z",
+  "oldRef": "main",
+  "oldCommit": "deed3240df6ecc9bee68b83f01e64f7ba7230ba1",
+  "newCommit": "9484e9f8e69ce21a9fc68f813400ba8fec7977f3 + working tree",
+  "browser": "Playwright Chromium 143.0.7499.4",
+  "method": "Two local servers (old ref via git archive with inline JSON, current tree with data files), key empty so no AI or news calls; all non-local requests aborted. Compared innerText of upcoming lists (EPL, LaLiga), match preview, simulation panel, simulation probabilities, automatic report and a local natural-language answer.",
+  "match": "understat:31230",
+  "questions": {
+    "ko": "아스널 최근 5경기 득점과 기대 득점 비교해 줘",
+    "en": "Compare Arsenal goals and expected goals in the last 5 matches"
+  },
+  "combos": [
+    {
+      "lang": "ko",
+      "width": 390,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "preview",
+        "simulation",
+        "simulationProbabilities",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 352,
+        "preview": 184,
+        "simulation": 303,
+        "simulationProbabilities": 59,
+        "report": 673,
+        "analysis": 520
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [],
+        "new": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ]
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "preview",
+        "simulation",
+        "simulationProbabilities",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 352,
+        "preview": 184,
+        "simulation": 303,
+        "simulationProbabilities": 59,
+        "report": 673,
+        "analysis": 520
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [],
+        "new": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "preview",
+        "simulation",
+        "simulationProbabilities",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 408,
+        "preview": 245,
+        "simulation": 518,
+        "simulationProbabilities": 59,
+        "report": 1092,
+        "analysis": 309
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [],
+        "new": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "preview",
+        "simulation",
+        "simulationProbabilities",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 408,
+        "preview": 245,
+        "simulation": 518,
+        "simulationProbabilities": 59,
+        "report": 1092,
+        "analysis": 309
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [],
+        "new": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ]
+      }
+    }
+  ],
+  "failures": []
+}

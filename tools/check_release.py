@@ -27,9 +27,52 @@ def payload(version):
     html=(p/f'archive/visualizations/visualization-design-2026-10-06-{version}/index.html').read_text(encoding='utf8')
     return json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>',html,re.S)[1])
 assert all(payload(f'v{n}')==payload('v12') for n in range(13,24)), 'Design preview changed source data'
+# 0.26.0: football JSON moved byte-for-byte from the HTML into data/football/*.js.
+# Rebuild the former inline page (blocks back in place, the three reading
+# expressions reverted, script tags dropped) so every comparison below still
+# runs against the archived v50 bytes.
+FOOTBALL_DATA={'index.html':'data.ko.js','index.en.html':'data.en.js'}
+DATA_PREFIX='window.MatchLabData=window.MatchLabData||{};window.MatchLabData.'
+DATA_READERS=[("const D=JSON.parse(document.getElementById('data').textContent)","const D=window.MatchLabData.data"),
+              ("const bundle=JSON.parse(document.getElementById('prematch-predictions-v22').textContent);","const bundle=window.MatchLabData.predictions;"),
+              ("else Object.values(read('data').teams)","else Object.values(window.MatchLabData.data.teams)")]
+data_dir=p/'data/football'
+assert data_dir.is_dir() and sorted(x.name for x in data_dir.iterdir())==['data.en.js','data.ko.js','predictions.js'], 'Football data files missing or unexpected files in data/football'
+assert sorted(f for f in files if f.startswith(prefix+'data/'))==[prefix+'data/football/'+n for n in ['data.en.js','data.ko.js','predictions.js']], 'Unexpected published files under data/'
+def data_json_text(name, key):
+    text=(data_dir/name).read_bytes().decode('utf8')
+    head=DATA_PREFIX+key+'='
+    assert text.startswith(head) and text.endswith(';\n') and text.count('\n')==1, 'Football data file format drift: '+name
+    return text[len(head):-2]
+def data_tag(name):
+    digest=hashlib.sha256((data_dir/name).read_bytes()).hexdigest()[:16]
+    return '<script src="data/football/'+name+'?v='+digest+'"></script>'
+def reconstruct_inline(name):
+    html=(p/name).read_text(encoding='utf8')
+    for file,key,ident in [(FOOTBALL_DATA[name],'data','data'),('predictions.js','predictions','prematch-predictions-v22')]:
+        tag=data_tag(file)
+        assert html.count(tag)==1, 'Football data tag missing or ?v= hash differs from file contents: '+name+' '+file
+        html=html.replace(tag,'<script id="'+ident+'" type="application/json">'+data_json_text(file,key)+'</script>')
+    for before,after in DATA_READERS:
+        assert html.count(after)==1 and html.count(before)==0, 'Football data reader drift: '+name
+        html=html.replace(after,before)
+    assert 'data/football/' not in html and 'MatchLabData' not in html, 'Unexpected extra football data reference: '+name
+    return html
+def page_source(name):
+    return reconstruct_inline(name) if name in FOOTBALL_DATA else (p/name).read_text(encoding='utf8')
+for name in FOOTBALL_DATA:
+    live=(p/name).read_text(encoding='utf8')
+    assert not re.search(r'<script id="(?:data|prematch-predictions-v22)" type="application/json">',live), 'Inline football JSON returned: '+name
+    rebuilt=reconstruct_inline(name)
+    assert data_tag('predictions.js') in live, 'Prediction file is not shared by both languages: '+name
+    archived=(p/'archive/visualizations/visualization-design-2026-10-08-v50'/name).read_text(encoding='utf8')
+    for ident in ['data','prematch-predictions-v22']:
+        rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'
+        assert re.findall(rx,rebuilt)==re.findall(rx,archived) and len(re.findall(rx,archived))==1, 'Football data differs from v50: '+name+' '+ident
+assert data_json_text('data.ko.js','data')!=data_json_text('data.en.js','data'), 'Language data files unexpectedly identical'
 # Verify the exact shared presentation layer before comparing preserved application code.
 def presentation_base(name, normalize_analysis=True):
-    html=(p/name).read_text(encoding='utf8')
+    html=page_source(name)
     for tag, ident, source in [('style','matchlab-shared-theme','theme.css'),('script','matchlab-shared-search','search.js')]:
         pattern='<'+tag+' id="'+ident+'">([\\s\\S]*?)</'+tag+'>'
         blocks=re.findall(pattern,html)
@@ -136,9 +179,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'} or b'\0' not in b:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.25.4'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.26.0'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.25.4',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.26.0',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:

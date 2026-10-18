@@ -1,5 +1,6 @@
 const fs=require('fs'),assert=require('assert'),engine=require('./record-engine.cjs');
-const html=fs.readFileSync(__dirname+'/../index.html','utf8');const data=JSON.parse(html.match(/<script id="data" type="application\/json">([\s\S]*?)<\/script>/)[1]);const analyst=engine.create(data);
+// 0.26.0: football data lives in data/football/*.js; read it with the shared server helper.
+const data=require('../server/football-data.cjs').readJson('data.ko.js');const analyst=engine.create(data);
 let checks=0;function test(name,fn){fn();checks++;console.log('PASS '+name)}
 const defaults={league:'EPL',team:'understat:83',season:'2026/27'};
 test('Korean request resolves Arsenal and last ten within selected season',()=>{const p=analyst.parse('아스널 최근 10경기 득점과 기대 득점을 비교해 줘',defaults);assert.strictEqual(p.tool,'trend');assert.deepStrictEqual(p.teams,['understat:83']);assert.strictEqual(p.last,10)});
