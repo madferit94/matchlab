@@ -1,0 +1,645 @@
+{
+  "status": "PASS",
+  "testedAt": "2026-10-20T07:48:22.013Z",
+  "oldRef": "main",
+  "oldCommit": "5253d13c4b3cf776aebb14c3f4bd6beb27086a38",
+  "newCommit": "dd8716765fb069d2d860666fab2ca58f49715487 + working tree",
+  "browser": "Playwright Chromium 143.0.7499.4",
+  "method": "Two local servers (old ref via git archive, current tree), key empty so no AI or news calls; all non-local requests aborted. Compared innerText of upcoming lists (EPL, LaLiga), club search results, match preview, simulation panel, simulation probabilities, automatic report and a local natural-language answer; plus MatchDeskSimulation.sample() on the page-loaded bundle for all 641 matches x 20 fixed mulberry32 seeds. Overflow = scrollWidth > documentElement.clientWidth.",
+  "match": "understat:31230",
+  "questions": {
+    "ko": "아스널 최근 5경기 득점과 기대 득점 비교해 줘",
+    "en": "Compare Arsenal goals and expected goals in the last 5 matches"
+  },
+  "searches": [
+    "Arsenal",
+    "real"
+  ],
+  "combos": [
+    {
+      "lang": "ko",
+      "width": 390,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "simulationProbabilities",
+        "fixedSeedPreview",
+        "fixedSeedAllDigest",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 352,
+        "search": 175,
+        "preview": 184,
+        "simulation": 303,
+        "simulationMounted": 4,
+        "simulationProbabilities": 59,
+        "fixedSeedPreview": 531,
+        "fixedSeedAllDigest": 66,
+        "report": 673,
+        "analysis": 520
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0,
+        "digest": {
+          "old": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e",
+          "new": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e"
+        },
+        "arsenalLeeds": [
+          "understat:31230#0=0:3-0",
+          "understat:31230#1=1:2-2",
+          "understat:31230#2=0:3-1",
+          "understat:31230#3=0:1-0",
+          "understat:31230#4=0:2-0",
+          "understat:31230#5=0:4-2",
+          "understat:31230#6=2:1-3",
+          "understat:31230#7=0:2-0",
+          "understat:31230#8=0:3-2",
+          "understat:31230#9=2:2-3",
+          "understat:31230#10=0:3-1",
+          "understat:31230#11=2:0-1",
+          "understat:31230#12=1:0-0",
+          "understat:31230#13=0:3-0",
+          "understat:31230#14=0:1-0",
+          "understat:31230#15=0:3-1",
+          "understat:31230#16=0:1-0",
+          "understat:31230#17=0:6-3",
+          "understat:31230#18=1:1-1",
+          "understat:31230#19=1:2-2"
+        ]
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ],
+        "new": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "simulationProbabilities",
+        "fixedSeedPreview",
+        "fixedSeedAllDigest",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 352,
+        "search": 175,
+        "preview": 184,
+        "simulation": 303,
+        "simulationMounted": 4,
+        "simulationProbabilities": 59,
+        "fixedSeedPreview": 531,
+        "fixedSeedAllDigest": 66,
+        "report": 673,
+        "analysis": 520
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0,
+        "digest": {
+          "old": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e",
+          "new": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e"
+        },
+        "arsenalLeeds": [
+          "understat:31230#0=0:3-0",
+          "understat:31230#1=1:2-2",
+          "understat:31230#2=0:3-1",
+          "understat:31230#3=0:1-0",
+          "understat:31230#4=0:2-0",
+          "understat:31230#5=0:4-2",
+          "understat:31230#6=2:1-3",
+          "understat:31230#7=0:2-0",
+          "understat:31230#8=0:3-2",
+          "understat:31230#9=2:2-3",
+          "understat:31230#10=0:3-1",
+          "understat:31230#11=2:0-1",
+          "understat:31230#12=1:0-0",
+          "understat:31230#13=0:3-0",
+          "understat:31230#14=0:1-0",
+          "understat:31230#15=0:3-1",
+          "understat:31230#16=0:1-0",
+          "understat:31230#17=0:6-3",
+          "understat:31230#18=1:1-1",
+          "understat:31230#19=1:2-2"
+        ]
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ],
+        "new": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "simulationProbabilities",
+        "fixedSeedPreview",
+        "fixedSeedAllDigest",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 408,
+        "search": 175,
+        "preview": 245,
+        "simulation": 518,
+        "simulationMounted": 4,
+        "simulationProbabilities": 59,
+        "fixedSeedPreview": 531,
+        "fixedSeedAllDigest": 66,
+        "report": 1092,
+        "analysis": 309
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0,
+        "digest": {
+          "old": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e",
+          "new": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e"
+        },
+        "arsenalLeeds": [
+          "understat:31230#0=0:3-0",
+          "understat:31230#1=1:2-2",
+          "understat:31230#2=0:3-1",
+          "understat:31230#3=0:1-0",
+          "understat:31230#4=0:2-0",
+          "understat:31230#5=0:4-2",
+          "understat:31230#6=2:1-3",
+          "understat:31230#7=0:2-0",
+          "understat:31230#8=0:3-2",
+          "understat:31230#9=2:2-3",
+          "understat:31230#10=0:3-1",
+          "understat:31230#11=2:0-1",
+          "understat:31230#12=1:0-0",
+          "understat:31230#13=0:3-0",
+          "understat:31230#14=0:1-0",
+          "understat:31230#15=0:3-1",
+          "understat:31230#16=0:1-0",
+          "understat:31230#17=0:6-3",
+          "understat:31230#18=1:1-1",
+          "understat:31230#19=1:2-2"
+        ]
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ],
+        "new": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "identical": true,
+      "differentFields": [],
+      "compared": [
+        "lastDate",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "simulationProbabilities",
+        "fixedSeedPreview",
+        "fixedSeedAllDigest",
+        "report",
+        "analysis"
+      ],
+      "textLengths": {
+        "lastDate": 12,
+        "upcoming": 408,
+        "search": 175,
+        "preview": 245,
+        "simulation": 518,
+        "simulationMounted": 4,
+        "simulationProbabilities": 59,
+        "fixedSeedPreview": 531,
+        "fixedSeedAllDigest": 66,
+        "report": 1092,
+        "analysis": 309
+      },
+      "simulationProbabilities": [
+        0.6085747997883622,
+        0.22077050835147805,
+        0.1706546918601598
+      ],
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0,
+        "digest": {
+          "old": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e",
+          "new": "29fea2fb258bde720f1331fca88e5c01c1f34d1cfb641e29a781a5abfa295c4e"
+        },
+        "arsenalLeeds": [
+          "understat:31230#0=0:3-0",
+          "understat:31230#1=1:2-2",
+          "understat:31230#2=0:3-1",
+          "understat:31230#3=0:1-0",
+          "understat:31230#4=0:2-0",
+          "understat:31230#5=0:4-2",
+          "understat:31230#6=2:1-3",
+          "understat:31230#7=0:2-0",
+          "understat:31230#8=0:3-2",
+          "understat:31230#9=2:2-3",
+          "understat:31230#10=0:3-1",
+          "understat:31230#11=2:0-1",
+          "understat:31230#12=1:0-0",
+          "understat:31230#13=0:3-0",
+          "understat:31230#14=0:1-0",
+          "understat:31230#15=0:3-1",
+          "understat:31230#16=0:1-0",
+          "understat:31230#17=0:6-3",
+          "understat:31230#18=1:1-1",
+          "understat:31230#19=1:2-2"
+        ]
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=287805684a395bfc"
+        ],
+        "new": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    }
+  ],
+  "failures": []
+}
