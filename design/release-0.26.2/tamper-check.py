@@ -46,6 +46,8 @@ cases={
  'notice block removed (en)':lambda d:(lambda s:(d/'index.en.html').write_text(re.sub(r'<script id="matchlab-load-notice">[\s\S]*?</script>','',s,count=1),encoding='utf8'))((d/'index.en.html').read_text(encoding='utf8')),
  'notice text changed in page only (en)':lambda d:sub(d/'index.en.html','Match data could not be loaded.','Data could not be loaded.'),
  'notice logic changed in en source and page':lambda d:(sub(d/'design/release-0.26.2/load-notice.en.js',"n.style.top='12px'","n.style.top='0px'"),sub(d/'index.en.html',"n.style.top='12px'","n.style.top='0px'")),
+ 'code appended to the ko notice text line (source and page)':lambda d:[sub(d/x,"잠시 후 새로고침해 주세요.'};","잠시 후 새로고침해 주세요.'};window.__tamper=1;") for x in ['design/release-0.26.2/load-notice.ko.js','index.html']],
+ 'code appended to the en notice text line (source and page)':lambda d:[sub(d/x,"Please refresh in a moment.'};","Please refresh in a moment.'};window.__tamper=1;") for x in ['design/release-0.26.2/load-notice.en.js','index.en.html']],
  'prediction notice guard removed (ko)':lambda d:sub(d/'index.html',"if(!bundle||!Array.isArray(bundle.predictions)){","if(false){"),
  'grid shape check reverted to 0.26.1 expansion (both pages)':lambda d:[sub(d/p,"bundle.predictions.forEach(p=>{if(!p.scoreDistribution){const g=p.scoreGrid,ok=Array.isArray(g)&&g.length===169&&Array.from(g).every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0);p.scoreDistribution=ok?g.map((probability,i)=>({home:Math.floor(i/13),away:i%13,probability})):[];delete p.scoreGrid;}});","bundle.predictions.forEach(p=>{if(Array.isArray(p.scoreGrid)){p.scoreDistribution=p.scoreGrid.map((probability,i)=>({home:Math.floor(i/13),away:i%13,probability}));delete p.scoreGrid;}});") for p in ['index.html','index.en.html']],
  'notice moved after the main script (ko)':lambda d:(lambda s:(lambda blk:(d/'index.html').write_text(s.replace(blk,'',1).replace('<script src="data/football/predictions.js','<script id="matchlab-load-notice">'+blk[len('<script id="matchlab-load-notice">'):],1),encoding='utf8'))(re.search(r'<script id="matchlab-load-notice">[\s\S]*?</script>',s)[0]))((d/'index.html').read_text(encoding='utf8')),
@@ -56,7 +58,7 @@ for i,(name,fn) in enumerate(cases.items()):
     code,msg=run(d,[sys.executable,'-I','tools/check_release.py','--write-manifest'])
     # restore the committed manifest so --write-manifest leaves no trace inside the comparison of a plain run
     entry={'case':name,'check_release':('PASS' if code==0 else 'FAIL'),'message':msg}
-    if name.startswith('README') or name.startswith('VERSION') or name.startswith('control') or 'true->1' in name or 'notice block' in name:
+    if name.startswith('README') or name.startswith('VERSION') or name.startswith('control') or 'true->1' in name or 'notice block' in name or 'text line' in name:
         c2,m2=run(d,['node','server/check.cjs']); entry['test_server']=('PASS' if c2==0 else 'FAIL')+' '+m2
     results.append(entry); print(json.dumps(entry,ensure_ascii=False))
     shutil.rmtree(d)

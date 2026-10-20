@@ -76,13 +76,20 @@ PREDICTION_EXPANSION=("if(!window.MatchLabData.data)return;"
 NOTICE_LANG={'index.html':'ko','index.en.html':'en'}
 NOTICE_TEXT={'ko':['경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.','예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'],
              'en':['Match data could not be loaded. Please refresh in a moment.','Prediction data could not be loaded. Please refresh in a moment.']}
+# The text line must be exactly this line (review R1: a regex that blanked any
+# "const text={...};" line let code appended to that line pass).
+NOTICE_TEXT_LINE={lang:"const text={data:'"+texts[0]+"',predictions:'"+texts[1]+"'};" for lang,texts in NOTICE_TEXT.items()}
+def notice_source(lang):
+    source=(p/'design/release-0.26.2'/('load-notice.'+lang+'.js')).read_text(encoding='utf8')
+    lines=source.split('\n')
+    assert lines.count(NOTICE_TEXT_LINE[lang])==1 and sum('const text=' in line for line in lines)==1, 'Load notice text line differs from the expected exact line: '+lang
+    return source
 def notice_block(name):
     lang=NOTICE_LANG[name]
-    source=(p/'design/release-0.26.2'/('load-notice.'+lang+'.js')).read_text(encoding='utf8').rstrip('\n')
-    assert all(text in source for text in NOTICE_TEXT[lang]), 'Load notice text missing: '+lang
+    source=notice_source(lang).rstrip('\n')
     assert '</script' not in source, 'Load notice source cannot be inlined'
     return '<script id="matchlab-load-notice">'+source+'</script>'
-notice_logic=[re.sub(r"^const text=\{.*\};$",'',(p/'design/release-0.26.2'/('load-notice.'+lang+'.js')).read_text(encoding='utf8'),flags=re.M) for lang in ['ko','en']]
+notice_logic=[notice_source(lang).replace(NOTICE_TEXT_LINE[lang]+'\n','',1) for lang in ['ko','en']]
 assert notice_logic[0]==notice_logic[1], 'Load notice logic differs by language'
 assert not re.search('[가-힣]',(p/'design/release-0.26.2/load-notice.en.js').read_text(encoding='utf8')), 'Korean text in the English load notice'
 def strict_equal(a,b):
