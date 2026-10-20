@@ -1,0 +1,187 @@
+{
+  "run_id": "matchlab-0.26.2-2026-10-21",
+  "match_key": "ALL_FOOTBALL_PAGES",
+  "role": "builder",
+  "producer_id": "builder-subagent-2026-10-21",
+  "status": "DONE",
+  "summary": "SPEC-0.26.2 4개 항목 구현. (1) 언어 자료 태그 바로 뒤의 안내 코드가 자료 객체가 없으면(연결 실패·404·객체 없는 파일) <main> 맨 위에 페이지 언어 안내를 붙어 있게 표시하고, 예측 객체가 없으면 선택한 경기의 시뮬레이션 자리에 같은 안내를 표시한다. 정상 화면에는 요소를 만들지 않는다. (2) scoreGrid가 유한한 0 이상 숫자 169개가 아니면 빈 점수 분포를 넣어 시뮬레이션의 기존 '확률 검증 실패' 안내가 보이게 한다. 정상 자료를 푸는 결과는 0.26.1과 JSON 글자까지 같다. (3) check_release.py가 예측 필드를 타입까지 비교한다. (4) README 현재 버전 0.26.2, VERSION·package.json·README 불일치 시 check_release와 서버 검사가 실패한다. 복원 단계가 새 코드를 지워 v50 바이트 비교는 그대로 실행된다. 브라우저 비교 4조합 동일(글자·<main> 마크업·스크린샷·641×20 시뮬레이션), 막기 16경우 안내 표시, 잘못된 scoreGrid 18경우 실패 안내. 변조 15경우 모두 FAIL. 자가 점검이며 독립 검증이 아니다.",
+  "cutoff_at": "2026-09-20",
+  "observed_at": "2026-10-21",
+  "provider": null,
+  "model": null,
+  "evidence": [
+    {
+      "path": "index.html",
+      "description": "183,665 바이트(0.26.1 181,791). 자료 태그 뒤 matchlab-load-notice 블록, 예측 읽는 줄 뒤 안내·점수 칸 검사 문장. 자료 파일 ?v= 그대로"
+    },
+    {
+      "path": "index.en.html",
+      "description": "182,735 바이트(0.26.1 180,906). 한국어와 같은 코드, 영어 문구"
+    },
+    {
+      "path": "design/release-0.26.2/load-notice.ko.js",
+      "description": "안내 코드 원본(한국어 문구). check_release가 페이지 블록과 바이트 비교"
+    },
+    {
+      "path": "design/release-0.26.2/load-notice.en.js",
+      "description": "안내 코드 원본(영어 문구). 문구 줄 말고는 한국어와 같음"
+    },
+    {
+      "path": "tools/check_release.py",
+      "description": "안내 블록·새 문장 제거 후 v50 바이트 비교 유지, 안내 블록 위치·원본 일치·한영 코드 동일, strict_equal 타입 비교, VERSION·package·README 버전 일치, 버전 0.26.2"
+    },
+    {
+      "path": "server/check.cjs",
+      "description": "README·package 버전 = VERSION, 안내 블록 위치 검사 추가(22→24)"
+    },
+    {
+      "path": "server/check-result.json",
+      "description": "checks 24, failures 0"
+    },
+    {
+      "path": "README.md",
+      "description": "Current version 0.25.3 → 0.26.2"
+    },
+    {
+      "path": "README.ko.md",
+      "description": "현재 버전 0.25.3 → 0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/check-browser.cjs",
+      "description": "main(0.26.1) 대 브랜치 정상 화면 비교, 자료 파일 막기, 잘못된 scoreGrid 시험"
+    },
+    {
+      "path": "design/release-0.26.2/browser-result.json",
+      "description": "PASS: 정상 4조합 동일·오류 0·넘침 없음, 막기 16경우 안내, scoreGrid 20경우(대조 2 포함) 기대대로"
+    },
+    {
+      "path": "design/release-0.26.2/notice-data-ko-390.png",
+      "description": "data.ko.js 연결 실패 시 한국어 390px 첫 화면 안내"
+    },
+    {
+      "path": "design/release-0.26.2/notice-data-en-1440.png",
+      "description": "data.en.js 연결 실패 시 영어 1440px 안내"
+    },
+    {
+      "path": "design/release-0.26.2/notice-predictions-ko-390.png",
+      "description": "predictions.js 연결 실패 시 한국어 390px 시뮬레이션 자리 안내"
+    },
+    {
+      "path": "design/release-0.26.2/notice-predictions-en-1440.png",
+      "description": "predictions.js 연결 실패 시 영어 1440px 안내"
+    },
+    {
+      "path": "design/release-0.26.2/grid-invalid-ko-390.png",
+      "description": "scoreGrid 마지막 칸 누락 시 확률 검증 실패 안내(0.26.1은 조용히 표시)"
+    },
+    {
+      "path": "design/release-0.26.2/preview-ko-390.png",
+      "description": "정상 한국어 390px 프리뷰(main과 바이트 동일)"
+    },
+    {
+      "path": "design/release-0.26.2/preview-en-1440.png",
+      "description": "정상 영어 1440px 프리뷰(main과 바이트 동일)"
+    },
+    {
+      "path": "design/release-0.26.2/check-simulation.cjs",
+      "description": "새 문장으로 푼 예측 = main 문장으로 푼 예측, v50 원본 대비 시뮬레이션 비교"
+    },
+    {
+      "path": "design/release-0.26.2/simulation-result.json",
+      "description": "NO_DIFFERENCE: 641×20, 641×1000 차이 0, expandedIdenticalToPrevious true"
+    },
+    {
+      "path": "design/release-0.26.2/tamper-check.py",
+      "description": "깨끗한 복제본에 하나씩 변조해 check_release(와 서버 검사) 실행"
+    },
+    {
+      "path": "design/release-0.26.2/tamper-result.json",
+      "description": "대조 PASS, 변조 15경우 모두 FAIL"
+    },
+    {
+      "path": "docs/SPEC-0.26.2.md",
+      "description": "상태와 실행 결과(바뀐 것·설계와 다른 점·크기·검사·남은 확인)"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "description": "0.26.2 항목"
+    },
+    {
+      "path": "VERSION",
+      "description": "0.26.2 (package.json 동일)"
+    },
+    {
+      "path": "publication_manifest.json",
+      "description": "check_release --write-manifest로 갱신, version 0.26.2"
+    }
+  ],
+  "issues": [
+    "불러오기 실패는 script onerror가 아니라 바로 다음 코드에서 '자료 객체 없음'으로 감지한다. 연결 실패·404·객체 없는 파일 세 경우를 브라우저에서 확인했다. 자료 태그를 바꾸지 않아 기존 해시 태그 검사를 그대로 쓴다.",
+    "경기 자료 안내는 position:sticky다. 처음에는 <main> 맨 위에만 넣었는데 #matches 주소로 열면 페이지가 아래로 이동해 안내가 화면 밖(top -489px)에 있었다. 1050px 이상에서는 머리글이 왼쪽 고정이라 겹치지 않음을 스크린샷으로 확인했다.",
+    "경기 자료를 못 받으면 기존 화면 코드(const D=window.MatchLabData.data 등)가 멈춰 페이지 오류 4건이 남는다(0.26.1은 5건). 이 읽기 줄은 v50 복원 비교 기준이라 바꾸지 않았다. 목록·검색은 비고 안내만 보인다. 예측 파일 실패는 페이지 오류 0건(0.26.1은 1건).",
+    "예측 안내는 시뮬레이션 자리에 나온다. 목록 화면에서도 기존 시뮬레이션처럼 기본 선택 경기 아래(보고서 뒤)에 표시되므로 화면 맨 아래쪽이다. 팀 화면에서는 사라진다.",
+    "잘못된 scoreGrid는 빈 scoreDistribution([])로 바꿔 시뮬레이션 validate가 'Invalid score distribution.'으로 실패하게 한다. 사용자에게 보이는 안내는 기존 문구 그대로다. scoreGrid가 없는 경우도 실패로 본다(0.26.1은 고정 점수로 조용히 표시).",
+    "design/release-0.26.1/check-simulation.cjs(과거 기록)는 페이지 문장을 함수 밖에서 실행해 새 문장의 return 때문에 SyntaxError: Illegal return으로 멈춘다. 고치지 않고 design/release-0.26.2/check-simulation.cjs를 새로 만들었다. 0.26.1 simulation-result.json은 바뀌지 않았다.",
+    "브라우저 비교의 <main> 마크업은 자동 보고서의 '보고서 생성' 시각 글자만 가렸다(닫힌 details 안, 두 버전 실행 시각 차이). 스크린샷은 300ms 간격 두 장이 같아질 때까지 기다린 뒤 비교한다. 이 대기 없이 한 번 ko-390 프리뷰가 달랐고, 따로 3회 반복 촬영에서는 두 버전 모두 같았다.",
+    "VERSION·package.json은 검사기 버전 상수와 함께 바뀌어야 해서 기록 커밋이 아니라 검사 커밋(6e43aae)에 넣었다.",
+    "운영(Vercel) 배포 후 확인은 하지 않았다. 자료 파일은 바뀌지 않아 ?v=가 그대로다.",
+    "브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단했다(정상 화면 콘솔 리소스 실패 13건씩 같음, 예측 막기 경우 28~29건은 차단한 로고와 막은 파일). 이미지 표시는 비교하지 않았다. Playwright 1.57.0은 저장소 밖(scratchpad/pw)에 있다.",
+    "npm run test:report 실행이 reports/release-0.25.0/checks.json의 testedAt만 바꿔 되돌렸다.",
+    "커밋 해시: 36d9a4f(화면), 6e43aae(검사·버전), 3a09df1(안내 위치), 246d933(브라우저·변조 스크립트), 852eebc(브라우저 결과), 79b660a(시뮬레이션·변조 결과). 기록 커밋의 해시는 이 파일 안에 적을 수 없다.",
+    "자가 점검 결과이며 독립 검증이 아니다."
+  ],
+  "tests": [
+    {
+      "command": "npm run test:server",
+      "result": "PASS 24 server checks"
+    },
+    {
+      "command": "npm run build",
+      "result": "Built 3 public pages and 3 football data files"
+    },
+    {
+      "command": "node server/check-vercel.cjs",
+      "result": "PASS 5"
+    },
+    {
+      "command": "node analysis/check.cjs",
+      "result": "PASS 15"
+    },
+    {
+      "command": "npm run test:report",
+      "result": "PASS 14 (checks.json testedAt 되돌림)"
+    },
+    {
+      "command": "npm run test:odds",
+      "result": "PASS evaluated 877, maxDifference 2.2e-16"
+    },
+    {
+      "command": "python3 -I design/release-0.26.1/compact_predictions.py --check",
+      "result": "PASS (2,132,671 bytes)"
+    },
+    {
+      "command": "NODE_PATH=<scratchpad>/pw/node_modules CHROME_PATH=<Google Chrome> node design/release-0.26.2/check-browser.cjs",
+      "result": "PASS: 정상 4조합 글자·마크업·스크린샷 동일, 641×20 차이 0, 페이지 오류 0, 넘침 없음; 막기 16경우 안내; scoreGrid 9가지×한영 실패 안내, 대조 정상"
+    },
+    {
+      "command": "node design/release-0.26.2/check-simulation.cjs",
+      "result": "NO_DIFFERENCE; main 문장과 풀린 결과 동일"
+    },
+    {
+      "command": "python3 -I design/release-0.26.2/tamper-check.py <scratchpad>/tamper2",
+      "result": "PASS: 대조 PASS, 변조 15경우 FAIL"
+    },
+    {
+      "command": "node design/release-0.26.1/check-simulation.cjs",
+      "result": "FAIL SyntaxError: Illegal return (과거 검사, 새 문장 구조 때문; 0.26.2 판으로 대체)"
+    },
+    {
+      "command": "PORT=8813 node server/gemini.cjs + curl",
+      "result": "/ 200 183,665; /index.en.html 200 182,735; /f1/index.html 200; /api/health 200; 자료 파일 3개 200; /data/football/x.js 404; PID로 종료"
+    },
+    {
+      "command": "python3 -I tools/check_release.py",
+      "result": "PASS (1726 hashed files, 12 links, worst outcome error 1.2e-08) after --write-manifest"
+    }
+  ]
+}

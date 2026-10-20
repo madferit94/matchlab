@@ -1,5 +1,5 @@
 {
-  "version": "0.26.1",
+  "version": "0.26.2",
   "public_export": true,
   "files": [
     {
@@ -28,27 +28,27 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 20892,
-      "sha256": "31d9b8e705028edf6d7797896e548a086d5cd8f8ea12bd729fd317c3710268c6",
-      "snapshot": "0.26.1"
+      "bytes": 21548,
+      "sha256": "e1992102f88ca0d20c87b45db6ac122b8ca900707ec8cf92344fa9535f462f7f",
+      "snapshot": "0.26.2"
     },
     {
       "path": "README.ko.md",
       "bytes": 1291,
-      "sha256": "4f0595c34fc6e64630af30b08a8d0ea90784c6495b7d514d2f4ee51b5db5c628",
-      "snapshot": "0.25.4"
+      "sha256": "cbaf4296005fa9d73e8244d175ee730cca1420b9029a502c8a27df4e1d952d5a",
+      "snapshot": "0.26.2"
     },
     {
       "path": "README.md",
       "bytes": 1356,
-      "sha256": "5a29a1b0d5986541f9598404e28db4bd5a34ecdceed390cd468893b6c11e9471",
-      "snapshot": "0.25.4"
+      "sha256": "a304f633ec9241793e7f27f47e811d2d68d92da4c64d52864ce88355066c4ac2",
+      "snapshot": "0.26.2"
     },
     {
       "path": "VERSION",
       "bytes": 7,
-      "sha256": "f635cb36f28e15f2f0b8d31cab9a8eb1dfbaa628d282e9d55dd80669d23c0602",
-      "snapshot": "0.26.1"
+      "sha256": "571a0345e4957939455a4c4518d264d47cae46917a626c2852416fdb2fa417db",
+      "snapshot": "0.26.2"
     },
     {
       "path": "agent-team-2026-10-06-v01/.agents/skills/matchdesk-analysis/SKILL.md",
@@ -5193,6 +5193,102 @@
       "snapshot": "0.26.1"
     },
     {
+      "path": "design/release-0.26.2/browser-result.json",
+      "bytes": 69718,
+      "sha256": "72593784ea171508600bdc9eee5e6ffb51374b22b23051606237df2883f038da",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/builder-report.json",
+      "bytes": 10931,
+      "sha256": "7b468163bded9f08dab9f78deef5e708d914481edcb435a4efc7cba818b32f4e",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/check-browser.cjs",
+      "bytes": 24514,
+      "sha256": "7655f2013c319ff2f674e1efb4e3db2a06176744dffb5f79d978eba21199c67b",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/check-simulation.cjs",
+      "bytes": 6718,
+      "sha256": "9d6f6319d200c3f28e29cfd16cc5f437bedf9c2eb8d658ae9f8ce6425a5c01b8",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/grid-invalid-ko-390.png",
+      "bytes": 14102,
+      "sha256": "7f38d959001544d6b97e7f9fecfe961f2865b27f9b061a4fc099500b69a187d8",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/load-notice.en.js",
+      "bytes": 1077,
+      "sha256": "d645065f02f791a49109fd13f366be4bf80241ccb8fe9f4bef9d4066ce8c24e1",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/load-notice.ko.js",
+      "bytes": 1122,
+      "sha256": "d176208f022082170fc95ed0cbdcff200f6dd2ac8d4bb73bfe28a2edbdbea51c",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/notice-data-en-1440.png",
+      "bytes": 86514,
+      "sha256": "12544d2ee5f8a7fda9ae543f46bce05cb712dfbdf3f1bd380a29b2ca72ef8f9c",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/notice-data-ko-390.png",
+      "bytes": 44366,
+      "sha256": "8da1f788e1ed4c9ab1dba46b15ab24ca7cf7f66bf931a05010f977dadb82b116",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/notice-predictions-en-1440.png",
+      "bytes": 233291,
+      "sha256": "58c2151e2369dbc741fc80e1738af3938122ce2c781165113f6cdc6163c71ec7",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/notice-predictions-ko-390.png",
+      "bytes": 209166,
+      "sha256": "8ede46bf6b265ca99bd291ab8e41b27d50e58734bc264f2530546ec8327187e1",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/preview-en-1440.png",
+      "bytes": 284211,
+      "sha256": "b327a2a13ff8ade8dbd1766117518363bd74d17c6fcafe1222b862e0fac38146",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/preview-ko-390.png",
+      "bytes": 253167,
+      "sha256": "f817faffca8f19fc7bb8c20aa3fecdc78d8777fd530229c5ea3e29c243b90b60",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/simulation-result.json",
+      "bytes": 879,
+      "sha256": "1a3cd3d5c8a0b1d5a94d2d21de9386bb0266fb9ddbca61b42f9ec9d0962c3fc2",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/tamper-check.py",
+      "bytes": 6379,
+      "sha256": "46adfcea6de17d1d88c00eef210b5a27c9b3a07eef4a7cf3de291846ffe6c909",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/tamper-result.json",
+      "bytes": 4074,
+      "sha256": "f10dadd34baefd12c0c3117955104f47a13d3f44b2e3ee4e4c6cb2779c1cafaa",
+      "snapshot": "0.26.2"
+    },
+    {
       "path": "docs/AGENTS-AND-SKILLS.en.md",
       "bytes": 4170,
       "sha256": "c7c4335c35c450dfe51d3508da7d648b7534a1901c2cfa9215bfc58fbaf5a2b9",
@@ -5527,6 +5623,12 @@
       "bytes": 12766,
       "sha256": "70c6290df2c112f221f2b072cb132060b43d3405844629158fe1b0ce0965f312",
       "snapshot": "0.26.1"
+    },
+    {
+      "path": "docs/SPEC-0.26.2.md",
+      "bytes": 10642,
+      "sha256": "a8beb75fd499f8c6064c18971aafd146140ca644536f7c4afbb65d9b901ca454",
+      "snapshot": "0.26.2"
     },
     {
       "path": "docs/SPEC-0.3.0.md",
@@ -8824,15 +8926,15 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 180906,
-      "sha256": "73e8b46310dd31c19e2a6328fb46ba272fe54501ad057669af08d3baf303d0f7",
-      "snapshot": "0.26.1"
+      "bytes": 182735,
+      "sha256": "e0f009a3c4303a3fdb1c7cc8c13e0a8abc24565b586c5b744a279be42b881afe",
+      "snapshot": "0.26.2"
     },
     {
       "path": "index.html",
-      "bytes": 181791,
-      "sha256": "47c2cbe8e08d9936a6fae2d94f219013d39652b41a1dcbc069e3f033bedc1b20",
-      "snapshot": "0.26.1"
+      "bytes": 183665,
+      "sha256": "b684a801f647276674eb039ca22ed715c27a5063cfd4e07f1ef8c2f72596fd0e",
+      "snapshot": "0.26.2"
     },
     {
       "path": "modeling/.gitignore",
@@ -9479,8 +9581,8 @@
     {
       "path": "package.json",
       "bytes": 442,
-      "sha256": "1d401d7ba19907b4b994b0003c3a1da45c1f7968834dd499ad9ac737f466f356",
-      "snapshot": "0.26.1"
+      "sha256": "e80ff8ae6e7e88b8e00838f364348844627dc5203b44c07ad8b0c44a75b6d406",
+      "snapshot": "0.26.2"
     },
     {
       "path": "reports/release-0.25.0/README.md",
@@ -9587,8 +9689,8 @@
     {
       "path": "server/check-result.json",
       "bytes": 139,
-      "sha256": "e0bfddee016b1a5599e0d3e0a3c63bf439f300ccd1a78b2089d3629db58891ba",
-      "snapshot": "0.26.1"
+      "sha256": "be462c14a16217f5d8a1087be3e601698bb9afda8401320082f68b6c45886cc3",
+      "snapshot": "0.26.2"
     },
     {
       "path": "server/check-vercel.cjs",
@@ -9598,9 +9700,9 @@
     },
     {
       "path": "server/check.cjs",
-      "bytes": 13839,
-      "sha256": "f0345f60963d046cb42eee02631feddc0a4321fffcd7398933f9afb0949d68e9",
-      "snapshot": "0.26.1"
+      "bytes": 16122,
+      "sha256": "e95476191b1c3413c848d2a43a90440c8b4e3dcb5ba9e22db3856e8f4be69584",
+      "snapshot": "0.26.2"
     },
     {
       "path": "server/football-data.cjs",
@@ -10216,9 +10318,9 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 18674,
-      "sha256": "693f21157a3b402ec7aac0d8b72ae220d2fde43ae81e85959f539604e166dd65",
-      "snapshot": "0.26.1"
+      "bytes": 22773,
+      "sha256": "bc39692a7fc244afa31c86088632c377fdcae9a68dd63aafb95f73a4a15a75f9",
+      "snapshot": "0.26.2"
     },
     {
       "path": "tools/prepare_release_v03.py",
