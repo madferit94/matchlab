@@ -5200,8 +5200,8 @@
     },
     {
       "path": "design/release-0.26.2/builder-report.json",
-      "bytes": 10931,
-      "sha256": "7b468163bded9f08dab9f78deef5e708d914481edcb435a4efc7cba818b32f4e",
+      "bytes": 13087,
+      "sha256": "db2f74eec2480605527a002b54ea264a65a11d7384e341b11a487e4684d4df41",
       "snapshot": "0.26.2"
     },
     {
@@ -5271,6 +5271,72 @@
       "snapshot": "0.26.2"
     },
     {
+      "path": "design/release-0.26.2/review/blocked-data-emptyobject-ko-390.png",
+      "bytes": 52096,
+      "sha256": "8aa1e6e0ceba0f6e0a1c0a4b99de50b58371e8917ee6b0b9149478ee6203db3f",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/blocked-data-en-1440.png",
+      "bytes": 82161,
+      "sha256": "e3181a3e101a34d4b525188d51ec045f80c6a0bcf46a912b4dbb98f67b70b83e",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/blocked-data-ko-390-scrolled.png",
+      "bytes": 41881,
+      "sha256": "e0cc96f64d71450f2f50985cb530820b15c99a8d179ac4959aa9857ad9b86f88",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/blocked-data-ko-390.png",
+      "bytes": 52231,
+      "sha256": "c1acb00995d0b1059fb19b138460e441825a8d0a17b75e3ce992277c861ee3f1",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/blocked-predictions-en-1440-preview.png",
+      "bytes": 146352,
+      "sha256": "25ef63a3f802a9260382cbc58dea34338c8b9142d394863cb078995c22b8b0da",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/blocked-predictions-ko-390-preview.png",
+      "bytes": 119685,
+      "sha256": "d1eecf4e0a5ffe026e920ba50f9e6b8282c3f0cd419c545c803324a37c0b7a69",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/grid-168-en-390.png",
+      "bytes": 13162,
+      "sha256": "00430c2615b5f9d001066d71bd045d97d140c24a730c6fc04bbfe2d9877b4d27",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/grid-hole-ko-390.png",
+      "bytes": 14102,
+      "sha256": "7f38d959001544d6b97e7f9fecfe961f2865b27f9b061a4fc099500b69a187d8",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/normal-en-1440-simulation.png",
+      "bytes": 56549,
+      "sha256": "f4a8900d7e4959ae3dc68827f724bdc7ee0123d5c1598d95a6ce7fdf7b519df0",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/normal-ko-390-simulation.png",
+      "bytes": 51433,
+      "sha256": "e468c2dee167697c9e37c89466863dcfb44fc896e5fbd956e8ae17b5a9fea1dd",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/review/normal-ko-390-top.png",
+      "bytes": 54352,
+      "sha256": "92641fe3d7b4ae13e9e7c00babf1b15eedc3f4e52a5772b7b93833c47d44389a",
+      "snapshot": "0.26.2"
+    },
+    {
       "path": "design/release-0.26.2/simulation-result.json",
       "bytes": 879,
       "sha256": "1a3cd3d5c8a0b1d5a94d2d21de9386bb0266fb9ddbca61b42f9ec9d0962c3fc2",
@@ -5278,14 +5344,20 @@
     },
     {
       "path": "design/release-0.26.2/tamper-check.py",
-      "bytes": 6379,
-      "sha256": "46adfcea6de17d1d88c00eef210b5a27c9b3a07eef4a7cf3de291846ffe6c909",
+      "bytes": 6925,
+      "sha256": "802aeba559a218676af812dbdcaaf6ea7a9080380247821d45e7f295978da950",
       "snapshot": "0.26.2"
     },
     {
       "path": "design/release-0.26.2/tamper-result.json",
-      "bytes": 4074,
-      "sha256": "f10dadd34baefd12c0c3117955104f47a13d3f44b2e3ee4e4c6cb2779c1cafaa",
+      "bytes": 4786,
+      "sha256": "167b4cb851cba5df333c90054a4514ce23c4b57bb3538ae832eca218690cedeb",
+      "snapshot": "0.26.2"
+    },
+    {
+      "path": "design/release-0.26.2/validation-report.json",
+      "bytes": 17358,
+      "sha256": "513ecf52e1471069796ec349ea1033a3d4fea8436409979ca760d73119ae75e2",
       "snapshot": "0.26.2"
     },
     {
@@ -5626,8 +5698,8 @@
     },
     {
       "path": "docs/SPEC-0.26.2.md",
-      "bytes": 10642,
-      "sha256": "a8beb75fd499f8c6064c18971aafd146140ca644536f7c4afbb65d9b901ca454",
+      "bytes": 11995,
+      "sha256": "5c07fbdb2d58d9cb2f1480af362191127f6c8c61e976d75fc475d8e3d1ac1545",
       "snapshot": "0.26.2"
     },
     {
@@ -9700,8 +9772,8 @@
     },
     {
       "path": "server/check.cjs",
-      "bytes": 16122,
-      "sha256": "e95476191b1c3413c848d2a43a90440c8b4e3dcb5ba9e22db3856e8f4be69584",
+      "bytes": 16775,
+      "sha256": "970fe10406a3f7973fe0fc81cc8d4d6008703297c2465a4e152482a664a87827",
       "snapshot": "0.26.2"
     },
     {
@@ -10318,8 +10390,8 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 22773,
-      "sha256": "bc39692a7fc244afa31c86088632c377fdcae9a68dd63aafb95f73a4a15a75f9",
+      "bytes": 23153,
+      "sha256": "cd6b4f7092fea5847dd94f452157ea50ab9b81b2682f69836a367edfc5df508c",
       "snapshot": "0.26.2"
     },
     {

@@ -40,10 +40,12 @@
 - 0.26.1 시뮬레이션 비교 검사(`design/release-0.26.1/check-simulation.cjs`)는 페이지 문장을 함수 밖에서 실행하므로 새 문장의 `return` 때문에 "Illegal return"으로 멈춘다. 과거 기록이라 고치지 않고, 함수 안에서 실행하는 `design/release-0.26.2/check-simulation.cjs`를 새로 만들었다.
 
 ### 크기 (바이트: 원본 / gzip-6)
+- 측정 방법: Python `len(gzip.compress(data, 6, mtime=0))`와 `gzip -6 -n < 파일 | wc -c`(파일 이름 없는 gzip 머리, 두 방법 같은 값). 0.26.1 열은 `git show main:<파일>`을 같은 방법으로 쟀다.
+- 정정(검증 R5): 처음 적은 0.26.2 gzip-6 값 56,130 / 55,568은 `gzip -6 -c <파일>`로 재서 gzip 머리에 파일 이름(`index.html`·`index.en.html`과 끝 0바이트, 11·14바이트)이 들어간 값이었다. 0.26.1 열과 같은 방법으로 다시 쟀다.
 | 파일 | 0.26.1 (main) | 0.26.2 |
 |---|---:|---:|
-| index.html | 181,791 / 55,504 | 183,665 / 56,130 |
-| index.en.html | 180,906 / 54,965 | 182,735 / 55,568 |
+| index.html | 181,791 / 55,504 | 183,665 / 56,119 |
+| index.en.html | 180,906 / 54,965 | 182,735 / 55,554 |
 | data/football/*.js | 변경 없음 | 변경 없음(`?v=` 그대로) |
 
 ### 검사
@@ -51,8 +53,10 @@
   - 정상 화면: main(0.26.1)과 한영 × 390/1440px 비교. 경기 목록(PL·라리가), 구단 검색, 아스널–리즈 프리뷰·시뮬레이션·자동 보고서, 자연어 질문 결과 글자, 본문 글자, `<main>` 마크업(보고서 생성 시각만 가림), 스크린샷 4장(목록·프리뷰·시뮬레이션·질문 결과)이 4개 조합 모두 같다. 641경기 × 시드 20개 시뮬레이션 차이 0. 페이지 오류 0, 가로 넘침 없음(`documentElement.clientWidth` 기준), 안내 요소 0개.
   - 자료 파일 막기 16경우(연결 실패는 두 너비 모두, 404·객체 없음은 390px): 모두 해당 언어 안내가 보인다. 경기 자료를 막으면 안내는 `<main>` 첫 요소로 첫 화면 안에 있고, 페이지 오류 4건(0.26.1은 5건, 안내 없음), 목록·검색은 비어 있다. 예측 파일을 막으면 목록·프리뷰·보고서는 그대로 나오고 시뮬레이션 자리에 안내가 보이며 페이지 오류 0건(0.26.1은 1건, 시뮬레이션 자리 없음). 다른 경기로 바꾸면 안내가 하나만 남고, 팀 화면에서는 사라진다.
   - 잘못된 `scoreGrid` 9가지(170칸, null 칸, 마지막 칸 누락, 가운데 칸 누락, 객체, 문자열, 키 없음, 음수 칸, 문자 칸) × 한영: 모두 "확률 검증 실패" 안내가 보이고 시뮬레이션은 그려지지 않는다. 같은 입력에서 0.26.1은 마지막 칸 누락·객체·문자열·키 없음 4가지에서 안내 없이 시뮬레이션을 그렸다. 원래 자료를 같은 경로로 넣은 대조는 정상 표시.
+- 0.26.1 스크립트(`design/release-0.26.1/check-simulation.cjs`)는 0.26.2 화면 문장으로는 동작하지 않으며, 같은 비교는 `design/release-0.26.2/check-simulation.cjs`가 맡는다.
 - `node design/release-0.26.2/check-simulation.cjs`: 새 문장으로 푼 예측 = main(0.26.1) 문장으로 푼 예측(JSON 글자 동일). 641경기 × 시드 20개·1,000개 모두 차이 0.
-- `python3 -I design/release-0.26.2/tamper-check.py <작업 폴더>`: 깨끗한 복제본에 하나씩 바꿔 넣은 15가지가 모두 FAIL, 대조는 PASS. 예측 생성기를 고쳐 `model_accepted` true→1, `source_date_is_verified_kickoff` false→0, `top_scores` 1→1.0으로 파일과 `?v=`까지 맞춰도 타입 비교에서 실패한다. README 두 개의 버전 불일치·버전 줄 삭제, VERSION 불일치, 안내 블록 삭제(한·영)·문구 변경·위치 이동·한영 코드 차이, 예측 안내 삭제, 0.26.1 풀기 문장으로 되돌리기도 실패한다. 결과 `tamper-result.json`.
+- `python3 -I design/release-0.26.2/tamper-check.py <작업 폴더>`: 깨끗한 복제본에 하나씩 바꿔 넣은 17가지가 모두 FAIL, 대조는 PASS. 예측 생성기를 고쳐 `model_accepted` true→1, `source_date_is_verified_kickoff` false→0, `top_scores` 1→1.0으로 파일과 `?v=`까지 맞춰도 타입 비교에서 실패한다. README 두 개의 버전 불일치·버전 줄 삭제, VERSION 불일치, 안내 블록 삭제(한·영)·문구 변경·위치 이동·한영 코드 차이, 예측 안내 삭제, 0.26.1 풀기 문장으로 되돌리기도 실패한다. 결과 `tamper-result.json`.
+- 검증 R1 반영: 처음에는 한영 안내 원본을 비교할 때 `const text={...};` 모양의 줄을 정규식으로 통째로 지웠기 때문에, 그 줄 끝에 `};`로 끝나는 코드를 덧붙이면 `check_release.py`와 `server/check.cjs`가 모두 통과했다(검사 커밋 82bce41에서 `window.__tamper={a:1};`을 한국어 원본·화면에 붙여 두 검사 PASS를 재현). 지금은 두 검사 모두 언어별 문구 줄이 정해진 문자열과 정확히 같고 문구 줄이 하나뿐이어야 하며, 그 줄만 지운 뒤 나머지 코드를 비교한다. 같은 변조(한·영 각각)가 두 검사 모두에서 FAIL한다.
 - `npm run test:server` 24개 PASS, `npm run build` 후 `node server/check-vercel.cjs` 5개 PASS, `node analysis/check.cjs` 15개 PASS, `npm run test:report` 14개 PASS(바뀐 `reports/release-0.25.0/checks.json` 시각은 되돌림), `npm run test:odds` PASS(877경기), `python3 -I design/release-0.26.1/compact_predictions.py --check` PASS(2,132,671 바이트).
 - `PORT=8813 node server/gemini.cjs`: `/` 200 183,665, `/index.en.html` 200 182,735, `/f1/index.html` 200, `/api/health` 200, 자료 파일 3개 200, `/data/football/x.js` 404. 서버는 PID로 종료.
 - `python3 -I tools/check_release.py`: PASS(manifest 갱신 후).

@@ -4,7 +4,7 @@
   "role": "builder",
   "producer_id": "builder-subagent-2026-10-21",
   "status": "DONE",
-  "summary": "SPEC-0.26.2 4개 항목 구현. (1) 언어 자료 태그 바로 뒤의 안내 코드가 자료 객체가 없으면(연결 실패·404·객체 없는 파일) <main> 맨 위에 페이지 언어 안내를 붙어 있게 표시하고, 예측 객체가 없으면 선택한 경기의 시뮬레이션 자리에 같은 안내를 표시한다. 정상 화면에는 요소를 만들지 않는다. (2) scoreGrid가 유한한 0 이상 숫자 169개가 아니면 빈 점수 분포를 넣어 시뮬레이션의 기존 '확률 검증 실패' 안내가 보이게 한다. 정상 자료를 푸는 결과는 0.26.1과 JSON 글자까지 같다. (3) check_release.py가 예측 필드를 타입까지 비교한다. (4) README 현재 버전 0.26.2, VERSION·package.json·README 불일치 시 check_release와 서버 검사가 실패한다. 복원 단계가 새 코드를 지워 v50 바이트 비교는 그대로 실행된다. 브라우저 비교 4조합 동일(글자·<main> 마크업·스크린샷·641×20 시뮬레이션), 막기 16경우 안내 표시, 잘못된 scoreGrid 18경우 실패 안내. 변조 15경우 모두 FAIL. 자가 점검이며 독립 검증이 아니다.",
+  "summary": "SPEC-0.26.2 4개 항목 구현. (1) 언어 자료 태그 바로 뒤의 안내 코드가 자료 객체가 없으면(연결 실패·404·객체 없는 파일) <main> 맨 위에 페이지 언어 안내를 붙어 있게 표시하고, 예측 객체가 없으면 선택한 경기의 시뮬레이션 자리에 같은 안내를 표시한다. 정상 화면에는 요소를 만들지 않는다. (2) scoreGrid가 유한한 0 이상 숫자 169개가 아니면 빈 점수 분포를 넣어 시뮬레이션의 기존 '확률 검증 실패' 안내가 보이게 한다. 정상 자료를 푸는 결과는 0.26.1과 JSON 글자까지 같다. (3) check_release.py가 예측 필드를 타입까지 비교한다. (4) README 현재 버전 0.26.2, VERSION·package.json·README 불일치 시 check_release와 서버 검사가 실패한다. 복원 단계가 새 코드를 지워 v50 바이트 비교는 그대로 실행된다. 브라우저 비교 4조합 동일(글자·<main> 마크업·스크린샷·641×20 시뮬레이션), 막기 16경우 안내 표시, 잘못된 scoreGrid 18경우 실패 안내. 변조 17경우 모두 FAIL(검증 R1 반영 후). 자가 점검이며 독립 검증이 아니다.",
   "cutoff_at": "2026-09-20",
   "observed_at": "2026-10-21",
   "provider": null,
@@ -28,11 +28,11 @@
     },
     {
       "path": "tools/check_release.py",
-      "description": "안내 블록·새 문장 제거 후 v50 바이트 비교 유지, 안내 블록 위치·원본 일치·한영 코드 동일, strict_equal 타입 비교, VERSION·package·README 버전 일치, 버전 0.26.2"
+      "description": "안내 블록·새 문장 제거 후 v50 바이트 비교 유지, 안내 블록 위치·원본 일치·한영 코드 동일, strict_equal 타입 비교, VERSION·package·README 버전 일치, 버전 0.26.2; 검증 R1 반영: 언어별 안내 문구 줄을 정확한 기대 문자열로 비교"
     },
     {
       "path": "server/check.cjs",
-      "description": "README·package 버전 = VERSION, 안내 블록 위치 검사 추가(22→24)"
+      "description": "README·package 버전 = VERSION, 안내 블록 위치 검사 추가(22→24); 검증 R1 반영: 문구 줄 정확 비교"
     },
     {
       "path": "server/check-result.json",
@@ -96,7 +96,7 @@
     },
     {
       "path": "design/release-0.26.2/tamper-result.json",
-      "description": "대조 PASS, 변조 15경우 모두 FAIL"
+      "description": "대조 PASS, 변조 17경우 모두 FAIL(검증 R1 반영 후 문구 줄 덧붙임 한·영 포함)"
     },
     {
       "path": "docs/SPEC-0.26.2.md",
@@ -116,6 +116,9 @@
     }
   ],
   "issues": [
+    "검증 R1 반영(커밋 319249a, 4d1c3a0): check_release.py와 server/check.cjs가 한영 안내 원본을 비교할 때 ^const text=\\{.*\\};$ 줄을 통째로 지워, 그 줄 끝에 '};'로 끝나는 코드를 붙이면 통과했다. 82bce41에서 window.__tamper={a:1};을 한국어 원본·화면에 붙여 check_release PASS, 서버 검사 24개 PASS를 재현했다. 이제 두 검사 모두 언어별 문구 줄이 기대 문자열과 정확히 같고 문구 줄이 하나뿐이어야 한다. 같은 변조(한·영)는 두 검사 모두 FAIL. 처음 넣었던 변조 사례는 '=1;'로 끝나 옛 정규식에도 걸렸으므로 검증자 재현 형태로 바꿨다.",
+    "검증 R5 반영: SPEC의 0.26.2 화면 gzip-6 크기를 56,130 / 55,568에서 56,119 / 55,554로 고쳤다. 처음 값은 gzip -6 -c <파일>로 재서 gzip 머리에 파일 이름(11·14바이트)이 들어간 값이었다. Python gzip.compress(data,6,mtime=0)와 gzip -6 -n < 파일이 같은 값이며, 0.26.1 열(55,504 / 54,965)도 같은 방법이다.",
+    "검증 R6 반영: SPEC 실행 결과에 0.26.1 시뮬레이션 스크립트는 0.26.2 화면 문장으로는 동작하지 않으며 같은 비교는 design/release-0.26.2/check-simulation.cjs가 맡는다고 적었다. 0.26.1 스크립트는 고치지 않았다.",
     "불러오기 실패는 script onerror가 아니라 바로 다음 코드에서 '자료 객체 없음'으로 감지한다. 연결 실패·404·객체 없는 파일 세 경우를 브라우저에서 확인했다. 자료 태그를 바꾸지 않아 기존 해시 태그 검사를 그대로 쓴다.",
     "경기 자료 안내는 position:sticky다. 처음에는 <main> 맨 위에만 넣었는데 #matches 주소로 열면 페이지가 아래로 이동해 안내가 화면 밖(top -489px)에 있었다. 1050px 이상에서는 머리글이 왼쪽 고정이라 겹치지 않음을 스크린샷으로 확인했다.",
     "경기 자료를 못 받으면 기존 화면 코드(const D=window.MatchLabData.data 등)가 멈춰 페이지 오류 4건이 남는다(0.26.1은 5건). 이 읽기 줄은 v50 복원 비교 기준이라 바꾸지 않았다. 목록·검색은 비고 안내만 보인다. 예측 파일 실패는 페이지 오류 0건(0.26.1은 1건).",
@@ -127,13 +130,13 @@
     "운영(Vercel) 배포 후 확인은 하지 않았다. 자료 파일은 바뀌지 않아 ?v=가 그대로다.",
     "브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단했다(정상 화면 콘솔 리소스 실패 13건씩 같음, 예측 막기 경우 28~29건은 차단한 로고와 막은 파일). 이미지 표시는 비교하지 않았다. Playwright 1.57.0은 저장소 밖(scratchpad/pw)에 있다.",
     "npm run test:report 실행이 reports/release-0.25.0/checks.json의 testedAt만 바꿔 되돌렸다.",
-    "커밋 해시: 36d9a4f(화면), 6e43aae(검사·버전), 3a09df1(안내 위치), 246d933(브라우저·변조 스크립트), 852eebc(브라우저 결과), 79b660a(시뮬레이션·변조 결과). 기록 커밋의 해시는 이 파일 안에 적을 수 없다.",
+    "커밋 해시: 36d9a4f(화면), 6e43aae(검사·버전), 3a09df1(안내 위치), 246d933(브라우저·변조 스크립트), 852eebc(브라우저 결과), 79b660a(시뮬레이션·변조 결과), 0d666ff(기록), 319249a(R1 수정), 4d1c3a0(R1 변조 사례). 검증자 커밋 82bce41은 건드리지 않았다. 이 파일을 담은 기록 커밋의 해시는 여기 적을 수 없다.",
     "자가 점검 결과이며 독립 검증이 아니다."
   ],
   "tests": [
     {
       "command": "npm run test:server",
-      "result": "PASS 24 server checks"
+      "result": "PASS 24 server checks (R1 수정 후 재실행)"
     },
     {
       "command": "npm run build",
@@ -168,8 +171,8 @@
       "result": "NO_DIFFERENCE; main 문장과 풀린 결과 동일"
     },
     {
-      "command": "python3 -I design/release-0.26.2/tamper-check.py <scratchpad>/tamper2",
-      "result": "PASS: 대조 PASS, 변조 15경우 FAIL"
+      "command": "python3 -I design/release-0.26.2/tamper-check.py <scratchpad>/tamper4",
+      "result": "PASS: 대조 PASS, 변조 17경우 모두 FAIL (commit 4d1c3a0). 문구 줄 덧붙임 한·영은 check_release와 서버 검사 둘 다 FAIL"
     },
     {
       "command": "node design/release-0.26.1/check-simulation.cjs",
@@ -180,8 +183,12 @@
       "result": "/ 200 183,665; /index.en.html 200 182,735; /f1/index.html 200; /api/health 200; 자료 파일 3개 200; /data/football/x.js 404; PID로 종료"
     },
     {
+      "command": "82bce41 복제본에 window.__tamper={a:1}; 덧붙임(한국어 원본·화면) 후 check_release --write-manifest / node server/check.cjs",
+      "result": "수정 전: 둘 다 PASS(우회 재현). 319249a: 'Load notice text line differs from the expected exact line: ko' / 'ko text line must be exactly the expected line'로 둘 다 FAIL"
+    },
+    {
       "command": "python3 -I tools/check_release.py",
-      "result": "PASS (1726 hashed files, 12 links, worst outcome error 1.2e-08) after --write-manifest"
+      "result": "PASS (1738 hashed files, 12 links, worst outcome error 1.2e-08) after --write-manifest"
     }
   ]
 }
