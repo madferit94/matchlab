@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 20880,
-      "sha256": "6eb5c8a6316d17aa64a835cb2f2d014aea7bbc0eb40d873bf239d46d109efe07",
+      "bytes": 20892,
+      "sha256": "31d9b8e705028edf6d7797896e548a086d5cd8f8ea12bd729fd317c3710268c6",
       "snapshot": "0.26.1"
     },
     {
@@ -5074,8 +5074,8 @@
     },
     {
       "path": "design/release-0.26.1/builder-report.json",
-      "bytes": 8404,
-      "sha256": "c5efeb82dadcbe68d3b2a0f6992084b2b88d1ed70cb9fbf8cd5fe92fc540b0bd",
+      "bytes": 8859,
+      "sha256": "f62aa9a524e5a5a1e82fdd3c4a8f7281c141216c878a8bafd9ca8d3668c4109c",
       "snapshot": "0.26.1"
     },
     {
@@ -5109,9 +5109,87 @@
       "snapshot": "0.26.1"
     },
     {
+      "path": "design/release-0.26.1/review/en-1440-analysis.png",
+      "bytes": 30605,
+      "sha256": "0da16c4d8d6f5c2366a0949c269b7beb578b4becf09d5335652c66912aac40e6",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/en-1440-preview.png",
+      "bytes": 284000,
+      "sha256": "da048c4ee5be86f1d4bbcf3b0ff842bff1960a8366a5053e4df4b739e6501caf",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/en-1440-simulation.png",
+      "bytes": 56437,
+      "sha256": "e383e40d8cbf8bc705ca92fd6fc53c958a2f38cc3364aef9462e49aea0896539",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/en-390-analysis.png",
+      "bytes": 28629,
+      "sha256": "090e04103abbf75ad74bcef7d54de0b356655de691aa88a94086ef3084015d31",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/en-390-preview.png",
+      "bytes": 273473,
+      "sha256": "faa52d55d4e9029849bdec791ffdceba30c64aab562126a01110d29105c1ecdc",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/en-390-simulation.png",
+      "bytes": 50898,
+      "sha256": "efb73d07aab00135eb6de5a6369e1ee1c2db070ef5a9ae1c914eba96bedc918f",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/ko-1440-analysis.png",
+      "bytes": 59804,
+      "sha256": "7f9738ec1298fcaad4809407cf36548642e26b336800f530522b877d7fba589d",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/ko-1440-preview.png",
+      "bytes": 263791,
+      "sha256": "15c5a0ecaf4fede2d2f2d88f1f0414d1ac7c57cbbb33f3dbd714a564ab865aad",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/ko-1440-simulation.png",
+      "bytes": 55754,
+      "sha256": "e2eacba7a285e9b0e7988dd126f049476368d685b2103ee34722d873488a15a8",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/ko-390-analysis.png",
+      "bytes": 53705,
+      "sha256": "023da432b7199b6cd0468ee025b951d78716d377adf9886bc12c24bbe45e4a8d",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/ko-390-preview.png",
+      "bytes": 252806,
+      "sha256": "9484e4484911048a1055d0bec12e9b9684dd1df6c676d5f245f957ee4813faaa",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/review/ko-390-simulation.png",
+      "bytes": 50527,
+      "sha256": "559871cec5a1433ba20ce0266e411fc7b3131eca24aba9dbb99bc0ebb525b90a",
+      "snapshot": "0.26.1"
+    },
+    {
       "path": "design/release-0.26.1/simulation-result.json",
       "bytes": 798,
       "sha256": "5e72d286c1fefa157c9ddea346d04cb030c22a7660ba120f884fb08651781a96",
+      "snapshot": "0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/validation-report.json",
+      "bytes": 17994,
+      "sha256": "40e0a748d7cc96321b124a29d9766e93dd82c74b9ea6efab6f686717c63750e3",
       "snapshot": "0.26.1"
     },
     {
@@ -5446,8 +5524,8 @@
     },
     {
       "path": "docs/SPEC-0.26.1.md",
-      "bytes": 11882,
-      "sha256": "555afa7f5e00abd482c1f0ca70679947cf1d88aa8fa2bbeeff16e6f43bf1184d",
+      "bytes": 12766,
+      "sha256": "70c6290df2c112f221f2b072cb132060b43d3405844629158fe1b0ce0965f312",
       "snapshot": "0.26.1"
     },
     {
