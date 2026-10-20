@@ -663,7 +663,7 @@ async function checkGeminiConnection(){
 }
 checkGeminiConnection();
 
-</script><script src="data/football/predictions.js?v=287805684a395bfc"></script><script>(function(root){
+</script><script src="data/football/predictions.js?v=8850a2ae9237674d"></script><script>(function(root){
   'use strict';
   function validate(p){
     if(!p || !Array.isArray(p.probabilities) || p.probabilities.length!==3 || p.probabilities.some(x=>typeof x!=='number'||!Number.isFinite(x)||x<0||x>1) || Math.abs(p.probabilities.reduce((a,b)=>a+b,0)-1)>1e-6) throw new Error('Three ordered probabilities summing to 1 are required.');
@@ -807,7 +807,7 @@ checkGeminiConnection();
 })(typeof window!=='undefined'?window:globalThis);
 </script><script>(function(){
   'use strict';
-  const bundle=window.MatchLabData.predictions;
+  const bundle=window.MatchLabData.predictions;bundle.predictions.forEach(p=>{if(Array.isArray(p.scoreGrid)){p.scoreDistribution=p.scoreGrid.map((probability,i)=>({home:Math.floor(i/13),away:i%13,probability}));delete p.scoreGrid;}});
   const byKey=new Map(bundle.predictions.map(p=>[p.match_key,p]));
   const en=document.documentElement.lang==='en';
   let active=null,activeKey=null,host=null;

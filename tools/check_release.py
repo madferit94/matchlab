@@ -44,6 +44,20 @@ def data_json_text(name, key):
     head=DATA_PREFIX+key+'='
     assert text.startswith(head) and text.endswith(';\n') and text.count('\n')==1, 'Football data file format drift: '+name
     return text[len(head):-2]
+# 0.26.1: predictions.js stores scoreGrid (169 numbers, 8 significant digits,
+# home goals 0..12 then away goals 0..12) instead of scoreDistribution objects.
+# The pages expand it right after reading the bundle. The rebuild below puts the
+# ORIGINAL v50 prediction block back and removes that expansion, so the v50
+# byte comparisons keep running unchanged; the compact file is checked against
+# the v50 original separately.
+V50=p/'archive/visualizations/visualization-design-2026-10-08-v50'
+PREDICTION_EXPANSION="bundle.predictions.forEach(p=>{if(Array.isArray(p.scoreGrid)){p.scoreDistribution=p.scoreGrid.map((probability,i)=>({home:Math.floor(i/13),away:i%13,probability}));delete p.scoreGrid;}});"
+def v50_block(name, ident):
+    blocks=re.findall(r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>',(V50/name).read_text(encoding='utf8'))
+    assert len(blocks)==1, 'Archived v50 block missing: '+name+' '+ident
+    return blocks[0]
+ORIGINAL_PREDICTIONS=v50_block('index.html','prematch-predictions-v22')
+assert ORIGINAL_PREDICTIONS==v50_block('index.en.html','prematch-predictions-v22'), 'Archived v50 prediction blocks differ by language'
 def data_tag(name):
     digest=hashlib.sha256((data_dir/name).read_bytes()).hexdigest()[:16]
     return '<script src="data/football/'+name+'?v='+digest+'"></script>'
@@ -52,7 +66,11 @@ def reconstruct_inline(name):
     for file,key,ident in [(FOOTBALL_DATA[name],'data','data'),('predictions.js','predictions','prematch-predictions-v22')]:
         tag=data_tag(file)
         assert html.count(tag)==1, 'Football data tag missing or ?v= hash differs from file contents: '+name+' '+file
-        html=html.replace(tag,'<script id="'+ident+'" type="application/json">'+data_json_text(file,key)+'</script>')
+        block=ORIGINAL_PREDICTIONS if file=='predictions.js' else data_json_text(file,key)
+        html=html.replace(tag,'<script id="'+ident+'" type="application/json">'+block+'</script>')
+    reader=DATA_READERS[1][1]
+    assert html.count(PREDICTION_EXPANSION)==1 and html.count(reader+PREDICTION_EXPANSION)==1, 'Score grid expansion missing or moved: '+name
+    html=html.replace(reader+PREDICTION_EXPANSION,reader)
     for before,after in DATA_READERS:
         assert html.count(after)==1 and html.count(before)==0, 'Football data reader drift: '+name
         html=html.replace(after,before)
@@ -70,6 +88,29 @@ for name in FOOTBALL_DATA:
         rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'
         assert re.findall(rx,rebuilt)==re.findall(rx,archived) and len(re.findall(rx,archived))==1, 'Football data differs from v50: '+name+' '+ident
 assert data_json_text('data.ko.js','data')!=data_json_text('data.en.js','data'), 'Language data files unexpectedly identical'
+# 0.26.1 compact prediction file checks.
+import importlib.util
+sys.dont_write_bytecode=True  # no __pycache__ inside the published tree
+compact_spec=importlib.util.spec_from_file_location('compact_predictions',p/'design/release-0.26.1/compact_predictions.py')
+compact_module=importlib.util.module_from_spec(compact_spec); compact_spec.loader.exec_module(compact_module)
+assert compact_module.build().encode('utf8')==(data_dir/'predictions.js').read_bytes(), 'predictions.js differs from compact_predictions.py output'
+original_bundle=json.loads(ORIGINAL_PREDICTIONS)
+compact_bundle=json.loads(data_json_text('predictions.js','predictions'))
+assert list(compact_bundle)==list(original_bundle) and all(compact_bundle[k]==original_bundle[k] for k in original_bundle if k!='predictions'), 'Prediction bundle fields differ from v50'
+assert len(compact_bundle['predictions'])==len(original_bundle['predictions'])==641, 'Prediction count drift'
+worst_outcome_error=0.0
+for compact_p,original_p in zip(compact_bundle['predictions'],original_bundle['predictions']):
+    key=original_p['match_key']
+    assert list(compact_p)==['scoreGrid' if k=='scoreDistribution' else k for k in original_p], 'Prediction key order drift: '+key
+    assert all(compact_p[k]==original_p[k] for k in original_p if k!='scoreDistribution'), 'Prediction field differs from v50: '+key
+    cells=original_p['scoreDistribution']; grid=compact_p['scoreGrid']
+    assert len(cells)==len(grid)==169 and all((c['home'],c['away'])==divmod(i,13) for i,c in enumerate(cells)), 'Score grid shape drift: '+key
+    assert all(type(v) is float and v==float(f"{c['probability']:.8g}") for v,c in zip(grid,cells)), 'Score cell is not the 8-digit rounding of v50: '+key
+    masses=[0.0,0.0,0.0]
+    for v,c in zip(grid,cells): masses[0 if c['home']>c['away'] else 1 if c['home']==c['away'] else 2]+=v
+    error=max(abs(m-compact_p['probabilities'][o]) for m,o in zip(masses,['home','draw','away']))
+    assert error<1e-6, 'Score grid outcome mass differs by 1e-6 or more: '+key
+    worst_outcome_error=max(worst_outcome_error,error)
 # Verify the exact shared presentation layer before comparing preserved application code.
 def presentation_base(name, normalize_analysis=True):
     html=page_source(name)
@@ -179,15 +220,15 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'} or b'\0' not in b:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.26.0'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.26.1'
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.26.0',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version='0.26.1',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
     actual=json.loads((p/'publication_manifest.json').read_text(encoding='utf8'))
     assert actual==manifest,'Manifest differs from current release files'
-print(f'PASS release audit: {len(entries)} hashed files, {links} local documentation links; design payloads identical; no private/admin files or credential-pattern matches.')
+print(f'PASS release audit: {len(entries)} hashed files, {links} local documentation links; design payloads identical; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error {worst_outcome_error:.1e}); no private/admin files or credential-pattern matches.')
 
 
 
