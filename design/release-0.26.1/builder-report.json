@@ -1,0 +1,146 @@
+{
+  "run_id": "matchlab-0.26.1-2026-10-20",
+  "match_key": "ALL_FOOTBALL_PAGES",
+  "role": "builder",
+  "producer_id": "builder-subagent-2026-10-20",
+  "status": "DONE",
+  "summary": "SPEC-0.26.1 B안 구현. data/football/predictions.js의 경기별 scoreDistribution(객체 169개)을 scoreGrid(숫자 169개, 유효숫자 8자리, 홈 득점 우선)로 바꿨다. 파일은 v50 보관 원본에서 design/release-0.26.1/compact_predictions.py로 만든다(6,789,268→2,132,671 바이트, gzip-6 1,535,945→722,824). 화면 2개는 예측을 읽는 한 줄 뒤에 같은 풀기 문장 하나를 붙여 원래 객체로 되돌린다. 시뮬레이션 모듈·확률·score_summary·모델은 그대로다. 서버 검사와 check_release.py는 v50 원본 대비 필드 동일·칸=8자리 반올림·합계 오차<1e-6을 확인하고, 기존 v50 바이트 비교는 원본 블록으로 복원해 그대로 실행한다. 시뮬레이션 비교 641경기×시드 20개 차이 0, 브라우저 비교 4조합 동일. 자가 점검이며 독립 검증이 아니다.",
+  "cutoff_at": "2026-09-20",
+  "observed_at": "2026-10-20",
+  "evidence": [
+    {
+      "path": "design/release-0.26.1/compact_predictions.py",
+      "description": "v50 원본 → 압축 예측 파일 생성(표준 라이브러리, 결정적), --check로 재생성 비교"
+    },
+    {
+      "path": "data/football/predictions.js",
+      "description": "2,132,671 바이트, sha256 앞16 8850a2ae9237674d (이전 287805684a395bfc)"
+    },
+    {
+      "path": "index.html",
+      "description": "181,791 바이트. 예측 읽는 줄 뒤 scoreGrid 풀기 문장 1개, predictions.js ?v=8850a2ae9237674d"
+    },
+    {
+      "path": "index.en.html",
+      "description": "180,906 바이트. 한국어와 같은 풀기 문장과 ?v="
+    },
+    {
+      "path": "server/check.cjs",
+      "description": "예측 바이트 비교를 v50 필드 동일·칸 toPrecision(8)·합계 오차<1e-6 검사로 교체, 21→22개"
+    },
+    {
+      "path": "server/check-result.json",
+      "description": "checks 22, failures 0"
+    },
+    {
+      "path": "tools/check_release.py",
+      "description": "복원 시 v50 원본 예측 블록 사용·풀기 문장 제거 후 기존 v50 바이트 비교 유지, 재생성·필드·반올림·합계·?v=·풀기 위치 검사 추가, 버전 0.26.1"
+    },
+    {
+      "path": "design/release-0.26.1/check-simulation.cjs",
+      "description": "공용 시뮬레이션 sample()로 v50 원본 vs 화면 코드로 푼 압축 분포 비교"
+    },
+    {
+      "path": "design/release-0.26.1/simulation-result.json",
+      "description": "NO_DIFFERENCE: 641×20=12,820회 승무패 0·점수 0, 추가 641×1000 회도 0; 칸 최대 상대 오차 4.96e-8, 합계 최대 오차 1.17e-8"
+    },
+    {
+      "path": "design/release-0.26.1/check-browser.cjs",
+      "description": "main(0.26.0) vs 브랜치 화면 글자·화면 안 고정 시드 시뮬레이션 비교"
+    },
+    {
+      "path": "design/release-0.26.1/browser-result.json",
+      "description": "PASS, 한영×390/1440 4조합 동일, 641×20 고정 시드 차이 0, 페이지 오류 0, 가로 넘침 없음(clientWidth 기준)"
+    },
+    {
+      "path": "design/release-0.26.1/preview-ko-390.png",
+      "description": "한국어 390px 아스널–리즈 프리뷰·시뮬레이션·보고서"
+    },
+    {
+      "path": "design/release-0.26.1/preview-en-1440.png",
+      "description": "영어 1440px 프리뷰"
+    },
+    {
+      "path": "design/release-0.26.1/analysis-ko-390.png",
+      "description": "한국어 390px 자연어 질문 결과"
+    },
+    {
+      "path": "design/release-0.26.1/analysis-en-1440.png",
+      "description": "영어 1440px 자연어 질문 결과"
+    },
+    {
+      "path": "docs/SPEC-0.26.1.md",
+      "description": "상태와 실행 결과(크기·검사·남은 확인)"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "description": "0.26.1 항목"
+    },
+    {
+      "path": "VERSION",
+      "description": "0.26.1 (package.json 동일)"
+    },
+    {
+      "path": "publication_manifest.json",
+      "description": "check_release --write-manifest로 갱신, version 0.26.1"
+    }
+  ],
+  "issues": [
+    "운영(Vercel) 배포 후 파일 해시·실제 전송 크기(brotli)·화면은 확인하지 않았다. 참고로 Node brotli 품질 11은 801,368→444,843, 품질 4는 1,284,958→570,080 바이트였다.",
+    "SPEC 표의 '1.47MB→0.70MB'는 MiB 기준 값이다. 바이트로는 gzip-6 1,535,945→722,824. CHANGELOG에는 한국어 첫 방문 gzip-6 합계 1,834,190→1,021,143 바이트를 '약 1.83MB → 1.02MB'로 적었다(SPEC의 '약 1.7MB'는 gzip-9 1,727,748 기준).",
+    "화면의 풀기 문장은 window.MatchLabData.predictions 객체를 그 자리에서 바꾼다(scoreGrid 삭제, scoreDistribution 추가). 이 객체를 읽는 다른 화면 코드는 없음을 확인했다. 풀린 객체에서 scoreDistribution 키 위치는 원본과 달리 맨 뒤다(키 순서를 쓰는 코드 없음).",
+    "승무패는 확률만으로 정해지므로 시뮬레이션 비교에서 승무패 차이는 구조상 생길 수 없다. 의미 있는 비교는 점수이며 0건이었다. 음성 대조(같은 결과 안 두 칸 사이 1% 이동)로 검사가 차이를 잡는 것(20시드 3건, 1000시드 425건; 브라우저 조합마다 3건)을 확인했다.",
+    "tools/check_release.py는 생성 스크립트를 importlib로 불러 재생성 결과를 비교한다. __pycache__가 공개 파일에 생기지 않도록 sys.dont_write_bytecode=True를 설정했다.",
+    "브라우저 검사에서 외부 글꼴·로고(cdn.jsdelivr.net, cdn.statmuse.com)는 두 버전 모두 차단했다(리소스 실패 13건씩 동일). 이미지 표시는 비교하지 않았다. Playwright 1.57.0은 저장소 밖(scratchpad/pw)에 있다.",
+    "npm run test:report 실행이 reports/release-0.25.0/checks.json의 testedAt만 바꿔 되돌렸다.",
+    "0.26.0에서 기록한 내장 JSON을 읽는 과거 버전 검사 4개는 이번에 다시 실행하지 않았다. 현재 코드 중 data/football/predictions.js를 읽는 곳은 server/football-data.cjs·report.cjs(확률만 사용)·화면뿐임을 git grep으로 확인했다.",
+    "커밋 해시: 092da6f(구현), f0983ef(비교 검사). 기록 커밋(VERSION·CHANGELOG·SPEC·manifest·이 보고서)의 해시는 이 파일 안에 적을 수 없다.",
+    "자가 점검 결과이며 독립 검증이 아니다."
+  ],
+  "tests": [
+    {
+      "command": "python3 -I design/release-0.26.1/compact_predictions.py --check",
+      "result": "PASS (2,132,671 bytes); 파일 한 칸 변경 시 FAIL exit 1 확인"
+    },
+    {
+      "command": "npm run test:server",
+      "result": "PASS 22 server checks"
+    },
+    {
+      "command": "npm run build",
+      "result": "PASS: 화면 3개 + 자료 파일 3개, dist 예측 파일 = 저장소 파일"
+    },
+    {
+      "command": "node server/check-vercel.cjs",
+      "result": "PASS 5"
+    },
+    {
+      "command": "node analysis/check.cjs",
+      "result": "PASS 15"
+    },
+    {
+      "command": "npm run test:report",
+      "result": "PASS 14"
+    },
+    {
+      "command": "npm run test:odds",
+      "result": "PASS evaluated 877"
+    },
+    {
+      "command": "python3 -I tools/check_release.py",
+      "result": "PASS (1696 hashed files, worst outcome error 1.2e-08). 음성 대조: 칸 한 자리 변경(?v= 그대로→해시 불일치, ?v= 갱신→재생성 불일치), 풀기 문장 삭제, 생성기 7자리+파일·해시 맞춤(→8자리 반올림 불일치) 모두 FAIL"
+    },
+    {
+      "command": "node design/release-0.26.1/check-simulation.cjs",
+      "result": "NO_DIFFERENCE: 12,820회 승무패 0·점수 0; 추가 641,000회 0"
+    },
+    {
+      "command": "NODE_PATH=<scratchpad>/pw/node_modules node design/release-0.26.1/check-browser.cjs",
+      "result": "PASS 4 combinations, 고정 시드 641×20 차이 0; 음성 대조 시 FAIL(조합마다 3건)"
+    },
+    {
+      "command": "PORT=8812 npm start + curl (먼저 PORT=8811 node server/gemini.cjs로도 확인)",
+      "result": "/ 200 181,791; /index.en.html 200 180,906; /api/health 200; data.ko.js 200 1,823,065; data.en.js 200 1,822,191; predictions.js 200 2,132,671(파일과 바이트 동일, 8811에서 cmp); /data/football/x.js 404. node·npm 프로세스를 PID로 종료"
+    }
+  ]
+}
