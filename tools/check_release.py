@@ -23,6 +23,15 @@ for doc in link_docs:
         if doc.parent==repo and not target.startswith(prefix): continue
         assert (doc.parent/target.split('#')[0]).exists(), f'Missing link in {doc.name}: {target}'
         links+=1
+# 0.26.2: one release number everywhere. README "current version" lines must
+# match VERSION (they were left at 0.25.3 through 0.26.1).
+RELEASE='0.26.2'
+version_file=(p/'VERSION').read_text(encoding='utf8').strip()
+assert version_file==RELEASE, 'VERSION differs from the release checker version: '+version_file
+assert json.loads((p/'package.json').read_text(encoding='utf8'))['version']==RELEASE, 'package.json version differs from VERSION'
+for readme,label in [('README.md','Current version: '),('README.ko.md','현재 버전: ')]:
+    shown=re.findall(re.escape(label)+r'\*\*([^*\n]+)\*\*',(p/readme).read_text(encoding='utf8'))
+    assert shown==[RELEASE], readme+' current version '+repr(shown)+' differs from VERSION '+RELEASE
 def payload(version):
     html=(p/f'archive/visualizations/visualization-design-2026-10-06-{version}/index.html').read_text(encoding='utf8')
     return json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>',html,re.S)[1])
@@ -51,7 +60,37 @@ def data_json_text(name, key):
 # byte comparisons keep running unchanged; the compact file is checked against
 # the v50 original separately.
 V50=p/'archive/visualizations/visualization-design-2026-10-08-v50'
-PREDICTION_EXPANSION="bundle.predictions.forEach(p=>{if(Array.isArray(p.scoreGrid)){p.scoreDistribution=p.scoreGrid.map((probability,i)=>({home:Math.floor(i/13),away:i%13,probability}));delete p.scoreGrid;}});"
+# 0.26.2: the statement after the reader (a) stops quietly when the match data
+# object is missing (the top notice is already shown), (b) shows the load notice
+# in the simulation place when the prediction object is missing, and (c) expands
+# scoreGrid only when it is exactly 169 finite non-negative numbers; otherwise
+# it sets an empty scoreDistribution so the simulation's own validation fails
+# and the existing "invalid probabilities" message is shown. The whole
+# statement is removed in the rebuild, exactly like the 0.26.1 expansion was.
+PREDICTION_EXPANSION=("if(!window.MatchLabData.data)return;"
+    "if(!bundle||!Array.isArray(bundle.predictions)){let host=null;const show=()=>{if(host)host.remove();host=null;if(V!=='matches'||!selected)return;host=document.createElement('div');host.id='prediction-simulation-v22';host.appendChild(MatchLabLoadNotice('predictions'));document.getElementById('matches').appendChild(host);};const baseMatches=renderMatches;renderMatches=function(){baseMatches();show();};const baseRender=render;render=function(){baseRender();show();};window.addEventListener('pagehide',()=>{if(host)host.remove();host=null;});show();return;}"
+    "bundle.predictions.forEach(p=>{if(!p.scoreDistribution){const g=p.scoreGrid,ok=Array.isArray(g)&&g.length===169&&Array.from(g).every(v=>typeof v==='number'&&Number.isFinite(v)&&v>=0);p.scoreDistribution=ok?g.map((probability,i)=>({home:Math.floor(i/13),away:i%13,probability})):[];delete p.scoreGrid;}});")
+# 0.26.2: load-failure notice, inlined right after the language data tag. The
+# sources live in design/release-0.26.2; logic is identical, only the text line
+# differs by language. The rebuild removes the block before the v50 comparison.
+NOTICE_LANG={'index.html':'ko','index.en.html':'en'}
+NOTICE_TEXT={'ko':['경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.','예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'],
+             'en':['Match data could not be loaded. Please refresh in a moment.','Prediction data could not be loaded. Please refresh in a moment.']}
+def notice_block(name):
+    lang=NOTICE_LANG[name]
+    source=(p/'design/release-0.26.2'/('load-notice.'+lang+'.js')).read_text(encoding='utf8').rstrip('\n')
+    assert all(text in source for text in NOTICE_TEXT[lang]), 'Load notice text missing: '+lang
+    assert '</script' not in source, 'Load notice source cannot be inlined'
+    return '<script id="matchlab-load-notice">'+source+'</script>'
+notice_logic=[re.sub(r"^const text=\{.*\};$",'',(p/'design/release-0.26.2'/('load-notice.'+lang+'.js')).read_text(encoding='utf8'),flags=re.M) for lang in ['ko','en']]
+assert notice_logic[0]==notice_logic[1], 'Load notice logic differs by language'
+assert not re.search('[가-힣]',(p/'design/release-0.26.2/load-notice.en.js').read_text(encoding='utf8')), 'Korean text in the English load notice'
+def strict_equal(a,b):
+    """JSON value equality that also compares types: True != 1 and 1 != 1.0."""
+    if type(a) is not type(b): return False
+    if isinstance(a,dict): return list(a)==list(b) and all(strict_equal(a[k],b[k]) for k in a)
+    if isinstance(a,list): return len(a)==len(b) and all(strict_equal(x,y) for x,y in zip(a,b))
+    return a==b
 def v50_block(name, ident):
     blocks=re.findall(r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>',(V50/name).read_text(encoding='utf8'))
     assert len(blocks)==1, 'Archived v50 block missing: '+name+' '+ident
@@ -63,6 +102,9 @@ def data_tag(name):
     return '<script src="data/football/'+name+'?v='+digest+'"></script>'
 def reconstruct_inline(name):
     html=(p/name).read_text(encoding='utf8')
+    notice=data_tag(FOOTBALL_DATA[name])+notice_block(name)
+    assert html.count(notice_block(name))==1 and html.count(notice)==1, 'Load notice missing or moved: '+name
+    html=html.replace(notice,data_tag(FOOTBALL_DATA[name]))
     for file,key,ident in [(FOOTBALL_DATA[name],'data','data'),('predictions.js','predictions','prematch-predictions-v22')]:
         tag=data_tag(file)
         assert html.count(tag)==1, 'Football data tag missing or ?v= hash differs from file contents: '+name+' '+file
@@ -74,7 +116,7 @@ def reconstruct_inline(name):
     for before,after in DATA_READERS:
         assert html.count(after)==1 and html.count(before)==0, 'Football data reader drift: '+name
         html=html.replace(after,before)
-    assert 'data/football/' not in html and 'MatchLabData' not in html, 'Unexpected extra football data reference: '+name
+    assert 'data/football/' not in html and 'MatchLabData' not in html and 'matchlab-load-notice' not in html, 'Unexpected extra football data reference: '+name
     return html
 def page_source(name):
     return reconstruct_inline(name) if name in FOOTBALL_DATA else (p/name).read_text(encoding='utf8')
@@ -96,13 +138,13 @@ compact_module=importlib.util.module_from_spec(compact_spec); compact_spec.loade
 assert compact_module.build().encode('utf8')==(data_dir/'predictions.js').read_bytes(), 'predictions.js differs from compact_predictions.py output'
 original_bundle=json.loads(ORIGINAL_PREDICTIONS)
 compact_bundle=json.loads(data_json_text('predictions.js','predictions'))
-assert list(compact_bundle)==list(original_bundle) and all(compact_bundle[k]==original_bundle[k] for k in original_bundle if k!='predictions'), 'Prediction bundle fields differ from v50'
+assert list(compact_bundle)==list(original_bundle) and all(strict_equal(compact_bundle[k],original_bundle[k]) for k in original_bundle if k!='predictions'), 'Prediction bundle fields differ from v50'
 assert len(compact_bundle['predictions'])==len(original_bundle['predictions'])==641, 'Prediction count drift'
 worst_outcome_error=0.0
 for compact_p,original_p in zip(compact_bundle['predictions'],original_bundle['predictions']):
     key=original_p['match_key']
     assert list(compact_p)==['scoreGrid' if k=='scoreDistribution' else k for k in original_p], 'Prediction key order drift: '+key
-    assert all(compact_p[k]==original_p[k] for k in original_p if k!='scoreDistribution'), 'Prediction field differs from v50: '+key
+    assert all(strict_equal(compact_p[k],original_p[k]) for k in original_p if k!='scoreDistribution'), 'Prediction field differs from v50 (value or type): '+key
     cells=original_p['scoreDistribution']; grid=compact_p['scoreGrid']
     assert len(cells)==len(grid)==169 and all((c['home'],c['away'])==divmod(i,13) for i,c in enumerate(cells)), 'Score grid shape drift: '+key
     assert all(type(v) is float and v==float(f"{c['probability']:.8g}") for v,c in zip(grid,cells)), 'Score cell is not the 8-digit rounding of v50: '+key
@@ -220,9 +262,9 @@ for f in files:
     if Path(relative).suffix in text_ext or Path(relative).name in {'.gitignore','.gitattributes','VERSION'} or b'\0' not in b:
         b=b.replace(b'\r\n',b'\n')
     digest=hashlib.sha256(b).hexdigest()
-    snapshot=labels[relative] if old_hashes.get(relative)==digest else '0.26.1'
+    snapshot=labels[relative] if old_hashes.get(relative)==digest else RELEASE
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version='0.26.1',public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version=RELEASE,public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
