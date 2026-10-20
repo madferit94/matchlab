@@ -1,0 +1,26 @@
+{
+  "release": "0.26.1",
+  "checked_at": "2026-10-20",
+  "method": "node simulation/pixel-v2-2026-10-06-v01/pixel-simulation.js sample() on the v50 original scoreDistribution vs the compact predictions.js expanded by the page code; same mulberry32 stream per match and seed",
+  "matches": 641,
+  "cellsCompared": 108329,
+  "worstCellRelativeError": 4.958226976314834e-8,
+  "worstCellAbsoluteError": 4.988908980374518e-9,
+  "worstOutcomeMassError": 1.1718245818137518e-8,
+  "validatePassed": true,
+  "primary": {
+    "seeds": 20,
+    "runs": 12820,
+    "outcomeDifferences": 0,
+    "scoreDifferences": 0,
+    "examples": []
+  },
+  "supplementary": {
+    "seeds": 1000,
+    "runs": 641000,
+    "outcomeDifferences": 0,
+    "scoreDifferences": 0,
+    "examples": []
+  },
+  "status": "NO_DIFFERENCE"
+}
