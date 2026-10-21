@@ -5356,8 +5356,8 @@
     },
     {
       "path": "design/release-0.26.2/validation-report.json",
-      "bytes": 17358,
-      "sha256": "513ecf52e1471069796ec349ea1033a3d4fea8436409979ca760d73119ae75e2",
+      "bytes": 20418,
+      "sha256": "9808bbe04f06ad9d747f4b538b6d2961a02df709ebbefe6e5be7f7c29f3e0022",
       "snapshot": "0.26.2"
     },
     {
