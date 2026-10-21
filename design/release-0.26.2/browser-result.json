@@ -1,0 +1,2123 @@
+{
+  "status": "PASS",
+  "testedAt": "2026-10-20T16:42:32.007Z",
+  "oldRef": "main",
+  "oldCommit": "2243d8b02f88a6f4fed3000f0f0c32e52bb73793",
+  "newCommit": "246d9339d924bedca3531a5c11a41a8a1e35045a + working tree",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome 155.0.8059.85",
+  "method": "Two local servers (old ref via git archive, current tree), key empty so no AI or news calls; all non-local requests aborted; reduced motion; Math.random seeded with mulberry32(20261021) in both versions. Normal: innerText of upcoming lists (EPL, LaLiga), club search, preview, simulation panel, report, local natural-language answer, body text and <main> outerHTML (sha256, report creation clock text masked) at list and preview, PNG bytes of list viewport / #matches preview / simulation panel / analysis result, plus MatchDeskSimulation.sample() for 641 matches x 20 seeds. Overflow = scrollWidth > documentElement.clientWidth. Load failures: request routing aborts the file, answers 404, or answers 200 without the data object. Malformed scoreGrid: predictions.js served with one changed Arsenal-Leeds grid.",
+  "match": "understat:31230",
+  "questions": {
+    "ko": "아스널 최근 5경기 득점과 기대 득점 비교해 줘",
+    "en": "Compare Arsenal goals and expected goals in the last 5 matches"
+  },
+  "searches": [
+    "Arsenal",
+    "real"
+  ],
+  "noticeTexts": {
+    "ko": {
+      "data": "경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "predictions": "예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요."
+    },
+    "en": {
+      "data": "Match data could not be loaded. Please refresh in a moment.",
+      "predictions": "Prediction data could not be loaded. Please refresh in a moment."
+    }
+  },
+  "invalidMessage": {
+    "ko": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+    "en": "Invalid model probabilities. Simulation is unavailable."
+  },
+  "normal": [
+    {
+      "lang": "ko",
+      "width": 390,
+      "identicalText": true,
+      "differentFields": [],
+      "compared": [
+        "notices",
+        "lastDate",
+        "listMain",
+        "bodyText",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "report",
+        "previewMain",
+        "previewNotices",
+        "fixedSeedAllDigest",
+        "analysis"
+      ],
+      "identicalScreenshots": true,
+      "differentScreenshots": [],
+      "screenshots": {
+        "list": {
+          "old": "f65b66239fa0e491",
+          "new": "f65b66239fa0e491"
+        },
+        "preview": {
+          "old": "f817faffca8f19fc",
+          "new": "f817faffca8f19fc"
+        },
+        "simulation": {
+          "old": "e350d420a45ebea6",
+          "new": "e350d420a45ebea6"
+        },
+        "analysis": {
+          "old": "023da432b7199b6c",
+          "new": "023da432b7199b6c"
+        }
+      },
+      "notices": {
+        "old": 0,
+        "new": 0,
+        "previewNew": 0
+      },
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ],
+        "new": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "identicalText": true,
+      "differentFields": [],
+      "compared": [
+        "notices",
+        "lastDate",
+        "listMain",
+        "bodyText",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "report",
+        "previewMain",
+        "previewNotices",
+        "fixedSeedAllDigest",
+        "analysis"
+      ],
+      "identicalScreenshots": true,
+      "differentScreenshots": [],
+      "screenshots": {
+        "list": {
+          "old": "2caf6aed4695108d",
+          "new": "2caf6aed4695108d"
+        },
+        "preview": {
+          "old": "6a372bc88f959de9",
+          "new": "6a372bc88f959de9"
+        },
+        "simulation": {
+          "old": "d2bc216709abd2ce",
+          "new": "d2bc216709abd2ce"
+        },
+        "analysis": {
+          "old": "7f9738ec1298fcaa",
+          "new": "7f9738ec1298fcaa"
+        }
+      },
+      "notices": {
+        "old": 0,
+        "new": 0,
+        "previewNew": 0
+      },
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ],
+        "new": [
+          "/data/football/data.ko.js?v=c57e411d877ac4dc",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "identicalText": true,
+      "differentFields": [],
+      "compared": [
+        "notices",
+        "lastDate",
+        "listMain",
+        "bodyText",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "report",
+        "previewMain",
+        "previewNotices",
+        "fixedSeedAllDigest",
+        "analysis"
+      ],
+      "identicalScreenshots": true,
+      "differentScreenshots": [],
+      "screenshots": {
+        "list": {
+          "old": "d51fc46115fa16e2",
+          "new": "d51fc46115fa16e2"
+        },
+        "preview": {
+          "old": "647257d3e73f41cf",
+          "new": "647257d3e73f41cf"
+        },
+        "simulation": {
+          "old": "33687e550e7727f8",
+          "new": "33687e550e7727f8"
+        },
+        "analysis": {
+          "old": "090e04103abbf75a",
+          "new": "090e04103abbf75a"
+        }
+      },
+      "notices": {
+        "old": 0,
+        "new": 0,
+        "previewNew": 0
+      },
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ],
+        "new": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "identicalText": true,
+      "differentFields": [],
+      "compared": [
+        "notices",
+        "lastDate",
+        "listMain",
+        "bodyText",
+        "upcoming",
+        "search",
+        "preview",
+        "simulation",
+        "simulationMounted",
+        "report",
+        "previewMain",
+        "previewNotices",
+        "fixedSeedAllDigest",
+        "analysis"
+      ],
+      "identicalScreenshots": true,
+      "differentScreenshots": [],
+      "screenshots": {
+        "list": {
+          "old": "f5b1bed37201ad26",
+          "new": "f5b1bed37201ad26"
+        },
+        "preview": {
+          "old": "b327a2a13ff8ade8",
+          "new": "b327a2a13ff8ade8"
+        },
+        "simulation": {
+          "old": "e276338cbc925f08",
+          "new": "e276338cbc925f08"
+        },
+        "analysis": {
+          "old": "0da16c4d8d6f5c23",
+          "new": "0da16c4d8d6f5c23"
+        }
+      },
+      "notices": {
+        "old": 0,
+        "new": 0,
+        "previewNew": 0
+      },
+      "lastDate": "2026-09-20",
+      "fixedSeed": {
+        "matches": 641,
+        "seeds": 20,
+        "runs": 12820,
+        "differences": 0
+      },
+      "loadedShape": {
+        "old": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        },
+        "new": {
+          "predictions": 641,
+          "withGrid": 0,
+          "cellCounts": {
+            "169": 641
+          }
+        }
+      },
+      "pageErrors": {
+        "old": [],
+        "new": []
+      },
+      "consoleErrors": {
+        "old": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        "new": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED",
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      },
+      "horizontalOverflow": {
+        "old": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        },
+        "new": {
+          "list": false,
+          "search": false,
+          "preview": false,
+          "analysis": false
+        }
+      },
+      "abortedExternalOrigins": {
+        "old": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ],
+        "new": [
+          "https://cdn.jsdelivr.net",
+          "https://cdn.statmuse.com"
+        ]
+      },
+      "dataRequests": {
+        "old": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ],
+        "new": [
+          "/data/football/data.en.js?v=19f6185266ebbf41",
+          "/data/football/predictions.js?v=8850a2ae9237674d"
+        ]
+      }
+    }
+  ],
+  "loadFailures": [
+    {
+      "lang": "ko",
+      "width": 390,
+      "blocked": "data.ko.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "noticeVisible": false,
+        "noticeCount": 0,
+        "fixtureCards": 0,
+        "simulationCanvas": null,
+        "pageErrors": [
+          "Cannot read properties of undefined (reading 'data')",
+          "V is not defined",
+          "$ is not defined",
+          "V is not defined",
+          "Cannot read properties of undefined (reading 'teams')"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "blocked": "data.en.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Match data could not be loaded. Please refresh in a moment.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "noticeVisible": false,
+        "noticeCount": 0,
+        "fixtureCards": 0,
+        "simulationCanvas": null,
+        "pageErrors": [
+          "Cannot read properties of undefined (reading 'data')",
+          "V is not defined",
+          "$ is not defined",
+          "V is not defined",
+          "Cannot read properties of undefined (reading 'teams')"
+        ]
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "blocked": "predictions.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "noticeVisible": false,
+        "noticeCount": 0,
+        "fixtureCards": 3,
+        "simulationCanvas": 0,
+        "pageErrors": [
+          "Cannot read properties of undefined (reading 'predictions')"
+        ]
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "blocked": "predictions.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Prediction data could not be loaded. Please refresh in a moment.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "noticeVisible": false,
+        "noticeCount": 0,
+        "fixtureCards": 3,
+        "simulationCanvas": 0,
+        "pageErrors": [
+          "Cannot read properties of undefined (reading 'predictions')"
+        ]
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "blocked": "data.ko.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "blocked": "data.en.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Match data could not be loaded. Please refresh in a moment.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "ko",
+      "width": 1440,
+      "blocked": "predictions.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "blocked": "predictions.js",
+      "mode": "abort",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Prediction data could not be loaded. Please refresh in a moment.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "blocked": "data.ko.js",
+      "mode": "notfound",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "blocked": "data.ko.js",
+      "mode": "noobject",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "blocked": "predictions.js",
+      "mode": "notfound",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "blocked": "predictions.js",
+      "mode": "noobject",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.ko.js?v=c57e411d877ac4dc",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "blocked": "data.en.js",
+      "mode": "notfound",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Match data could not be loaded. Please refresh in a moment.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "blocked": "data.en.js",
+      "mode": "noobject",
+      "responsive": "complete",
+      "fixtureCards": 0,
+      "languageLinks": 2,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Match data could not be loaded. Please refresh in a moment.",
+      "noticeIsFirstInMain": true,
+      "noticeTop": 12,
+      "noticeInFirstScreen": true,
+      "noticeRole": "alert",
+      "overflow": false,
+      "pageErrors": [
+        "Cannot read properties of undefined (reading 'data')",
+        "$ is not defined",
+        "V is not defined",
+        "Cannot read properties of undefined (reading 'teams')"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "blocked": "predictions.js",
+      "mode": "notfound",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Prediction data could not be loaded. Please refresh in a moment.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "blocked": "predictions.js",
+      "mode": "noobject",
+      "responsive": "complete",
+      "fixtureCards": 3,
+      "languageLinks": 2,
+      "topNotice": 0,
+      "simulationPlace": 1,
+      "noticeCount": 1,
+      "noticeVisible": true,
+      "noticeText": "Prediction data could not be loaded. Please refresh in a moment.",
+      "noticeRole": "alert",
+      "simulationCanvas": 0,
+      "previewShown": true,
+      "afterSwitch": {
+        "match": "understat:31231",
+        "notices": 1,
+        "hosts": 1
+      },
+      "noticeInTeamView": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "dataRequests": [
+        "/data/football/data.en.js?v=19f6185266ebbf41",
+        "/data/football/predictions.js?v=8850a2ae9237674d"
+      ],
+      "pass": true,
+      "previousRelease": null
+    }
+  ],
+  "scoreGrid": [
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "unchanged",
+      "message": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20",
+      "invalidMessageShown": false,
+      "simulationMounted": true,
+      "cells": 169,
+      "hasGrid": false,
+      "sample": {
+        "scoreFromModel": true,
+        "score": [
+          2,
+          1
+        ]
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": 169,
+        "sample": {
+          "scoreFromModel": true,
+          "score": [
+            2,
+            1
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "cells170",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 170,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "nullCell",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 169,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "missingLastCell",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": 168,
+        "sample": {
+          "scoreFromModel": true,
+          "score": [
+            2,
+            1
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "missingMiddleCell",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 168,
+        "sample": {
+          "error": "Score cells must match supplied outcome probabilities."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "notArrayObject",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": null,
+        "sample": {
+          "scoreFromModel": false,
+          "score": [
+            1,
+            0
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "notArrayString",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": null,
+        "sample": {
+          "scoreFromModel": false,
+          "score": [
+            1,
+            0
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "gridAbsent",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": null,
+        "sample": {
+          "scoreFromModel": false,
+          "score": [
+            1,
+            0
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "negativeCell",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 169,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "ko",
+      "width": 390,
+      "case": "stringCell",
+      "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "모델 확률 검증에 실패해 시뮬레이션을 표시하지 않습니다.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 169,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "unchanged",
+      "message": "Selected model: logistic regression · Input records through 2026-09-20",
+      "invalidMessageShown": false,
+      "simulationMounted": true,
+      "cells": 169,
+      "hasGrid": false,
+      "sample": {
+        "scoreFromModel": true,
+        "score": [
+          2,
+          1
+        ]
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Selected model: logistic regression · Input records through 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": 169,
+        "sample": {
+          "scoreFromModel": true,
+          "score": [
+            2,
+            1
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "cells170",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Invalid model probabilities. Simulation is unavailable.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 170,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "nullCell",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Invalid model probabilities. Simulation is unavailable.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 169,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "missingLastCell",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Selected model: logistic regression · Input records through 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": 168,
+        "sample": {
+          "scoreFromModel": true,
+          "score": [
+            2,
+            1
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "missingMiddleCell",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Invalid model probabilities. Simulation is unavailable.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 168,
+        "sample": {
+          "error": "Score cells must match supplied outcome probabilities."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "notArrayObject",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Selected model: logistic regression · Input records through 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": null,
+        "sample": {
+          "scoreFromModel": false,
+          "score": [
+            1,
+            0
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "notArrayString",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Selected model: logistic regression · Input records through 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": null,
+        "sample": {
+          "scoreFromModel": false,
+          "score": [
+            1,
+            0
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "gridAbsent",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Selected model: logistic regression · Input records through 2026-09-20",
+        "invalidMessageShown": false,
+        "simulationMounted": true,
+        "cells": null,
+        "sample": {
+          "scoreFromModel": false,
+          "score": [
+            1,
+            0
+          ]
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "negativeCell",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Invalid model probabilities. Simulation is unavailable.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 169,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "case": "stringCell",
+      "message": "Invalid model probabilities. Simulation is unavailable.",
+      "invalidMessageShown": true,
+      "simulationMounted": false,
+      "cells": 0,
+      "hasGrid": false,
+      "sample": {
+        "error": "Invalid score distribution."
+      },
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "pass": true,
+      "previousRelease": {
+        "message": "Invalid model probabilities. Simulation is unavailable.",
+        "invalidMessageShown": true,
+        "simulationMounted": false,
+        "cells": 169,
+        "sample": {
+          "error": "Invalid score cell."
+        },
+        "pageErrors": []
+      }
+    }
+  ],
+  "failures": []
+}

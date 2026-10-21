@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "commit": "4d1c3a013c2bc07400c54d096f95a5bf046ff8c0",
+  "python": "3.12.2",
+  "cases": [
+    {
+      "case": "control (no change)",
+      "check_release": "PASS",
+      "message": "PASS release audit: 1738 hashed files, 12 local documentation links; design payloads identical; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e-08); no private/admin files or credential-pattern matches.",
+      "test_server": "PASS 24 server checks passed."
+    },
+    {
+      "case": "bundle model_accepted true->1 (generator+file+?v=)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Prediction bundle fields differ from v50",
+      "test_server": "FAIL after 20 passes: AssertionError [ERR_ASSERTION]: model_accepted"
+    },
+    {
+      "case": "prediction source_date_is_verified_kickoff false->0 (generator+file+?v=)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Prediction field differs from v50 (value or type): understat:31230"
+    },
+    {
+      "case": "prediction top_scores home 1->1.0 (generator+file+?v=)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Prediction field differs from v50 (value or type): understat:31230"
+    },
+    {
+      "case": "true->1 edited in predictions.js only",
+      "check_release": "FAIL",
+      "message": "AssertionError: predictions.js differs from compact_predictions.py output",
+      "test_server": "FAIL after 20 passes: AssertionError [ERR_ASSERTION]: model_accepted"
+    },
+    {
+      "case": "README.md version 0.26.1",
+      "check_release": "FAIL",
+      "message": "AssertionError: README.md current version ['0.26.1'] differs from VERSION 0.26.2",
+      "test_server": "FAIL after 22 passes: AssertionError [ERR_ASSERTION]: README.md"
+    },
+    {
+      "case": "README.ko.md version 0.26.1",
+      "check_release": "FAIL",
+      "message": "AssertionError: README.ko.md current version ['0.26.1'] differs from VERSION 0.26.2",
+      "test_server": "FAIL after 22 passes: AssertionError [ERR_ASSERTION]: README.ko.md"
+    },
+    {
+      "case": "README.md version line removed",
+      "check_release": "FAIL",
+      "message": "AssertionError: README.md current version [] differs from VERSION 0.26.2",
+      "test_server": "FAIL after 22 passes: AssertionError [ERR_ASSERTION]: README.md"
+    },
+    {
+      "case": "VERSION 0.26.3",
+      "check_release": "FAIL",
+      "message": "AssertionError: VERSION differs from the release checker version: 0.26.3",
+      "test_server": "FAIL after 22 passes: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:"
+    },
+    {
+      "case": "notice block removed (ko)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice missing or moved: index.html",
+      "test_server": "FAIL after 23 passes: AssertionError [ERR_ASSERTION]: /"
+    },
+    {
+      "case": "notice block removed (en)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice missing or moved: index.en.html",
+      "test_server": "FAIL after 23 passes: AssertionError [ERR_ASSERTION]: /index.en.html"
+    },
+    {
+      "case": "notice text changed in page only (en)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice missing or moved: index.en.html"
+    },
+    {
+      "case": "notice logic changed in en source and page",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice logic differs by language"
+    },
+    {
+      "case": "code ending in }; appended to the ko notice text line (source and page)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice text line differs from the expected exact line: ko",
+      "test_server": "FAIL after 23 passes: AssertionError [ERR_ASSERTION]: ko text line must be exactly the expected line"
+    },
+    {
+      "case": "code ending in }; appended to the en notice text line (source and page)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice text line differs from the expected exact line: en",
+      "test_server": "FAIL after 23 passes: AssertionError [ERR_ASSERTION]: en text line must be exactly the expected line"
+    },
+    {
+      "case": "prediction notice guard removed (ko)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Score grid expansion missing or moved: index.html"
+    },
+    {
+      "case": "grid shape check reverted to 0.26.1 expansion (both pages)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Score grid expansion missing or moved: index.html"
+    },
+    {
+      "case": "notice moved after the main script (ko)",
+      "check_release": "FAIL",
+      "message": "AssertionError: Load notice missing or moved: index.html"
+    }
+  ]
+}

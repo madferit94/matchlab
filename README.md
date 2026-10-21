@@ -26,4 +26,4 @@ Open [localhost:8765](http://127.0.0.1:8765/) in your browser.
 
 [Setup and deployment guide](docs/VERCEL.ko.md) · [Detailed documents](docs/README.md) · [Changelog](CHANGELOG.md) (documents are in Korean)
 
-Current version: **0.25.3**
+Current version: **0.26.2**
