@@ -26,4 +26,4 @@ npm start
 
 [설정·배포 안내](docs/VERCEL.ko.md) · [상세 문서](docs/README.md) · [변경 이력](CHANGELOG.md)
 
-현재 버전: **0.26.2**
+현재 버전: **0.26.3**

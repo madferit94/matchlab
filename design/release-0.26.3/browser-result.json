@@ -1,0 +1,2476 @@
+{
+ "status": "PASS",
+ "release": "0.26.3",
+ "old_ref": "ee48f51",
+ "browser": "155.0.8059.85",
+ "recorded_gp": 11245,
+ "upcoming_gp": 11388,
+ "runs": [
+  {
+   "lang": "ko",
+   "width": 390,
+   "duration_seconds": 5683.354,
+   "laps": 56,
+   "gap_seconds_per_rank": 2,
+   "leader_finish_seconds": 5596.127,
+   "speeds": [
+    {
+     "speed": 0.25,
+     "start_phase": 0.3,
+     "samples": 16,
+     "recorded_seconds_advanced": 0.783,
+     "wall_seconds": 3.125,
+     "measured_rate": 0.251,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      15.5435,
+      15.5516
+     ],
+     "leader_lap_progress": [
+      15.5435,
+      15.5516
+     ],
+     "completed_laps": [
+      15,
+      15
+     ],
+     "leader_lap_field": [
+      16,
+      16
+     ]
+    },
+    {
+     "speed": 1,
+     "start_phase": 0.4,
+     "samples": 16,
+     "recorded_seconds_advanced": 3.1,
+     "wall_seconds": 3.109,
+     "measured_rate": 0.997,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      21.4157,
+      21.4478
+     ],
+     "leader_lap_progress": [
+      21.4157,
+      21.4478
+     ],
+     "completed_laps": [
+      21,
+      21
+     ],
+     "leader_lap_field": [
+      22,
+      22
+     ]
+    },
+    {
+     "speed": 10,
+     "start_phase": 0.5,
+     "samples": 16,
+     "recorded_seconds_advanced": 31.165,
+     "wall_seconds": 3.114,
+     "measured_rate": 10.008,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      27.3186,
+      27.6412
+     ],
+     "leader_lap_progress": [
+      27.3186,
+      27.6412
+     ],
+     "completed_laps": [
+      27,
+      27
+     ],
+     "leader_lap_field": [
+      28,
+      28
+     ]
+    },
+    {
+     "speed": 60,
+     "start_phase": 0.96706,
+     "samples": 12,
+     "recorded_seconds_advanced": 139.992,
+     "wall_seconds": 2.32,
+     "measured_rate": 60.354,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      55.0715,
+      56
+     ],
+     "leader_lap_progress": [
+      55.0715,
+      56
+     ],
+     "completed_laps": [
+      55,
+      56
+     ],
+     "leader_lap_field": [
+      56,
+      56
+     ],
+     "crossed_finish": {
+      "p1_reached": true,
+      "leader_reached": true,
+      "same_sample": true
+     }
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": true
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 0,
+      "leader_lap_progress": 0,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 2.8694632344688973,
+      "leader_lap_progress": 2.8694632344688973,
+      "x": 631.77,
+      "y": 441.27,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 10.890204638145699,
+      "leader_lap_progress": 10.890204638145699,
+      "x": 605.43,
+      "y": 434.48,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 19.652497674707014,
+      "leader_lap_progress": 19.652497674707014,
+      "x": 397.58,
+      "y": 74.85,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 27.29789106419986,
+      "leader_lap_progress": 27.29789106419986,
+      "x": 208.3,
+      "y": 190.82,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 45.66603072983356,
+      "leader_lap_progress": 45.66603072983356,
+      "x": 412.17,
+      "y": 97.71,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 55.14088023192234,
+      "leader_lap_progress": 55.14088023192234,
+      "x": 258.59,
+      "y": 358.43,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 56,
+      "leader_lap_progress": 56,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    }
+   ],
+   "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+   "predicted_canvas_differs_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97,
+    1
+   ],
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": [],
+   "old_page_errors": []
+  },
+  {
+   "lang": "ko",
+   "width": 1440,
+   "duration_seconds": 5683.354,
+   "laps": 56,
+   "gap_seconds_per_rank": 2,
+   "leader_finish_seconds": 5596.127,
+   "speeds": [
+    {
+     "speed": 0.25,
+     "start_phase": 0.3,
+     "samples": 16,
+     "recorded_seconds_advanced": 0.775,
+     "wall_seconds": 3.091,
+     "measured_rate": 0.251,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      15.5435,
+      15.5516
+     ],
+     "leader_lap_progress": [
+      15.5435,
+      15.5516
+     ],
+     "completed_laps": [
+      15,
+      15
+     ],
+     "leader_lap_field": [
+      16,
+      16
+     ]
+    },
+    {
+     "speed": 1,
+     "start_phase": 0.4,
+     "samples": 16,
+     "recorded_seconds_advanced": 3.083,
+     "wall_seconds": 3.069,
+     "measured_rate": 1.005,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      21.4155,
+      21.4474
+     ],
+     "leader_lap_progress": [
+      21.4155,
+      21.4474
+     ],
+     "completed_laps": [
+      21,
+      21
+     ],
+     "leader_lap_field": [
+      22,
+      22
+     ]
+    },
+    {
+     "speed": 10,
+     "start_phase": 0.5,
+     "samples": 16,
+     "recorded_seconds_advanced": 30.999,
+     "wall_seconds": 3.091,
+     "measured_rate": 10.03,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      27.3169,
+      27.6378
+     ],
+     "leader_lap_progress": [
+      27.3169,
+      27.6378
+     ],
+     "completed_laps": [
+      27,
+      27
+     ],
+     "leader_lap_field": [
+      28,
+      28
+     ]
+    },
+    {
+     "speed": 60,
+     "start_phase": 0.96706,
+     "samples": 12,
+     "recorded_seconds_advanced": 138,
+     "wall_seconds": 2.296,
+     "measured_rate": 60.102,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      55.0818,
+      56
+     ],
+     "leader_lap_progress": [
+      55.0818,
+      56
+     ],
+     "completed_laps": [
+      55,
+      56
+     ],
+     "leader_lap_field": [
+      56,
+      56
+     ],
+     "crossed_finish": {
+      "p1_reached": true,
+      "leader_reached": true,
+      "same_sample": true
+     }
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": true
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 0,
+      "leader_lap_progress": 0,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 2.8694632344688973,
+      "leader_lap_progress": 2.8694632344688973,
+      "x": 631.77,
+      "y": 441.27,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 10.890204638145699,
+      "leader_lap_progress": 10.890204638145699,
+      "x": 605.43,
+      "y": 434.48,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 19.652497674707014,
+      "leader_lap_progress": 19.652497674707014,
+      "x": 397.58,
+      "y": 74.85,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 27.29789106419986,
+      "leader_lap_progress": 27.29789106419986,
+      "x": 208.3,
+      "y": 190.82,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 45.66603072983356,
+      "leader_lap_progress": 45.66603072983356,
+      "x": 412.17,
+      "y": 97.71,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 55.14088023192234,
+      "leader_lap_progress": 55.14088023192234,
+      "x": 258.59,
+      "y": 358.43,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 56,
+      "leader_lap_progress": 56,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    }
+   ],
+   "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+   "predicted_canvas_differs_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97,
+    1
+   ],
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": [],
+   "old_page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 390,
+   "duration_seconds": 5683.354,
+   "laps": 56,
+   "gap_seconds_per_rank": 2,
+   "leader_finish_seconds": 5596.127,
+   "speeds": [
+    {
+     "speed": 0.25,
+     "start_phase": 0.3,
+     "samples": 16,
+     "recorded_seconds_advanced": 0.767,
+     "wall_seconds": 3.07,
+     "measured_rate": 0.25,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      15.5435,
+      15.5515
+     ],
+     "leader_lap_progress": [
+      15.5435,
+      15.5515
+     ],
+     "completed_laps": [
+      15,
+      15
+     ],
+     "leader_lap_field": [
+      16,
+      16
+     ]
+    },
+    {
+     "speed": 1,
+     "start_phase": 0.4,
+     "samples": 16,
+     "recorded_seconds_advanced": 3.083,
+     "wall_seconds": 3.087,
+     "measured_rate": 0.999,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      21.4155,
+      21.4474
+     ],
+     "leader_lap_progress": [
+      21.4155,
+      21.4474
+     ],
+     "completed_laps": [
+      21,
+      21
+     ],
+     "leader_lap_field": [
+      22,
+      22
+     ]
+    },
+    {
+     "speed": 10,
+     "start_phase": 0.5,
+     "samples": 16,
+     "recorded_seconds_advanced": 30.832,
+     "wall_seconds": 3.081,
+     "measured_rate": 10.006,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      27.3186,
+      27.6378
+     ],
+     "leader_lap_progress": [
+      27.3186,
+      27.6378
+     ],
+     "completed_laps": [
+      27,
+      27
+     ],
+     "leader_lap_field": [
+      28,
+      28
+     ]
+    },
+    {
+     "speed": 60,
+     "start_phase": 0.96706,
+     "samples": 13,
+     "recorded_seconds_advanced": 149.988,
+     "wall_seconds": 2.495,
+     "measured_rate": 60.106,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      55.0818,
+      56
+     ],
+     "leader_lap_progress": [
+      55.0818,
+      56
+     ],
+     "completed_laps": [
+      55,
+      56
+     ],
+     "leader_lap_field": [
+      56,
+      56
+     ],
+     "crossed_finish": {
+      "p1_reached": true,
+      "leader_reached": true,
+      "same_sample": true
+     }
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": true
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 0,
+      "leader_lap_progress": 0,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 2.8694632344688973,
+      "leader_lap_progress": 2.8694632344688973,
+      "x": 631.77,
+      "y": 441.27,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 10.890204638145699,
+      "leader_lap_progress": 10.890204638145699,
+      "x": 605.43,
+      "y": 434.48,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 19.652497674707014,
+      "leader_lap_progress": 19.652497674707014,
+      "x": 397.58,
+      "y": 74.85,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 27.29789106419986,
+      "leader_lap_progress": 27.29789106419986,
+      "x": 208.3,
+      "y": 190.82,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 45.66603072983356,
+      "leader_lap_progress": 45.66603072983356,
+      "x": 412.17,
+      "y": 97.71,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 55.14088023192234,
+      "leader_lap_progress": 55.14088023192234,
+      "x": 258.59,
+      "y": 358.43,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 56,
+      "leader_lap_progress": 56,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    }
+   ],
+   "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+   "predicted_canvas_differs_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97,
+    1
+   ],
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": [],
+   "old_page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 1440,
+   "duration_seconds": 5683.354,
+   "laps": 56,
+   "gap_seconds_per_rank": 2,
+   "leader_finish_seconds": 5596.127,
+   "speeds": [
+    {
+     "speed": 0.25,
+     "start_phase": 0.3,
+     "samples": 16,
+     "recorded_seconds_advanced": 0.771,
+     "wall_seconds": 3.08,
+     "measured_rate": 0.25,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      15.5435,
+      15.5515
+     ],
+     "leader_lap_progress": [
+      15.5435,
+      15.5515
+     ],
+     "completed_laps": [
+      15,
+      15
+     ],
+     "leader_lap_field": [
+      16,
+      16
+     ]
+    },
+    {
+     "speed": 1,
+     "start_phase": 0.4,
+     "samples": 16,
+     "recorded_seconds_advanced": 3.083,
+     "wall_seconds": 3.082,
+     "measured_rate": 1,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      21.4155,
+      21.4474
+     ],
+     "leader_lap_progress": [
+      21.4155,
+      21.4474
+     ],
+     "completed_laps": [
+      21,
+      21
+     ],
+     "leader_lap_field": [
+      22,
+      22
+     ]
+    },
+    {
+     "speed": 10,
+     "start_phase": 0.5,
+     "samples": 16,
+     "recorded_seconds_advanced": 30.999,
+     "wall_seconds": 3.1,
+     "measured_rate": 9.998,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      27.3186,
+      27.6395
+     ],
+     "leader_lap_progress": [
+      27.3186,
+      27.6395
+     ],
+     "completed_laps": [
+      27,
+      27
+     ],
+     "leader_lap_field": [
+      28,
+      28
+     ]
+    },
+    {
+     "speed": 60,
+     "start_phase": 0.96706,
+     "samples": 13,
+     "recorded_seconds_advanced": 147.996,
+     "wall_seconds": 2.467,
+     "measured_rate": 59.978,
+     "max_abs_diff_laps": 0,
+     "counter_mismatches": 0,
+     "p1_lap_progress": [
+      55.0921,
+      56
+     ],
+     "leader_lap_progress": [
+      55.0921,
+      56
+     ],
+     "completed_laps": [
+      55,
+      56
+     ],
+     "leader_lap_field": [
+      56,
+      56
+     ],
+     "crossed_finish": {
+      "p1_reached": true,
+      "leader_reached": true,
+      "same_sample": true
+     }
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": true
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 0,
+      "leader_lap_progress": 0,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 2.8694632344688973,
+      "leader_lap_progress": 2.8694632344688973,
+      "x": 631.77,
+      "y": 441.27,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 10.890204638145699,
+      "leader_lap_progress": 10.890204638145699,
+      "x": 605.43,
+      "y": 434.48,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 19.652497674707014,
+      "leader_lap_progress": 19.652497674707014,
+      "x": 397.58,
+      "y": 74.85,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 27.29789106419986,
+      "leader_lap_progress": 27.29789106419986,
+      "x": 208.3,
+      "y": 190.82,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 45.66603072983356,
+      "leader_lap_progress": 45.66603072983356,
+      "x": 412.17,
+      "y": 97.71,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 55.14088023192234,
+      "leader_lap_progress": 55.14088023192234,
+      "x": 258.59,
+      "y": 358.43,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "actCanvas": true,
+      "clock": true,
+      "coverage": true,
+      "actSelected": true,
+      "predSelected": true,
+      "dashboard": true,
+      "table": true,
+      "predCanvas": false
+     },
+     "p1_drawn": {
+      "driver": 63,
+      "lap_progress": 56,
+      "leader_lap_progress": 56,
+      "x": 431.43,
+      "y": 373.98,
+      "pixel": [
+       0,
+       215,
+       182
+      ],
+      "colour": "00D7B6"
+     },
+     "p1_pixel_matches_team_colour": true
+    }
+   ],
+   "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+   "predicted_canvas_differs_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97,
+    1
+   ],
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": [],
+   "old_page_errors": []
+  }
+ ],
+ "upcoming": [
+  {
+   "lang": "ko",
+   "width": 390,
+   "phases": [
+    {
+     "phase": 0,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.05,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.2,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.37,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.5,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.81,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.97,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 1,
+     "identical_to_0_26_2": true
+    }
+   ],
+   "lane_tab_buttons": [
+    0,
+    0
+   ],
+   "tooltip": "1배속은 180초 예측 연출입니다.",
+   "rate_10x": {
+    "new": 9.922,
+    "old": 9.982
+   },
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "ko",
+   "width": 1440,
+   "phases": [
+    {
+     "phase": 0,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.05,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.2,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.37,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.5,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.81,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.97,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 1,
+     "identical_to_0_26_2": true
+    }
+   ],
+   "lane_tab_buttons": [
+    0,
+    0
+   ],
+   "tooltip": "1배속은 180초 예측 연출입니다.",
+   "rate_10x": {
+    "new": 9.917,
+    "old": 10.039
+   },
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 390,
+   "phases": [
+    {
+     "phase": 0,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.05,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.2,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.37,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.5,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.81,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.97,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 1,
+     "identical_to_0_26_2": true
+    }
+   ],
+   "lane_tab_buttons": [
+    0,
+    0
+   ],
+   "tooltip": "1× is a 180-second prediction illustration.",
+   "rate_10x": {
+    "new": 9.917,
+    "old": 10.052
+   },
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 1440,
+   "phases": [
+    {
+     "phase": 0,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.05,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.2,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.37,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.5,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.81,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.97,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 1,
+     "identical_to_0_26_2": true
+    }
+   ],
+   "lane_tab_buttons": [
+    0,
+    0
+   ],
+   "tooltip": "1× is a 180-second prediction illustration.",
+   "rate_10x": {
+    "new": 9.916,
+    "old": 9.918
+   },
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": []
+  }
+ ],
+ "screenshots": [
+  "recorded-ko-390.png",
+  "recorded-ko-1440.png",
+  "recorded-en-390.png",
+  "recorded-en-1440.png",
+  "redflag-ko-1440.png",
+  "lanes-ko-390.png",
+  "lanes-en-1440.png",
+  "upcoming-ko-390.png",
+  "upcoming-en-1440.png"
+ ],
+ "red_flag": [
+  {
+   "lang": "ko",
+   "width": 1440,
+   "gp": 11353,
+   "suspension_seconds": [
+    [
+     119.433,
+     1771.521
+    ]
+   ],
+   "core_stop_seconds": [
+    270.166,
+    1771.521
+   ],
+   "held_laps": 20,
+   "circuit": {
+    "recorded_seconds": [
+     584.2,
+     882.2
+    ],
+    "p1_lap_progress": [
+     2,
+     2
+    ],
+    "raw_leader_lap_progress": [
+     2,
+     2
+    ],
+    "predicted_canvas_unchanged": true,
+    "recorded_canvas_unchanged": false,
+    "inside_core": true
+   },
+   "lane": {
+    "phase": [
+     0.05316,
+     0.13371
+    ],
+    "recorded_seconds": [
+     401.6,
+     1010.2
+    ],
+    "p1_left": [
+     "4.66667%",
+     "4.66667%"
+    ],
+    "recorded_front_left": [
+     "4.66667%",
+     "4.66667%"
+    ],
+    "predicted_lanes_unchanged": true,
+    "p1_equals_recorded_front_every_sample": true
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 390,
+   "gp": 11353,
+   "suspension_seconds": [
+    [
+     119.433,
+     1771.521
+    ]
+   ],
+   "core_stop_seconds": [
+    270.166,
+    1771.521
+   ],
+   "held_laps": 20,
+   "circuit": {
+    "recorded_seconds": [
+     584.2,
+     871.2
+    ],
+    "p1_lap_progress": [
+     2,
+     2
+    ],
+    "raw_leader_lap_progress": [
+     2,
+     2
+    ],
+    "predicted_canvas_unchanged": true,
+    "recorded_canvas_unchanged": false,
+    "inside_core": true
+   },
+   "lane": {
+    "phase": [
+     0.05288,
+     0.13343
+    ],
+    "recorded_seconds": [
+     399.5,
+     1008.1
+    ],
+    "p1_left": [
+     "4.66667%",
+     "4.66667%"
+    ],
+    "recorded_front_left": [
+     "4.66667%",
+     "4.66667%"
+    ],
+    "predicted_lanes_unchanged": true,
+    "p1_equals_recorded_front_every_sample": true
+   },
+   "page_errors": []
+  }
+ ],
+ "lane_runs": [
+  {
+   "lang": "ko",
+   "width": 390,
+   "speeds": [
+    {
+     "speed": 1,
+     "samples": 15,
+     "phase": [
+      0.20333,
+      0.25222
+     ],
+     "measured_rate": 1,
+     "p1_left": [
+      "20.8634%",
+      "24.0352%"
+     ],
+     "leader_left": [
+      "20.8634%",
+      "24.0352%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "예측 1"
+    },
+    {
+     "speed": 2,
+     "samples": 15,
+     "phase": [
+      0.40666,
+      0.50388
+     ],
+     "measured_rate": 1.994,
+     "p1_left": [
+      "39.381%",
+      "49.1878%"
+     ],
+     "leader_left": [
+      "39.381%",
+      "49.1878%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "예측 1"
+    },
+    {
+     "speed": 4,
+     "samples": 15,
+     "phase": [
+      0.61333,
+      0.80889
+     ],
+     "measured_rate": 4.002,
+     "p1_left": [
+      "60.2701%",
+      "80.1708%"
+     ],
+     "leader_left": [
+      "60.2701%",
+      "80.1708%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "예측 1"
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "2%",
+     "leader_left": "2%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "6.91908%",
+     "leader_left": "6.91908%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "20.6689%",
+     "leader_left": "20.6689%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "35.69%",
+     "leader_left": "35.69%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "48.7964%",
+     "leader_left": "48.7964%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "80.2846%",
+     "leader_left": "80.2846%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "96.5272%",
+     "leader_left": "96.5272%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "98%",
+     "leader_left": "98%",
+     "p1_status": "예측 1 · 도착"
+    }
+   ],
+   "note": "예측은 경기 전 예상 순위대로 실제 선두의 랩 진행을 따라가는 연출 · 실제는 기록 기반 진행",
+   "speed_note": "이 탭의 1×는 경기 전체를 60초로 줄인 속도이며, 예측과 실제 줄은 같은 시계로 움직입니다. 서킷 탭의 1×는 실제 기록 시간과 같습니다.",
+   "predicted_lanes_differ_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97
+   ],
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "ko",
+   "width": 1440,
+   "speeds": [
+    {
+     "speed": 1,
+     "samples": 15,
+     "phase": [
+      0.20333,
+      0.25166
+     ],
+     "measured_rate": 0.999,
+     "p1_left": [
+      "20.8634%",
+      "23.9994%"
+     ],
+     "leader_left": [
+      "20.8634%",
+      "23.9994%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "예측 1"
+    },
+    {
+     "speed": 2,
+     "samples": 15,
+     "phase": [
+      0.40667,
+      0.50444
+     ],
+     "measured_rate": 2.001,
+     "p1_left": [
+      "39.3814%",
+      "49.2446%"
+     ],
+     "leader_left": [
+      "39.3814%",
+      "49.2446%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "예측 1"
+    },
+    {
+     "speed": 4,
+     "samples": 15,
+     "phase": [
+      0.61222,
+      0.80443
+     ],
+     "measured_rate": 4,
+     "p1_left": [
+      "60.1572%",
+      "79.7154%"
+     ],
+     "leader_left": [
+      "60.1572%",
+      "79.7154%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "예측 1"
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "2%",
+     "leader_left": "2%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "6.91908%",
+     "leader_left": "6.91908%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "20.6689%",
+     "leader_left": "20.6689%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "35.69%",
+     "leader_left": "35.69%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "48.7964%",
+     "leader_left": "48.7964%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "80.2846%",
+     "leader_left": "80.2846%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "96.5272%",
+     "leader_left": "96.5272%",
+     "p1_status": "예측 1"
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "98%",
+     "leader_left": "98%",
+     "p1_status": "예측 1 · 도착"
+    }
+   ],
+   "note": "예측은 경기 전 예상 순위대로 실제 선두의 랩 진행을 따라가는 연출 · 실제는 기록 기반 진행",
+   "speed_note": "이 탭의 1×는 경기 전체를 60초로 줄인 속도이며, 예측과 실제 줄은 같은 시계로 움직입니다. 서킷 탭의 1×는 실제 기록 시간과 같습니다.",
+   "predicted_lanes_differ_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97
+   ],
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 390,
+   "speeds": [
+    {
+     "speed": 1,
+     "samples": 15,
+     "phase": [
+      0.20333,
+      0.25166
+     ],
+     "measured_rate": 1,
+     "p1_left": [
+      "20.8633%",
+      "23.9994%"
+     ],
+     "leader_left": [
+      "20.8633%",
+      "23.9994%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "Pred 1"
+    },
+    {
+     "speed": 2,
+     "samples": 15,
+     "phase": [
+      0.40667,
+      0.50389
+     ],
+     "measured_rate": 2.002,
+     "p1_left": [
+      "39.3814%",
+      "49.1884%"
+     ],
+     "leader_left": [
+      "39.3814%",
+      "49.1884%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "Pred 1"
+    },
+    {
+     "speed": 4,
+     "samples": 15,
+     "phase": [
+      0.61333,
+      0.80887
+     ],
+     "measured_rate": 4.008,
+     "p1_left": [
+      "60.2701%",
+      "80.1694%"
+     ],
+     "leader_left": [
+      "60.2701%",
+      "80.1694%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "Pred 1"
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "2%",
+     "leader_left": "2%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "6.91908%",
+     "leader_left": "6.91908%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "20.6689%",
+     "leader_left": "20.6689%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "35.69%",
+     "leader_left": "35.69%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "48.7964%",
+     "leader_left": "48.7964%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "80.2846%",
+     "leader_left": "80.2846%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "96.5272%",
+     "leader_left": "96.5272%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "98%",
+     "leader_left": "98%",
+     "p1_status": "Pred 1 · Finish"
+    }
+   ],
+   "note": "Prediction follows the lap progress of the recorded leader in pre-race order · Actual progress uses recorded data",
+   "speed_note": "In this tab 1× plays the whole race in 60 seconds, and predicted and recorded lanes share one clock. In the circuit tab 1× is recorded elapsed time.",
+   "predicted_lanes_differ_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97
+   ],
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 1440,
+   "speeds": [
+    {
+     "speed": 1,
+     "samples": 15,
+     "phase": [
+      0.20361,
+      0.25222
+     ],
+     "measured_rate": 0.996,
+     "p1_left": [
+      "20.8814%",
+      "24.0353%"
+     ],
+     "leader_left": [
+      "20.8814%",
+      "24.0353%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "Pred 1"
+    },
+    {
+     "speed": 2,
+     "samples": 15,
+     "phase": [
+      0.40611,
+      0.50277
+     ],
+     "measured_rate": 1.999,
+     "p1_left": [
+      "39.3252%",
+      "49.0761%"
+     ],
+     "leader_left": [
+      "39.3252%",
+      "49.0761%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "Pred 1"
+    },
+    {
+     "speed": 4,
+     "samples": 15,
+     "phase": [
+      0.61333,
+      0.80666
+     ],
+     "measured_rate": 3.994,
+     "p1_left": [
+      "60.2701%",
+      "79.9431%"
+     ],
+     "leader_left": [
+      "60.2701%",
+      "79.9431%"
+     ],
+     "position_mismatches": 0,
+     "overtakes": 0,
+     "last_p1_status": "Pred 1"
+    }
+   ],
+   "fixed_phases": [
+    {
+     "phase": 0,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "2%",
+     "leader_left": "2%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.05,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "6.91908%",
+     "leader_left": "6.91908%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.2,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "20.6689%",
+     "leader_left": "20.6689%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.37,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "35.69%",
+     "leader_left": "35.69%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.5,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "48.7964%",
+     "leader_left": "48.7964%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.81,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "80.2846%",
+     "leader_left": "80.2846%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 0.97,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": false
+     },
+     "p1_left": "96.5272%",
+     "leader_left": "96.5272%",
+     "p1_status": "Pred 1"
+    },
+    {
+     "phase": 1,
+     "same_as_0_26_2": {
+      "recorded": true,
+      "clock": true,
+      "table": true,
+      "predicted": true
+     },
+     "p1_left": "98%",
+     "leader_left": "98%",
+     "p1_status": "Pred 1 · Finish"
+    }
+   ],
+   "note": "Prediction follows the lap progress of the recorded leader in pre-race order · Actual progress uses recorded data",
+   "speed_note": "In this tab 1× plays the whole race in 60 seconds, and predicted and recorded lanes share one clock. In the circuit tab 1× is recorded elapsed time.",
+   "predicted_lanes_differ_from_0_26_2": [
+    0.05,
+    0.2,
+    0.37,
+    0.5,
+    0.81,
+    0.97
+   ],
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": []
+  }
+ ],
+ "checks": 282,
+ "blocked_external_hosts": [
+  "media.formula1.com"
+ ],
+ "checked_at": "2026-10-21T02:46:13.271Z"
+}
