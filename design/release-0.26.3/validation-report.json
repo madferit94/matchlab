@@ -655,5 +655,492 @@
    "result": "PASS 96; PASS 96; PASS; PASS 28 drivers."
   }
  ],
- "verdict": "merge-ready after 0.26.2 with follow-ups (no blocker; 1 should-fix)"
+ "verdict": "merge-ready after 0.26.2 with follow-ups (no blocker; 1 should-fix)",
+ "rechecks": [
+  {
+   "id": "recheck-2",
+   "observed_at": "2026-10-21",
+   "producer_id": "reviewer-f1sync-2026-10-21",
+   "target": "e7f5261 (predicted red-flag hold, lane-tab speed note) and 066f20e (recorded lap-reconstructed cars use the same hold; shared redFlagHold), tip 066f20e",
+   "verdict": "PASS - no blocker. R1 and R3 resolved; recheck notes RC2-1..RC2-4.",
+   "summary": "Reviewer scripts only (scratch review-0263/r2: r2.cjs, r2edge.cjs, r2browser.cjs, tamper2.py); builder check-sync/check-browser not used. (1) Page: only module blocks 16 and 18 differ from 5fb9f4c and from 0.26.2; all 9 JSON blocks byte-identical; embedded modules equal the source files; replay module unchanged. redFlagHold is defined once (lane module) and used only by recordedState and leaderSync (3 occurrences incl. definition, 0 in the circuit module; suspensions defined once). An independent re-implementation of the hold (own code from raw laps + race control) matches recordedState progress for every car at every sample in all 16 GPs (0 differences). recordedState fields other than progress (rank, rank_source, lap, status, compound, inPit, moving, position timestamps) equal 0.26.2 at every sample; GPS coordinates equal 0.26.2 including inside held laps. (2) Windows: Monaco 5515.1-7728.2 s (25 held laps, 9 by the 'starts inside' rule, min ratio 1.8x), Dutch 119.4-1771.5 s (20 held, all >=21.9x median; effective hold from 269.8 s after the red-flag lap 2 of all 21 cars ends, those laps 1.0-2.1x median = drive to the pit lane), Italy 252.1-2129.2 s (21 held, effective from 359.8 s). Inside the effective windows predicted car movement 0 (all ranks) and recorded reconstructed movement 0; predicted P1 = recorded leader lap progress 0 difference in both tabs incl. held laps (16 GPs, 4,001-4,402 phases each). Point distance pred P1 vs position-record P1 dot (straight line / lap length, before T): Dutch 0.7% >15% (first build 10.6%), Italy 2.8% (first 19.6%), Monaco 0% (first 0%); builder reported 0.8/2.8/0. Arc-gap version: Dutch 2.5% (was 24.7%), Italy 3.3% (was 29.7%). (3) 13 GPs without held laps: predicted syncedState, recordedState and circuit markers identical to the first 0.26.3 build at every sample; recorded side identical to 0.26.2. Monaco/Dutch/Italy: predicted output outside the held-lap span identical to the first build; recorded progress outside held laps identical to 0.26.2. Upcoming 7 GPs identical to 0.26.2 (2,001 phases). Overtakes 0, backwards 0, recorded progress monotone, all predicted cars on the line at phase 1. (4) Boundary cases: RED FLAG with no restart message -> no window, behaviour identical to the first build (crawl returns, RC2-2); two separate red flags each with a restart -> both windows applied, no NaN, monotone; 'RED FLAG' inside another message (e.g. 'NOTED - RED FLAG INFRINGEMENT', real Monaco message) ignored; laps >4x median without a red flag (Australia 2, Barcelona 1) untouched; duplicate RED FLAG message before one restart -> overlapping windows double-count the stop and the hold is silently disabled for the whole GP (RC2-1). Browser (reviewer Playwright 1.57, Chrome 155, pixel/DOM measurement), China and Dutch x ko/en x 390/1440: circuit 1x clock 1.000 recorded s per real s, predicted pixel advance / recorded leader advance 1.000; lanes 1x phase 0.01664-0.01670 per s, predicted front lane = recorded front lane in every sample (ratio 1.000), 0 predicted lane overtakes. Dutch red flag: 60x for 5 s -> predicted car 0 laps on the canvas and recorded car 1 (GPS) 0; frames at phase 0.08 and 0.20 (604 s and 1,511 s): all 22 predicted rects identical, all 20 reconstructed recorded rects identical, the 2 GPS cars move slightly (recorded jitter); lanes identical between those phases on both sides. Lane-tab R3 note present in ko and en; circuit tooltip unchanged; page errors 0; clientWidth = scrollWidth in all 16 page views; Singapore upcoming identical to 0.26.2 (title, text, canvas at 5 phases). (5) check_release PASS (1,768 files); the 2 changed assertions are stricter and one assertion is added. Tamper (throwaway worktree, --write-manifest): page-only ratio change, source-only restart regex change, second redFlagHold in the circuit module, recordedState or leaderSync not calling redFlagHold, circuit or lane leaderSync without race, F1 dataset digit -> all FAIL with the intended message; identical source+page edits that keep the call strings but drop held progress or change the ratio to 40 PASS (RC2-3). test:server 24, build + check-vercel 5, analysis 15, test:report 14 (checks.json reverted), test:odds PASS 877, F1 check-conditions 96/96, check-history PASS, check-names PASS. SPEC sizes 19,757,906 B / gzip-6 2,562,964 B reproduce.",
+   "issues": [
+    {
+     "severity": "should-fix",
+     "id": "RC2-1-duplicate-red-flag-message",
+     "description": "suspensions() pairs every RED FLAG message with the next restart message. Two RED FLAG messages before one restart (reviewer case: Dutch with a second \"RED FLAG - RACE SUSPENDED\" 60 s later) create overlapping windows [119.4,1771.5] and [179.4,1771.5]; heldLaps subtracts both overlaps, moving becomes <= 0 and no lap is held, so the whole GP silently falls back to the first-build crawl (R1 returns). Not present in the current 16 GPs (one RED FLAG message each). Fix: merge overlapping windows (or ignore a RED FLAG while a window is open)."
+    },
+    {
+     "severity": "note",
+     "id": "RC2-2-no-restart-message",
+     "description": "A RED FLAG without a later SESSION STARTED / STANDING START / ROLLING START creates no window, so that GP behaves like the first 0.26.3 build (predicted and reconstructed cars crawl through the suspended lap). All current GPs have the restart message. Acceptable fallback; worth a test fixture."
+    },
+    {
+     "severity": "note",
+     "id": "RC2-3-hold-usage-not-pinned",
+     "description": "check_release pins call strings (hold=redFlagHold(model,race), const hold=redFlagHold(timeline,race);) but not that recordedState uses the held progress or the ratio value; identical source+page edits (drop progress:hold.progress(d,t), ratio 40) pass once the manifest is regenerated. Same pattern as R4."
+    },
+    {
+     "severity": "note",
+     "id": "RC2-4-hold-side-effects",
+     "description": "Monaco: the winner lap 68 keeps 49.63 s of moving time out of 2,262.7 s, so predicted P1 and reconstructed cars run at 1.547x the median lap pace before and after the suspension (documented by the builder). Dutch/Italy held laps run at 0.555x / 0.549x after the restart. The hold starts at the RED FLAG message time, so in Monaco reconstructed cars stop while GPS cars are still driving to the pit lane. Status text stays \"RACING/주행\" during the hold (status unchanged by design). R5 hops (Dutch 5,267 s, Australia 81.5 s) are outside held laps and unchanged."
+    }
+   ],
+   "evidence": [
+    {
+     "path": "design/release-0.26.3/review/recheck2-circuit-11245-en-1440.png",
+     "description": "Recheck-2 view at 066f20e (circuit-11245-en-1440), reviewer Playwright, Chrome 155, 0 page errors, no horizontal overflow. sha256[:16] a60507348df3a1bf"
+    },
+    {
+     "path": "design/release-0.26.3/review/recheck2-circuit-11245-ko-390.png",
+     "description": "Recheck-2 view at 066f20e (circuit-11245-ko-390), reviewer Playwright, Chrome 155, 0 page errors, no horizontal overflow. sha256[:16] a029a4ee91153cba"
+    },
+    {
+     "path": "design/release-0.26.3/review/recheck2-circuit-11353-ko-1440-redflag.png",
+     "description": "Dutch 11353 ko 1440, phase 0.12 inside the red flag at 066f20e: predicted cars and recorded cars both held near the pit straight (compare circuit-11353-ko-1440-redflag.png from the first review). sha256[:16] db4d873d982d1453"
+    },
+    {
+     "path": "design/release-0.26.3/review/recheck2-lanes-11245-en-1440.png",
+     "description": "Recheck-2 view at 066f20e (lanes-11245-en-1440), reviewer Playwright, Chrome 155, 0 page errors, no horizontal overflow. sha256[:16] 0a6b2b27b8b60d64"
+    },
+    {
+     "path": "design/release-0.26.3/review/recheck2-lanes-11245-ko-390.png",
+     "description": "Recheck-2 view at 066f20e (lanes-11245-ko-390), reviewer Playwright, Chrome 155, 0 page errors, no horizontal overflow. sha256[:16] ba302f369e276ef7"
+    },
+    {
+     "path": "design/release-0.26.3/review/recheck2-lanes-11353-en-1440.png",
+     "description": "Recheck-2 view at 066f20e (lanes-11353-en-1440), reviewer Playwright, Chrome 155, 0 page errors, no horizontal overflow. sha256[:16] 3cb89e1dfccd5706"
+    },
+    {
+     "path": "design/release-0.26.3/review/recheck2-lanes-11353-ko-390.png",
+     "description": "Recheck-2 view at 066f20e (lanes-11353-ko-390), reviewer Playwright, Chrome 155, 0 page errors, no horizontal overflow. sha256[:16] be70e86e82429a94"
+    },
+    {
+     "path": "(scratch, not committed) review-0263/r2/r2-result.json, browser-r2.json",
+     "description": "Reviewer recheck-2 harness outputs."
+    }
+   ],
+   "tests": [
+    {
+     "command": "node r2.cjs PH=4000",
+     "result": "PASS, 16 GPs, 0 failures (independent hold model = module, P1 = leader, holds, identity vs first build / 0.26.2, upcoming)."
+    },
+    {
+     "command": "node r2edge.cjs",
+     "result": "boundary cases as in summary; duplicate RED FLAG disables hold (RC2-1)."
+    },
+    {
+     "command": "node r2browser.cjs",
+     "result": "1x equal rates both tabs ko/en 390/1440; red-flag frames held; errors 0; overflow none.",
+     "runs": [
+      {
+       "label": "11245-ko-390 circuit 1x",
+       "gp": 11245,
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 5.784,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0599,
+       "act_same_driver_laps_pixels": 0.0669,
+       "recorded_leader_laps_indep": 0.0599,
+       "recorded_same_driver_laps_indep": 0.0597,
+       "selected_driver": 63,
+       "samples": 40,
+       "pred_over_act_pixels": 0.895,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11245-ko-390 lanes 1x",
+       "gp": 11245,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 3.831,
+       "whole_race_minutes_per_1x": 0.9994,
+       "phase_per_real_s": 0.01668,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 6.443,
+       "act_front_left_delta_pct": 6.443,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11245-ko-1440 circuit 1x",
+       "gp": 11245,
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 5.783,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0599,
+       "act_same_driver_laps_pixels": 0.0669,
+       "recorded_leader_laps_indep": 0.0599,
+       "recorded_same_driver_laps_indep": 0.0597,
+       "selected_driver": 63,
+       "samples": 40,
+       "pred_over_act_pixels": 0.895,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11245-ko-1440 lanes 1x",
+       "gp": 11245,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 3.737,
+       "whole_race_minutes_per_1x": 1.001,
+       "phase_per_real_s": 0.01665,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 6.275,
+       "act_front_left_delta_pct": 6.275,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 24,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11245-en-390 circuit 1x",
+       "gp": 11245,
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 5.75,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0595,
+       "act_same_driver_laps_pixels": 0.0667,
+       "recorded_leader_laps_indep": 0.0595,
+       "recorded_same_driver_laps_indep": 0.0593,
+       "selected_driver": 63,
+       "samples": 39,
+       "pred_over_act_pixels": 0.892,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11245-en-390 lanes 1x",
+       "gp": 11245,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 3.813,
+       "whole_race_minutes_per_1x": 0.9991,
+       "phase_per_real_s": 0.01668,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 6.415,
+       "act_front_left_delta_pct": 6.415,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11245-en-1440 circuit 1x",
+       "gp": 11245,
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 5.784,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0599,
+       "act_same_driver_laps_pixels": 0.0669,
+       "recorded_leader_laps_indep": 0.0599,
+       "recorded_same_driver_laps_indep": 0.0597,
+       "selected_driver": 63,
+       "samples": 40,
+       "pred_over_act_pixels": 0.895,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11245-en-1440 lanes 1x",
+       "gp": 11245,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.4,
+       "real_s": 3.707,
+       "whole_race_minutes_per_1x": 1.0018,
+       "phase_per_real_s": 0.01664,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 6.219,
+       "act_front_left_delta_pct": 6.219,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 26,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11353-ko-390 circuit 1x",
+       "gp": 11353,
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 5.783,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0714,
+       "act_same_driver_laps_pixels": 0.0509,
+       "recorded_leader_laps_indep": 0.0714,
+       "recorded_same_driver_laps_indep": 0.0759,
+       "selected_driver": 1,
+       "samples": 40,
+       "pred_over_act_pixels": 1.403,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11353-ko-390 circuit 60x inside red flag",
+       "gp": 11353,
+       "speed": 60,
+       "phase0": 0.1,
+       "real_s": 4.75,
+       "recorded_s_per_real_s": 60.001,
+       "pred_p1_laps_pixels": 0,
+       "act_same_driver_laps_pixels": 0,
+       "recorded_leader_laps_indep": 0.1675,
+       "recorded_same_driver_laps_indep": 0.1675,
+       "selected_driver": 1,
+       "samples": 33,
+       "pred_over_act_pixels": null,
+       "pred_pixels_over_leader_indep": 0
+      },
+      {
+       "label": "11353-ko-390 lanes 1x",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 3.821,
+       "whole_race_minutes_per_1x": 1.0013,
+       "phase_per_real_s": 0.01664,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 8.406,
+       "act_front_left_delta_pct": 8.406,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11353-ko-390 lanes 1x inside red flag",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.1,
+       "real_s": 3.811,
+       "whole_race_minutes_per_1x": 0.9986,
+       "phase_per_real_s": 0.01669,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 0,
+       "act_front_left_delta_pct": 0,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": null
+      },
+      {
+       "label": "11353-ko-1440 circuit 1x",
+       "gp": 11353,
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 5.716,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0706,
+       "act_same_driver_laps_pixels": 0.0502,
+       "recorded_leader_laps_indep": 0.0706,
+       "recorded_same_driver_laps_indep": 0.0751,
+       "selected_driver": 1,
+       "samples": 39,
+       "pred_over_act_pixels": 1.406,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11353-ko-1440 circuit 60x inside red flag",
+       "gp": 11353,
+       "speed": 60,
+       "phase0": 0.1,
+       "real_s": 4.716,
+       "recorded_s_per_real_s": 60,
+       "pred_p1_laps_pixels": 0,
+       "act_same_driver_laps_pixels": 0,
+       "recorded_leader_laps_indep": 0.1663,
+       "recorded_same_driver_laps_indep": 0.1663,
+       "selected_driver": 1,
+       "samples": 33,
+       "pred_over_act_pixels": null,
+       "pred_pixels_over_leader_indep": 0
+      },
+      {
+       "label": "11353-ko-1440 lanes 1x",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 3.835,
+       "whole_race_minutes_per_1x": 1.0006,
+       "phase_per_real_s": 0.01666,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 8.442,
+       "act_front_left_delta_pct": 8.442,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11353-ko-1440 lanes 1x inside red flag",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.1,
+       "real_s": 3.84,
+       "whole_race_minutes_per_1x": 1.0017,
+       "phase_per_real_s": 0.01664,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 0,
+       "act_front_left_delta_pct": 0,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": null
+      },
+      {
+       "label": "11353-en-390 circuit 1x",
+       "gp": 11353,
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 5.816,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0718,
+       "act_same_driver_laps_pixels": 0.0511,
+       "recorded_leader_laps_indep": 0.0718,
+       "recorded_same_driver_laps_indep": 0.0764,
+       "selected_driver": 1,
+       "samples": 40,
+       "pred_over_act_pixels": 1.405,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11353-en-390 circuit 60x inside red flag",
+       "gp": 11353,
+       "speed": 60,
+       "phase0": 0.1,
+       "real_s": 4.75,
+       "recorded_s_per_real_s": 60.001,
+       "pred_p1_laps_pixels": 0,
+       "act_same_driver_laps_pixels": 0,
+       "recorded_leader_laps_indep": 0.1675,
+       "recorded_same_driver_laps_indep": 0.1675,
+       "selected_driver": 1,
+       "samples": 33,
+       "pred_over_act_pixels": null,
+       "pred_pixels_over_leader_indep": 0
+      },
+      {
+       "label": "11353-en-390 lanes 1x",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 3.7,
+       "whole_race_minutes_per_1x": 0.9999,
+       "phase_per_real_s": 0.01667,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 8.15,
+       "act_front_left_delta_pct": 8.15,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 26,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11353-en-390 lanes 1x inside red flag",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.1,
+       "real_s": 3.7,
+       "whole_race_minutes_per_1x": 0.9999,
+       "phase_per_real_s": 0.01667,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 0,
+       "act_front_left_delta_pct": 0,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 26,
+       "pred_over_act": null
+      },
+      {
+       "label": "11353-en-1440 circuit 1x",
+       "gp": 11353,
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 5.816,
+       "recorded_s_per_real_s": 1,
+       "pred_p1_laps_pixels": 0.0718,
+       "act_same_driver_laps_pixels": 0.0511,
+       "recorded_leader_laps_indep": 0.0718,
+       "recorded_same_driver_laps_indep": 0.0764,
+       "selected_driver": 1,
+       "samples": 40,
+       "pred_over_act_pixels": 1.405,
+       "pred_pixels_over_leader_indep": 1
+      },
+      {
+       "label": "11353-en-1440 circuit 60x inside red flag",
+       "gp": 11353,
+       "speed": 60,
+       "phase0": 0.1,
+       "real_s": 4.733,
+       "recorded_s_per_real_s": 60.005,
+       "pred_p1_laps_pixels": 0,
+       "act_same_driver_laps_pixels": 0,
+       "recorded_leader_laps_indep": 0.1669,
+       "recorded_same_driver_laps_indep": 0.1669,
+       "selected_driver": 1,
+       "samples": 33,
+       "pred_over_act_pixels": null,
+       "pred_pixels_over_leader_indep": 0
+      },
+      {
+       "label": "11353-en-1440 lanes 1x",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.5,
+       "real_s": 3.692,
+       "whole_race_minutes_per_1x": 0.998,
+       "phase_per_real_s": 0.0167,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 8.149,
+       "act_front_left_delta_pct": 8.149,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 26,
+       "pred_over_act": 1
+      },
+      {
+       "label": "11353-en-1440 lanes 1x inside red flag",
+       "gp": 11353,
+       "tab": "lanes",
+       "speed": 1,
+       "phase0": 0.1,
+       "real_s": 3.845,
+       "whole_race_minutes_per_1x": 0.9987,
+       "phase_per_real_s": 0.01669,
+       "expected_phase_per_real_s": 0.01667,
+       "pred_front_left_delta_pct": 0,
+       "act_front_left_delta_pct": 0,
+       "front_mismatch_samples": 0,
+       "pred_overtakes": 0,
+       "samples": 27,
+       "pred_over_act": null
+      }
+     ]
+    },
+    {
+     "command": "python3 -I tamper2.py",
+     "result": "8 intended FAIL, 2 identical source+page edits PASS (RC2-3)."
+    },
+    {
+     "command": "check_release + npm tests + F1 node checks",
+     "result": "all PASS"
+    }
+   ],
+   "open_items": "publication_manifest.json must be regenerated after this commit. Not verified: Edge-pinned legacy F1 browser checks, production Vercel, human full-playback viewing, Monaco red flag in the browser (checked in Node only)."
+  }
+ ]
 }
