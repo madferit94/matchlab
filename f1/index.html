@@ -21346,7 +21346,8 @@ function predictedState(prediction,phase){
 // "SESSION STARTED"/"STANDING START"/"ROLLING START") and is longer than ABNORMAL_LAP_RATIO x
 // that driver's median lap, or starts during the suspension, holds its lap progress during the
 // suspension and spreads the lap over the moving time only. Lap numbers and lap start/end
-// times stay as recorded.
+// times stay as recorded. The same held progress places the recorded cars that are drawn
+// from lap progress (recordedState), so recorded and predicted sides share one rule.
 const SYNC_GAP_SECONDS=2,SYNC_FINISH_TOLERANCE=1e-9,ABNORMAL_LAP_RATIO=4;
 function suspensions(race,start){
  const messages=(race?.records?.race_control||[]).map(m=>({t:Date.parse(m.date),text:String(m.message||'')})).filter(m=>Number.isFinite(m.t)).sort((a,b)=>a.t-b.t),out=[];
@@ -21360,6 +21361,12 @@ function heldLaps(timeline,windows){
  return held;
 }
 function heldProgress(h,t){return h.number-1+Math.max(0,Math.min(h.moving,t-h.start-h.stops.reduce((x,[a,b])=>x+Math.max(0,Math.min(b,t)-a),0)))/h.moving}
+const holdCache=new WeakMap();
+function redFlagHold(timeline,race){
+ let entry=holdCache.get(timeline);
+ if(!entry||entry.race!==race){const windows=suspensions(race,timeline.start),held=heldLaps(timeline,windows);entry={race,windows,held,progress(d,t){const active=held.size?(d.laps||[]).find(l=>t>=l.start&&t<l.end):null,h=active&&held.get(active);return h?heldProgress(h,t):d.progress}};holdCache.set(timeline,entry)}
+ return entry;
+}
 function leaderSync(timeline,lapCount,carCount,race){
  if(!timeline||typeof timeline.state!=='function'||!Number.isFinite(timeline.duration)||timeline.duration<=0)return null;
  const numbers=(timeline.drivers||[]).flatMap(d=>(d.laps||[]).map(l=>l.number).filter(n=>Number.isInteger(n)&&n>0));
@@ -21368,19 +21375,18 @@ function leaderSync(timeline,lapCount,carCount,race){
  const finish=Math.min(...(timeline.drivers||[]).flatMap(d=>(d.laps||[]).filter(l=>l.number>=count&&Number.isFinite(l.end)).map(l=>l.end)));
  if(!Number.isFinite(finish)||finish>timeline.duration)return null;
  const gap=Math.max(0,Math.min(SYNC_GAP_SECONDS,(timeline.duration-finish)/Math.max(1,(Number.isInteger(carCount)?carCount:1)-1)));
- const windows=suspensions(race,timeline.start),held=heldLaps(timeline,windows);
- const progress=(d,t)=>{const active=held.size?(d.laps||[]).find(l=>t>=l.start&&t<l.end):null,h=active&&held.get(active);return h?heldProgress(h,t):Number.isFinite(d.progress)?d.progress:0};
- const lap=seconds=>{if(seconds>=finish-SYNC_FINISH_TOLERANCE)return count;const t=clamp(seconds,0,timeline.duration);return Math.min(count,Math.max(0,...timeline.state(t).map(d=>progress(d,t))))};
- return {count,finish,gap,duration:timeline.duration,lap,suspensions:windows,held:[...held.values()]};
+ const hold=redFlagHold(timeline,race);
+ const lap=seconds=>{if(seconds>=finish-SYNC_FINISH_TOLERANCE)return count;const t=clamp(seconds,0,timeline.duration);return Math.min(count,Math.max(0,...timeline.state(t).map(d=>{const v=hold.progress(d,t);return Number.isFinite(v)?v:0})))};
+ return {count,finish,gap,duration:timeline.duration,lap,suspensions:hold.windows,held:[...hold.held.values()]};
 }
 function syncedState(prediction,phase,sync){
  const seconds=clamp(phase)*sync.duration;
  return predictedRows(prediction).map(d=>{const lap=sync.lap(seconds-(d.predicted_rank-1)*sync.gap);return {...d,progress:lap/sync.count,lap_progress:lap}});
 }
 function recordedState(race,model,phase){
- const p=clamp(phase),seconds=p*model.duration,epoch=model.start+seconds*1000,latest=new Map();
+ const p=clamp(phase),seconds=p*model.duration,epoch=model.start+seconds*1000,latest=new Map(),hold=redFlagHold(model,race),t=clamp(seconds,0,model.duration);
  for(const row of race.records.position||[]){const date=Date.parse(row.date);if(!Number.isFinite(date)||date>epoch)continue;const prev=latest.get(row.driver_number);if(!prev||date>=prev.date)latest.set(row.driver_number,{date,position:row.position});}
- return model.state(seconds).map(d=>{const sample=latest.get(d.driver.driver_number),pos=sample&&Number.isInteger(sample.position)&&sample.position>=1&&sample.position<=model.drivers.length?sample:null;return {...d,rank:p===1?d.rank:pos?.position??d.rank,rank_source:p===1?'session_result':pos?'recorded_position':'lap_inference',position_timestamp:pos?.date??null,invalid_position_sample:!!sample&&!pos};});
+ return model.state(seconds).map(d=>{const sample=latest.get(d.driver.driver_number),pos=sample&&Number.isInteger(sample.position)&&sample.position>=1&&sample.position<=model.drivers.length?sample:null;return {...d,progress:hold.progress(d,t),rank:p===1?d.rank:pos?.position??d.rank,rank_source:p===1?'session_result':pos?'recorded_position':'lap_inference',position_timestamp:pos?.date??null,invalid_position_sample:!!sample&&!pos};});
 }
 function arrangeRecordedLanes(states,lanes,pane,animate=true){
  const ordered=states.slice().sort((a,b)=>(Number.isInteger(a.rank)&&a.rank>0?a.rank:999)-(Number.isInteger(b.rank)&&b.rank>0?b.rank:999)||a.driver.driver_number-b.driver.driver_number);

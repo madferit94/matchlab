@@ -217,6 +217,8 @@ assert map_blocks[0].count('global.MatchLabF1Comparison.leaderSync(timeline,lapC
 cmp_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1Comparison={' in b]
 assert len(cmp_blocks)==1 and cmp_blocks[0]==(p/'f1/release-0.26.3/comparison.js').read_text(encoding='utf8'), 'F1 lane comparison module drift'
 assert cmp_blocks[0].count('function leaderSync(')==1 and 'function leaderSync(' not in map_blocks[0] and map_blocks[0].count('global.MatchLabF1Comparison.syncedState(prediction,phase,sync)')==1 and cmp_blocks[0].count(',sync=leaderSync(recorded,null,predicted.length,race);')==1, 'F1 replays must share one leader clock'
+# Red-flag hold: one definition, used by the recorded reconstruction (recordedState) and the leader clock.
+assert cmp_blocks[0].count('function redFlagHold(')==1 and cmp_blocks[0].count('hold=redFlagHold(model,race)')==1 and cmp_blocks[0].count('const hold=redFlagHold(timeline,race);')==1 and 'redFlagHold' not in map_blocks[0], 'F1 red-flag hold must be shared'
 f1_before=(p/'f1/release-0.8.6/index-before.html').read_text(encoding='utf8')
 for ident in ['dataset','forecasts','historical','maps','tracks']:
     rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'

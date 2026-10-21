@@ -18,17 +18,17 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.767,
-     "wall_seconds": 3.068,
-     "measured_rate": 0.25,
+     "recorded_seconds_advanced": 0.821,
+     "wall_seconds": 3.041,
+     "measured_rate": 0.27,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.5436,
+      15.543,
       15.5515
      ],
      "leader_lap_progress": [
-      15.5436,
+      15.543,
       15.5515
      ],
      "completed_laps": [
@@ -44,17 +44,17 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.033,
-     "wall_seconds": 3.084,
-     "measured_rate": 0.984,
+     "recorded_seconds_advanced": 3.05,
+     "wall_seconds": 3.043,
+     "measured_rate": 1.002,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      21.4157,
+      21.4155,
       21.4471
      ],
      "leader_lap_progress": [
-      21.4157,
+      21.4155,
       21.4471
      ],
      "completed_laps": [
@@ -70,18 +70,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.832,
-     "wall_seconds": 3.086,
-     "measured_rate": 9.992,
+     "recorded_seconds_advanced": 30.499,
+     "wall_seconds": 3.037,
+     "measured_rate": 10.042,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      27.3186,
-      27.6378
+      27.3169,
+      27.6326
      ],
      "leader_lap_progress": [
-      27.3186,
-      27.6378
+      27.3169,
+      27.6326
      ],
      "completed_laps": [
       27,
@@ -96,17 +96,17 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 13,
-     "recorded_seconds_advanced": 148.992,
-     "wall_seconds": 2.493,
-     "measured_rate": 59.774,
+     "recorded_seconds_advanced": 145.998,
+     "wall_seconds": 2.435,
+     "measured_rate": 59.958,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "leader_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "completed_laps": [
@@ -371,18 +371,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.775,
-     "wall_seconds": 3.101,
+     "recorded_seconds_advanced": 0.758,
+     "wall_seconds": 3.031,
      "measured_rate": 0.25,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.5436,
-      15.5516
+      15.5435,
+      15.5514
      ],
      "leader_lap_progress": [
-      15.5436,
-      15.5516
+      15.5435,
+      15.5514
      ],
      "completed_laps": [
       15,
@@ -398,17 +398,17 @@
      "start_phase": 0.4,
      "samples": 16,
      "recorded_seconds_advanced": 3.05,
-     "wall_seconds": 3.065,
-     "measured_rate": 0.995,
+     "wall_seconds": 3.038,
+     "measured_rate": 1.004,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      21.4157,
-      21.4473
+      21.4155,
+      21.4471
      ],
      "leader_lap_progress": [
-      21.4157,
-      21.4473
+      21.4155,
+      21.4471
      ],
      "completed_laps": [
       21,
@@ -423,18 +423,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.832,
-     "wall_seconds": 3.074,
-     "measured_rate": 10.029,
+     "recorded_seconds_advanced": 30.333,
+     "wall_seconds": 3.036,
+     "measured_rate": 9.991,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3169,
-      27.6361
+      27.6309
      ],
      "leader_lap_progress": [
       27.3169,
-      27.6361
+      27.6309
      ],
      "completed_laps": [
       27,
@@ -448,10 +448,10 @@
     {
      "speed": 60,
      "start_phase": 0.96706,
-     "samples": 12,
-     "recorded_seconds_advanced": 136.992,
-     "wall_seconds": 2.29,
-     "measured_rate": 59.83,
+     "samples": 13,
+     "recorded_seconds_advanced": 145.998,
+     "wall_seconds": 2.437,
+     "measured_rate": 59.916,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
@@ -724,18 +724,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.771,
-     "wall_seconds": 3.072,
-     "measured_rate": 0.251,
+     "recorded_seconds_advanced": 0.758,
+     "wall_seconds": 3.042,
+     "measured_rate": 0.249,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       15.5435,
-      15.5515
+      15.5514
      ],
      "leader_lap_progress": [
       15.5435,
-      15.5515
+      15.5514
      ],
      "completed_laps": [
       15,
@@ -750,18 +750,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.067,
-     "wall_seconds": 3.068,
-     "measured_rate": 1,
+     "recorded_seconds_advanced": 3.033,
+     "wall_seconds": 3.038,
+     "measured_rate": 0.999,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4155,
-      21.4473
+      21.4469
      ],
      "leader_lap_progress": [
       21.4155,
-      21.4473
+      21.4469
      ],
      "completed_laps": [
       21,
@@ -776,18 +776,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.999,
-     "wall_seconds": 3.098,
-     "measured_rate": 10.006,
+     "recorded_seconds_advanced": 30.333,
+     "wall_seconds": 3.033,
+     "measured_rate": 10.003,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      27.3186,
-      27.6395
+      27.3169,
+      27.6309
      ],
      "leader_lap_progress": [
-      27.3186,
-      27.6395
+      27.3169,
+      27.6309
      ],
      "completed_laps": [
       27,
@@ -802,9 +802,9 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 13,
-     "recorded_seconds_advanced": 148.998,
-     "wall_seconds": 2.474,
-     "measured_rate": 60.221,
+     "recorded_seconds_advanced": 145.998,
+     "wall_seconds": 2.442,
+     "measured_rate": 59.789,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
@@ -1077,18 +1077,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.771,
-     "wall_seconds": 3.094,
+     "recorded_seconds_advanced": 0.758,
+     "wall_seconds": 3.041,
      "measured_rate": 0.249,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.5436,
-      15.5516
+      15.5435,
+      15.5514
      ],
      "leader_lap_progress": [
-      15.5436,
-      15.5516
+      15.5435,
+      15.5514
      ],
      "completed_laps": [
       15,
@@ -1103,18 +1103,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.1,
-     "wall_seconds": 3.104,
-     "measured_rate": 0.999,
+     "recorded_seconds_advanced": 3.033,
+     "wall_seconds": 3.038,
+     "measured_rate": 0.998,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      21.4157,
-      21.4478
+      21.4155,
+      21.4469
      ],
      "leader_lap_progress": [
-      21.4157,
-      21.4478
+      21.4155,
+      21.4469
      ],
      "completed_laps": [
       21,
@@ -1128,19 +1128,19 @@
     {
      "speed": 10,
      "start_phase": 0.5,
-     "samples": 16,
-     "recorded_seconds_advanced": 30.832,
-     "wall_seconds": 3.08,
-     "measured_rate": 10.011,
+     "samples": 15,
+     "recorded_seconds_advanced": 31.165,
+     "wall_seconds": 3.12,
+     "measured_rate": 9.989,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3186,
-      27.6378
+      27.6413
      ],
      "leader_lap_progress": [
       27.3186,
-      27.6378
+      27.6413
      ],
      "completed_laps": [
       27,
@@ -1155,9 +1155,9 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 13,
-     "recorded_seconds_advanced": 149.994,
-     "wall_seconds": 2.493,
-     "measured_rate": 60.173,
+     "recorded_seconds_advanced": 145.998,
+     "wall_seconds": 2.431,
+     "measured_rate": 60.049,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
@@ -1463,8 +1463,8 @@
    ],
    "tooltip": "1배속은 180초 예측 연출입니다.",
    "rate_10x": {
-    "new": 9.925,
-    "old": 9.987
+    "new": 9.922,
+    "old": 9.988
    },
    "overflow": {
     "scrollWidth": 390,
@@ -1515,8 +1515,8 @@
    ],
    "tooltip": "1배속은 180초 예측 연출입니다.",
    "rate_10x": {
-    "new": 9.974,
-    "old": 9.987
+    "new": 9.92,
+    "old": 9.976
    },
    "overflow": {
     "scrollWidth": 1440,
@@ -1567,8 +1567,8 @@
    ],
    "tooltip": "1× is a 180-second prediction illustration.",
    "rate_10x": {
-    "new": 9.921,
-    "old": 9.984
+    "new": 9.977,
+    "old": 9.986
    },
    "overflow": {
     "scrollWidth": 390,
@@ -1619,7 +1619,7 @@
    ],
    "tooltip": "1× is a 180-second prediction illustration.",
    "rate_10x": {
-    "new": 9.924,
+    "new": 9.917,
     "old": 10.049
    },
    "overflow": {
@@ -1666,30 +1666,32 @@
      2
     ],
     "raw_leader_lap_progress": [
-     2.2217,
-     2.3968
+     2,
+     2
     ],
     "predicted_canvas_unchanged": true,
+    "recorded_canvas_unchanged": false,
     "inside_core": true
    },
    "lane": {
     "phase": [
-     0.05261,
-     0.13316
+     0.05288,
+     0.13288
     ],
     "recorded_seconds": [
-     397.5,
-     1006
+     399.5,
+     1003.9
     ],
     "p1_left": [
      "4.66667%",
      "4.66667%"
     ],
     "recorded_front_left": [
-     "4.81524%",
-     "5.29209%"
+     "4.66667%",
+     "4.66667%"
     ],
-    "predicted_lanes_unchanged": true
+    "predicted_lanes_unchanged": true,
+    "p1_equals_recorded_front_every_sample": true
    },
    "page_errors": []
   },
@@ -1710,38 +1712,40 @@
    "held_laps": 20,
    "circuit": {
     "recorded_seconds": [
-     586.2,
-     884.2
+     585.2,
+     879.2
     ],
     "p1_lap_progress": [
      2,
      2
     ],
     "raw_leader_lap_progress": [
-     2.2223,
-     2.3974
+     2,
+     2
     ],
     "predicted_canvas_unchanged": true,
+    "recorded_canvas_unchanged": false,
     "inside_core": true
    },
    "lane": {
     "phase": [
-     0.05316,
-     0.13371
+     0.05288,
+     0.13288
     ],
     "recorded_seconds": [
-     401.6,
-     1010.2
+     399.5,
+     1003.9
     ],
     "p1_left": [
      "4.66667%",
      "4.66667%"
     ],
     "recorded_front_left": [
-     "4.81851%",
-     "5.29536%"
+     "4.66667%",
+     "4.66667%"
     ],
-    "predicted_lanes_unchanged": true
+    "predicted_lanes_unchanged": true,
+    "p1_equals_recorded_front_every_sample": true
    },
    "page_errors": []
   }
@@ -1756,16 +1760,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.25194
+      0.25055
      ],
-     "measured_rate": 0.999,
+     "measured_rate": 0.998,
      "p1_left": [
-      "20.8633%",
-      "24.0174%"
+      "20.8634%",
+      "23.9274%"
      ],
      "leader_left": [
-      "20.8633%",
-      "24.0174%"
+      "20.8634%",
+      "23.9274%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1776,16 +1780,16 @@
      "samples": 15,
      "phase": [
       0.40611,
-      0.50388
+      0.5011
      ],
-     "measured_rate": 2.001,
+     "measured_rate": 2.004,
      "p1_left": [
-      "39.3256%",
-      "49.1881%"
+      "39.3249%",
+      "48.9077%"
      ],
      "leader_left": [
-      "39.3256%",
-      "49.1881%"
+      "39.3249%",
+      "48.9077%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1795,17 +1799,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61333,
-      0.80887
+      0.61222,
+      0.80333
      ],
-     "measured_rate": 4,
+     "measured_rate": 3.969,
      "p1_left": [
-      "60.2695%",
-      "80.1694%"
+      "60.1572%",
+      "79.6023%"
      ],
      "leader_left": [
-      "60.2695%",
-      "80.1694%"
+      "60.1572%",
+      "79.6023%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1932,19 +1936,19 @@
    "speeds": [
     {
      "speed": 1,
-     "samples": 15,
+     "samples": 13,
      "phase": [
       0.20333,
-      0.25222
+      0.25028
      ],
-     "measured_rate": 0.998,
+     "measured_rate": 1.001,
      "p1_left": [
-      "20.8633%",
-      "24.0353%"
+      "20.8634%",
+      "23.9095%"
      ],
      "leader_left": [
-      "20.8633%",
-      "24.0353%"
+      "20.8634%",
+      "23.9095%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1954,17 +1958,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40611,
-      0.50277
+      0.40667,
+      0.50222
      ],
-     "measured_rate": 1.997,
+     "measured_rate": 1.995,
      "p1_left": [
-      "39.3251%",
-      "49.076%"
+      "39.3814%",
+      "49.0203%"
      ],
      "leader_left": [
-      "39.3251%",
-      "49.076%"
+      "39.3814%",
+      "49.0203%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1974,17 +1978,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61222,
-      0.80666
+      0.61333,
+      0.80221
      ],
-     "measured_rate": 3.987,
+     "measured_rate": 3.992,
      "p1_left": [
-      "60.1572%",
-      "79.9431%"
+      "60.2701%",
+      "79.4884%"
      ],
      "leader_left": [
-      "60.1572%",
-      "79.9431%"
+      "60.2701%",
+      "79.4884%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2114,16 +2118,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.24917
+      0.25083
      ],
-     "measured_rate": 0.945,
+     "measured_rate": 1.003,
      "p1_left": [
-      "20.8635%",
-      "23.8376%"
+      "20.8633%",
+      "23.9454%"
      ],
      "leader_left": [
-      "20.8635%",
-      "23.8376%"
+      "20.8633%",
+      "23.9454%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2133,17 +2137,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40667,
-      0.50389
+      0.40611,
+      0.50111
      ],
-     "measured_rate": 1.996,
+     "measured_rate": 2.009,
      "p1_left": [
-      "39.3814%",
-      "49.1884%"
+      "39.3252%",
+      "48.908%"
      ],
      "leader_left": [
-      "39.3814%",
-      "49.1884%"
+      "39.3252%",
+      "48.908%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2153,17 +2157,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61333,
-      0.80666
+      0.61222,
+      0.80221
      ],
-     "measured_rate": 4.007,
+     "measured_rate": 4.006,
      "p1_left": [
-      "60.2701%",
-      "79.9431%"
+      "60.1572%",
+      "79.4884%"
      ],
      "leader_left": [
-      "60.2701%",
-      "79.9431%"
+      "60.1572%",
+      "79.4884%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2293,16 +2297,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.25139
+      0.25083
      ],
-     "measured_rate": 0.996,
+     "measured_rate": 1.001,
      "p1_left": [
-      "20.8634%",
-      "23.9814%"
+      "20.8633%",
+      "23.9454%"
      ],
      "leader_left": [
-      "20.8634%",
-      "23.9814%"
+      "20.8633%",
+      "23.9454%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2313,16 +2317,16 @@
      "samples": 15,
      "phase": [
       0.40611,
-      0.50222
+      0.50111
      ],
-     "measured_rate": 1.999,
+     "measured_rate": 2.006,
      "p1_left": [
       "39.3252%",
-      "49.0203%"
+      "48.908%"
      ],
      "leader_left": [
       "39.3252%",
-      "49.0203%"
+      "48.908%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2332,17 +2336,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61223,
-      0.80666
+      0.61221,
+      0.8011
      ],
-     "measured_rate": 3.998,
+     "measured_rate": 3.99,
      "p1_left": [
-      "60.1578%",
-      "79.9431%"
+      "60.1565%",
+      "79.3746%"
      ],
      "leader_left": [
-      "60.1578%",
-      "79.9431%"
+      "60.1565%",
+      "79.3746%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2468,5 +2472,5 @@
  "blocked_external_hosts": [
   "media.formula1.com"
  ],
- "checked_at": "2026-10-21T02:14:20.635Z"
+ "checked_at": "2026-10-21T02:24:50.635Z"
 }

@@ -2,7 +2,7 @@
  "status": "PASS",
  "release": "0.26.3",
  "base_commit": "ee48f51",
- "checked_at": "2026-10-21T02:11:47.395Z",
+ "checked_at": "2026-10-21T02:24:29.291Z",
  "red_flag_rule": "A recorded lap longer than 4 x that driver median lap that overlaps a race-control suspension (RED FLAG until the next SESSION STARTED / STANDING START / ROLLING START) keeps its lap number, start and end, but its progress advances only outside the suspension (spread evenly over the moving time). The leader curve uses these held values; everything else is unchanged.",
  "rule": "Leader lap progress L(t) = largest lap progress among recorded cars in MatchLabF1Replay.timeline(race).state(t), t = phase x recorded seconds. Predicted rank r lap progress = L(t - (r-1) x gap); L is held at L(0) before t=0 and at the race lap count from the recorded leader finish on. gap = min(2 s, (recorded seconds - leader finish seconds)/(predicted cars - 1)).",
  "lane_tab_rule": "Lane comparison tab uses the same MatchLabF1Comparison.leaderSync (lap count = largest valid recorded lap number, equal to raceLapCount for all GPs) and draws predicted lanes at clamp(lap progress / session_result laps), the scale of the recorded lanes; Finish label when lap progress reaches the lap count. Upcoming GPs have no lane comparison tab (archive tabs: prediction, analysis).",
@@ -43,9 +43,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0.0043,
+      "p90": 0.0379,
+      "share_over_15pct": 0.002
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0.0043,
       "p90": 0.0379,
       "share_over_15pct": 0.002
@@ -114,9 +122,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -185,9 +201,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -256,9 +280,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -327,9 +359,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0.0364,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0.0364,
       "share_over_15pct": 0
@@ -379,8 +419,8 @@
    "max_abs_diff_laps": 0,
    "mean_abs_diff_laps": 0,
    "vs_position_record_p1": {
-    "max_abs_diff_laps": 0.7544,
-    "mean_abs_diff_laps": 0.07856
+    "max_abs_diff_laps": 0,
+    "mean_abs_diff_laps": 0
    },
    "leader_progress_at_phase0": 0,
    "predicted_moves_before_real_start": 0,
@@ -398,6 +438,9 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 533,
+    "recorded_marker_samples_changed_inside": 533,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 533,
     "stops": [
      {
       "window_seconds": [
@@ -413,6 +456,17 @@
       "p1_movement_laps": 0,
       "max_movement_any_rank_laps": 0,
       "previous_build_p1_movement_laps": 0.0402,
+      "recorded_reconstructed_cars_held_whole_window": 16,
+      "recorded_reconstructed_max_movement": 0,
+      "leader_held_lap_pace": {
+       "driver": 12,
+       "lap": 68,
+       "median_lap_seconds": 76.8,
+       "moving_seconds": 49.63,
+       "before_stop_seconds": 38.34,
+       "after_stop_seconds": 11.29,
+       "speed_vs_median": 1.547
+      },
       "recorded_position_leader_dot": {
        "driver": [
         12,
@@ -422,12 +476,17 @@
         "lap_reconstruction",
         "lap_reconstruction"
        ],
-       "distance_lap_fraction": 0.0402
+       "distance_lap_fraction": 0
       }
      }
     ],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0.1663,
       "share_over_15pct": 0.1094
@@ -443,7 +502,7 @@
     "lane_scale_laps": 78,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
-    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0.009671295246336808,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -496,9 +555,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0.0357,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0.0357,
       "share_over_15pct": 0
@@ -567,9 +634,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0.0127,
+      "p90": 0.0299,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0.0127,
       "p90": 0.0299,
       "share_over_15pct": 0
@@ -638,9 +713,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -709,9 +792,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -780,9 +871,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -832,8 +931,8 @@
    "max_abs_diff_laps": 0,
    "mean_abs_diff_laps": 0,
    "vs_position_record_p1": {
-    "max_abs_diff_laps": 0.9177,
-    "mean_abs_diff_laps": 0.10211
+    "max_abs_diff_laps": 0.8351,
+    "mean_abs_diff_laps": 0.00407
    },
    "leader_progress_at_phase0": 0,
    "predicted_moves_before_real_start": 0,
@@ -851,6 +950,9 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 461,
+    "recorded_marker_samples_changed_inside": 520,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 520,
     "stops": [
      {
       "window_seconds": [
@@ -866,6 +968,17 @@
       "p1_movement_laps": 0,
       "max_movement_any_rank_laps": 0,
       "previous_build_p1_movement_laps": 0.8823,
+      "recorded_reconstructed_cars_held_whole_window": 18,
+      "recorded_reconstructed_max_movement": 0,
+      "leader_held_lap_pace": {
+       "driver": 1,
+       "lap": 3,
+       "median_lap_seconds": 76.6,
+       "moving_seconds": 138.01,
+       "before_stop_seconds": 0,
+       "after_stop_seconds": 138.01,
+       "speed_vs_median": 0.555
+      },
       "recorded_position_leader_dot": {
        "driver": [
         1,
@@ -885,6 +998,11 @@
       "p90": 0.0404,
       "share_over_15pct": 0.0076
      },
+     "r1_build_predicted_hold_only": {
+      "median": 0.0096,
+      "p90": 0.0404,
+      "share_over_15pct": 0.0076
+     },
      "previous_build": {
       "median": 0.0092,
       "p90": 0.1389,
@@ -896,7 +1014,7 @@
     "lane_scale_laps": 72,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
-    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0.012745564234764573,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -930,8 +1048,8 @@
    "max_abs_diff_laps": 0,
    "mean_abs_diff_laps": 0,
    "vs_position_record_p1": {
-    "max_abs_diff_laps": 0.9359,
-    "mean_abs_diff_laps": 0.12873
+    "max_abs_diff_laps": 0.008,
+    "mean_abs_diff_laps": 0.00009
    },
    "leader_progress_at_phase0": 0,
    "predicted_moves_before_real_start": 0,
@@ -949,6 +1067,9 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 592,
+    "recorded_marker_samples_changed_inside": 596,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 596,
     "stops": [
      {
       "window_seconds": [
@@ -964,6 +1085,17 @@
       "p1_movement_laps": 0,
       "max_movement_any_rank_laps": 0,
       "previous_build_p1_movement_laps": 0.9033,
+      "recorded_reconstructed_cars_held_whole_window": 19,
+      "recorded_reconstructed_max_movement": 0,
+      "leader_held_lap_pace": {
+       "driver": 63,
+       "lap": 4,
+       "median_lap_seconds": 85.64,
+       "moving_seconds": 124.06,
+       "before_stop_seconds": 0,
+       "after_stop_seconds": 124.06,
+       "speed_vs_median": 0.69
+      },
       "recorded_position_leader_dot": {
        "driver": [
         63,
@@ -979,6 +1111,11 @@
     ],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0.0304,
+      "p90": 0.0478,
+      "share_over_15pct": 0.0283
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0.0305,
       "p90": 0.0482,
       "share_over_15pct": 0.0288
@@ -994,7 +1131,7 @@
     "lane_scale_laps": 53,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
-    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0.017658622012041963,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -1047,9 +1184,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0,
       "p90": 0,
       "share_over_15pct": 0
@@ -1118,9 +1263,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0.0411,
+      "p90": 0.089,
+      "share_over_15pct": 0
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0.0411,
       "p90": 0.089,
       "share_over_15pct": 0
@@ -1189,9 +1342,17 @@
     "lap_counter_mismatches_inside": 0,
     "marker_differences_vs_previous_outside_red_flag": 0,
     "marker_differences_vs_previous_inside": 0,
+    "recorded_marker_samples_changed_inside": 0,
+    "gps_marker_samples_changed_inside": 0,
+    "recorded_lane_samples_changed_inside": 0,
     "stops": [],
     "dot_distance_to_position_leader_lap_fraction": {
      "now": {
+      "median": 0.0085,
+      "p90": 0.0304,
+      "share_over_15pct": 0.003
+     },
+     "r1_build_predicted_hold_only": {
       "median": 0.0085,
       "p90": 0.0304,
       "share_over_15pct": 0.003
@@ -1308,5 +1469,5 @@
    2
   ]
  },
- "checks": 298
+ "checks": 347
 }

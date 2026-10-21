@@ -12,7 +12,7 @@
       line, driver dashboard and table are identical to 0.26.2 (git base commit).
       Speed tooltip text, page errors 0, no horizontal overflow (documentElement.clientWidth).
    R. Red flag (Dutch GP 11353), ko 1440 and en 390: inside the suspension the predicted canvas (60x, 5 s) and the
-      predicted lanes (1x, 5 s) do not change while the clock runs.
+      predicted and recorded lanes (1x, 5 s) do not change while the clock runs; the recorded canvas is recorded.
    2. Lane comparison tab ("경기 전 예측 vs 실제 기록", same GP), ko/en x 390/1440: play at 1x, 2x and 4x (the
       tab's own speeds; 1x = 60 seconds for the whole race). Read straight from the page: the predicted P1
       lane car position (style.left) must equal the furthest recorded lane car position at every sample,
@@ -139,17 +139,17 @@ const overflow=page=>page.evaluate(()=>({scrollWidth:document.documentElement.sc
    const startPhase=(win.core[0]+300)/info.duration;
    await page.evaluate(([p])=>{const r=window.__sync.root;r.querySelector('[data-map-speed]').value='60';window.__sync.seek(p);r.querySelector('[data-map-play]').click()},[startPhase]);
    const samples=[];const t0=Date.now();
-   while(Date.now()-t0<5000){await page.waitForTimeout(250);samples.push(await page.evaluate(()=>{const s=window.__sync,a=s.at(s.phase());return {seconds:a.seconds,p1:a.p1_lap_progress,leader_raw:a.leader_lap_progress,canvas:s.root.querySelector('[data-map-pred]').toDataURL().length+':'+s.root.querySelector('[data-map-pred]').toDataURL().slice(-64)}}))}
+   while(Date.now()-t0<5000){await page.waitForTimeout(250);samples.push(await page.evaluate(()=>{const s=window.__sync,a=s.at(s.phase());return {seconds:a.seconds,p1:a.p1_lap_progress,leader_raw:a.leader_lap_progress,canvas:s.root.querySelector('[data-map-pred]').toDataURL(),actual:s.root.querySelector('[data-map-actual]').toDataURL()}}))}
    await page.evaluate(PAUSE);
-   const first=samples[0],last=samples.at(-1),circuit={recorded_seconds:[+first.seconds.toFixed(1),+last.seconds.toFixed(1)],p1_lap_progress:[first.p1,last.p1],raw_leader_lap_progress:[+first.leader_raw.toFixed(4),+last.leader_raw.toFixed(4)],predicted_canvas_unchanged:samples.every(x=>x.canvas===first.canvas),inside_core:last.seconds<win.core[1]};
+   const first=samples[0],last=samples.at(-1),circuit={recorded_seconds:[+first.seconds.toFixed(1),+last.seconds.toFixed(1)],p1_lap_progress:[first.p1,last.p1],raw_leader_lap_progress:[+first.leader_raw.toFixed(4),+last.leader_raw.toFixed(4)],predicted_canvas_unchanged:samples.every(x=>x.canvas===first.canvas),recorded_canvas_unchanged:samples.every(x=>x.actual===first.actual),inside_core:last.seconds<win.core[1]};
    ok(last.seconds-first.seconds>200&&circuit.inside_core&&first.p1===last.p1&&circuit.predicted_canvas_unchanged,`red flag: predicted cars still on the circuit at 60x ${lang} ${width}`);
    if(lang==='ko'){const shot='redflag-ko-1440.png';await page.locator('.f1-map-comparison').screenshot({path:path.join(__dirname,shot)});result.screenshots.push(shot)}
    await page.click('[data-tab="comparison"]');await page.waitForSelector('.f1-comparison [data-compare-play]');
    await page.evaluate(([p])=>{const r=document.querySelector('.f1-comparison'),seek=r.querySelector('[data-compare-seek]');r.querySelector('[data-compare-speed]').value='1';seek.value=String(p);seek.dispatchEvent(new Event('input'));r.querySelector('[data-compare-play]').click()},[(win.core[0]+100)/info.duration]);
    const lanes=[];const t1=Date.now();while(Date.now()-t1<5000){await page.waitForTimeout(250);lanes.push(await page.evaluate(LANE_READ))}
    await page.evaluate(LANE_PAUSE);
-   const lf=lanes[0],ll=lanes.at(-1),laneEntry={phase:[+lf.phase.toFixed(5),+ll.phase.toFixed(5)],recorded_seconds:[+(lf.phase*info.duration).toFixed(1),+(ll.phase*info.duration).toFixed(1)],p1_left:[lf.p1_left,ll.p1_left],recorded_front_left:[lf.leader_left,ll.leader_left],predicted_lanes_unchanged:lanes.every(x=>JSON.stringify(x.pred_lefts)===JSON.stringify(lf.pred_lefts))};
-   ok(ll.phase*info.duration<win.core[1]&&ll.phase>lf.phase&&laneEntry.predicted_lanes_unchanged,`red flag: predicted lanes still in the lane tab ${lang} ${width}`);
+   const lf=lanes[0],ll=lanes.at(-1),laneEntry={phase:[+lf.phase.toFixed(5),+ll.phase.toFixed(5)],recorded_seconds:[+(lf.phase*info.duration).toFixed(1),+(ll.phase*info.duration).toFixed(1)],p1_left:[lf.p1_left,ll.p1_left],recorded_front_left:[lf.leader_left,ll.leader_left],predicted_lanes_unchanged:lanes.every(x=>JSON.stringify(x.pred_lefts)===JSON.stringify(lf.pred_lefts)),p1_equals_recorded_front_every_sample:lanes.every(x=>x.p1_left===x.leader_left)};
+   ok(ll.phase*info.duration<win.core[1]&&ll.phase>lf.phase&&laneEntry.predicted_lanes_unchanged&&laneEntry.p1_equals_recorded_front_every_sample&&lf.leader_left===ll.leader_left,`red flag: predicted and recorded lanes still, P1 lane = recorded front lane, in the lane tab ${lang} ${width}`);
    result.red_flag.push({lang,width,gp:RED_FLAG,suspension_seconds:win.suspensions,core_stop_seconds:win.core,held_laps:win.held,circuit,lane:laneEntry,page_errors:errors});ok(errors.length===0,`red flag page errors 0 ${lang} ${width}`);
    await ctx.close();
   }

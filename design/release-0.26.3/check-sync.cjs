@@ -3,13 +3,16 @@
 // Runs the module code shipped in f1/index.html (and the 0.26.2 page from git)
 // in separate VM contexts, samples phase 0..1 densely for every GP with
 // recorded lap data and writes design/release-0.26.3/sync-result.json.
-// Red-flag hold (review R1): compares with the first 0.26.3 build (PREV, commit 5fb9f4c) as well.
+// Red-flag hold (review R1): compares with the first 0.26.3 build (PREV, commit 5fb9f4c) and the
+// predicted-only hold build (R1B, commit e7f5261). Since the lead decision after R1, recorded cars drawn
+// from lap progress use the same hold, so the recorded side may differ from 0.26.2 inside red-flag laps only.
 // Usage: node design/release-0.26.3/check-sync.cjs [base-commit] [previous-0.26.3-commit]
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'../..'),BASE=process.argv[2]||'ee48f51';
 const live=fs.readFileSync(path.join(root,'f1/index.html'),'utf8');
 const before=execFileSync('git',['show',BASE+':f1/index.html'],{cwd:root,maxBuffer:64*1024*1024}).toString('utf8');
+const R1_REF=process.argv[4]||'e7f5261',r1html=execFileSync('git',['show',R1_REF+':f1/index.html'],{cwd:root,maxBuffer:64*1024*1024}).toString('utf8');
 const PREV_REF=process.argv[3]||'5fb9f4c',previous=execFileSync('git',['show',PREV_REF+':f1/index.html'],{cwd:root,maxBuffer:64*1024*1024}).toString('utf8');
 const json=(html,id)=>JSON.parse(html.match(new RegExp('<script id="'+id+'" type="application/json">([\\s\\S]*?)</script>'))[1]);
 const scripts=html=>[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
@@ -20,7 +23,7 @@ function load(html){
  for(const k of ['replay','comparison','map'])vm.runInContext(code[k],ctx);
  return {ctx,code,replay:ctx.MatchLabF1Replay,cmp:ctx.MatchLabF1Comparison,map:ctx.MatchLabF1MapComparison};
 }
-const NEW=load(live),OLD=load(before),PREV=load(previous);
+const NEW=load(live),OLD=load(before),PREV=load(previous),R1B=load(r1html);
 const checks=[];const ok=(cond,msg)=>{assert(cond,msg);checks.push(msg)};
 // Source identity: the shipped map and comparison modules equal the versioned source
 // files, the stored 0.26.2 copies equal the modules in the base commit, and the replay
@@ -30,6 +33,7 @@ ok(OLD.code.map===fs.readFileSync(path.join(root,'f1/release-0.26.3/map-comparis
 ok(NEW.code.comparison===fs.readFileSync(path.join(root,'f1/release-0.26.3/comparison.js'),'utf8'),'shipped comparison module = f1/release-0.26.3/comparison.js');
 ok(OLD.code.comparison===fs.readFileSync(path.join(root,'f1/release-0.8.4/comparison.js'),'utf8'),'0.26.2 comparison module = f1/release-0.8.4/comparison.js');
 ok(NEW.code.replay===OLD.code.replay,'replay module unchanged from 0.26.2');
+ok(NEW.code.comparison.split('function redFlagHold(').length===2&&NEW.code.comparison.includes('hold=redFlagHold(model,race)')&&NEW.code.comparison.includes('const hold=redFlagHold(timeline,race);'),'one red-flag hold shared by the recorded reconstruction and the leader clock');
 ok(NEW.code.comparison.split('function leaderSync(').length===2&&!NEW.code.map.includes('function leaderSync(')&&!NEW.code.map.includes('SYNC_GAP_SECONDS')&&NEW.code.map.includes('global.MatchLabF1Comparison.syncedState(prediction,phase,sync)'),'one shared leader clock (comparison module) used by the map module');
 ok(NEW.code.comparison.includes(',sync=leaderSync(recorded,null,predicted.length,race);')&&NEW.code.comparison.includes('const pred=sync?syncedState(prediction,phase,sync):predictedState(prediction,phase);'),'lane comparison draws predicted lanes from the shared leader clock');
 for(const id of ['dataset','maps','forecasts','historical','tracks','f1-history-2024','f1-predictions-2025','f1-query-history','profile-data'])ok(json(live,id)!==null&&live.match(new RegExp('<script id="'+id+'" type="application/json">([\\s\\S]*?)</script>'))[1]===before.match(new RegExp('<script id="'+id+'" type="application/json">([\\s\\S]*?)</script>'))[1],'data block unchanged: '+id);
@@ -50,7 +54,7 @@ for(const race of dataset.races.filter(r=>r.state==='completed'&&(r.records?.lap
  assert(prediction&&map,'prediction and map for '+key);
  const timeline=NEW.replay.timeline(race),timelineOld=OLD.replay.timeline(race),count=NEW.map.raceLapCount(race);
  ok(count===OLD.map.raceLapCount(race)&&timeline.duration===timelineOld.duration&&timeline.start===timelineOld.start,'recorded clock unchanged '+key);
- const n=prediction.drivers.length,sync=NEW.map.leaderSync(timeline,count,n,race),prevSync=PREV.map.leaderSync(timeline,count,n);
+ const n=prediction.drivers.length,sync=NEW.map.leaderSync(timeline,count,n,race),prevSync=PREV.map.leaderSync(timeline,count,n),r1Sync=R1B.map.leaderSync(timeline,count,n,race);
  // Held (red-flag) laps: any sample where some recorded car is inside one.
  const held=sync.held,inHeld=t=>held.some(h=>t>=h.start&&t<h.end),heldFrom=held.length?Math.min(...held.map(h=>h.start)):Infinity,heldTo=held.length?Math.max(...held.map(h=>h.end)):-Infinity;
  const trackLength=map.lengths.at(-1),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y)/trackLength;
@@ -70,17 +74,18 @@ for(const race of dataset.races.filter(r=>r.state==='completed'&&(r.records?.lap
  for(let r=1;r<=n;r++){const t=(sync.finish+(r-1)*sync.gap)/timeline.duration;for(const d of [-1e-4,-1e-7,0,1e-7,1e-4])if(t+d>=0&&t+d<=1)phases.add(t+d)}
  const ordered=[...phases].sort((a,b)=>a-b);
  const lane={maxDiffLaneFraction:0,sumDiffLaneFraction:0,overtakes:0,backward:0,leftFinish:0,recordedDiffs:0,unsyncedDiffs:0,prev:null};
- const rf={insideSamples:0,counterMismatch:0,prevDiffOutside:0,prevDiffInside:0,dotNew:[],dotPrev:[]};
+ const rf={insideSamples:0,counterMismatch:0,prevDiffOutside:0,prevDiffInside:0,dotNew:[],dotPrev:[],dotR1:[],recordedDiffInside:0,gpsDiffInside:0,laneRecordedDiffInside:0};
  let maxDiff=0,sumDiff=0,maxDiffRankOne=0,sumDiffRankOne=0,overtakes=0,backward=0,leftFinish=0,preStartMoves=0,gridHoldMoves=0,actualDiffs=0,prev=null;
  for(const phase of ordered){
   const pred=predictedAt(phase),actual=NEW.map.actualMarkers(race,timeline,map,phase),actualOld=OLD.map.actualMarkers(race,timelineOld,mapOld,phase);
-  if(JSON.stringify(actual.map(view))!==JSON.stringify(actualOld.map(view)))actualDiffs++;
   const lead=Math.max(0,...actual.map(d=>d.progress)),seconds0=phase*timeline.duration,inside=inHeld(seconds0);
+  if(JSON.stringify(actual.map(view))!==JSON.stringify(actualOld.map(view))){if(inside)rf.recordedDiffInside++;else actualDiffs++}
+  if(inside){const gpsNew=actual.filter(d=>d.coordinate_source==='gps').map(d=>[d.driver.driver_number,d.x,d.y]),gpsOld=actualOld.filter(d=>d.coordinate_source==='gps').map(d=>[d.driver.driver_number,d.x,d.y]);if(JSON.stringify(gpsNew)!==JSON.stringify(gpsOld))rf.gpsDiffInside++}
   if(inside){rf.insideSamples++;if(Math.floor(pred[0].lap_progress+EPS)!==Math.floor(lead+EPS)&&!(pred[0].lap_progress===count&&lead===count))rf.counterMismatch++}
-  else{const diff=Math.abs(pred[0].lap_progress-lead);maxDiff=Math.max(maxDiff,diff);sumDiff+=diff}
+  {const diff=Math.abs(pred[0].lap_progress-lead);maxDiff=Math.max(maxDiff,diff);sumDiff+=diff}
   const prevPred=PREV.map.predictedMarkers(prediction,phase,map,count,prevSync),same=JSON.stringify(prevPred)===JSON.stringify(pred);
   if(seconds0<heldFrom||seconds0>heldTo+(n-1)*sync.gap+1e-6){if(!same)rf.prevDiffOutside++}else if(!same)rf.prevDiffInside++;
-  const leaderDot=actual.find(d=>d.rank===1);if(leaderDot&&phase<realFinishPhase){rf.dotNew.push(dist(pred[0],leaderDot));rf.dotPrev.push(dist(prevPred[0],leaderDot))}
+  const leaderDot=actual.find(d=>d.rank===1),leaderDotOld=actualOld.find(d=>d.rank===1);if(leaderDot&&leaderDotOld&&phase<realFinishPhase){const r1Pred=held.length?R1B.map.predictedMarkers(prediction,phase,map,count,r1Sync):prevPred;rf.dotNew.push(dist(pred[0],leaderDot));rf.dotPrev.push(dist(prevPred[0],leaderDotOld));rf.dotR1.push(dist(r1Pred[0],leaderDotOld))}
   const rankOne=actual.find(d=>d.rank===1);if(rankOne){const d1=Math.abs(pred[0].lap_progress-rankOne.progress);maxDiffRankOne=Math.max(maxDiffRankOne,d1);sumDiffRankOne+=d1}
   assert.deepEqual(pred.map(d=>d.predicted_rank),pred.map((d,i)=>i+1),'markers in predicted order');
   for(let i=1;i<pred.length;i++)if(pred[i].lap_progress>pred[i-1].lap_progress+EPS)overtakes++;
@@ -90,10 +95,10 @@ for(const race of dataset.races.filter(r=>r.state==='completed'&&(r.records?.lap
   if(prev)for(let i=0;i<pred.length;i++){if(pred[i].lap_progress<prev[i].lap_progress-EPS)backward++;if(prev[i].lap_progress>=count&&pred[i].lap_progress!==count)leftFinish++}
   prev=pred;
   const lp=laneAt(phase),lr=NEW.cmp.recordedState(race,timeline,phase),lrOld=OLD.cmp.recordedState(race,timelineOld,phase);
-  if(JSON.stringify(lr.map(d=>laneView(d,maxLaps)))!==JSON.stringify(lrOld.map(d=>laneView(d,maxLaps))))lane.recordedDiffs++;
+  if(JSON.stringify(lr.map(d=>laneView(d,maxLaps)))!==JSON.stringify(lrOld.map(d=>laneView(d,maxLaps)))){if(inside)rf.laneRecordedDiffInside++;else lane.recordedDiffs++}
   if(JSON.stringify(NEW.cmp.predictedState(prediction,phase))!==JSON.stringify(OLD.cmp.predictedState(prediction,phase)))lane.unsyncedDiffs++;
   const leaderX=Math.max(0,...lr.map(d=>Math.max(0,Math.min(1,d.progress/maxLaps)))),p1X=Math.max(0,Math.min(1,lp[0].lap_progress/maxLaps)),dx=Math.abs(p1X-leaderX);
-  if(inside)lane.heldMaxDiff=Math.max(lane.heldMaxDiff||0,dx);else{lane.maxDiffLaneFraction=Math.max(lane.maxDiffLaneFraction,dx);lane.sumDiffLaneFraction+=dx}
+  if(inside)lane.heldMaxDiff=Math.max(lane.heldMaxDiff||0,dx);lane.maxDiffLaneFraction=Math.max(lane.maxDiffLaneFraction,dx);lane.sumDiffLaneFraction+=dx;
   for(let i=1;i<lp.length;i++)if(lp[i].lap_progress>lp[i-1].lap_progress+EPS)lane.overtakes++;
   if(lane.prev)for(let i=0;i<lp.length;i++){if(lp[i].lap_progress<lane.prev[i].lap_progress-EPS)lane.backward++;if(lane.prev[i].lap_progress>=count&&lp[i].lap_progress!==count)lane.leftFinish++}
   lane.prev=lp;
@@ -110,11 +115,17 @@ for(const race of dataset.races.filter(r=>r.state==='completed'&&(r.records?.lap
   for(let r=1;r<=n;r++){const t0=coreStart+(r-1)*sync.gap,t1=b+(r-1)*sync.gap;if(t1<=t0)continue;let lo=Infinity,hi=-Infinity,plo=Infinity,phi=-Infinity;
    for(let i=0;i<=200;i++){const t=t0+(t1-t0)*i/200-1e-6*(i===200);const m=NEW.map.predictedMarkers(prediction,t/timeline.duration,map,count,sync)[r-1].lap_progress,pm=PREV.map.predictedMarkers(prediction,t/timeline.duration,map,count,prevSync)[r-1].lap_progress;lo=Math.min(lo,m);hi=Math.max(hi,m);plo=Math.min(plo,pm);phi=Math.max(phi,pm)}
    worst=Math.max(worst,hi-lo);if(r===1){p1New=hi-lo;p1Prev=phi-plo}}
+  // Recorded cars drawn from lap progress: those in a held lap for the whole core window must not move.
+  let recMove=0,recCars=0;{const S=[];for(let i=0;i<=50;i++){const t=coreStart+(b-coreStart)*i/50-1e-6*(i===50);S.push({t,m:NEW.map.actualMarkers(race,timeline,map,t/timeline.duration)})}
+   for(const d0 of S[0].m){const num=d0.driver.driver_number,track=S.map(x=>x.m.find(d=>d.driver.driver_number===num));if(!S.every(x=>held.some(h=>h.driver_number===num&&x.t>=h.start&&x.t<h.end&&h.stops.some(([p,q])=>x.t>=p&&x.t<=q))))continue;if(!track.every(d=>d.coordinate_source==='lap_reconstruction'))continue;recCars++;recMove=Math.max(recMove,Math.max(...track.map(d=>d.progress))-Math.min(...track.map(d=>d.progress)),...track.map(d=>dist(d,track[0])))}}
+  // Speed of the leader's held lap outside the stop compared with that driver's median lap.
+  const leaderDriver=timeline.drivers.find(d=>d.driver.driver_number===leaderHeld.driver_number),durs=leaderDriver.laps.map(l=>l.end-l.start).sort((x,y)=>x-y),median=durs[durs.length>>1];
+  const pace={driver:leaderHeld.driver_number,lap:leaderHeld.number,median_lap_seconds:+median.toFixed(2),moving_seconds:+leaderHeld.moving.toFixed(2),before_stop_seconds:+(leaderHeld.stops[0][0]-leaderHeld.start).toFixed(2),after_stop_seconds:+(leaderHeld.end-leaderHeld.stops.at(-1)[1]).toFixed(2),speed_vs_median:+(median/leaderHeld.moving).toFixed(3)};
   const gpsMove=(()=>{const s0=NEW.map.actualMarkers(race,timeline,map,coreStart/timeline.duration).find(d=>d.rank===1),s1=NEW.map.actualMarkers(race,timeline,map,(b-1e-3)/timeline.duration).find(d=>d.rank===1);return s0&&s1?{driver:[s0.driver.driver_number,s1.driver.driver_number],source:[s0.coordinate_source,s1.coordinate_source],distance_lap_fraction:+dist(s0,s1).toFixed(4)}:null})();
-  return {window_seconds:[+a.toFixed(1),+b.toFixed(1)],held_laps:held.length,leader_held_lap:leaderHeld.number,core_stop_seconds:[+coreStart.toFixed(1),+b.toFixed(1)],p1_movement_laps:p1New,max_movement_any_rank_laps:worst,previous_build_p1_movement_laps:+p1Prev.toFixed(4),recorded_position_leader_dot:gpsMove};
+  return {window_seconds:[+a.toFixed(1),+b.toFixed(1)],held_laps:held.length,leader_held_lap:leaderHeld.number,core_stop_seconds:[+coreStart.toFixed(1),+b.toFixed(1)],p1_movement_laps:p1New,max_movement_any_rank_laps:worst,previous_build_p1_movement_laps:+p1Prev.toFixed(4),recorded_reconstructed_cars_held_whole_window:recCars,recorded_reconstructed_max_movement:recMove,leader_held_lap_pace:pace,recorded_position_leader_dot:gpsMove};
  });
- const redFlag={held_laps:held.length,inside_samples:rf.insideSamples,lap_counter_mismatches_inside:rf.counterMismatch,marker_differences_vs_previous_outside_red_flag:rf.prevDiffOutside,marker_differences_vs_previous_inside:rf.prevDiffInside,stops,
-  dot_distance_to_position_leader_lap_fraction:{now:{median:quant(rf.dotNew,.5),p90:quant(rf.dotNew,.9),share_over_15pct:+(rf.dotNew.filter(x=>x>.15).length/rf.dotNew.length).toFixed(4)},previous_build:{median:quant(rf.dotPrev,.5),p90:quant(rf.dotPrev,.9),share_over_15pct:+(rf.dotPrev.filter(x=>x>.15).length/rf.dotPrev.length).toFixed(4)}}};
+ const redFlag={held_laps:held.length,inside_samples:rf.insideSamples,lap_counter_mismatches_inside:rf.counterMismatch,marker_differences_vs_previous_outside_red_flag:rf.prevDiffOutside,marker_differences_vs_previous_inside:rf.prevDiffInside,recorded_marker_samples_changed_inside:rf.recordedDiffInside,gps_marker_samples_changed_inside:rf.gpsDiffInside,recorded_lane_samples_changed_inside:rf.laneRecordedDiffInside,stops,
+  dot_distance_to_position_leader_lap_fraction:{now:{median:quant(rf.dotNew,.5),p90:quant(rf.dotNew,.9),share_over_15pct:+(rf.dotNew.filter(x=>x>.15).length/rf.dotNew.length).toFixed(4)},r1_build_predicted_hold_only:{median:quant(rf.dotR1,.5),p90:quant(rf.dotR1,.9),share_over_15pct:+(rf.dotR1.filter(x=>x>.15).length/rf.dotR1.length).toFixed(4)},previous_build:{median:quant(rf.dotPrev,.5),p90:quant(rf.dotPrev,.9),share_over_15pct:+(rf.dotPrev.filter(x=>x>.15).length/rf.dotPrev.length).toFixed(4)}}};
  const stopped=end.every(d=>d.lap_progress===count),finishedBy=end.map(d=>(sync.finish+(d.predicted_rank-1)*sync.gap));
  // 0.26.2 behaviour for the record: P1 crossed the line at phase 0.78 of the recorded clock.
  const oldP1Finish=firstReach(p=>OLD.map.predictedMarkers(prediction,p,mapOld,count)[0].lap_progress,count);
@@ -133,20 +144,23 @@ for(const race of dataset.races.filter(r=>r.state==='completed'&&(r.records?.lap
   overtakes,backward_moves:backward,left_finish_after_reaching_it:leftFinish,all_stopped_on_line_at_phase1:stopped,
   recorded_pane_marker_differences_vs_0_26_2:actualDiffs,red_flag:redFlag,lane_tab:laneResult,
   before_0_26_2:{p1_finish_seconds:+(oldP1Finish*timeline.duration).toFixed(1),p1_finish_phase:+oldP1Finish.toFixed(4),all_stopped_on_line_at_phase1:endOld.every(d=>d.lap_progress===count)}};
- ok(maxDiff<=1e-9,'P1 = recorded leader lap progress at every sample outside red-flag laps '+key+' (max '+maxDiff+')');
+ ok(maxDiff<=1e-9,'P1 = recorded leader lap progress at every sample '+key+' (max '+maxDiff+')');
  ok(rf.counterMismatch===0,'P1 lap counter = recorded leader lap counter inside red-flag laps '+key);
  ok(rf.prevDiffOutside===0,'markers identical to the first 0.26.3 build outside red-flag laps '+key);
  ok(held.length===0||sync.suspensions.length>0,'held laps only with a race-control suspension '+key);
+ ok(stops.every(x=>!x.held_laps||x.recorded_reconstructed_max_movement<=1e-9),'recorded cars drawn from lap progress stand still during the red-flag stop '+key);
+ ok(rf.gpsDiffInside===0,'recorded cars with GPS positions unchanged from 0.26.2 inside red-flag laps '+key);
  ok(stops.every(x=>!x.held_laps||x.max_movement_any_rank_laps<=1e-9),'predicted cars stand still while the recorded leader is stopped by a red flag '+key);
  ok(preStartMoves===0&&gridHoldMoves===0,'predicted cars still before the real start and during their grid hold '+key);
  ok(Math.abs((predFinishPhase-realFinishPhase)*timeline.duration)<1e-6,'P1 crosses the line with the recorded leader '+key);
  ok(overtakes===0&&backward===0,'no overtakes or backward moves among predicted cars '+key);
  ok(stopped&&leftFinish===0,'all predicted cars stop on the line by phase 1 '+key);
- ok(actualDiffs===0,'recorded-pane markers identical to 0.26.2 at all samples '+key);
- ok(lane.maxDiffLaneFraction<=1e-12,'lane tab: predicted P1 lane position = recorded leader lane position outside red-flag laps '+key+' (max '+lane.maxDiffLaneFraction+')');
+ ok(actualDiffs===0,'recorded-pane markers identical to 0.26.2 at all samples outside red-flag laps '+key);
+ ok(held.length>0||rf.recordedDiffInside+rf.laneRecordedDiffInside===0,'no recorded change in GPs without red-flag laps '+key);
+ ok(lane.maxDiffLaneFraction<=1e-12,'lane tab: predicted P1 lane position = recorded leader lane position at every sample '+key+' (max '+lane.maxDiffLaneFraction+')');
  ok(Math.abs(laneResult.p1_finish_minus_recorded_leader_finish_seconds)<1e-6,'lane tab: P1 finishes with the recorded leader '+key);
  ok(lane.overtakes===0&&lane.backward===0&&lane.leftFinish===0&&laneResult.all_finished_at_phase1,'lane tab: no overtakes, all predicted lanes finish and stop '+key);
- ok(lane.recordedDiffs===0&&lane.unsyncedDiffs===0,'lane tab: recorded lanes and unsynced predictedState identical to 0.26.2 '+key);
+ ok(lane.recordedDiffs===0&&lane.unsyncedDiffs===0,'lane tab: recorded lanes (outside red-flag laps) and unsynced predictedState identical to 0.26.2 '+key);
  races.push(result);console.log(JSON.stringify({held:held.length,stops,dots:redFlag.dot_distance_to_position_leader_lap_fraction,lane_max:lane.maxDiffLaneFraction,lane_overtakes:lane.overtakes,key,name:result.name,max:maxDiff,mean:result.mean_abs_diff_laps,gap:result.gap_seconds_per_rank,finish_delta_s:result.p1_finish_minus_recorded_leader_finish_seconds,overtakes,stopped}));
 }
 // Prediction-only GPs: identical marker output to 0.26.2 (no leader clock).

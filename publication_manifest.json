@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 22534,
-      "sha256": "3ec8f1a10356528c69721fd88dd24f0e265dfec33c23f110d0d005748591d2f0",
+      "bytes": 22645,
+      "sha256": "be003c37f34aec8798c38e7faf6100488c54df6ee16515f3b3eb1fdfbb22e381",
       "snapshot": "0.26.3"
     },
     {
@@ -5362,26 +5362,26 @@
     },
     {
       "path": "design/release-0.26.3/browser-result.json",
-      "bytes": 47679,
-      "sha256": "6625ead8a90b6a428e93e438d40a55d1e66a9ffa20a0a5768a40bde9c12c492e",
+      "bytes": 47845,
+      "sha256": "4f83a43801d34e74a374f6404889cb2ed723299a1187a15f5b18841f316406a7",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/builder-report.json",
-      "bytes": 7480,
-      "sha256": "0e97e6f334e3ce7ec31745064f6a329332a418ebaa9e8a2bb82a20cd0b28239e",
+      "bytes": 7351,
+      "sha256": "e4f608f2b3dbe3760739e64b57794ba48400eb792989647bf4a71feb62e3f0b1",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/check-browser.cjs",
-      "bytes": 26812,
-      "sha256": "053f204f585fc1592e491d65764fe8e3b31ef3eae37015168133de41e2a87e55",
+      "bytes": 27120,
+      "sha256": "cee7478b67bd9a177659519c479ee77beff2da27a7b774b7a7c9ed6df1e459d0",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/check-sync.cjs",
-      "bytes": 24380,
-      "sha256": "781da38236784f0e88f7235053752c8f70c0077bae332ed1d4782d9b8add8daa",
+      "bytes": 27991,
+      "sha256": "7c776bc205cd428e8dc739214001ed5c5b13fa0efece33369b3140a6de7a2b09",
       "snapshot": "0.26.3"
     },
     {
@@ -5422,8 +5422,8 @@
     },
     {
       "path": "design/release-0.26.3/redflag-ko-1440.png",
-      "bytes": 197317,
-      "sha256": "a80fd2076f58a1f439516a41fc700dbbd90fc80f606f64d4fee13ff9a4818a86",
+      "bytes": 194057,
+      "sha256": "24dc108bf45f91c9b47cecc3ac80effd4092491b7a133e6494775ee22ae2756a",
       "snapshot": "0.26.3"
     },
     {
@@ -5494,8 +5494,8 @@
     },
     {
       "path": "design/release-0.26.3/sync-result.json",
-      "bytes": 37588,
-      "sha256": "4146bbcb2079e342302819caced2d31c28c52700a5cadb1af08238ff105dbeb4",
+      "bytes": 42683,
+      "sha256": "b726f1bc30b8f99fe3bdfde3cb894c43966409547979ff1b38250d2b8e1b015a",
       "snapshot": "0.26.3"
     },
     {
@@ -5860,8 +5860,8 @@
     },
     {
       "path": "docs/SPEC-0.26.3.md",
-      "bytes": 25535,
-      "sha256": "9779cc769c6b74f6bd6e5e3c6d060af686d0908c759c3f2814e34c760b62bf8b",
+      "bytes": 28138,
+      "sha256": "a0949ab3eced604847787a0c7b92c777fc0bca79683543f6697da3d6d776aafd",
       "snapshot": "0.26.3"
     },
     {
@@ -6232,8 +6232,8 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 19757405,
-      "sha256": "29e6edfb4715883b6bbac8727f5e3fa4e7e3349f9798d95f1ddac4f220ead616",
+      "bytes": 19757906,
+      "sha256": "45b24e11fda3e2408abbf169a652446e17a11c11e1f43cd49bafbd9f659cf137",
       "snapshot": "0.26.3"
     },
     {
@@ -6514,8 +6514,8 @@
     },
     {
       "path": "f1/release-0.26.3/comparison.js",
-      "bytes": 17567,
-      "sha256": "d0e046976b785c6fc4047bc91ddcf0c220eccbb8ae9200b8317aeb3f1f98492b",
+      "bytes": 18068,
+      "sha256": "ceda5b42ce0b23045e75cbc85157ab91d31579316d93a3de1d8ae705f65db7e3",
       "snapshot": "0.26.3"
     },
     {
@@ -10570,8 +10570,8 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 24434,
-      "sha256": "4af8e4759d9ccbe95172918662bc7e6c52f33a71d08f81701318d3682080852a",
+      "bytes": 24798,
+      "sha256": "a23232c5c46fb5bd8ea30999db0f5c9951c648620c61cd985bcb169c3eaf6d76",
       "snapshot": "0.26.3"
     },
     {
