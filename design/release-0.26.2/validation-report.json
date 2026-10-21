@@ -175,5 +175,54 @@
    "command": "version consistency",
    "result": "VERSION 0.26.2, package.json 0.26.2, README.md and README.ko.md current version 0.26.2, CHANGELOG top entry 0.26.2 · 2026-10-21; manifest version 0.26.2 (1,726 files) at 0d666ff"
   }
- ]
+ ],
+ "recheck": {
+  "observed_at": "2026-10-21",
+  "producer_id": "reviewer-subagent-2026-10-21",
+  "base": "82bce41",
+  "checked": "3852c64 (319249a, 4d1c3a0, 3852c64)",
+  "verdict": "R1 fixed, R5 fixed, R6 addressed in docs; no new issue. Merge-ready from the reviewer side; remaining notes R2-R4, R7-R9 unchanged. publication_manifest.json was not touched by the reviewer and must be regenerated after this recheck commit.",
+  "changed_files": "git diff 82bce41..3852c64 touches only tools/check_release.py, server/check.cjs, docs/SPEC-0.26.2.md, design/release-0.26.2/tamper-check.py, tamper-result.json, builder-report.json, publication_manifest.json. Reviewer files (validation-report.json, review/) byte-identical; index.html, index.en.html, load-notice sources and design/release-0.26.1/ unchanged.",
+  "results": [
+   {
+    "id": "R1",
+    "status": "fixed",
+    "evidence": "Both checks now require the exact expected text line once per language and exactly one line containing 'const text=', then remove only that line before comparing. Reviewer recheck in a throwaway worktree at 3852c64 (each case: check_release --write-manifest, then plain run, then node server/check.cjs): control PASS/PASS/24 PASS; FAIL in all three for: ko text line + code ending in '};', en text line + same, both languages + identical code, duplicated ko text line, en second 'const text2=' line, code prepended to ko text line, ko normal text changed, en normal text changed, ko text line with trailing space."
+   },
+   {
+    "id": "R5",
+    "status": "fixed",
+    "evidence": "SPEC now lists 183,665/56,119 and 182,735/55,554 (main 181,791/55,504 and 180,906/54,965) with the method (Python gzip.compress level 6 mtime=0, gzip -6 -n). Reviewer remeasured from git show of 2243d8b and 3852c64: identical. The old 56,130/55,568 reproduce with gzip -6 -c <file> (file name stored in the header), matching the stated cause."
+   },
+   {
+    "id": "R6",
+    "status": "addressed",
+    "evidence": "SPEC states that the 0.26.1 script does not run against the 0.26.2 page statement and that design/release-0.26.2/check-simulation.cjs covers the comparison; the historical script itself is unchanged."
+   },
+   {
+    "id": "R2",
+    "status": "unchanged note",
+    "evidence": "Identical logic edit in both sources and both pages (top 12px -> 0px) still passes check_release and test:server once the manifest is regenerated, as expected for repo-pinned module sources."
+   }
+  ],
+  "tests": [
+   {
+    "command": "python3 -I tools/check_release.py (3852c64 worktree)",
+    "result": "PASS 1,738 hashed files, 12 links, worst outcome error 1.2e-08 (committed manifest)"
+   },
+   {
+    "command": "npm run test:server",
+    "result": "PASS 24"
+   },
+   {
+    "command": "node analysis/check.cjs",
+    "result": "PASS 15"
+   },
+   {
+    "command": "python3 -I recheck.py <worktree> (reviewer, 11 cases)",
+    "result": "control PASS; 9 R1/text cases FAIL in check_release (with and without manifest) and test:server; R2 control case PASS as documented"
+   }
+  ],
+  "new_issues": []
+ }
 }
