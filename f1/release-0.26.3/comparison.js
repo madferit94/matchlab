@@ -27,7 +27,9 @@ const SYNC_GAP_SECONDS=2,SYNC_FINISH_TOLERANCE=1e-9,ABNORMAL_LAP_RATIO=4;
 function suspensions(race,start){
  const messages=(race?.records?.race_control||[]).map(m=>({t:Date.parse(m.date),text:String(m.message||'')})).filter(m=>Number.isFinite(m.t)).sort((a,b)=>a.t-b.t),out=[];
  for(const m of messages)if(/^RED FLAG/i.test(m.text)){const resume=messages.find(x=>x.t>m.t&&/^(SESSION STARTED|STANDING START|ROLLING START)/i.test(x.text));if(resume)out.push([(m.t-start)/1000,(resume.t-start)/1000])}
- return out;
+ // Overlapping or touching suspensions (e.g. two RED FLAG messages before one restart) count once.
+ out.sort((x,y)=>x[0]-y[0]);const merged=[];for(const w of out){const last=merged[merged.length-1];if(last&&w[0]<=last[1])last[1]=Math.max(last[1],w[1]);else merged.push(w.slice())}
+ return merged;
 }
 function heldLaps(timeline,windows){
  const held=new Map();if(!windows.length)return held;

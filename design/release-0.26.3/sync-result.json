@@ -2,12 +2,26 @@
  "status": "PASS",
  "release": "0.26.3",
  "base_commit": "ee48f51",
- "checked_at": "2026-10-21T02:24:29.291Z",
+ "checked_at": "2026-10-21T02:43:21.980Z",
  "red_flag_rule": "A recorded lap longer than 4 x that driver median lap that overlaps a race-control suspension (RED FLAG until the next SESSION STARTED / STANDING START / ROLLING START) keeps its lap number, start and end, but its progress advances only outside the suspension (spread evenly over the moving time). The leader curve uses these held values; everything else is unchanged.",
  "rule": "Leader lap progress L(t) = largest lap progress among recorded cars in MatchLabF1Replay.timeline(race).state(t), t = phase x recorded seconds. Predicted rank r lap progress = L(t - (r-1) x gap); L is held at L(0) before t=0 and at the race lap count from the recorded leader finish on. gap = min(2 s, (recorded seconds - leader finish seconds)/(predicted cars - 1)).",
  "lane_tab_rule": "Lane comparison tab uses the same MatchLabF1Comparison.leaderSync (lap count = largest valid recorded lap number, equal to raceLapCount for all GPs) and draws predicted lanes at clamp(lap progress / session_result laps), the scale of the recorded lanes; Finish label when lap progress reaches the lap count. Upcoming GPs have no lane comparison tab (archive tabs: prediction, analysis).",
  "samples_per_race": "2001 uniform phases plus finish instants of every predicted rank (+/-1e-4, +/-1e-7)",
  "recorded_gps": 16,
+ "double_red_flag_synthetic": {
+  "red_flag_messages": 2,
+  "suspensions": [
+   [
+    119.433,
+    1771.521
+   ]
+  ],
+  "held_laps": 20,
+  "held_laps_single_message": 20,
+  "moving_seconds_equal": true,
+  "leader_curve_equal": true,
+  "recorded_progress_equal": true
+ },
  "races": [
   {
    "session_key": 11234,
@@ -1469,5 +1483,5 @@
    2
   ]
  },
- "checks": 347
+ "checks": 348
 }

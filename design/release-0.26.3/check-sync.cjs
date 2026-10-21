@@ -48,6 +48,15 @@ const SAMPLES=2000,EPS=1e-9;
 // Everything the recorded pane draws or prints for a car (driver objects carry whole lap lists).
 const laneView=(d,maxLaps)=>[d.driver.driver_number,Math.max(0,Math.min(1,d.progress/maxLaps)),d.rank,d.rank_source,d.position_timestamp,d.invalid_position_sample,d.lap,d.status,d.moving];
 const view=d=>[d.driver.driver_number,d.progress,d.lap,d.status,d.rank,d.rank_source,d.position_timestamp,d.invalid_position_sample,d.moving,d.compound,d.inPit,d.x,d.y,d.coordinate_source,d.record_time,d.sample_before??null,d.sample_after??null];
+// Review RC2-1: two RED FLAG messages before one restart must give one suspension, and the stop
+// time must be taken out of the held laps once (synthetic copy of the Dutch GP race control).
+const doubleFlag=(()=>{const race=dataset.races.find(r=>r.session.session_key===11353),rc=race.records.race_control,first=rc.find(m=>/^RED FLAG/i.test(m.message));
+ const second={...first,date:new Date(Date.parse(first.date)+60000).toISOString(),message:'RED FLAG - RACE SUSPENDED'},copy={...race,records:{...race.records,race_control:[...rc,second]}};
+ const tl=NEW.replay.timeline(race),count=NEW.map.raceLapCount(race),base=NEW.cmp.leaderSync(tl,count,22,race),twice=NEW.cmp.leaderSync(tl,count,22,copy);
+ const samples=[];for(let i=0;i<=400;i++)samples.push(i/400*tl.duration);
+ const curveSame=samples.every(t=>base.lap(t)===twice.lap(t)),recSame=samples.filter((t,i)=>i%10===0).every(t=>JSON.stringify(NEW.cmp.recordedState(race,tl,t/tl.duration).map(d=>d.progress))===JSON.stringify(NEW.cmp.recordedState(copy,tl,t/tl.duration).map(d=>d.progress)));
+ return {red_flag_messages:2,suspensions:twice.suspensions.map(w=>w.map(v=>+v.toFixed(3))),held_laps:twice.held.length,held_laps_single_message:base.held.length,moving_seconds_equal:JSON.stringify(twice.held.map(h=>[h.driver_number,h.number,h.moving]))===JSON.stringify(base.held.map(h=>[h.driver_number,h.number,h.moving])),leader_curve_equal:curveSame,recorded_progress_equal:recSame};})();
+ok(doubleFlag.suspensions.length===1&&doubleFlag.held_laps>0&&doubleFlag.held_laps===doubleFlag.held_laps_single_message&&doubleFlag.moving_seconds_equal&&doubleFlag.leader_curve_equal&&doubleFlag.recorded_progress_equal,'two RED FLAG messages before one restart: one suspension, stop time removed once (synthetic)');
 const races=[];
 for(const race of dataset.races.filter(r=>r.state==='completed'&&(r.records?.laps||[]).length&&(!process.env.ONLY||process.env.ONLY.split(',').includes(String(r.session.session_key))))){
  const key=race.session.session_key,prediction=historical[String(key)],map=NEW.map.prepareMap(maps[String(key)],race.session.circuit_key),mapOld=OLD.map.prepareMap(maps[String(key)],race.session.circuit_key);
@@ -191,6 +200,6 @@ const out={status:'PASS',release:'0.26.3',base_commit:BASE,checked_at:new Date()
  rule:'Leader lap progress L(t) = largest lap progress among recorded cars in MatchLabF1Replay.timeline(race).state(t), t = phase x recorded seconds. Predicted rank r lap progress = L(t - (r-1) x gap); L is held at L(0) before t=0 and at the race lap count from the recorded leader finish on. gap = min(2 s, (recorded seconds - leader finish seconds)/(predicted cars - 1)).',
  lane_tab_rule:'Lane comparison tab uses the same MatchLabF1Comparison.leaderSync (lap count = largest valid recorded lap number, equal to raceLapCount for all GPs) and draws predicted lanes at clamp(lap progress / session_result laps), the scale of the recorded lanes; Finish label when lap progress reaches the lap count. Upcoming GPs have no lane comparison tab (archive tabs: prediction, analysis).',
  samples_per_race:'2001 uniform phases plus finish instants of every predicted rank (+/-1e-4, +/-1e-7)',
- recorded_gps:races.length,races,upcoming_gps:upcoming,no_lap_data,summary,checks:checks.length};
+ recorded_gps:races.length,double_red_flag_synthetic:doubleFlag,races,upcoming_gps:upcoming,no_lap_data,summary,checks:checks.length};
 fs.writeFileSync(path.join(__dirname,'sync-result.json'),JSON.stringify(out,null,1)+'\n');
 console.log(JSON.stringify({status:'PASS',checks:checks.length,recorded_gps:races.length,upcoming:upcoming.length,summary}));

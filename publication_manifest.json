@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 22645,
-      "sha256": "be003c37f34aec8798c38e7faf6100488c54df6ee16515f3b3eb1fdfbb22e381",
+      "bytes": 22729,
+      "sha256": "33f370e773c40c4589a4a149a3a6c6a70f3f17ac1835e44eb722dae1017b4a76",
       "snapshot": "0.26.3"
     },
     {
@@ -5362,14 +5362,14 @@
     },
     {
       "path": "design/release-0.26.3/browser-result.json",
-      "bytes": 47845,
-      "sha256": "4f83a43801d34e74a374f6404889cb2ed723299a1187a15f5b18841f316406a7",
+      "bytes": 47830,
+      "sha256": "fb86d5516a0061fc75c89f51773acd181fb0116cfa6f90cd0e8e009ddc6e9ed1",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/builder-report.json",
-      "bytes": 7351,
-      "sha256": "e4f608f2b3dbe3760739e64b57794ba48400eb792989647bf4a71feb62e3f0b1",
+      "bytes": 7550,
+      "sha256": "b5c475aed7cf7dd61bec3b3377ccd1f92cc076ab977e1ddbf835f59d3d51ddfd",
       "snapshot": "0.26.3"
     },
     {
@@ -5380,8 +5380,8 @@
     },
     {
       "path": "design/release-0.26.3/check-sync.cjs",
-      "bytes": 27991,
-      "sha256": "7c776bc205cd428e8dc739214001ed5c5b13fa0efece33369b3140a6de7a2b09",
+      "bytes": 29788,
+      "sha256": "ce221cabdc6e06383204169c99005f8f88f8b829cd0641ab76ae9b682b5c461d",
       "snapshot": "0.26.3"
     },
     {
@@ -5422,8 +5422,8 @@
     },
     {
       "path": "design/release-0.26.3/redflag-ko-1440.png",
-      "bytes": 194057,
-      "sha256": "24dc108bf45f91c9b47cecc3ac80effd4092491b7a133e6494775ee22ae2756a",
+      "bytes": 194038,
+      "sha256": "350e6ab28b2285942c29f78612a93f780c6f289ea5cdd38077d4210f6836ba4a",
       "snapshot": "0.26.3"
     },
     {
@@ -5481,6 +5481,48 @@
       "snapshot": "0.26.3"
     },
     {
+      "path": "design/release-0.26.3/review/recheck2-circuit-11245-en-1440.png",
+      "bytes": 214548,
+      "sha256": "a60507348df3a1bfd2b5f5524629101c3ba95a0b541a0e275a1cf2e2d7fc8320",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/recheck2-circuit-11245-ko-390.png",
+      "bytes": 152995,
+      "sha256": "a029a4ee91153cbaf2f05e1c9d351f3412235fde5cb8f81d1e45752f02e022c3",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/recheck2-circuit-11353-ko-1440-redflag.png",
+      "bytes": 194461,
+      "sha256": "db4d873d982d14531f375e41cde549ffadc6dd69527d5156538426f354c68e1e",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/recheck2-lanes-11245-en-1440.png",
+      "bytes": 213762,
+      "sha256": "0a6b2b27b8b60d64b5d6fa7ca1a9ec393d216035ba789f86f6c0ca60aa502b6b",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/recheck2-lanes-11245-ko-390.png",
+      "bytes": 165637,
+      "sha256": "ba302f369e276ef75550c671dde57a95011edc18fcdaa2b7860346dc98e5727d",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/recheck2-lanes-11353-en-1440.png",
+      "bytes": 214259,
+      "sha256": "3cb89e1dfccd57069e7efee5d47efa49d3c618006f74b36dd83f5f4904a9db44",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/recheck2-lanes-11353-ko-390.png",
+      "bytes": 165397,
+      "sha256": "be70e86e82429a94f7aeeb0ad12b7e5a80cee1437dc7a84d3878984f1a4e5def",
+      "snapshot": "0.26.3"
+    },
+    {
       "path": "design/release-0.26.3/review/upcoming-11388-en-390.png",
       "bytes": 56917,
       "sha256": "bbe64f5e59c46e252174f336f69ae6cacc3a85039378970ed12ed96273846944",
@@ -5494,8 +5536,8 @@
     },
     {
       "path": "design/release-0.26.3/sync-result.json",
-      "bytes": 42683,
-      "sha256": "b726f1bc30b8f99fe3bdfde3cb894c43966409547979ff1b38250d2b8e1b015a",
+      "bytes": 42954,
+      "sha256": "ca178a9771cd265891019c5c325749d1cf440123d6c2d569cd6c2bde6f39e844",
       "snapshot": "0.26.3"
     },
     {
@@ -5512,8 +5554,8 @@
     },
     {
       "path": "design/release-0.26.3/validation-report.json",
-      "bytes": 40205,
-      "sha256": "56e93d47f14fad901feaf94c9c8e98be4a0850f9cc1663eae6d4ef90ba3c73c9",
+      "bytes": 62024,
+      "sha256": "07f06d8bfe3f795e6340c761a02f9370cfae6caae45f2a049dc5d48db876543c",
       "snapshot": "0.26.3"
     },
     {
@@ -5860,8 +5902,8 @@
     },
     {
       "path": "docs/SPEC-0.26.3.md",
-      "bytes": 28138,
-      "sha256": "a0949ab3eced604847787a0c7b92c777fc0bca79683543f6697da3d6d776aafd",
+      "bytes": 28900,
+      "sha256": "eeeadebb1c11e2e1ed016e06e835c40b4a4faf9cd20d0a6d178e174ed71f0cd3",
       "snapshot": "0.26.3"
     },
     {
@@ -6232,8 +6274,8 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 19757906,
-      "sha256": "45b24e11fda3e2408abbf169a652446e17a11c11e1f43cd49bafbd9f659cf137",
+      "bytes": 19758191,
+      "sha256": "a371b9bddd046b2a083db8c4a6a6ba3c1a3de1ab258e55640701c6a6bc3b4b6b",
       "snapshot": "0.26.3"
     },
     {
@@ -6514,8 +6556,8 @@
     },
     {
       "path": "f1/release-0.26.3/comparison.js",
-      "bytes": 18068,
-      "sha256": "ceda5b42ce0b23045e75cbc85157ab91d31579316d93a3de1d8ae705f65db7e3",
+      "bytes": 18353,
+      "sha256": "aa1f4ff32176a12e26f2b5e6aec8830b8b394b086c799acee25138ac6e53bb13",
       "snapshot": "0.26.3"
     },
     {

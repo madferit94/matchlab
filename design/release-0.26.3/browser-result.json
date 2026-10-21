@@ -18,18 +18,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.821,
-     "wall_seconds": 3.041,
-     "measured_rate": 0.27,
+     "recorded_seconds_advanced": 0.783,
+     "wall_seconds": 3.125,
+     "measured_rate": 0.251,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.543,
-      15.5515
+      15.5435,
+      15.5516
      ],
      "leader_lap_progress": [
-      15.543,
-      15.5515
+      15.5435,
+      15.5516
      ],
      "completed_laps": [
       15,
@@ -44,18 +44,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.05,
-     "wall_seconds": 3.043,
-     "measured_rate": 1.002,
+     "recorded_seconds_advanced": 3.1,
+     "wall_seconds": 3.109,
+     "measured_rate": 0.997,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      21.4155,
-      21.4471
+      21.4157,
+      21.4478
      ],
      "leader_lap_progress": [
-      21.4155,
-      21.4471
+      21.4157,
+      21.4478
      ],
      "completed_laps": [
       21,
@@ -70,18 +70,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.499,
-     "wall_seconds": 3.037,
-     "measured_rate": 10.042,
+     "recorded_seconds_advanced": 31.165,
+     "wall_seconds": 3.114,
+     "measured_rate": 10.008,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      27.3169,
-      27.6326
+      27.3186,
+      27.6412
      ],
      "leader_lap_progress": [
-      27.3169,
-      27.6326
+      27.3186,
+      27.6412
      ],
      "completed_laps": [
       27,
@@ -95,18 +95,18 @@
     {
      "speed": 60,
      "start_phase": 0.96706,
-     "samples": 13,
-     "recorded_seconds_advanced": 145.998,
-     "wall_seconds": 2.435,
-     "measured_rate": 59.958,
+     "samples": 12,
+     "recorded_seconds_advanced": 139.992,
+     "wall_seconds": 2.32,
+     "measured_rate": 60.354,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0818,
+      55.0715,
       56
      ],
      "leader_lap_progress": [
-      55.0818,
+      55.0715,
       56
      ],
      "completed_laps": [
@@ -371,18 +371,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.758,
-     "wall_seconds": 3.031,
-     "measured_rate": 0.25,
+     "recorded_seconds_advanced": 0.775,
+     "wall_seconds": 3.091,
+     "measured_rate": 0.251,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       15.5435,
-      15.5514
+      15.5516
      ],
      "leader_lap_progress": [
       15.5435,
-      15.5514
+      15.5516
      ],
      "completed_laps": [
       15,
@@ -397,18 +397,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.05,
-     "wall_seconds": 3.038,
-     "measured_rate": 1.004,
+     "recorded_seconds_advanced": 3.083,
+     "wall_seconds": 3.069,
+     "measured_rate": 1.005,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4155,
-      21.4471
+      21.4474
      ],
      "leader_lap_progress": [
       21.4155,
-      21.4471
+      21.4474
      ],
      "completed_laps": [
       21,
@@ -423,18 +423,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.333,
-     "wall_seconds": 3.036,
-     "measured_rate": 9.991,
+     "recorded_seconds_advanced": 30.999,
+     "wall_seconds": 3.091,
+     "measured_rate": 10.03,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3169,
-      27.6309
+      27.6378
      ],
      "leader_lap_progress": [
       27.3169,
-      27.6309
+      27.6378
      ],
      "completed_laps": [
       27,
@@ -448,18 +448,18 @@
     {
      "speed": 60,
      "start_phase": 0.96706,
-     "samples": 13,
-     "recorded_seconds_advanced": 145.998,
-     "wall_seconds": 2.437,
-     "measured_rate": 59.916,
+     "samples": 12,
+     "recorded_seconds_advanced": 138,
+     "wall_seconds": 2.296,
+     "measured_rate": 60.102,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "leader_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "completed_laps": [
@@ -724,18 +724,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.758,
-     "wall_seconds": 3.042,
-     "measured_rate": 0.249,
+     "recorded_seconds_advanced": 0.767,
+     "wall_seconds": 3.07,
+     "measured_rate": 0.25,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       15.5435,
-      15.5514
+      15.5515
      ],
      "leader_lap_progress": [
       15.5435,
-      15.5514
+      15.5515
      ],
      "completed_laps": [
       15,
@@ -750,18 +750,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.033,
-     "wall_seconds": 3.038,
+     "recorded_seconds_advanced": 3.083,
+     "wall_seconds": 3.087,
      "measured_rate": 0.999,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4155,
-      21.4469
+      21.4474
      ],
      "leader_lap_progress": [
       21.4155,
-      21.4469
+      21.4474
      ],
      "completed_laps": [
       21,
@@ -776,18 +776,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.333,
-     "wall_seconds": 3.033,
-     "measured_rate": 10.003,
+     "recorded_seconds_advanced": 30.832,
+     "wall_seconds": 3.081,
+     "measured_rate": 10.006,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      27.3169,
-      27.6309
+      27.3186,
+      27.6378
      ],
      "leader_lap_progress": [
-      27.3169,
-      27.6309
+      27.3186,
+      27.6378
      ],
      "completed_laps": [
       27,
@@ -802,9 +802,9 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 13,
-     "recorded_seconds_advanced": 145.998,
-     "wall_seconds": 2.442,
-     "measured_rate": 59.789,
+     "recorded_seconds_advanced": 149.988,
+     "wall_seconds": 2.495,
+     "measured_rate": 60.106,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
@@ -1077,18 +1077,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.758,
-     "wall_seconds": 3.041,
-     "measured_rate": 0.249,
+     "recorded_seconds_advanced": 0.771,
+     "wall_seconds": 3.08,
+     "measured_rate": 0.25,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       15.5435,
-      15.5514
+      15.5515
      ],
      "leader_lap_progress": [
       15.5435,
-      15.5514
+      15.5515
      ],
      "completed_laps": [
       15,
@@ -1103,18 +1103,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.033,
-     "wall_seconds": 3.038,
-     "measured_rate": 0.998,
+     "recorded_seconds_advanced": 3.083,
+     "wall_seconds": 3.082,
+     "measured_rate": 1,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4155,
-      21.4469
+      21.4474
      ],
      "leader_lap_progress": [
       21.4155,
-      21.4469
+      21.4474
      ],
      "completed_laps": [
       21,
@@ -1128,19 +1128,19 @@
     {
      "speed": 10,
      "start_phase": 0.5,
-     "samples": 15,
-     "recorded_seconds_advanced": 31.165,
-     "wall_seconds": 3.12,
-     "measured_rate": 9.989,
+     "samples": 16,
+     "recorded_seconds_advanced": 30.999,
+     "wall_seconds": 3.1,
+     "measured_rate": 9.998,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3186,
-      27.6413
+      27.6395
      ],
      "leader_lap_progress": [
       27.3186,
-      27.6413
+      27.6395
      ],
      "completed_laps": [
       27,
@@ -1155,17 +1155,17 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 13,
-     "recorded_seconds_advanced": 145.998,
-     "wall_seconds": 2.431,
-     "measured_rate": 60.049,
+     "recorded_seconds_advanced": 147.996,
+     "wall_seconds": 2.467,
+     "measured_rate": 59.978,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0818,
+      55.0921,
       56
      ],
      "leader_lap_progress": [
-      55.0818,
+      55.0921,
       56
      ],
      "completed_laps": [
@@ -1464,7 +1464,7 @@
    "tooltip": "1배속은 180초 예측 연출입니다.",
    "rate_10x": {
     "new": 9.922,
-    "old": 9.988
+    "old": 9.982
    },
    "overflow": {
     "scrollWidth": 390,
@@ -1515,8 +1515,8 @@
    ],
    "tooltip": "1배속은 180초 예측 연출입니다.",
    "rate_10x": {
-    "new": 9.92,
-    "old": 9.976
+    "new": 9.917,
+    "old": 10.039
    },
    "overflow": {
     "scrollWidth": 1440,
@@ -1527,58 +1527,6 @@
   {
    "lang": "en",
    "width": 390,
-   "phases": [
-    {
-     "phase": 0,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 0.05,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 0.2,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 0.37,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 0.5,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 0.81,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 0.97,
-     "identical_to_0_26_2": true
-    },
-    {
-     "phase": 1,
-     "identical_to_0_26_2": true
-    }
-   ],
-   "lane_tab_buttons": [
-    0,
-    0
-   ],
-   "tooltip": "1× is a 180-second prediction illustration.",
-   "rate_10x": {
-    "new": 9.977,
-    "old": 9.986
-   },
-   "overflow": {
-    "scrollWidth": 390,
-    "clientWidth": 390
-   },
-   "page_errors": []
-  },
-  {
-   "lang": "en",
-   "width": 1440,
    "phases": [
     {
      "phase": 0,
@@ -1620,7 +1568,59 @@
    "tooltip": "1× is a 180-second prediction illustration.",
    "rate_10x": {
     "new": 9.917,
-    "old": 10.049
+    "old": 10.052
+   },
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 1440,
+   "phases": [
+    {
+     "phase": 0,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.05,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.2,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.37,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.5,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.81,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 0.97,
+     "identical_to_0_26_2": true
+    },
+    {
+     "phase": 1,
+     "identical_to_0_26_2": true
+    }
+   ],
+   "lane_tab_buttons": [
+    0,
+    0
+   ],
+   "tooltip": "1× is a 180-second prediction illustration.",
+   "rate_10x": {
+    "new": 9.916,
+    "old": 9.918
    },
    "overflow": {
     "scrollWidth": 1440,
@@ -1658,8 +1658,8 @@
    "held_laps": 20,
    "circuit": {
     "recorded_seconds": [
-     585.2,
-     883.2
+     584.2,
+     882.2
     ],
     "p1_lap_progress": [
      2,
@@ -1675,12 +1675,12 @@
    },
    "lane": {
     "phase": [
-     0.05288,
-     0.13288
+     0.05316,
+     0.13371
     ],
     "recorded_seconds": [
-     399.5,
-     1003.9
+     401.6,
+     1010.2
     ],
     "p1_left": [
      "4.66667%",
@@ -1712,8 +1712,8 @@
    "held_laps": 20,
    "circuit": {
     "recorded_seconds": [
-     585.2,
-     879.2
+     584.2,
+     871.2
     ],
     "p1_lap_progress": [
      2,
@@ -1730,11 +1730,11 @@
    "lane": {
     "phase": [
      0.05288,
-     0.13288
+     0.13343
     ],
     "recorded_seconds": [
      399.5,
-     1003.9
+     1008.1
     ],
     "p1_left": [
      "4.66667%",
@@ -1760,16 +1760,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.25055
+      0.25222
      ],
-     "measured_rate": 0.998,
+     "measured_rate": 1,
      "p1_left": [
       "20.8634%",
-      "23.9274%"
+      "24.0352%"
      ],
      "leader_left": [
       "20.8634%",
-      "23.9274%"
+      "24.0352%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1779,17 +1779,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40611,
-      0.5011
+      0.40666,
+      0.50388
      ],
-     "measured_rate": 2.004,
+     "measured_rate": 1.994,
      "p1_left": [
-      "39.3249%",
-      "48.9077%"
+      "39.381%",
+      "49.1878%"
      ],
      "leader_left": [
-      "39.3249%",
-      "48.9077%"
+      "39.381%",
+      "49.1878%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1799,17 +1799,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61222,
-      0.80333
+      0.61333,
+      0.80889
      ],
-     "measured_rate": 3.969,
+     "measured_rate": 4.002,
      "p1_left": [
-      "60.1572%",
-      "79.6023%"
+      "60.2701%",
+      "80.1708%"
      ],
      "leader_left": [
-      "60.1572%",
-      "79.6023%"
+      "60.2701%",
+      "80.1708%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1936,19 +1936,19 @@
    "speeds": [
     {
      "speed": 1,
-     "samples": 13,
+     "samples": 15,
      "phase": [
       0.20333,
-      0.25028
+      0.25166
      ],
-     "measured_rate": 1.001,
+     "measured_rate": 0.999,
      "p1_left": [
       "20.8634%",
-      "23.9095%"
+      "23.9994%"
      ],
      "leader_left": [
       "20.8634%",
-      "23.9095%"
+      "23.9994%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1959,16 +1959,16 @@
      "samples": 15,
      "phase": [
       0.40667,
-      0.50222
+      0.50444
      ],
-     "measured_rate": 1.995,
+     "measured_rate": 2.001,
      "p1_left": [
       "39.3814%",
-      "49.0203%"
+      "49.2446%"
      ],
      "leader_left": [
       "39.3814%",
-      "49.0203%"
+      "49.2446%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1978,17 +1978,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61333,
-      0.80221
+      0.61222,
+      0.80443
      ],
-     "measured_rate": 3.992,
+     "measured_rate": 4,
      "p1_left": [
-      "60.2701%",
-      "79.4884%"
+      "60.1572%",
+      "79.7154%"
      ],
      "leader_left": [
-      "60.2701%",
-      "79.4884%"
+      "60.1572%",
+      "79.7154%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2118,16 +2118,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.25083
+      0.25166
      ],
-     "measured_rate": 1.003,
+     "measured_rate": 1,
      "p1_left": [
       "20.8633%",
-      "23.9454%"
+      "23.9994%"
      ],
      "leader_left": [
       "20.8633%",
-      "23.9454%"
+      "23.9994%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2137,17 +2137,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40611,
-      0.50111
+      0.40667,
+      0.50389
      ],
-     "measured_rate": 2.009,
+     "measured_rate": 2.002,
      "p1_left": [
-      "39.3252%",
-      "48.908%"
+      "39.3814%",
+      "49.1884%"
      ],
      "leader_left": [
-      "39.3252%",
-      "48.908%"
+      "39.3814%",
+      "49.1884%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2157,17 +2157,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61222,
-      0.80221
+      0.61333,
+      0.80887
      ],
-     "measured_rate": 4.006,
+     "measured_rate": 4.008,
      "p1_left": [
-      "60.1572%",
-      "79.4884%"
+      "60.2701%",
+      "80.1694%"
      ],
      "leader_left": [
-      "60.1572%",
-      "79.4884%"
+      "60.2701%",
+      "80.1694%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2296,17 +2296,17 @@
      "speed": 1,
      "samples": 15,
      "phase": [
-      0.20333,
-      0.25083
+      0.20361,
+      0.25222
      ],
-     "measured_rate": 1.001,
+     "measured_rate": 0.996,
      "p1_left": [
-      "20.8633%",
-      "23.9454%"
+      "20.8814%",
+      "24.0353%"
      ],
      "leader_left": [
-      "20.8633%",
-      "23.9454%"
+      "20.8814%",
+      "24.0353%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2317,16 +2317,16 @@
      "samples": 15,
      "phase": [
       0.40611,
-      0.50111
+      0.50277
      ],
-     "measured_rate": 2.006,
+     "measured_rate": 1.999,
      "p1_left": [
       "39.3252%",
-      "48.908%"
+      "49.0761%"
      ],
      "leader_left": [
       "39.3252%",
-      "48.908%"
+      "49.0761%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2336,17 +2336,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61221,
-      0.8011
+      0.61333,
+      0.80666
      ],
-     "measured_rate": 3.99,
+     "measured_rate": 3.994,
      "p1_left": [
-      "60.1565%",
-      "79.3746%"
+      "60.2701%",
+      "79.9431%"
      ],
      "leader_left": [
-      "60.1565%",
-      "79.3746%"
+      "60.2701%",
+      "79.9431%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2472,5 +2472,5 @@
  "blocked_external_hosts": [
   "media.formula1.com"
  ],
- "checked_at": "2026-10-21T02:24:50.635Z"
+ "checked_at": "2026-10-21T02:46:13.271Z"
 }
