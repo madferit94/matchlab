@@ -212,11 +212,11 @@ for ident,source in [('f1-query-history','query-history.json'),('f1-history-anal
 # shipped from versioned sources. Exactly one copy, equal to the file; the 0.26.2 copy is kept for comparison.
 map_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1MapComparison=' in b]
 assert len(map_blocks)==1 and map_blocks[0]==(p/'f1/release-0.26.3/map-comparison.js').read_text(encoding='utf8'), 'F1 circuit replay module drift'
-assert map_blocks[0].count('leaderSync(timeline,lapCount,predicted.length)')==1, 'F1 replay leader clock missing'
+assert map_blocks[0].count('global.MatchLabF1Comparison.leaderSync(timeline,lapCount,predicted.length,race)')==1, 'F1 replay leader clock missing'
 # The lane comparison module carries the shared leader clock (used by both replays).
 cmp_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1Comparison={' in b]
 assert len(cmp_blocks)==1 and cmp_blocks[0]==(p/'f1/release-0.26.3/comparison.js').read_text(encoding='utf8'), 'F1 lane comparison module drift'
-assert cmp_blocks[0].count('function leaderSync(')==1 and 'function leaderSync(' not in map_blocks[0] and map_blocks[0].count('global.MatchLabF1Comparison.syncedState(prediction,phase,sync)')==1, 'F1 replays must share one leader clock'
+assert cmp_blocks[0].count('function leaderSync(')==1 and 'function leaderSync(' not in map_blocks[0] and map_blocks[0].count('global.MatchLabF1Comparison.syncedState(prediction,phase,sync)')==1 and cmp_blocks[0].count(',sync=leaderSync(recorded,null,predicted.length,race);')==1, 'F1 replays must share one leader clock'
 f1_before=(p/'f1/release-0.8.6/index-before.html').read_text(encoding='utf8')
 for ident in ['dataset','forecasts','historical','maps','tracks']:
     rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'

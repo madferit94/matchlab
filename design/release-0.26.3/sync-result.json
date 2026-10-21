@@ -2,7 +2,8 @@
  "status": "PASS",
  "release": "0.26.3",
  "base_commit": "ee48f51",
- "checked_at": "2026-10-21T01:31:01.081Z",
+ "checked_at": "2026-10-21T02:11:47.395Z",
+ "red_flag_rule": "A recorded lap longer than 4 x that driver median lap that overlaps a race-control suspension (RED FLAG until the next SESSION STARTED / STANDING START / ROLLING START) keeps its lap number, start and end, but its progress advances only outside the suspension (spread evenly over the moving time). The leader curve uses these held values; everything else is unchanged.",
  "rule": "Leader lap progress L(t) = largest lap progress among recorded cars in MatchLabF1Replay.timeline(race).state(t), t = phase x recorded seconds. Predicted rank r lap progress = L(t - (r-1) x gap); L is held at L(0) before t=0 and at the race lap count from the recorded leader finish on. gap = min(2 s, (recorded seconds - leader finish seconds)/(predicted cars - 1)).",
  "lane_tab_rule": "Lane comparison tab uses the same MatchLabF1Comparison.leaderSync (lap count = largest valid recorded lap number, equal to raceLapCount for all GPs) and draws predicted lanes at clamp(lap progress / session_result laps), the scale of the recorded lanes; Finish label when lap progress reaches the lap count. Upcoming GPs have no lane comparison tab (archive tabs: prediction, analysis).",
  "samples_per_race": "2001 uniform phases plus finish instants of every predicted rank (+/-1e-4, +/-1e-7)",
@@ -36,10 +37,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0.0043,
+      "p90": 0.0379,
+      "share_over_15pct": 0.002
+     },
+     "previous_build": {
+      "median": 0.0043,
+      "p90": 0.0379,
+      "share_over_15pct": 0.002
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 58,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -86,10 +108,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 56,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -136,10 +179,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 53,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -186,10 +250,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 57,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -236,10 +321,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0.0364,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0.0364,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 68,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -273,8 +379,8 @@
    "max_abs_diff_laps": 0,
    "mean_abs_diff_laps": 0,
    "vs_position_record_p1": {
-    "max_abs_diff_laps": 0,
-    "mean_abs_diff_laps": 0
+    "max_abs_diff_laps": 0.7544,
+    "mean_abs_diff_laps": 0.07856
    },
    "leader_progress_at_phase0": 0,
    "predicted_moves_before_real_start": 0,
@@ -286,10 +392,58 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 25,
+    "inside_samples": 533,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 533,
+    "stops": [
+     {
+      "window_seconds": [
+       5515.1,
+       7728.2
+      ],
+      "held_laps": 25,
+      "leader_held_lap": 68,
+      "core_stop_seconds": [
+       7637.2,
+       7728.2
+      ],
+      "p1_movement_laps": 0,
+      "max_movement_any_rank_laps": 0,
+      "previous_build_p1_movement_laps": 0.0402,
+      "recorded_position_leader_dot": {
+       "driver": [
+        12,
+        12
+       ],
+       "source": [
+        "lap_reconstruction",
+        "lap_reconstruction"
+       ],
+       "distance_lap_fraction": 0.0402
+      }
+     }
+    ],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0.1663,
+      "share_over_15pct": 0.1094
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 78,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0.009671295246336808,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -336,10 +490,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0.0357,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0.0357,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 66,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -386,10 +561,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0.0127,
+      "p90": 0.0299,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0.0127,
+      "p90": 0.0299,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 71,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -436,10 +632,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 52,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -486,10 +703,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 44,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -536,10 +774,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 70,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -573,8 +832,8 @@
    "max_abs_diff_laps": 0,
    "mean_abs_diff_laps": 0,
    "vs_position_record_p1": {
-    "max_abs_diff_laps": 0.8351,
-    "mean_abs_diff_laps": 0.00407
+    "max_abs_diff_laps": 0.9177,
+    "mean_abs_diff_laps": 0.10211
    },
    "leader_progress_at_phase0": 0,
    "predicted_moves_before_real_start": 0,
@@ -586,10 +845,58 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 20,
+    "inside_samples": 520,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 461,
+    "stops": [
+     {
+      "window_seconds": [
+       119.4,
+       1771.5
+      ],
+      "held_laps": 20,
+      "leader_held_lap": 3,
+      "core_stop_seconds": [
+       270.2,
+       1771.5
+      ],
+      "p1_movement_laps": 0,
+      "max_movement_any_rank_laps": 0,
+      "previous_build_p1_movement_laps": 0.8823,
+      "recorded_position_leader_dot": {
+       "driver": [
+        1,
+        1
+       ],
+       "source": [
+        "gps",
+        "gps"
+       ],
+       "distance_lap_fraction": 0
+      }
+     }
+    ],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0.0096,
+      "p90": 0.0404,
+      "share_over_15pct": 0.0076
+     },
+     "previous_build": {
+      "median": 0.0092,
+      "p90": 0.1389,
+      "share_over_15pct": 0.0832
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 72,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0.012745564234764573,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -623,8 +930,8 @@
    "max_abs_diff_laps": 0,
    "mean_abs_diff_laps": 0,
    "vs_position_record_p1": {
-    "max_abs_diff_laps": 0.008,
-    "mean_abs_diff_laps": 0.00009
+    "max_abs_diff_laps": 0.9359,
+    "mean_abs_diff_laps": 0.12873
    },
    "leader_progress_at_phase0": 0,
    "predicted_moves_before_real_start": 0,
@@ -636,10 +943,58 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 21,
+    "inside_samples": 596,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 592,
+    "stops": [
+     {
+      "window_seconds": [
+       252.1,
+       2129.2
+      ],
+      "held_laps": 21,
+      "leader_held_lap": 4,
+      "core_stop_seconds": [
+       360.2,
+       2129.2
+      ],
+      "p1_movement_laps": 0,
+      "max_movement_any_rank_laps": 0,
+      "previous_build_p1_movement_laps": 0.9033,
+      "recorded_position_leader_dot": {
+       "driver": [
+        63,
+        63
+       ],
+       "source": [
+        "gps",
+        "gps"
+       ],
+       "distance_lap_fraction": 0
+      }
+     }
+    ],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0.0305,
+      "p90": 0.0482,
+      "share_over_15pct": 0.0288
+     },
+     "previous_build": {
+      "median": 0.0295,
+      "p90": 0.2279,
+      "share_over_15pct": 0.1678
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 53,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0.017658622012041963,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -686,10 +1041,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0,
+      "p90": 0,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 57,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -736,10 +1112,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0.0411,
+      "p90": 0.089,
+      "share_over_15pct": 0
+     },
+     "previous_build": {
+      "median": 0.0411,
+      "p90": 0.089,
+      "share_over_15pct": 0
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 51,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -786,10 +1183,31 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "red_flag": {
+    "held_laps": 0,
+    "inside_samples": 0,
+    "lap_counter_mismatches_inside": 0,
+    "marker_differences_vs_previous_outside_red_flag": 0,
+    "marker_differences_vs_previous_inside": 0,
+    "stops": [],
+    "dot_distance_to_position_leader_lap_fraction": {
+     "now": {
+      "median": 0.0085,
+      "p90": 0.0304,
+      "share_over_15pct": 0.003
+     },
+     "previous_build": {
+      "median": 0.0085,
+      "p90": 0.0304,
+      "share_over_15pct": 0.003
+     }
+    }
+   },
    "lane_tab": {
     "lane_scale_laps": 55,
     "max_abs_diff_lane_fraction": 0,
     "mean_abs_diff_lane_fraction": 0,
+    "max_abs_diff_lane_fraction_inside_red_flag_laps": 0,
     "p1_finish_minus_recorded_leader_finish_seconds": 0,
     "overtakes": 0,
     "backward_moves": 0,
@@ -890,5 +1308,5 @@
    2
   ]
  },
- "checks": 233
+ "checks": 298
 }

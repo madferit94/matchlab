@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 22354,
-      "sha256": "f04803f8f6e16f94aaa3668c6fb06b8e3dc6c1d5bd8113fcd0c8a69688128919",
+      "bytes": 22534,
+      "sha256": "3ec8f1a10356528c69721fd88dd24f0e265dfec33c23f110d0d005748591d2f0",
       "snapshot": "0.26.3"
     },
     {
@@ -5362,38 +5362,38 @@
     },
     {
       "path": "design/release-0.26.3/browser-result.json",
-      "bytes": 45332,
-      "sha256": "1743491a2bd8882d92cc6b3a4fbdc4d847e76e032f8ed40b931ded0c91500aba",
+      "bytes": 47679,
+      "sha256": "6625ead8a90b6a428e93e438d40a55d1e66a9ffa20a0a5768a40bde9c12c492e",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/builder-report.json",
-      "bytes": 6300,
-      "sha256": "7a1768b29ce51b1d3d30a8c02d2ab0f866bf7f8fad8cbcca9f9703506ac22d26",
+      "bytes": 7480,
+      "sha256": "0e97e6f334e3ce7ec31745064f6a329332a418ebaa9e8a2bb82a20cd0b28239e",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/check-browser.cjs",
-      "bytes": 22613,
-      "sha256": "b0cfb9af1a5962bf2c754d4ac56751d80c0f7b3d5de6064fdd4c9a6ae12c7fdd",
+      "bytes": 26812,
+      "sha256": "053f204f585fc1592e491d65764fe8e3b31ef3eae37015168133de41e2a87e55",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/check-sync.cjs",
-      "bytes": 18545,
-      "sha256": "9e8a7550c9be39c11e92ffa7e00b4c4bc9adf5735cde66485979ade24799afd8",
+      "bytes": 24380,
+      "sha256": "781da38236784f0e88f7235053752c8f70c0077bae332ed1d4782d9b8add8daa",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/lanes-en-1440.png",
-      "bytes": 206767,
-      "sha256": "1be13f8029902bfd108f19d358612345f2ded287c91075e9d17ae3e6b91b9820",
+      "bytes": 214336,
+      "sha256": "bf43fc3054248a190478edeb4cdb19983ad4745c7a166bec50cc7df817986103",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/lanes-ko-390.png",
-      "bytes": 154599,
-      "sha256": "bd0cff37d8fb2bf2e47a8d3d1117c7032548e1d1f1ccf744371afcc71e93d37b",
+      "bytes": 164838,
+      "sha256": "37da0a995ee55c1ed07635abfe949ff1112603af908faeb7321bab9340da1d35",
       "snapshot": "0.26.3"
     },
     {
@@ -5421,9 +5421,81 @@
       "snapshot": "0.26.3"
     },
     {
+      "path": "design/release-0.26.3/redflag-ko-1440.png",
+      "bytes": 197317,
+      "sha256": "a80fd2076f58a1f439516a41fc700dbbd90fc80f606f64d4fee13ff9a4818a86",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/circuit-11245-en-390.png",
+      "bytes": 163524,
+      "sha256": "dee9830be7455e059bc7c9db43c586810d086f86f556beec014b32d8f78c2749",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/circuit-11245-ko-1440.png",
+      "bytes": 210159,
+      "sha256": "42b054a8469bfdf4d129fb86a3cce71ac80070c1ef8b8b30595b18190e972ae5",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/circuit-11353-en-390.png",
+      "bytes": 159841,
+      "sha256": "2e74f7b456282e473ec4a969f9026b2c451b3e5904a2c1068ad84f662f35ec18",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/circuit-11353-ko-1440-redflag.png",
+      "bytes": 197675,
+      "sha256": "6457afa88ea5d6921c36050e2a6bc1c13bc9b945c1a7c9397d5bf24d53ebb548",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/circuit-11353-ko-1440.png",
+      "bytes": 203472,
+      "sha256": "24b86119fa79e3243a4f2ec2deb1d04c3969ac18dd58294c1430d7067b9acc38",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/lanes-11245-en-390.png",
+      "bytes": 161638,
+      "sha256": "2560383038688cee11a5985c47aacc0d591118274b56f83169b10e9c0dd2edf0",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/lanes-11245-ko-1440.png",
+      "bytes": 199647,
+      "sha256": "687eb5fb928863cd4f698b425e8f76460f6fd1b92ca60bd499d563011f4193bd",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/lanes-11353-en-390.png",
+      "bytes": 161972,
+      "sha256": "1e7c3a09dae8ba86752306be8622a42a52fcf79fdc6ade0c7a84cfda8bee892b",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/lanes-11353-ko-1440.png",
+      "bytes": 198981,
+      "sha256": "5d5fd3bb51406f6ecbe7b4fe3afe50161b7a31aa8c21284629dc86dc591a815d",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/upcoming-11388-en-390.png",
+      "bytes": 56917,
+      "sha256": "bbe64f5e59c46e252174f336f69ae6cacc3a85039378970ed12ed96273846944",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/review/upcoming-11388-ko-1440.png",
+      "bytes": 81389,
+      "sha256": "2d0aa92429465da3afe7033bce0efc6b77b68c6febd6366be7626d0a97d03c0f",
+      "snapshot": "0.26.3"
+    },
+    {
       "path": "design/release-0.26.3/sync-result.json",
-      "bytes": 26906,
-      "sha256": "31f30b24d21a530de60e21304c5a7b947880126797d7d5ef430aea459c7e3654",
+      "bytes": 37588,
+      "sha256": "4146bbcb2079e342302819caced2d31c28c52700a5cadb1af08238ff105dbeb4",
       "snapshot": "0.26.3"
     },
     {
@@ -5436,6 +5508,12 @@
       "path": "design/release-0.26.3/upcoming-ko-390.png",
       "bytes": 52280,
       "sha256": "fd52ff5301863d2cdac4f6092a70b68c65572bcc89ca479d8dd2a0d3c3d7c1e3",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/validation-report.json",
+      "bytes": 40205,
+      "sha256": "56e93d47f14fad901feaf94c9c8e98be4a0850f9cc1663eae6d4ef90ba3c73c9",
       "snapshot": "0.26.3"
     },
     {
@@ -5782,8 +5860,8 @@
     },
     {
       "path": "docs/SPEC-0.26.3.md",
-      "bytes": 19313,
-      "sha256": "8e597ad3fa9f7ad09eb8786e0d93c0740ddae0309e7624d0ca34402c4091e6d2",
+      "bytes": 25535,
+      "sha256": "9779cc769c6b74f6bd6e5e3c6d060af686d0908c759c3f2814e34c760b62bf8b",
       "snapshot": "0.26.3"
     },
     {
@@ -6154,8 +6232,8 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 19754899,
-      "sha256": "1630fcbe30800ad2727f10a1caa273aca599a609ccab9ecbdcd8e325551dbb8c",
+      "bytes": 19757405,
+      "sha256": "29e6edfb4715883b6bbac8727f5e3fa4e7e3349f9798d95f1ddac4f220ead616",
       "snapshot": "0.26.3"
     },
     {
@@ -6436,8 +6514,8 @@
     },
     {
       "path": "f1/release-0.26.3/comparison.js",
-      "bytes": 15066,
-      "sha256": "4e4726009b45be731746fa01fa855a042c57a7ba81ad694b84113a3f41e066a6",
+      "bytes": 17567,
+      "sha256": "d0e046976b785c6fc4047bc91ddcf0c220eccbb8ae9200b8317aeb3f1f98492b",
       "snapshot": "0.26.3"
     },
     {
@@ -6448,8 +6526,8 @@
     },
     {
       "path": "f1/release-0.26.3/map-comparison.js",
-      "bytes": 27188,
-      "sha256": "adba19862d01cdccb0732486ad1be7f67d6a1d3f643961d22c299392c0f324d2",
+      "bytes": 27193,
+      "sha256": "498b258c5fc77f783485765f1bf3e9646c467ab51ee728dbac8185d5e7ab6cca",
       "snapshot": "0.26.3"
     },
     {
@@ -10492,8 +10570,8 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 24316,
-      "sha256": "49b92b1198cd58093fc9d2b4559984c37f26ee1b395c99ee0d0e6f7def4a21cf",
+      "bytes": 24434,
+      "sha256": "4af8e4759d9ccbe95172918662bc7e6c52f33a71d08f81701318d3682080852a",
       "snapshot": "0.26.3"
     },
     {

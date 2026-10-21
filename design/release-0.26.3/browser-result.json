@@ -18,18 +18,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.762,
-     "wall_seconds": 3.051,
+     "recorded_seconds_advanced": 0.767,
+     "wall_seconds": 3.068,
      "measured_rate": 0.25,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.5435,
-      15.5514
+      15.5436,
+      15.5515
      ],
      "leader_lap_progress": [
-      15.5435,
-      15.5514
+      15.5436,
+      15.5515
      ],
      "completed_laps": [
       15,
@@ -45,17 +45,17 @@
      "start_phase": 0.4,
      "samples": 16,
      "recorded_seconds_advanced": 3.033,
-     "wall_seconds": 3.03,
-     "measured_rate": 1.001,
+     "wall_seconds": 3.084,
+     "measured_rate": 0.984,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      21.4155,
-      21.4469
+      21.4157,
+      21.4471
      ],
      "leader_lap_progress": [
-      21.4155,
-      21.4469
+      21.4157,
+      21.4471
      ],
      "completed_laps": [
       21,
@@ -70,18 +70,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 30.332,
-     "wall_seconds": 3.033,
-     "measured_rate": 10,
+     "recorded_seconds_advanced": 30.832,
+     "wall_seconds": 3.086,
+     "measured_rate": 9.992,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3186,
-      27.6326
+      27.6378
      ],
      "leader_lap_progress": [
       27.3186,
-      27.6326
+      27.6378
      ],
      "completed_laps": [
       27,
@@ -96,17 +96,17 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 13,
-     "recorded_seconds_advanced": 145.998,
-     "wall_seconds": 2.436,
-     "measured_rate": 59.938,
+     "recorded_seconds_advanced": 148.992,
+     "wall_seconds": 2.493,
+     "measured_rate": 59.774,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0818,
+      55.0921,
       56
      ],
      "leader_lap_progress": [
-      55.0818,
+      55.0921,
       56
      ],
      "completed_laps": [
@@ -371,18 +371,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.762,
-     "wall_seconds": 3.051,
+     "recorded_seconds_advanced": 0.775,
+     "wall_seconds": 3.101,
      "measured_rate": 0.25,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.5435,
-      15.5514
+      15.5436,
+      15.5516
      ],
      "leader_lap_progress": [
-      15.5435,
-      15.5514
+      15.5436,
+      15.5516
      ],
      "completed_laps": [
       15,
@@ -397,18 +397,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.1,
-     "wall_seconds": 3.099,
-     "measured_rate": 1,
+     "recorded_seconds_advanced": 3.05,
+     "wall_seconds": 3.065,
+     "measured_rate": 0.995,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4157,
-      21.4478
+      21.4473
      ],
      "leader_lap_progress": [
       21.4157,
-      21.4478
+      21.4473
      ],
      "completed_laps": [
       21,
@@ -423,18 +423,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 31.164,
-     "wall_seconds": 3.122,
-     "measured_rate": 9.984,
+     "recorded_seconds_advanced": 30.832,
+     "wall_seconds": 3.074,
+     "measured_rate": 10.029,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3169,
-      27.6395
+      27.6361
      ],
      "leader_lap_progress": [
       27.3169,
-      27.6395
+      27.6361
      ],
      "completed_laps": [
       27,
@@ -449,9 +449,9 @@
      "speed": 60,
      "start_phase": 0.96706,
      "samples": 12,
-     "recorded_seconds_advanced": 138,
-     "wall_seconds": 2.3,
-     "measured_rate": 59.99,
+     "recorded_seconds_advanced": 136.992,
+     "wall_seconds": 2.29,
+     "measured_rate": 59.83,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
@@ -724,18 +724,18 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.775,
-     "wall_seconds": 3.111,
-     "measured_rate": 0.249,
+     "recorded_seconds_advanced": 0.771,
+     "wall_seconds": 3.072,
+     "measured_rate": 0.251,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      15.5436,
-      15.5516
+      15.5435,
+      15.5515
      ],
      "leader_lap_progress": [
-      15.5436,
-      15.5516
+      15.5435,
+      15.5515
      ],
      "completed_laps": [
       15,
@@ -750,18 +750,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.1,
-     "wall_seconds": 3.103,
-     "measured_rate": 0.999,
+     "recorded_seconds_advanced": 3.067,
+     "wall_seconds": 3.068,
+     "measured_rate": 1,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4155,
-      21.4476
+      21.4473
      ],
      "leader_lap_progress": [
       21.4155,
-      21.4476
+      21.4473
      ],
      "completed_laps": [
       21,
@@ -776,18 +776,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 31.332,
-     "wall_seconds": 3.133,
-     "measured_rate": 10.001,
+     "recorded_seconds_advanced": 30.999,
+     "wall_seconds": 3.098,
+     "measured_rate": 10.006,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       27.3186,
-      27.643
+      27.6395
      ],
      "leader_lap_progress": [
       27.3186,
-      27.643
+      27.6395
      ],
      "completed_laps": [
       27,
@@ -801,18 +801,18 @@
     {
      "speed": 60,
      "start_phase": 0.96706,
-     "samples": 12,
-     "recorded_seconds_advanced": 138.99,
-     "wall_seconds": 2.316,
-     "measured_rate": 60.016,
+     "samples": 13,
+     "recorded_seconds_advanced": 148.998,
+     "wall_seconds": 2.474,
+     "measured_rate": 60.221,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "leader_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "completed_laps": [
@@ -1077,9 +1077,9 @@
      "speed": 0.25,
      "start_phase": 0.3,
      "samples": 16,
-     "recorded_seconds_advanced": 0.779,
-     "wall_seconds": 3.119,
-     "measured_rate": 0.25,
+     "recorded_seconds_advanced": 0.771,
+     "wall_seconds": 3.094,
+     "measured_rate": 0.249,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
@@ -1103,18 +1103,18 @@
      "speed": 1,
      "start_phase": 0.4,
      "samples": 16,
-     "recorded_seconds_advanced": 3.083,
-     "wall_seconds": 3.089,
-     "measured_rate": 0.998,
+     "recorded_seconds_advanced": 3.1,
+     "wall_seconds": 3.104,
+     "measured_rate": 0.999,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
       21.4157,
-      21.4476
+      21.4478
      ],
      "leader_lap_progress": [
       21.4157,
-      21.4476
+      21.4478
      ],
      "completed_laps": [
       21,
@@ -1129,18 +1129,18 @@
      "speed": 10,
      "start_phase": 0.5,
      "samples": 16,
-     "recorded_seconds_advanced": 31.165,
-     "wall_seconds": 3.115,
-     "measured_rate": 10.006,
+     "recorded_seconds_advanced": 30.832,
+     "wall_seconds": 3.08,
+     "measured_rate": 10.011,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      27.3169,
-      27.6395
+      27.3186,
+      27.6378
      ],
      "leader_lap_progress": [
-      27.3169,
-      27.6395
+      27.3186,
+      27.6378
      ],
      "completed_laps": [
       27,
@@ -1154,18 +1154,18 @@
     {
      "speed": 60,
      "start_phase": 0.96706,
-     "samples": 12,
-     "recorded_seconds_advanced": 138.99,
-     "wall_seconds": 2.316,
-     "measured_rate": 60.013,
+     "samples": 13,
+     "recorded_seconds_advanced": 149.994,
+     "wall_seconds": 2.493,
+     "measured_rate": 60.173,
      "max_abs_diff_laps": 0,
      "counter_mismatches": 0,
      "p1_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "leader_lap_progress": [
-      55.0921,
+      55.0818,
       56
      ],
      "completed_laps": [
@@ -1463,8 +1463,8 @@
    ],
    "tooltip": "1배속은 180초 예측 연출입니다.",
    "rate_10x": {
-    "new": 9.955,
-    "old": 10.047
+    "new": 9.925,
+    "old": 9.987
    },
    "overflow": {
     "scrollWidth": 390,
@@ -1515,8 +1515,8 @@
    ],
    "tooltip": "1배속은 180초 예측 연출입니다.",
    "rate_10x": {
-    "new": 9.982,
-    "old": 10.044
+    "new": 9.974,
+    "old": 9.987
    },
    "overflow": {
     "scrollWidth": 1440,
@@ -1567,8 +1567,8 @@
    ],
    "tooltip": "1× is a 180-second prediction illustration.",
    "rate_10x": {
-    "new": 9.978,
-    "old": 10.054
+    "new": 9.921,
+    "old": 9.984
    },
    "overflow": {
     "scrollWidth": 390,
@@ -1619,8 +1619,8 @@
    ],
    "tooltip": "1× is a 180-second prediction illustration.",
    "rate_10x": {
-    "new": 9.922,
-    "old": 9.987
+    "new": 9.924,
+    "old": 10.049
    },
    "overflow": {
     "scrollWidth": 1440,
@@ -1634,10 +1634,117 @@
   "recorded-ko-1440.png",
   "recorded-en-390.png",
   "recorded-en-1440.png",
+  "redflag-ko-1440.png",
   "lanes-ko-390.png",
   "lanes-en-1440.png",
   "upcoming-ko-390.png",
   "upcoming-en-1440.png"
+ ],
+ "red_flag": [
+  {
+   "lang": "ko",
+   "width": 1440,
+   "gp": 11353,
+   "suspension_seconds": [
+    [
+     119.433,
+     1771.521
+    ]
+   ],
+   "core_stop_seconds": [
+    270.166,
+    1771.521
+   ],
+   "held_laps": 20,
+   "circuit": {
+    "recorded_seconds": [
+     585.2,
+     883.2
+    ],
+    "p1_lap_progress": [
+     2,
+     2
+    ],
+    "raw_leader_lap_progress": [
+     2.2217,
+     2.3968
+    ],
+    "predicted_canvas_unchanged": true,
+    "inside_core": true
+   },
+   "lane": {
+    "phase": [
+     0.05261,
+     0.13316
+    ],
+    "recorded_seconds": [
+     397.5,
+     1006
+    ],
+    "p1_left": [
+     "4.66667%",
+     "4.66667%"
+    ],
+    "recorded_front_left": [
+     "4.81524%",
+     "5.29209%"
+    ],
+    "predicted_lanes_unchanged": true
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 390,
+   "gp": 11353,
+   "suspension_seconds": [
+    [
+     119.433,
+     1771.521
+    ]
+   ],
+   "core_stop_seconds": [
+    270.166,
+    1771.521
+   ],
+   "held_laps": 20,
+   "circuit": {
+    "recorded_seconds": [
+     586.2,
+     884.2
+    ],
+    "p1_lap_progress": [
+     2,
+     2
+    ],
+    "raw_leader_lap_progress": [
+     2.2223,
+     2.3974
+    ],
+    "predicted_canvas_unchanged": true,
+    "inside_core": true
+   },
+   "lane": {
+    "phase": [
+     0.05316,
+     0.13371
+    ],
+    "recorded_seconds": [
+     401.6,
+     1010.2
+    ],
+    "p1_left": [
+     "4.66667%",
+     "4.66667%"
+    ],
+    "recorded_front_left": [
+     "4.81851%",
+     "5.29536%"
+    ],
+    "predicted_lanes_unchanged": true
+   },
+   "page_errors": []
+  }
  ],
  "lane_runs": [
   {
@@ -1649,16 +1756,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.25222
+      0.25194
      ],
-     "measured_rate": 0.997,
+     "measured_rate": 0.999,
      "p1_left": [
       "20.8633%",
-      "24.0353%"
+      "24.0174%"
      ],
      "leader_left": [
       "20.8633%",
-      "24.0353%"
+      "24.0174%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1668,17 +1775,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40667,
-      0.50389
+      0.40611,
+      0.50388
      ],
-     "measured_rate": 2,
+     "measured_rate": 2.001,
      "p1_left": [
-      "39.3814%",
-      "49.1884%"
+      "39.3256%",
+      "49.1881%"
      ],
      "leader_left": [
-      "39.3814%",
-      "49.1884%"
+      "39.3256%",
+      "49.1881%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1688,17 +1795,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61334,
-      0.80889
+      0.61333,
+      0.80887
      ],
-     "measured_rate": 3.992,
+     "measured_rate": 4,
      "p1_left": [
-      "60.2708%",
-      "80.1708%"
+      "60.2695%",
+      "80.1694%"
      ],
      "leader_left": [
-      "60.2708%",
-      "80.1708%"
+      "60.2695%",
+      "80.1694%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1804,6 +1911,7 @@
     }
    ],
    "note": "예측은 경기 전 예상 순위대로 실제 선두의 랩 진행을 따라가는 연출 · 실제는 기록 기반 진행",
+   "speed_note": "이 탭의 1×는 경기 전체를 60초로 줄인 속도이며, 예측과 실제 줄은 같은 시계로 움직입니다. 서킷 탭의 1×는 실제 기록 시간과 같습니다.",
    "predicted_lanes_differ_from_0_26_2": [
     0.05,
     0.2,
@@ -1826,17 +1934,17 @@
      "speed": 1,
      "samples": 15,
      "phase": [
-      0.20361,
-      0.25194
+      0.20333,
+      0.25222
      ],
-     "measured_rate": 0.999,
+     "measured_rate": 0.998,
      "p1_left": [
-      "20.8814%",
-      "24.0173%"
+      "20.8633%",
+      "24.0353%"
      ],
      "leader_left": [
-      "20.8814%",
-      "24.0173%"
+      "20.8633%",
+      "24.0353%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1846,17 +1954,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40667,
-      0.50388
+      0.40611,
+      0.50277
      ],
-     "measured_rate": 1.994,
+     "measured_rate": 1.997,
      "p1_left": [
-      "39.3814%",
-      "49.1881%"
+      "39.3251%",
+      "49.076%"
      ],
      "leader_left": [
-      "39.3814%",
-      "49.1881%"
+      "39.3251%",
+      "49.076%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1866,17 +1974,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61333,
-      0.80999
+      0.61222,
+      0.80666
      ],
-     "measured_rate": 3.985,
+     "measured_rate": 3.987,
      "p1_left": [
-      "60.2701%",
-      "80.2839%"
+      "60.1572%",
+      "79.9431%"
      ],
      "leader_left": [
-      "60.2701%",
-      "80.2839%"
+      "60.1572%",
+      "79.9431%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -1982,6 +2090,7 @@
     }
    ],
    "note": "예측은 경기 전 예상 순위대로 실제 선두의 랩 진행을 따라가는 연출 · 실제는 기록 기반 진행",
+   "speed_note": "이 탭의 1×는 경기 전체를 60초로 줄인 속도이며, 예측과 실제 줄은 같은 시계로 움직입니다. 서킷 탭의 1×는 실제 기록 시간과 같습니다.",
    "predicted_lanes_differ_from_0_26_2": [
     0.05,
     0.2,
@@ -2005,16 +2114,16 @@
      "samples": 15,
      "phase": [
       0.20333,
-      0.25222
+      0.24917
      ],
-     "measured_rate": 0.999,
+     "measured_rate": 0.945,
      "p1_left": [
-      "20.8632%",
-      "24.0353%"
+      "20.8635%",
+      "23.8376%"
      ],
      "leader_left": [
-      "20.8632%",
-      "24.0353%"
+      "20.8635%",
+      "23.8376%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2027,7 +2136,7 @@
       0.40667,
       0.50389
      ],
-     "measured_rate": 1.999,
+     "measured_rate": 1.996,
      "p1_left": [
       "39.3814%",
       "49.1884%"
@@ -2044,17 +2153,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61223,
-      0.80999
+      0.61333,
+      0.80666
      ],
-     "measured_rate": 3.987,
+     "measured_rate": 4.007,
      "p1_left": [
-      "60.1578%",
-      "80.2839%"
+      "60.2701%",
+      "79.9431%"
      ],
      "leader_left": [
-      "60.1578%",
-      "80.2839%"
+      "60.2701%",
+      "79.9431%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2160,6 +2269,7 @@
     }
    ],
    "note": "Prediction follows the lap progress of the recorded leader in pre-race order · Actual progress uses recorded data",
+   "speed_note": "In this tab 1× plays the whole race in 60 seconds, and predicted and recorded lanes share one clock. In the circuit tab 1× is recorded elapsed time.",
    "predicted_lanes_differ_from_0_26_2": [
     0.05,
     0.2,
@@ -2182,17 +2292,17 @@
      "speed": 1,
      "samples": 15,
      "phase": [
-      0.20361,
-      0.25194
+      0.20333,
+      0.25139
      ],
-     "measured_rate": 0.995,
+     "measured_rate": 0.996,
      "p1_left": [
-      "20.8814%",
-      "24.0172%"
+      "20.8634%",
+      "23.9814%"
      ],
      "leader_left": [
-      "20.8814%",
-      "24.0172%"
+      "20.8634%",
+      "23.9814%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2202,17 +2312,17 @@
      "speed": 2,
      "samples": 15,
      "phase": [
-      0.40444,
-      0.50388
+      0.40611,
+      0.50222
      ],
-     "measured_rate": 2.031,
+     "measured_rate": 1.999,
      "p1_left": [
-      "39.1572%",
-      "49.1878%"
+      "39.3252%",
+      "49.0203%"
      ],
      "leader_left": [
-      "39.1572%",
-      "49.1878%"
+      "39.3252%",
+      "49.0203%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2222,17 +2332,17 @@
      "speed": 4,
      "samples": 15,
      "phase": [
-      0.61222,
-      0.80444
+      0.61223,
+      0.80666
      ],
-     "measured_rate": 3.868,
+     "measured_rate": 3.998,
      "p1_left": [
-      "60.1572%",
-      "79.7161%"
+      "60.1578%",
+      "79.9431%"
      ],
      "leader_left": [
-      "60.1572%",
-      "79.7161%"
+      "60.1578%",
+      "79.9431%"
      ],
      "position_mismatches": 0,
      "overtakes": 0,
@@ -2338,6 +2448,7 @@
     }
    ],
    "note": "Prediction follows the lap progress of the recorded leader in pre-race order · Actual progress uses recorded data",
+   "speed_note": "In this tab 1× plays the whole race in 60 seconds, and predicted and recorded lanes share one clock. In the circuit tab 1× is recorded elapsed time.",
    "predicted_lanes_differ_from_0_26_2": [
     0.05,
     0.2,
@@ -2353,9 +2464,9 @@
    "page_errors": []
   }
  ],
- "checks": 272,
+ "checks": 282,
  "blocked_external_hosts": [
   "media.formula1.com"
  ],
- "checked_at": "2026-10-21T01:32:44.236Z"
+ "checked_at": "2026-10-21T02:14:20.635Z"
 }

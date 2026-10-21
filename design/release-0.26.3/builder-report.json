@@ -4,7 +4,7 @@
   "role": "builder",
   "producer_id": "builder-f1sync-2026-10-21",
   "status": "DONE",
-  "summary": "SPEC-0.26.3 구현(팀장 범위 추가 반영). 실제 기록이 있는 F1 GP의 서킷 재생과 '경기 전 예측 vs 실제 기록' 줄 비교 탭 모두 예측 차를 실제 경기 시계에 묶었다. 공유 함수 MatchLabF1Comparison.leaderSync/syncedState 하나를 두 탭이 함께 쓴다. 실제 선두 랩 진행 L(t)=timeline.state(t)의 실제 차량 랩 진행 최댓값, 예측 순위 r = L(t-(r-1)×간격), 간격 = min(2초, (기록 길이-실제 선두 결승 시각)/(예측 차 수-1)). 두 탭 모두 예측 1위 = 실제 선두(차이 0), 결승 통과 시각 차이 0초, 추월 0, 끝에 모두 결승선 정지(2026 완료 16개 GP). 실제 화면·실제 줄·시계·대시보드·표는 0.26.2와 같고, 예정 GP 7개는 180초 연출 출력이 0.26.2와 같다(줄 비교 탭 없음). 배속 설명·줄 비교 설명 한영 변경. 2025·2024 GP는 랩 기록이 없어 대상 아님. 자가 점검이며 독립 검증이 아니다.",
+  "summary": "SPEC-0.26.3 구현(팀장 범위 추가 + 독립 검증 R1·R3 반영). 실제 기록이 있는 F1 GP의 서킷 재생과 줄 비교 탭 모두 예측 차를 실제 경기 시계에 묶었고, 두 탭이 공유 함수 MatchLabF1Comparison.leaderSync/syncedState 하나를 쓴다. L(t)=timeline.state(t)의 실제 차량 랩 진행 최댓값(적기 정지 랩은 경기 운영 메시지의 적기~재개 구간 동안 진행 고정, 나머지 움직인 시간에 고르게 배분; 정지 랩 = 적기와 겹치며 중앙값 4배 초과이거나 적기 중 시작한 랩), 예측 순위 r = L(t-(r-1)×간격), 간격 = min(2초,(기록 길이-실제 선두 결승)/(n-1)). 정지 랩 밖 예측 1위 = 실제 선두(차이 0), 정지 랩 안 랩 수 일치, 실제 선두 정지 중 예측 차 이동 0(네덜란드·이탈리아·모나코), 결승 차이 0초, 추월 0, 결승 정지. 네덜란드·이탈리아 서킷 점 거리 15% 초과 비율 8.3%→0.8%, 16.8%→2.9%. 모나코는 실제 선두가 위치 기록이 없어 실제 점이 계속 움직이므로 0%→10.9%로 늘었다. 줄 비교 탭 배속 설명 추가. 실제 화면·실제 줄·시계·표는 0.26.2와 같고 예정 GP 7개도 같다. 자가 점검이며 독립 검증이 아니다.",
   "cutoff_at": null,
   "observed_at": "2026-10-21",
   "provider": null,
@@ -12,7 +12,7 @@
   "evidence": [
     {
       "path": "f1/index.html",
-      "description": "서킷 재생·줄 비교 모듈 블록 두 개만 변경(19,751,965 → 19,754,899바이트). F1 자료 블록 9개 바이트 동일"
+      "description": "서킷 재생·줄 비교 모듈 블록 두 개만 변경(19,751,965 → 19,757,405바이트). F1 자료 블록 9개 바이트 동일"
     },
     {
       "path": "f1/release-0.26.3/map-comparison.js",
@@ -20,7 +20,7 @@
     },
     {
       "path": "f1/release-0.26.3/comparison.js",
-      "description": "줄 비교 모듈 원본: 공유 leaderSync·syncedState, 예측 줄을 실제 줄과 같은 눈금에 배치, 설명 줄. 0.26.2 원본은 f1/release-0.8.4/comparison.js. check_release가 바이트 비교"
+      "description": "줄 비교 모듈 원본: 공유 leaderSync(적기 정지 규칙 포함)·syncedState, 예측 줄 배치, 설명 줄과 배속 설명. check_release가 바이트 비교"
     },
     {
       "path": "f1/release-0.26.3/map-comparison-0.26.2.js",
@@ -36,7 +36,7 @@
     },
     {
       "path": "design/release-0.26.3/sync-result.json",
-      "description": "PASS 233개 확인. 서킷·줄 비교 모두 차이 0, 결승 시각 차이 0초, 추월 0, 실제 쪽 0.26.2 대비 차이 0, 예정 GP 차이 0, 간격 0.39~2초"
+      "description": "PASS 298개 확인. 두 탭 차이 0(정지 랩 밖), 정지 중 예측 이동 0, 첫 빌드 대비 정지 랩 밖 동일, 점 거리 분포, 추월 0, 실제 쪽·예정 GP 0.26.2와 동일"
     },
     {
       "path": "design/release-0.26.3/check-browser.cjs",
@@ -44,7 +44,7 @@
     },
     {
       "path": "design/release-0.26.3/browser-result.json",
-      "description": "PASS 272개 확인. 서킷 탭 배속 4종, 줄 비교 탭 배속 3종(화면 줄 위치 직접 읽음), 예정 GP 비교. 페이지 오류 0, 가로 넘침 없음"
+      "description": "PASS 282개 확인. 서킷 탭 배속 4종, 줄 비교 탭 배속 3종·배속 설명, 네덜란드 적기 정지(서킷 60×·줄 1×), 예정 GP 비교. 페이지 오류 0, 가로 넘침 없음"
     },
     {
       "path": "design/release-0.26.3/recorded-ko-390.png",
@@ -65,16 +65,20 @@
     {
       "path": "design/release-0.26.3/lanes-ko-390.png",
       "description": "줄 비교 탭(한국어 390px, 진행값 0.5)"
+    },
+    {
+      "path": "design/release-0.26.3/redflag-ko-1440.png",
+      "description": "네덜란드 GP 적기 정지 중 서킷 재생(한국어 1440px)"
     }
   ],
   "tests": [
     {
       "command": "node design/release-0.26.3/check-sync.cjs",
-      "result": "PASS (233 checks)"
+      "result": "PASS (298 checks)"
     },
     {
       "command": "NODE_PATH=<pw>/node_modules CHROME_PATH=<Chrome> node design/release-0.26.3/check-browser.cjs",
-      "result": "PASS (272 checks)"
+      "result": "PASS (282 checks)"
     },
     {
       "command": "npm run test:server",
@@ -102,7 +106,7 @@
     },
     {
       "command": "F1 브라우저 검사 복사본(Chrome 경로만 교체): 0.9.3 check-regression, 0.9.3 check-tyres, 0.9.2·0.9.1 check-browser, 0.7.3 check-rank-motion, 0.8.4 check-links",
-      "result": "PASS (272 checks)"
+      "result": "PASS (282 checks)"
     },
     {
       "command": "python3 -I tools/check_release.py",
@@ -110,7 +114,11 @@
     }
   ],
   "issues": [
-    "독립 검증, main 병합(0.26.2 선행), 운영 배포 후 확인은 하지 않았다.",
+    "R1·R3 수정분 독립 재검증, main 병합(0.26.2 선행), 운영 배포 후 확인은 하지 않았다.",
+    "모나코: 적기 동안 실제 선두(12번)는 위치 기록이 없어 실제 점이 랩 재구성으로 계속 움직이고(실제 화면 유지 조건) 예측 차는 멈춘다. 서킷 점 거리 15% 초과 0%→10.9%. 적기 직전 38초 동안 예측 1위가 평소 약 1.6배로 움직인다.",
+    "줄 비교 탭: 정지 랩 안에서 실제 줄은 0.26.2처럼 고르게 움직이고 예측 줄은 멈춰 최대 0.018 줄 너비 차이.",
+    "정지 구간은 경기 운영 메시지 시각 기준이라 실제 정지 시각과 몇 초~몇 분 차이가 날 수 있다.",
+    "R5(네덜란드 5,267.5초 0.156랩 건너뜀 등)는 정지 랩 밖이라 그대로다.",
     "줄 비교 탭의 배속 의미(1×=전체 60초, 1·2·4×)는 바꾸지 않았다. 예측·실제 줄이 같은 시계로 움직이게만 했다.",
     "영국 GP는 실제 선두 결승 뒤 기록이 7.9초뿐이라 예측 간격이 순위당 0.39초로 촘촘하다.",
     "실제 기록 시계가 첫 유효 랩 시작에서 시작하므로 '출발 전 대기' 구간은 기록 안에서 0초다(진행값 0이 실제 출발).",
