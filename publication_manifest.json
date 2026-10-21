@@ -1,5 +1,5 @@
 {
-  "version": "0.26.2",
+  "version": "0.26.3",
   "public_export": true,
   "files": [
     {
@@ -28,27 +28,27 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 21548,
-      "sha256": "e1992102f88ca0d20c87b45db6ac122b8ca900707ec8cf92344fa9535f462f7f",
-      "snapshot": "0.26.2"
+      "bytes": 22174,
+      "sha256": "41f9e80b8d1104e500a8d38980f2577c18baf9c05ada7c4cdabff0e40714f733",
+      "snapshot": "0.26.3"
     },
     {
       "path": "README.ko.md",
       "bytes": 1291,
-      "sha256": "cbaf4296005fa9d73e8244d175ee730cca1420b9029a502c8a27df4e1d952d5a",
-      "snapshot": "0.26.2"
+      "sha256": "ae0cc7f81eae5cb08c216bae7f9315d8c554f117af63693e90c72c7944e1e30c",
+      "snapshot": "0.26.3"
     },
     {
       "path": "README.md",
       "bytes": 1356,
-      "sha256": "a304f633ec9241793e7f27f47e811d2d68d92da4c64d52864ce88355066c4ac2",
-      "snapshot": "0.26.2"
+      "sha256": "b4e6acc2485ede930baa138427c1a85406f253f89280b59f579323b00489e220",
+      "snapshot": "0.26.3"
     },
     {
       "path": "VERSION",
       "bytes": 7,
-      "sha256": "571a0345e4957939455a4c4518d264d47cae46917a626c2852416fdb2fa417db",
-      "snapshot": "0.26.2"
+      "sha256": "0c5837fb59e93d275c2c439543cc54e7a4dd71a10bb6965718e6807d3f8256cc",
+      "snapshot": "0.26.3"
     },
     {
       "path": "agent-team-2026-10-06-v01/.agents/skills/matchdesk-analysis/SKILL.md",
@@ -5361,6 +5361,72 @@
       "snapshot": "0.26.2"
     },
     {
+      "path": "design/release-0.26.3/browser-result.json",
+      "bytes": 31557,
+      "sha256": "67257bcb21db1917e1192c1441f1ea77852fd4e6ca8a322054913aa51051e3ce",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/builder-report.json",
+      "bytes": 5457,
+      "sha256": "703261e8ea5b51bcf0924e2bac57ffe77a9c8d3245007a9618a04dfe6722fd16",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/check-browser.cjs",
+      "bytes": 15910,
+      "sha256": "2ae5110e446f6263006a551e3a4e2f1a36add5356feef8da4bbf0066e1db14fb",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/check-sync.cjs",
+      "bytes": 13028,
+      "sha256": "2f60a7d187225459c90c700d6ce93b50079364cfc987d87dd7de02049cb4fe5a",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/recorded-en-1440.png",
+      "bytes": 229492,
+      "sha256": "95218e214cfbf2bad3ba0ad71e5593faa5ee7624accfa761e22852c54a932322",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/recorded-en-390.png",
+      "bytes": 166945,
+      "sha256": "310c4fe8f38ee5fbf421da20a767353e4d012692757b0c4d6cf37f1d6a5fe332",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/recorded-ko-1440.png",
+      "bytes": 223249,
+      "sha256": "87a283f578e9a90c0d8d2fef9125bd85d2946c871177a16b9a687443b64d1f1f",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/recorded-ko-390.png",
+      "bytes": 157077,
+      "sha256": "d7d23c8362103f60c7e6ac4717c5ee7444ddf5a2a6aeee85abc26ae20521d6ce",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/sync-result.json",
+      "bytes": 18030,
+      "sha256": "43ae26c6596f379cdc3c62bdc21b9bcb35449c674286edcb0e5eea2515bdb7bb",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/upcoming-en-1440.png",
+      "bytes": 86789,
+      "sha256": "e2d99bed87da9ebda225fdd122a4ecb5e87a652b16456e6d328eef7fae3a8336",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/upcoming-ko-390.png",
+      "bytes": 52280,
+      "sha256": "fd52ff5301863d2cdac4f6092a70b68c65572bcc89ca479d8dd2a0d3c3d7c1e3",
+      "snapshot": "0.26.3"
+    },
+    {
       "path": "docs/AGENTS-AND-SKILLS.en.md",
       "bytes": 4170,
       "sha256": "c7c4335c35c450dfe51d3508da7d648b7534a1901c2cfa9215bfc58fbaf5a2b9",
@@ -5701,6 +5767,12 @@
       "bytes": 11995,
       "sha256": "5c07fbdb2d58d9cb2f1480af362191127f6c8c61e976d75fc475d8e3d1ac1545",
       "snapshot": "0.26.2"
+    },
+    {
+      "path": "docs/SPEC-0.26.3.md",
+      "bytes": 15511,
+      "sha256": "a3e238248f29ff8a3ecbcd4c7bdfce4d6427f1e136b4b8815f30e53f33aaf328",
+      "snapshot": "0.26.3"
     },
     {
       "path": "docs/SPEC-0.3.0.md",
@@ -6070,9 +6142,9 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 19751965,
-      "sha256": "2762addfa2b8076e20d46b903f849a79287698d8d5ebd8460ea2de5360d0320c",
-      "snapshot": "0.25.2"
+      "bytes": 19753818,
+      "sha256": "8de7a668436347539d33b036ea24cb879928ff5f4efbc2e73a1b0655027892a2",
+      "snapshot": "0.26.3"
     },
     {
       "path": "f1/profiles/README.md",
@@ -6349,6 +6421,18 @@
       "bytes": 17385,
       "sha256": "ba7ac724a17e9dedc3c23170db6114d4673c89874864489db5fc2e1bf1b979d2",
       "snapshot": "0.25.0"
+    },
+    {
+      "path": "f1/release-0.26.3/map-comparison-0.26.2.js",
+      "bytes": 26462,
+      "sha256": "290cb74ba45187773ea8ceef096e9389501378a1d3146f064298616d9d2f2a0d",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "f1/release-0.26.3/map-comparison.js",
+      "bytes": 28315,
+      "sha256": "aaa61aac78f0a5f3d3d0e4ca75a4917a0e5f3026fda5c095fa04f372391afe9b",
+      "snapshot": "0.26.3"
     },
     {
       "path": "f1/release-0.3.0/README.ko.md",
@@ -9653,8 +9737,8 @@
     {
       "path": "package.json",
       "bytes": 442,
-      "sha256": "e80ff8ae6e7e88b8e00838f364348844627dc5203b44c07ad8b0c44a75b6d406",
-      "snapshot": "0.26.2"
+      "sha256": "71b26fe5157db553eaf681ac1a29283458c8cf158896353a1d618f7dae8f2b32",
+      "snapshot": "0.26.3"
     },
     {
       "path": "reports/release-0.25.0/README.md",
@@ -10390,9 +10474,9 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 23153,
-      "sha256": "cd6b4f7092fea5847dd94f452157ea50ab9b81b2682f69836a367edfc5df508c",
-      "snapshot": "0.26.2"
+      "bytes": 23713,
+      "sha256": "b5e88cfb1ed005802f1cf14511ad944e09200e78d3dc676c172061dccc0817af",
+      "snapshot": "0.26.3"
     },
     {
       "path": "tools/prepare_release_v03.py",
