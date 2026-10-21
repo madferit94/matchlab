@@ -2,8 +2,9 @@
  "status": "PASS",
  "release": "0.26.3",
  "base_commit": "ee48f51",
- "checked_at": "2026-10-21T01:16:55.657Z",
+ "checked_at": "2026-10-21T01:31:01.081Z",
  "rule": "Leader lap progress L(t) = largest lap progress among recorded cars in MatchLabF1Replay.timeline(race).state(t), t = phase x recorded seconds. Predicted rank r lap progress = L(t - (r-1) x gap); L is held at L(0) before t=0 and at the race lap count from the recorded leader finish on. gap = min(2 s, (recorded seconds - leader finish seconds)/(predicted cars - 1)).",
+ "lane_tab_rule": "Lane comparison tab uses the same MatchLabF1Comparison.leaderSync (lap count = largest valid recorded lap number, equal to raceLapCount for all GPs) and draws predicted lanes at clamp(lap progress / session_result laps), the scale of the recorded lanes; Finish label when lap progress reaches the lap count. Upcoming GPs have no lane comparison tab (archive tabs: prediction, analysis).",
  "samples_per_race": "2001 uniform phases plus finish instants of every predicted rank (+/-1e-4, +/-1e-7)",
  "recorded_gps": 16,
  "races": [
@@ -35,6 +36,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 58,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 3810.9,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 3810.9,
     "p1_finish_phase": 0.78,
@@ -69,6 +86,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 56,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4433,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4433,
     "p1_finish_phase": 0.78,
@@ -103,6 +136,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 53,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4193.5,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4193.5,
     "p1_finish_phase": 0.78,
@@ -137,6 +186,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 57,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4438.8,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4438.8,
     "p1_finish_phase": 0.78,
@@ -171,6 +236,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 68,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4184.6,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4184.6,
     "p1_finish_phase": 0.78,
@@ -205,6 +286,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 78,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 6751.4,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 6751.4,
     "p1_finish_phase": 0.78,
@@ -239,6 +336,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 66,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4388.8,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4388.8,
     "p1_finish_phase": 0.78,
@@ -273,6 +386,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 71,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4106.4,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4106.4,
     "p1_finish_phase": 0.78,
@@ -307,6 +436,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 52,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4087.2,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4087.2,
     "p1_finish_phase": 0.78,
@@ -341,6 +486,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 44,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4051.2,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4051.2,
     "p1_finish_phase": 0.78,
@@ -375,6 +536,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 70,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4728.9,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4728.9,
     "p1_finish_phase": 0.78,
@@ -409,6 +586,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 72,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 5893.1,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 5893.1,
     "p1_finish_phase": 0.78,
@@ -443,6 +636,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 53,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 5268.6,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 5268.6,
     "p1_finish_phase": 0.78,
@@ -477,6 +686,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 57,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4492.8,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4492.8,
     "p1_finish_phase": 0.78,
@@ -511,6 +736,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 51,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 4620.6,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 4620.6,
     "p1_finish_phase": 0.78,
@@ -545,6 +786,22 @@
    "left_finish_after_reaching_it": 0,
    "all_stopped_on_line_at_phase1": true,
    "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "lane_tab": {
+    "lane_scale_laps": 55,
+    "max_abs_diff_lane_fraction": 0,
+    "mean_abs_diff_lane_fraction": 0,
+    "p1_finish_minus_recorded_leader_finish_seconds": 0,
+    "overtakes": 0,
+    "backward_moves": 0,
+    "left_finish_after_reaching_it": 0,
+    "all_finished_at_phase1": true,
+    "recorded_lane_differences_vs_0_26_2": 0,
+    "unsynced_predicted_state_differences_vs_0_26_2": 0,
+    "before_0_26_2": {
+     "p1_finish_seconds": 5042.4,
+     "p1_finish_phase": 0.78
+    }
+   },
    "before_0_26_2": {
     "p1_finish_seconds": 5042.4,
     "p1_finish_phase": 0.78,
@@ -557,43 +814,50 @@
    "session_key": 11388,
    "name": "Singapore Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   },
   {
    "session_key": 11396,
    "name": "United States Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   },
   {
    "session_key": 11404,
    "name": "Mexico City Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   },
   {
    "session_key": 11412,
    "name": "São Paulo Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   },
   {
    "session_key": 11420,
    "name": "Las Vegas Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   },
   {
    "session_key": 11428,
    "name": "Qatar Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   },
   {
    "session_key": 11436,
    "name": "Abu Dhabi Grand Prix",
    "samples": 2001,
-   "marker_differences_vs_0_26_2": 0
+   "marker_differences_vs_0_26_2": 0,
+   "predicted_state_differences_vs_0_26_2": 0
   }
  ],
  "no_lap_data": {
@@ -614,10 +878,17 @@
   "overtakes": 0,
   "all_stopped_on_line": true,
   "recorded_pane_differences": 0,
+  "lane_tab": {
+   "max_abs_diff_lane_fraction": 0,
+   "max_abs_finish_delta_seconds": 0,
+   "overtakes": 0,
+   "all_finished": true,
+   "recorded_lane_differences": 0
+  },
   "gap_seconds_range": [
    0.3883,
    2
   ]
  },
- "checks": 142
+ "checks": 233
 }

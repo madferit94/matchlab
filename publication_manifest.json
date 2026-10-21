@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 22174,
-      "sha256": "41f9e80b8d1104e500a8d38980f2577c18baf9c05ada7c4cdabff0e40714f733",
+      "bytes": 22354,
+      "sha256": "f04803f8f6e16f94aaa3668c6fb06b8e3dc6c1d5bd8113fcd0c8a69688128919",
       "snapshot": "0.26.3"
     },
     {
@@ -5362,26 +5362,38 @@
     },
     {
       "path": "design/release-0.26.3/browser-result.json",
-      "bytes": 31557,
-      "sha256": "67257bcb21db1917e1192c1441f1ea77852fd4e6ca8a322054913aa51051e3ce",
+      "bytes": 45332,
+      "sha256": "1743491a2bd8882d92cc6b3a4fbdc4d847e76e032f8ed40b931ded0c91500aba",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/builder-report.json",
-      "bytes": 5457,
-      "sha256": "703261e8ea5b51bcf0924e2bac57ffe77a9c8d3245007a9618a04dfe6722fd16",
+      "bytes": 6300,
+      "sha256": "7a1768b29ce51b1d3d30a8c02d2ab0f866bf7f8fad8cbcca9f9703506ac22d26",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/check-browser.cjs",
-      "bytes": 15910,
-      "sha256": "2ae5110e446f6263006a551e3a4e2f1a36add5356feef8da4bbf0066e1db14fb",
+      "bytes": 22613,
+      "sha256": "b0cfb9af1a5962bf2c754d4ac56751d80c0f7b3d5de6064fdd4c9a6ae12c7fdd",
       "snapshot": "0.26.3"
     },
     {
       "path": "design/release-0.26.3/check-sync.cjs",
-      "bytes": 13028,
-      "sha256": "2f60a7d187225459c90c700d6ce93b50079364cfc987d87dd7de02049cb4fe5a",
+      "bytes": 18545,
+      "sha256": "9e8a7550c9be39c11e92ffa7e00b4c4bc9adf5735cde66485979ade24799afd8",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/lanes-en-1440.png",
+      "bytes": 206767,
+      "sha256": "1be13f8029902bfd108f19d358612345f2ded287c91075e9d17ae3e6b91b9820",
+      "snapshot": "0.26.3"
+    },
+    {
+      "path": "design/release-0.26.3/lanes-ko-390.png",
+      "bytes": 154599,
+      "sha256": "bd0cff37d8fb2bf2e47a8d3d1117c7032548e1d1f1ccf744371afcc71e93d37b",
       "snapshot": "0.26.3"
     },
     {
@@ -5410,8 +5422,8 @@
     },
     {
       "path": "design/release-0.26.3/sync-result.json",
-      "bytes": 18030,
-      "sha256": "43ae26c6596f379cdc3c62bdc21b9bcb35449c674286edcb0e5eea2515bdb7bb",
+      "bytes": 26906,
+      "sha256": "31f30b24d21a530de60e21304c5a7b947880126797d7d5ef430aea459c7e3654",
       "snapshot": "0.26.3"
     },
     {
@@ -5770,8 +5782,8 @@
     },
     {
       "path": "docs/SPEC-0.26.3.md",
-      "bytes": 15511,
-      "sha256": "a3e238248f29ff8a3ecbcd4c7bdfce4d6427f1e136b4b8815f30e53f33aaf328",
+      "bytes": 19313,
+      "sha256": "8e597ad3fa9f7ad09eb8786e0d93c0740ddae0309e7624d0ca34402c4091e6d2",
       "snapshot": "0.26.3"
     },
     {
@@ -6142,8 +6154,8 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 19753818,
-      "sha256": "8de7a668436347539d33b036ea24cb879928ff5f4efbc2e73a1b0655027892a2",
+      "bytes": 19754899,
+      "sha256": "1630fcbe30800ad2727f10a1caa273aca599a609ccab9ecbdcd8e325551dbb8c",
       "snapshot": "0.26.3"
     },
     {
@@ -6423,6 +6435,12 @@
       "snapshot": "0.25.0"
     },
     {
+      "path": "f1/release-0.26.3/comparison.js",
+      "bytes": 15066,
+      "sha256": "4e4726009b45be731746fa01fa855a042c57a7ba81ad694b84113a3f41e066a6",
+      "snapshot": "0.26.3"
+    },
+    {
       "path": "f1/release-0.26.3/map-comparison-0.26.2.js",
       "bytes": 26462,
       "sha256": "290cb74ba45187773ea8ceef096e9389501378a1d3146f064298616d9d2f2a0d",
@@ -6430,8 +6448,8 @@
     },
     {
       "path": "f1/release-0.26.3/map-comparison.js",
-      "bytes": 28315,
-      "sha256": "aaa61aac78f0a5f3d3d0e4ca75a4917a0e5f3026fda5c095fa04f372391afe9b",
+      "bytes": 27188,
+      "sha256": "adba19862d01cdccb0732486ad1be7f67d6a1d3f643961d22c299392c0f324d2",
       "snapshot": "0.26.3"
     },
     {
@@ -10474,8 +10492,8 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 23713,
-      "sha256": "b5e88cfb1ed005802f1cf14511ad944e09200e78d3dc676c172061dccc0817af",
+      "bytes": 24316,
+      "sha256": "49b92b1198cd58093fc9d2b4559984c37f26ee1b395c99ee0d0e6f7def4a21cf",
       "snapshot": "0.26.3"
     },
     {

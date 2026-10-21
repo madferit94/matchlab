@@ -208,11 +208,15 @@ for tag,ident,source in [('script','f1-archive-catalog','archive-catalog.js'),('
 for ident,source in [('f1-query-history','query-history.json'),('f1-history-analysis','history-analysis.js'),('f1-history-query-styles','history.css')]:
     block=re.search(r'<(?:script|style) id="'+ident+r'"[^>]*>([\s\S]*?)</(?:script|style)>',f1_html)
     assert block and block[1]==(p/('f1/release-0.9.2' if source=='history-analysis.js' else 'f1/release-0.8.6')/source).read_text(encoding='utf8'), 'Historical module drift: '+ident
-# 0.26.3: the circuit replay module (prediction vs recorded race) is shipped from a
-# versioned source. Exactly one copy, equal to the file; the 0.26.2 copy is kept for comparison.
+# 0.26.3: the circuit replay and lane comparison modules (prediction vs recorded race) are
+# shipped from versioned sources. Exactly one copy, equal to the file; the 0.26.2 copy is kept for comparison.
 map_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1MapComparison=' in b]
 assert len(map_blocks)==1 and map_blocks[0]==(p/'f1/release-0.26.3/map-comparison.js').read_text(encoding='utf8'), 'F1 circuit replay module drift'
 assert map_blocks[0].count('leaderSync(timeline,lapCount,predicted.length)')==1, 'F1 replay leader clock missing'
+# The lane comparison module carries the shared leader clock (used by both replays).
+cmp_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1Comparison={' in b]
+assert len(cmp_blocks)==1 and cmp_blocks[0]==(p/'f1/release-0.26.3/comparison.js').read_text(encoding='utf8'), 'F1 lane comparison module drift'
+assert cmp_blocks[0].count('function leaderSync(')==1 and 'function leaderSync(' not in map_blocks[0] and map_blocks[0].count('global.MatchLabF1Comparison.syncedState(prediction,phase,sync)')==1, 'F1 replays must share one leader clock'
 f1_before=(p/'f1/release-0.8.6/index-before.html').read_text(encoding='utf8')
 for ident in ['dataset','forecasts','historical','maps','tracks']:
     rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'

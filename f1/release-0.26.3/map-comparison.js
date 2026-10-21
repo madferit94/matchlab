@@ -34,24 +34,11 @@ function raceLapCount(race){
  const final=(race.records?.session_result||[]).map(r=>r.number_of_laps).filter(n=>Number.isInteger(n)&&n>0);
  return final.length?Math.max(...final):3;
 }
-// 0.26.3: on recorded GPs the predicted cars run on the recorded race clock.
-// Leader lap progress at t seconds = the largest lap progress among recorded
-// cars in timeline.state(t) (the same values the recorded pane draws). Predicted
-// rank r uses that curve SYNC_GAP_SECONDS*(r-1) seconds later, shortened so the
-// last predicted car reaches the line by the end of the recorded clock.
-const SYNC_GAP_SECONDS=2,SYNC_FINISH_TOLERANCE=1e-9;
-function leaderSync(timeline,lapCount,carCount){
- const count=Number.isInteger(lapCount)&&lapCount>0?lapCount:3;
- if(!timeline||typeof timeline.state!=='function'||!Number.isFinite(timeline.duration)||timeline.duration<=0)return null;
- const finish=Math.min(...(timeline.drivers||[]).flatMap(d=>(d.laps||[]).filter(l=>l.number>=count&&Number.isFinite(l.end)).map(l=>l.end)));
- if(!Number.isFinite(finish)||finish>timeline.duration)return null;
- const gap=Math.max(0,Math.min(SYNC_GAP_SECONDS,(timeline.duration-finish)/Math.max(1,(Number.isInteger(carCount)?carCount:1)-1)));
- const lap=seconds=>seconds>=finish-SYNC_FINISH_TOLERANCE?count:Math.min(count,Math.max(0,...timeline.state(seconds).map(d=>Number.isFinite(d.progress)?d.progress:0)));
- return {count,finish,gap,duration:timeline.duration,lap};
-}
+// 0.26.3: on recorded GPs the predicted cars run on the recorded race clock shared with the
+// lane comparison (MatchLabF1Comparison.leaderSync / syncedState).
 function predictedMarkers(prediction,phase,map,lapCount=3,sync=null){
  const count=Number.isInteger(lapCount)&&lapCount>0?lapCount:3;
- if(sync&&sync.count===count){const seconds=clamp(phase)*sync.duration;return global.MatchLabF1Comparison.predictedRows(prediction).map(d=>{const lap=sync.lap(seconds-(d.predicted_rank-1)*sync.gap);return {...d,progress:lap/count,lap_progress:lap,...pointAt(map,lap),coordinate_source:'prediction_illustration',progress_source:'recorded_leader_clock'}});}
+ if(sync&&sync.count===count)return global.MatchLabF1Comparison.syncedState(prediction,phase,sync).map(d=>({...d,...pointAt(map,d.lap_progress),coordinate_source:'prediction_illustration',progress_source:'recorded_leader_clock'}));
  return global.MatchLabF1Comparison.predictedState(prediction,phase).map(d=>({...d,lap_progress:d.progress*count,...pointAt(map,d.progress*count),coordinate_source:'prediction_illustration'}));
 }
 function playbackDuration(timeline,predictionOnly=false){
@@ -93,7 +80,7 @@ function mount(container,race,prediction,options={}){
  identity.forEach(d=>{const option=document.createElement('option');option.value=d.driver_number;option.textContent=`${d.driver_number} · ${d.full_name||d.name_acronym}`;select.append(option)});select.value=String(options.selectedDriver??map.reference?.driver_number??Object.keys(map.drivers)[0]??identity[0]?.driver_number??'');
  const statuses={'RACING':'주행','FINISHED':'완주','DNF':'리타이어','DNS':'미출발','DSQ':'실격','NO DATA':'자료 없음','NO LAP DATA':'기록 공백'};
  predicted.forEach(d=>{const result=(race.records?.session_result||[]).find(r=>r.driver_number===d.driver_number),actual=result?.position??null,row=document.createElement('tr'),vals=[d.name||identity.find(x=>x.driver_number===d.driver_number)?.full_name||d.driver_number,d.predicted_rank];if(!predictionOnly)vals.push(actual??'—',result?.dns?tr('미출발','DNS'):result?.dsq?tr('실격','DSQ'):result?.dnf?tr('리타이어','DNF'):result?tr('완주','Finished'):'—',actual===null?'—':`${actual-d.predicted_rank>0?'+':''}${actual-d.predicted_rank}`);vals.push(Number.isFinite(d.win_probability)?`${(d.win_probability*100).toFixed(1)}%`:'—');vals.forEach((v,index)=>{const td=document.createElement('td');td.textContent=v;if(index===0){const profiles=JSON.parse(document.getElementById('profile-data').textContent).drivers;const normalize=n=>String(n||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');const driver=identity.find(x=>x.driver_number===d.driver_number);const id=normalize(driver?.full_name||v);if(profiles[id]){const link=document.createElement('a');link.href='#driver='+encodeURIComponent(id);link.textContent=v;link.style.cssText='color:#076e86;text-decoration:underline;text-underline-offset:3px;font-weight:600;display:inline-block;padding:8px 0';td.replaceChildren(link)}}row.append(td)});root.querySelector('[data-map-table]').append(row)});
- const playbackSeconds=playbackDuration(timeline,predictionOnly),lapCount=raceLapCount(race),sync=predictionOnly?null:leaderSync(timeline,lapCount,predicted.length);speed.value='1';
+ const playbackSeconds=playbackDuration(timeline,predictionOnly),lapCount=raceLapCount(race),sync=predictionOnly?null:global.MatchLabF1Comparison.leaderSync(timeline,lapCount,predicted.length);speed.value='1';
  let phase=0,playing=false,frame=0,last=0,disposed=false,lastDashboard='';viewMode.value='all';
  function showDashboard(chosen){
   if(!chosen)return;const key=`${chosen.driver_number}:${predictionOnly?'prediction':Math.floor((timeline.start+phase*timeline.duration*1000)/1000)}:${phase===1}`;if(key===lastDashboard)return;lastDashboard=key;
@@ -119,5 +106,5 @@ function mount(container,race,prediction,options={}){
  play.addEventListener('click',toggle);reset.addEventListener('click',rewind);seek.addEventListener('input',move);select.addEventListener('change',draw);viewMode.addEventListener('change',changeView);document.addEventListener('visibilitychange',hidden);draw();
  return {destroy(){disposed=true;playing=false;cancelAnimationFrame(frame);document.removeEventListener('visibilitychange',hidden);play.removeEventListener('click',toggle);reset.removeEventListener('click',rewind);seek.removeEventListener('input',move);select.removeEventListener('change',draw);viewMode.removeEventListener('change',changeView);container.replaceChildren()},timeline,map};
 }
-global.MatchLabF1MapComparison={mount,prepareMap,gpsAt,pointAt,actualMarkers,fit,driverHistory,historyChart,raceLapCount,predictedMarkers,playbackDuration,leaderSync};
+global.MatchLabF1MapComparison={mount,prepareMap,gpsAt,pointAt,actualMarkers,fit,driverHistory,historyChart,raceLapCount,predictedMarkers,playbackDuration,leaderSync:(...args)=>global.MatchLabF1Comparison.leaderSync(...args)};
 })(typeof window!=='undefined'?window:globalThis);

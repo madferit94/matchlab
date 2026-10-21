@@ -11,7 +11,12 @@
       colour, only that car shown), and the recorded canvas, clock, coverage line, recorded selection
       line, driver dashboard and table are identical to 0.26.2 (git base commit).
       Speed tooltip text, page errors 0, no horizontal overflow (documentElement.clientWidth).
-   2. Upcoming GP (Singapore GP 11388), ko/en x 390/1440: tooltip, predicted canvas at fixed phases and
+   2. Lane comparison tab ("경기 전 예측 vs 실제 기록", same GP), ko/en x 390/1440: play at 1x, 2x and 4x (the
+      tab's own speeds; 1x = 60 seconds for the whole race). Read straight from the page: the predicted P1
+      lane car position (style.left) must equal the furthest recorded lane car position at every sample,
+      and the phase rate must match speed/60. Paused at fixed phases: recorded lanes (order, rank, position,
+      status), clock and table equal 0.26.2. Note text, page errors 0, no horizontal overflow.
+   3. Upcoming GP (Singapore GP 11388), ko/en x 390/1440: tooltip, predicted canvas at fixed phases and
       10x playback rate (180-second illustration) are the same as 0.26.2.
    Playwright is not a project dependency: run with NODE_PATH pointing at a separate install, e.g.
    NODE_PATH=/path/to/pw/node_modules CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
@@ -24,6 +29,7 @@ const RECORDED=11245,UPCOMING=11388;
 const TOOLTIP={recorded:{ko:'1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.',en:'1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.'},
  recordedOld:{ko:'1배속은 실제 기록 시간과 같습니다.',en:'1× follows recorded elapsed time.'},
  upcoming:{ko:'1배속은 180초 예측 연출입니다.',en:'1× is a 180-second prediction illustration.'}};
+const LANE_SPEEDS=[1,2,4],LANE_NOTE={ko:'예측은 경기 전 예상 순위대로 실제 선두의 랩 진행을 따라가는 연출 · 실제는 기록 기반 진행',en:'Prediction follows the lap progress of the recorded leader in pre-race order · Actual progress uses recorded data'};
 const SPEEDS=[0.25,1,10,60],PLAY_MS=3200,FIXED_PHASES=[0,0.05,0.2,0.37,0.5,0.81,0.97,1];
 function extractOld(){
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'matchlab-0.26.3-old-'));
@@ -54,6 +60,16 @@ let browser=null;const blocked=new Set();
 async function newContext(width){const ctx=await browser.newContext({viewport:{width,height:900}});await ctx.route(url=>!/^http:\/\/127\.0\.0\.1:/.test(String(url)),route=>{blocked.add(new URL(route.request().url()).host);return route.abort()});return ctx}
 // Pause only while playing (a click at the end would restart from 0).
 const PAUSE=()=>{const b=window.__sync.root.querySelector('[data-map-play]');if(['일시정지','Pause'].includes(b.textContent))b.click()};
+// Lane tab helpers: everything is read from the rendered lanes.
+const LANE_READ=()=>{const r=document.querySelector('.f1-comparison'),pred=[...r.querySelectorAll('[data-predicted-lanes] .f1-lane')],rec=[...r.querySelectorAll('[data-recorded-lanes] .f1-lane')];
+ const p1=pred.find(x=>/^(예측|Pred) 1( ·|$)/.test(x.querySelector('.f1-lane-status').textContent)),lefts=rec.map(x=>x.querySelector('.f1-lane-car').style.left),best=lefts.reduce((a,b)=>parseFloat(b)>parseFloat(a)?b:a);
+ return {wall:performance.now(),phase:Number(r.querySelector('[data-compare-seek]').value),p1_left:p1.querySelector('.f1-lane-car').style.left,leader_left:best,p1_status:p1.querySelector('.f1-lane-status').textContent,
+  pred_lefts:pred.map(x=>[x.dataset.driver,parseFloat(x.querySelector('.f1-lane-car').style.left),x.querySelector('.f1-lane-status').textContent])}};
+const LANE_SNAPSHOT=phase=>{const r=document.querySelector('.f1-comparison'),s=r.querySelector('[data-compare-seek]');s.value=String(phase);s.dispatchEvent(new Event('input'));
+ const lanes=sel=>[...r.querySelectorAll(sel+' .f1-lane')].map(x=>[x.dataset.driver,x.dataset.rank??null,x.querySelector('.f1-lane-car').style.left,x.querySelector('.f1-lane-car').className,x.querySelector('.f1-lane-status').textContent].join('|')).join('\n');
+ return {recorded:lanes('[data-recorded-lanes]'),predicted:lanes('[data-predicted-lanes]'),clock:r.querySelector('[data-compare-clock]').textContent,table:r.querySelector('[data-compare-table]').textContent}};
+const LANE_PAUSE=()=>{const b=document.querySelector('.f1-comparison [data-compare-play]');if(['일시정지','Pause'].includes(b.textContent))b.click()};
+async function openLane(page,base,key,lang){await page.goto(base+'/f1/index.html?year=2026&lang='+lang+'#race='+key,{waitUntil:'load',timeout:120000});await page.waitForSelector('[data-tab="comparison"]',{timeout:120000});await page.click('[data-tab="comparison"]');await page.waitForSelector('.f1-comparison [data-compare-play]',{timeout:120000})}
 const overflow=page=>page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));
 (async()=>{
  const oldDir=extractOld();
@@ -111,11 +127,42 @@ const overflow=page=>page.evaluate(()=>({scrollWidth:document.documentElement.sc
    run.page_errors=errors;run.old_page_errors=oldErrors;ok(errors.length===0,`page errors 0 ${lang} ${width}`);
    result.runs.push(run);await ctx.close();
   }
+  result.lane_runs=[];
+  for(const lang of ['ko','en'])for(const width of [390,1440]){
+   const ctx=await newContext(width),page=await ctx.newPage(),oldPage=await ctx.newPage(),errors=[];
+   page.on('pageerror',e=>errors.push(e.message));
+   await openLane(page,base.new,RECORDED,lang);await openLane(oldPage,base.old,RECORDED,lang);
+   const run={lang,width,speeds:[],fixed_phases:[]};
+   run.note=await page.$eval('.f1-comparison-note',e=>e.textContent);ok(run.note===LANE_NOTE[lang],`lane note ${lang} ${width}`);
+   for(const speed of LANE_SPEEDS){
+    await page.evaluate(([p,s])=>{const r=document.querySelector('.f1-comparison'),seek=r.querySelector('[data-compare-seek]');r.querySelector('[data-compare-speed]').value=String(s);seek.value=String(p);seek.dispatchEvent(new Event('input'));r.querySelector('[data-compare-play]').click()},[[0.2,0.4,0.6][LANE_SPEEDS.indexOf(speed)],speed]);
+    const samples=[];const t0=Date.now();
+    while(Date.now()-t0<3000){await page.waitForTimeout(200);samples.push(await page.evaluate(LANE_READ))}
+    await page.evaluate(LANE_PAUSE);
+    const first=samples[0],last=samples.at(-1),rate=(last.phase-first.phase)*60/((last.wall-first.wall)/1000),mismatch=samples.filter(x=>x.p1_left!==x.leader_left).length;
+    const overtakes=samples.reduce((a,x)=>{const ordered=x.pred_lefts.slice().sort((p,q)=>Number(p[2].match(/\d+/)[0])-Number(q[2].match(/\d+/)[0]));let c=0;for(let i=1;i<ordered.length;i++)if(ordered[i][1]>ordered[i-1][1]+1e-9)c++;return a+c},0);
+    run.speeds.push({speed,samples:samples.length,phase:[+first.phase.toFixed(5),+last.phase.toFixed(5)],measured_rate:+rate.toFixed(3),p1_left:[first.p1_left,last.p1_left],leader_left:[first.leader_left,last.leader_left],position_mismatches:mismatch,overtakes,last_p1_status:last.p1_status});
+    ok(mismatch===0&&overtakes===0,`lane tab: P1 lane = recorded leader lane, no overtakes at ${speed}x ${lang} ${width}`);
+    ok(last.phase>first.phase&&Math.abs(rate/speed-1)<0.2,`lane tab: rate ${rate.toFixed(3)} matches ${speed}x ${lang} ${width}`);
+   }
+   for(const phase of FIXED_PHASES){const [a,b]=await Promise.all([page.evaluate(LANE_SNAPSHOT,phase),oldPage.evaluate(LANE_SNAPSHOT,phase)]);const read=await page.evaluate(LANE_READ);
+    const same={recorded:a.recorded===b.recorded,clock:a.clock===b.clock,table:a.table===b.table,predicted:a.predicted===b.predicted};run.fixed_phases.push({phase,same_as_0_26_2:same,p1_left:read.p1_left,leader_left:read.leader_left,p1_status:read.p1_status});
+    ok(same.recorded&&same.clock&&same.table,`lane tab: recorded lanes, clock and table equal 0.26.2 at phase ${phase} ${lang} ${width}`);
+    ok(read.p1_left===read.leader_left,`lane tab: P1 lane = recorded leader lane at phase ${phase} ${lang} ${width}`)}
+   const end=await page.evaluate(LANE_READ);ok(end.pred_lefts.every(x=>/(도착|Finish)$/.test(x[2])),`lane tab: every predicted lane shows Finish at phase 1 ${lang} ${width}`);
+   run.predicted_lanes_differ_from_0_26_2=run.fixed_phases.filter(f=>!f.same_as_0_26_2.predicted).map(f=>f.phase);
+   if(lang==='ko'&&width===390||lang==='en'&&width===1440){await page.evaluate(LANE_SNAPSHOT,0.5);const shot=`lanes-${lang}-${width}.png`;await page.locator('.f1-comparison').screenshot({path:path.join(__dirname,shot)});result.screenshots.push(shot)}
+   const of=await overflow(page);run.overflow=of;ok(of.scrollWidth<=of.clientWidth,`lane tab: no horizontal overflow ${lang} ${width}`);
+   run.page_errors=errors;ok(errors.length===0,`lane tab: page errors 0 ${lang} ${width}`);
+   result.lane_runs.push(run);await ctx.close();
+  }
   for(const lang of ['ko','en'])for(const width of [390,1440]){
    const ctx=await newContext(width),page=await ctx.newPage(),oldPage=await ctx.newPage(),errors=[];
    page.on('pageerror',e=>errors.push(e.message));
    await open(page,base.new,UPCOMING,lang);await open(oldPage,base.old,UPCOMING,lang);
    const entry={lang,width,phases:[]};
+   entry.lane_tab_buttons=[await page.locator('[data-tab="comparison"]').count(),await oldPage.locator('[data-tab="comparison"]').count()];
+   ok(entry.lane_tab_buttons[0]===0&&entry.lane_tab_buttons[1]===0,`upcoming GP has no lane comparison tab in either version ${lang} ${width}`);
    const tips=[await page.$eval('[data-map-speed]',s=>s.title),await oldPage.$eval('[data-map-speed]',s=>s.title)];
    ok(tips[0]===TOOLTIP.upcoming[lang]&&tips[1]===tips[0],`upcoming tooltip unchanged ${lang} ${width}`);entry.tooltip=tips[0];
    for(const phase of FIXED_PHASES){const [a,b]=await Promise.all([page.evaluate(p=>{window.__sync.seek(p);return window.__sync.snapshot()},phase),oldPage.evaluate(p=>{window.__sync.seek(p);return window.__sync.snapshot()},phase)]);
