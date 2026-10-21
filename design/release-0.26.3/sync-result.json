@@ -1,0 +1,623 @@
+{
+ "status": "PASS",
+ "release": "0.26.3",
+ "base_commit": "ee48f51",
+ "checked_at": "2026-10-21T01:16:55.657Z",
+ "rule": "Leader lap progress L(t) = largest lap progress among recorded cars in MatchLabF1Replay.timeline(race).state(t), t = phase x recorded seconds. Predicted rank r lap progress = L(t - (r-1) x gap); L is held at L(0) before t=0 and at the race lap count from the recorded leader finish on. gap = min(2 s, (recorded seconds - leader finish seconds)/(predicted cars - 1)).",
+ "samples_per_race": "2001 uniform phases plus finish instants of every predicted rank (+/-1e-4, +/-1e-7)",
+ "recorded_gps": 16,
+ "races": [
+  {
+   "session_key": 11234,
+   "year": 2026,
+   "name": "Australian Grand Prix",
+   "laps": 57,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 4885.787,
+   "recorded_leader_finish_seconds": 4804.771,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 4846.771,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 1.9423,
+    "mean_abs_diff_laps": 0.02496
+   },
+   "leader_progress_at_phase0": 1,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 4804.771,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 3810.9,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11245,
+   "year": 2026,
+   "name": "Chinese Grand Prix",
+   "laps": 56,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5683.354,
+   "recorded_leader_finish_seconds": 5596.127,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5638.127,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0025,
+    "mean_abs_diff_laps": 0.00001
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5596.127,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4433,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11253,
+   "year": 2026,
+   "name": "Japanese Grand Prix",
+   "laps": 53,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5376.255,
+   "recorded_leader_finish_seconds": 5283.987,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5325.987,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0075,
+    "mean_abs_diff_laps": 0.00003
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5283.987,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4193.5,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11280,
+   "year": 2026,
+   "name": "Miami Grand Prix",
+   "laps": 57,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5690.731,
+   "recorded_leader_finish_seconds": 5599.709,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5641.709,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0762,
+    "mean_abs_diff_laps": 0.00067
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5599.709,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4438.8,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11291,
+   "year": 2026,
+   "name": "Canadian Grand Prix",
+   "laps": 68,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5364.888,
+   "recorded_leader_finish_seconds": 5296.288,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5338.288,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.4871,
+    "mean_abs_diff_laps": 0.00285
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5296.288,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4184.6,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11299,
+   "year": 2026,
+   "name": "Monaco Grand Prix",
+   "laps": 78,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 8655.601,
+   "recorded_leader_finish_seconds": 8611.867,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 8653.867,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0,
+    "mean_abs_diff_laps": 0
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 8611.867,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 6751.4,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11307,
+   "year": 2026,
+   "name": "Barcelona Grand Prix",
+   "laps": 66,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5626.631,
+   "recorded_leader_finish_seconds": 5548.669,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5590.669,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0409,
+    "mean_abs_diff_laps": 0.00035
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5548.669,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4388.8,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11315,
+   "year": 2026,
+   "name": "Austrian Grand Prix",
+   "laps": 71,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5264.675,
+   "recorded_leader_finish_seconds": 5199.011,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5241.011,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0357,
+    "mean_abs_diff_laps": 0.00032
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5199.011,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4106.4,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11326,
+   "year": 2026,
+   "name": "British Grand Prix",
+   "laps": 52,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5239.937,
+   "recorded_leader_finish_seconds": 5231.783,
+   "gap_seconds_per_rank": 0.3883,
+   "last_predicted_finish_seconds": 5239.937,
+   "samples": 2107,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.1058,
+    "mean_abs_diff_laps": 0.00057
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5231.783,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4087.2,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11334,
+   "year": 2026,
+   "name": "Belgian Grand Prix",
+   "laps": 44,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5193.905,
+   "recorded_leader_finish_seconds": 5082.895,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5124.895,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0615,
+    "mean_abs_diff_laps": 0.00058
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5082.895,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4051.2,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11342,
+   "year": 2026,
+   "name": "Hungarian Grand Prix",
+   "laps": 70,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 6062.641,
+   "recorded_leader_finish_seconds": 5996.647,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 6038.647,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.117,
+    "mean_abs_diff_laps": 0.00202
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5996.647,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4728.9,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11353,
+   "year": 2026,
+   "name": "Dutch Grand Prix",
+   "laps": 72,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 7555.242,
+   "recorded_leader_finish_seconds": 7485.24,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 7527.24,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.8351,
+    "mean_abs_diff_laps": 0.00407
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 7485.24,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 5893.1,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11361,
+   "year": 2026,
+   "name": "Italian Grand Prix",
+   "laps": 53,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 6754.633,
+   "recorded_leader_finish_seconds": 6675.703,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 6717.703,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.008,
+    "mean_abs_diff_laps": 0.00009
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 6675.703,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 5268.6,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11369,
+   "year": 2026,
+   "name": "Spanish Grand Prix",
+   "laps": 57,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5760.031,
+   "recorded_leader_finish_seconds": 5664.151,
+   "gap_seconds_per_rank": 2,
+   "last_predicted_finish_seconds": 5706.151,
+   "samples": 2111,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.0643,
+    "mean_abs_diff_laps": 0.00032
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5664.151,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4492.8,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11377,
+   "year": 2026,
+   "name": "Azerbaijan Grand Prix",
+   "laps": 51,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 5923.901,
+   "recorded_leader_finish_seconds": 5882.752,
+   "gap_seconds_per_rank": 1.9595,
+   "last_predicted_finish_seconds": 5923.901,
+   "samples": 2108,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0,
+    "mean_abs_diff_laps": 0
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 5882.752,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 4620.6,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  },
+  {
+   "session_key": 11731,
+   "year": 2026,
+   "name": "Bahrain Grand Prix",
+   "laps": 55,
+   "predicted_cars": 22,
+   "recorded_cars": 22,
+   "recorded_seconds": 6464.588,
+   "recorded_leader_finish_seconds": 6435.36,
+   "gap_seconds_per_rank": 1.3918,
+   "last_predicted_finish_seconds": 6464.588,
+   "samples": 2108,
+   "max_abs_diff_laps": 0,
+   "mean_abs_diff_laps": 0,
+   "vs_position_record_p1": {
+    "max_abs_diff_laps": 0.3003,
+    "mean_abs_diff_laps": 0.00508
+   },
+   "leader_progress_at_phase0": 0,
+   "predicted_moves_before_real_start": 0,
+   "predicted_moves_during_grid_hold": 0,
+   "p1_finish_seconds": 6435.36,
+   "p1_finish_minus_recorded_leader_finish_seconds": 0,
+   "overtakes": 0,
+   "backward_moves": 0,
+   "left_finish_after_reaching_it": 0,
+   "all_stopped_on_line_at_phase1": true,
+   "recorded_pane_marker_differences_vs_0_26_2": 0,
+   "before_0_26_2": {
+    "p1_finish_seconds": 5042.4,
+    "p1_finish_phase": 0.78,
+    "all_stopped_on_line_at_phase1": true
+   }
+  }
+ ],
+ "upcoming_gps": [
+  {
+   "session_key": 11388,
+   "name": "Singapore Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  },
+  {
+   "session_key": 11396,
+   "name": "United States Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  },
+  {
+   "session_key": 11404,
+   "name": "Mexico City Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  },
+  {
+   "session_key": 11412,
+   "name": "São Paulo Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  },
+  {
+   "session_key": 11420,
+   "name": "Las Vegas Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  },
+  {
+   "session_key": 11428,
+   "name": "Qatar Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  },
+  {
+   "session_key": 11436,
+   "name": "Abu Dhabi Grand Prix",
+   "samples": 2001,
+   "marker_differences_vs_0_26_2": 0
+  }
+ ],
+ "no_lap_data": {
+  "2024": {
+   "gps": 24,
+   "with_lap_records": 0
+  },
+  "2025": {
+   "gps": 24,
+   "with_lap_records": 0,
+   "note": "2025 GPs are saved results only (drivers, session_result); they have no lap records and no circuit replay tab."
+  }
+ },
+ "summary": {
+  "max_abs_diff_laps": 0,
+  "mean_abs_diff_laps": 0,
+  "max_abs_finish_delta_seconds": 0,
+  "overtakes": 0,
+  "all_stopped_on_line": true,
+  "recorded_pane_differences": 0,
+  "gap_seconds_range": [
+   0.3883,
+   2
+  ]
+ },
+ "checks": 142
+}

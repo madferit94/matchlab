@@ -1,0 +1,113 @@
+{
+  "run_id": "matchlab-0.26.3-2026-10-21",
+  "match_key": "F1_REPLAY",
+  "role": "builder",
+  "producer_id": "builder-f1sync-2026-10-21",
+  "status": "DONE",
+  "summary": "SPEC-0.26.3 구현. 실제 기록이 있는 F1 GP의 서킷 재생에서 예측 차를 실제 경기 시계에 묶었다. 실제 선두 랩 진행 L(t)=timeline.state(t)의 실제 차량 랩 진행 최댓값, 예측 순위 r = L(t-(r-1)×간격), 간격 = min(2초, (기록 길이-실제 선두 결승 시각)/(예측 차 수-1)). 예측 1위 = 실제 선두(차이 0), 결승 통과 시각 차이 0초, 추월 0, 진행값 1에서 모두 결승선 정지(2026 완료 16개 GP). 실제 화면·시계·대시보드·표는 0.26.2와 같고, 예정 GP 7개는 180초 연출 출력이 0.26.2와 글자까지 같다. 배속 설명 한영 변경. 2025·2024 GP는 랩 기록이 없어 대상 아님. 자가 점검이며 독립 검증이 아니다.",
+  "cutoff_at": null,
+  "observed_at": "2026-10-21",
+  "provider": null,
+  "model": null,
+  "evidence": [
+    {
+      "path": "f1/index.html",
+      "description": "서킷 재생 모듈 블록 한 개만 변경(19,751,965 → 19,753,818바이트). F1 자료 블록 9개 바이트 동일"
+    },
+    {
+      "path": "f1/release-0.26.3/map-comparison.js",
+      "description": "페이지에 실린 서킷 재생 모듈 원본(leaderSync 추가, predictedMarkers 선택 인자, 배속 설명). check_release가 바이트 비교"
+    },
+    {
+      "path": "f1/release-0.26.3/map-comparison-0.26.2.js",
+      "description": "바꾸기 전 0.26.2 모듈 보관본(check-sync가 ee48f51 페이지와 같은지 확인)"
+    },
+    {
+      "path": "tools/check_release.py",
+      "description": "RELEASE 0.26.3, 서킷 재생 모듈 원본 일치·동기화 호출 검사 추가. 기존 검사 유지"
+    },
+    {
+      "path": "design/release-0.26.3/check-sync.cjs",
+      "description": "페이지 모듈 코드로 16개 GP × 진행값 2,001개+결승 시각 표본 확인, 예정 GP 7개 0.26.2 비교"
+    },
+    {
+      "path": "design/release-0.26.3/sync-result.json",
+      "description": "PASS 142개 확인. 최대·평균 차이 0, 결승 시각 차이 0초, 추월 0, 실제 화면 차이 0, 예정 GP 차이 0, 간격 0.39~2초"
+    },
+    {
+      "path": "design/release-0.26.3/check-browser.cjs",
+      "description": "Chrome 155 / Playwright 1.57.0(저장소 밖). 중국 GP 한영×390/1440 배속 4종 재생, 고정 진행값 8개 0.26.2 비교·화소 확인, 싱가포르 GP 0.26.2 비교"
+    },
+    {
+      "path": "design/release-0.26.3/browser-result.json",
+      "description": "PASS 164개 확인. 페이지 오류 0, 가로 넘침 없음"
+    },
+    {
+      "path": "design/release-0.26.3/recorded-ko-390.png",
+      "description": "실제 기록 GP 서킷 재생(한국어 390px, 진행값 0.37)"
+    },
+    {
+      "path": "design/release-0.26.3/upcoming-ko-390.png",
+      "description": "예정 GP 서킷 예측 연출(한국어 390px)"
+    },
+    {
+      "path": "docs/SPEC-0.26.3.md",
+      "description": "실행 결과: 원인, 동기화 규칙·상수, GP별 표, 검사 결과, 남은 확인"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "description": "0.26.3 항목"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node design/release-0.26.3/check-sync.cjs",
+      "result": "PASS (142 checks)"
+    },
+    {
+      "command": "NODE_PATH=<pw>/node_modules CHROME_PATH=<Chrome> node design/release-0.26.3/check-browser.cjs",
+      "result": "PASS (164 checks)"
+    },
+    {
+      "command": "npm run test:server",
+      "result": "PASS 24"
+    },
+    {
+      "command": "npm run build && node server/check-vercel.cjs",
+      "result": "PASS 5"
+    },
+    {
+      "command": "node analysis/check.cjs",
+      "result": "PASS 15"
+    },
+    {
+      "command": "npm run test:report",
+      "result": "PASS 14 (checks.json 시각 변경은 되돌림)"
+    },
+    {
+      "command": "npm run test:odds",
+      "result": "PASS 877경기"
+    },
+    {
+      "command": "node f1/release-0.8.5/check-conditions.cjs; node f1/release-0.8.6/check-conditions.cjs; node f1/release-0.8.6/check-history.cjs; node f1/release-0.9.2/check-names.cjs",
+      "result": "PASS 96 / PASS 96 / PASS / PASS"
+    },
+    {
+      "command": "F1 브라우저 검사 복사본(Chrome 경로만 교체): 0.9.3 check-regression, 0.9.3 check-tyres, 0.9.2·0.9.1 check-browser, 0.7.3 check-rank-motion, 0.8.4 check-links",
+      "result": "모두 PASS"
+    },
+    {
+      "command": "python3 -I tools/check_release.py",
+      "result": "PASS (manifest 갱신 후)"
+    }
+  ],
+  "issues": [
+    "독립 검증, main 병합(0.26.2 선행), 운영 배포 후 확인은 하지 않았다.",
+    "줄 비교 탭(comparison, MatchLabF1Comparison.mount)은 범위 밖이라 0.78 규칙 그대로다.",
+    "영국 GP는 실제 선두 결승 뒤 기록이 7.9초뿐이라 예측 간격이 순위당 0.39초로 촘촘하다.",
+    "실제 기록 시계가 첫 유효 랩 시작에서 시작하므로 '출발 전 대기' 구간은 기록 안에서 0초다(진행값 0이 실제 출발).",
+    "예측 1위=실제 선두 차이 0은 같은 state(t) 값을 쓰는 정의상 결과다. 위치 기록 1위 차량 기준으로는 최대 1.94랩(호주) 차이가 있다.",
+    "0.5.x~0.7.2 replay/test-*.cjs는 옛 자료 경로가 없어 실행하지 않았다.",
+    "브라우저에서 외부 이미지(media.formula1.com)는 막고 확인했다."
+  ]
+}
