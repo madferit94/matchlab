@@ -1,0 +1,303 @@
+{
+ "status": "PASS",
+ "release": "0.26.4",
+ "browser": "156.0.8078.74",
+ "runs": [
+  {
+   "lang": "ko",
+   "width": 390,
+   "gps": [
+    {
+     "key": 11388,
+     "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    },
+    {
+     "key": 11396,
+     "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Kimi ANTONELLI"
+    },
+    {
+     "key": 11404,
+     "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+     "panes": 2,
+     "suspensions": [
+      [
+       3756.49,
+       6094.646
+      ]
+     ],
+     "held_laps": 19,
+     "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    }
+   ],
+   "catalog": {
+    "completed": 19,
+    "cancelled": 2,
+    "scheduled": 4
+   },
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "ko",
+   "width": 1440,
+   "gps": [
+    {
+     "key": 11388,
+     "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    },
+    {
+     "key": 11396,
+     "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Kimi ANTONELLI"
+    },
+    {
+     "key": 11404,
+     "tooltip": "1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.",
+     "panes": 2,
+     "suspensions": [
+      [
+       3756.49,
+       6094.646
+      ]
+     ],
+     "held_laps": 19,
+     "play_1x": {
+      "samples": 16,
+      "max_abs_diff_laps": 0,
+      "rate": 0.999,
+      "p1": [
+       30.489517309229523,
+       30.536246694951867
+      ]
+     },
+     "red_flag": {
+      "core_stop_seconds": [
+       3788.2,
+       6094.6
+      ],
+      "recorded_seconds": [
+       3822.2,
+       4054.2
+      ],
+      "predicted_canvas_unchanged": true,
+      "p1": [
+       45,
+       45
+      ],
+      "leader": [
+       45,
+       45
+      ]
+     },
+     "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    }
+   ],
+   "catalog": {
+    "completed": 19,
+    "cancelled": 2,
+    "scheduled": 4
+   },
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 390,
+   "gps": [
+    {
+     "key": 11388,
+     "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    },
+    {
+     "key": 11396,
+     "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Kimi ANTONELLI"
+    },
+    {
+     "key": 11404,
+     "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+     "panes": 2,
+     "suspensions": [
+      [
+       3756.49,
+       6094.646
+      ]
+     ],
+     "held_laps": 19,
+     "play_1x": {
+      "samples": 16,
+      "max_abs_diff_laps": 0,
+      "rate": 1.001,
+      "p1": [
+       30.489311935067363,
+       30.536246694951867
+      ]
+     },
+     "red_flag": {
+      "core_stop_seconds": [
+       3788.2,
+       6094.6
+      ],
+      "recorded_seconds": [
+       3822.2,
+       4055.2
+      ],
+      "predicted_canvas_unchanged": true,
+      "p1": [
+       45,
+       45
+      ],
+      "leader": [
+       45,
+       45
+      ]
+     },
+     "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    }
+   ],
+   "catalog": {
+    "completed": 19,
+    "cancelled": 2,
+    "scheduled": 4
+   },
+   "overflow": {
+    "scrollWidth": 390,
+    "clientWidth": 390
+   },
+   "page_errors": []
+  },
+  {
+   "lang": "en",
+   "width": 1440,
+   "gps": [
+    {
+     "key": 11388,
+     "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    },
+    {
+     "key": 11396,
+     "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+     "panes": 2,
+     "suspensions": [],
+     "held_laps": 0,
+     "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Kimi ANTONELLI"
+    },
+    {
+     "key": 11404,
+     "tooltip": "1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.",
+     "panes": 2,
+     "suspensions": [
+      [
+       3756.49,
+       6094.646
+      ]
+     ],
+     "held_laps": 19,
+     "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "lane_samples": 10,
+     "lane_mismatch": 0,
+     "result_rows": 22,
+     "result_first": "Max VERSTAPPEN"
+    }
+   ],
+   "catalog": {
+    "completed": 19,
+    "cancelled": 2,
+    "scheduled": 4
+   },
+   "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+   },
+   "page_errors": []
+  }
+ ],
+ "screenshots": [
+  "lanes-11404-ko-390.png",
+  "result-11404-ko-390.png",
+  "circuit-11404-ko-1440.png",
+  "circuit-11404-en-390.png",
+  "lanes-11404-en-1440.png"
+ ],
+ "checks": 66,
+ "blocked_external_hosts": [
+  "media.formula1.com"
+ ],
+ "checked_at": "2026-11-02T02:19:40.615Z"
+}
