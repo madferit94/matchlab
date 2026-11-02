@@ -68,7 +68,7 @@ const XG={'understat:31232':['1.38','1.68','shot_sum'],'understat:31233':['1.26'
   const a=[];for(const q of seq){a.push(await ask(q));await state('analysis '+q);}
   c.views.sequence=a.map(x=>(x.out.split('\n')[0]||'')+' | '+x.status.slice(0,80));
   if(!a[1].out.includes('2.56')||a[1].out.includes('0.84'))fail(c,'R1 second answer');
-  if(a[2].out.includes('Manchester United\n1\n')||!a[2].out.includes(lang==='ko'?'큰 값부터':'Highest first'))fail(c,'R1 ranking answer');
+  if(!a[2].out.includes(lang==='ko'?'큰 값부터':'Highest first'))fail(c,'R1 ranking answer');
   if(!a[3].out.includes(lang==='ko'?'실제 실점':'Goals conceded')||!a[3].out.includes('1.38*')||!a[3].out.includes(lang==='ko'?'슈팅 합계':'Shot sum'))fail(c,'R1/R2 xGA trend answer');
   if(!(lang==='ko'?a[4].status.includes('팀을 찾지 못했어요'):a[4].status.includes('Team not found'))||a[4].out.includes('Arsenal'))fail(c,'R7 team not found');
   await page.screenshot({path:process.argv[3]+'/'+lang+'-'+width+'.png',fullPage:false});

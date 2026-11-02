@@ -6,7 +6,7 @@
   'Aston Villa':['애스턴 빌라','아스톤 빌라','애스턴빌라'],Bournemouth:['본머스'],Brentford:['브렌트퍼드','브렌트포드'],Brighton:['브라이턴','브라이튼'],Burnley:['번리'],Coventry:['코번트리','코벤트리'],'Crystal Palace':['크리스털 팰리스','크리스탈 팰리스','팰리스'],Everton:['에버턴','에버튼'],Fulham:['풀럼'],Hull:['헐 시티','헐시티','hull city'],Ipswich:['입스위치'],Leicester:['레스터'],Luton:['루턴','루톤'],'Newcastle United':['뉴캐슬','newcastle'],'Nottingham Forest':['노팅엄 포레스트','노팅엄','노팅햄','forest'],'Sheffield United':['셰필드 유나이티드','셰필드','sheffield utd'],Southampton:['사우샘프턴','사우스햄튼','사우스햄프턴'],Sunderland:['선덜랜드'],'West Ham':['웨스트햄'],'Wolverhampton Wanderers':['울버햄튼','울버햄프턴','울브스','wolves','wolverhampton'],
   Alaves:['알라베스','alavés'],Almeria:['알메리아','almería'],'Athletic Club':['아틀레틱 클루브','아틀레틱 빌바오','빌바오','athletic bilbao'],Cadiz:['카디스','cádiz'],'Celta Vigo':['셀타 비고','셀타','celta'],'Deportivo La Coruna':['데포르티보','라코루냐','라 코루냐','deportivo'],Elche:['엘체'],Espanyol:['에스파뇰'],Getafe:['헤타페'],Girona:['지로나'],Granada:['그라나다'],'Las Palmas':['라스팔마스','라스 팔마스'],Leganes:['레가네스','leganés'],Levante:['레반테'],Malaga:['말라가','málaga'],Mallorca:['마요르카'],Osasuna:['오사수나'],'Racing Santander':['라싱 산탄데르','라싱'],'Rayo Vallecano':['라요 바예카노','라요','rayo'],'Real Betis':['레알 베티스','베티스','betis'],'Real Oviedo':['레알 오비에도','오비에도','oviedo'],'Real Sociedad':['레알 소시에다드','소시에다드','sociedad'],'Real Valladolid':['레알 바야돌리드','바야돌리드','valladolid'],Villarreal:['비야레알','비야 레알']};
  // Clubs outside the two recorded leagues: answer "team not found" instead of falling back to the selected team.
- const otherClubs=/바이에른|뮌헨|도르트문트|레버쿠젠|라이프치히|유벤투스|인테르|인터 ?밀란|ac ?밀란|나폴리|파리 ?생제르맹|아약스|벤피카|포르투|셀틱|마르세유|아탈란타|라치오|bayern|munich|dortmund|leverkusen|leipzig|juventus|inter milan|internazionale|ac milan|napoli|\bpsg\b|paris saint|\bajax\b|benfica|\bporto\b|celtic|marseille|atalanta|\blazio\b/;
+ const otherClubs=/바이에른|뮌헨|도르트문트|레버쿠젠|라이프치히|유벤투스|인테르|인터 ?밀란|ac ?밀란|나폴리|파리 ?생제르맹|아약스|벤피카|포르투(?!갈)|셀틱|마르세유|아탈란타|라치오|bayern|munich|dortmund|leverkusen|leipzig|juventus|inter milan|internazionale|ac milan|napoli|\bpsg\b|paris saint|\bajax\b|benfica|\bporto\b|celtic|marseille|atalanta|\blazio\b/;
  const metrics={xg:{ko:'기대 득점',en:'Expected goals',keys:['기대 득점','기대득점','xg','expected goals']},xga:{ko:'기대 실점',en:'Expected goals against',keys:['기대 실점','기대실점','xga','expected goals against']},gf:{ko:'득점',en:'Goals scored',keys:['득점','goals scored','goals']},ga:{ko:'실점',en:'Goals conceded',keys:['실점','goals conceded']},p:{ko:'승점',en:'Points',keys:['승점','points']},w:{ko:'승률',en:'Win rate',keys:['승률','win rate']}};
  const normalize=s=>String(s).toLowerCase().replace(/\s+/g,' ').trim();
  function sortOrder(question,previous=null){
@@ -36,11 +36,8 @@
    let season=seasonMatch?seasonMatch[1]+'/'+seasonMatch[2].slice(-2):/이번\s?시즌|this season|current season/.test(q)?'2026/27':null;
    if(relativeSeason!==null)season=relativeSeason+'/'+String(relativeSeason+1).slice(-2);
    if(season&&!['2023/24','2024/25','2025/26','2026/27'].includes(season))return {error:'season'};
-   // 0.27.1 review R1: 최근/시즌/작년/recent alone make a follow-up only when the question names no club, metric or
-   // ranking; otherwise it is a new question (a new metric, team or ranking resets the carried-over mode).
    const rankingAsked=/순위|높은 팀|상위|많은 순|적은 순|부터 순|오름차순|내림차순|ranking|rank|top teams|highest|fewest|lowest/.test(q),metricNamed=Object.values(metrics).some(m=>m.keys.some(k=>q.includes(k)));
-   const strongFollow=/다시|이 결과|그 결과|이것|다른|대신|반대로|역순|reverse|opposite|그 비교|추가|바꿔|변경|제거|빼\s?줘|again|instead|same|those|only|add|change|remove/.test(q),weakFollow=/최근|작년|시즌|last season|recent/.test(q);
-   const recent=q.match(/(?:최근|last|recent)\s*(\d+)\s*(?:경기|matches|games)?/),follow=!!previous&&(strongFollow||(weakFollow&&!recognized.length&&!metricNamed&&!rankingAsked));
+   const recent=q.match(/(?:최근|last|recent)\s*(\d+)\s*(?:경기|matches|games)?/),follow=/다시|이 결과|그 결과|이것|다른|대신|반대로|역순|reverse|opposite|그 비교|추가|바꿔|변경|제거|빼\s?줘|최근|작년|시즌|again|instead|same|those|only|add|change|remove|last season|recent/.test(q)&&previous;
    const plan=follow?{...previous}:{tool:'team',teams:[],league:explicitLeague||defaults.league||'EPL',season:defaults.season||'2026/27',last:null,venue:'all',metric:'xg',perMatch:false,order:'desc'};
    const order=sortOrder(q,follow?(previous.order||'desc'):null);if(['conflict','missing'].includes(order))return {error:'unsupported'};if(order)plan.order=order;
    if(recognized.length){const ids=recognized.map(t=>t.id);plan.teams=follow&&/추가|더해|\badd\b/.test(q)?[...new Set([...plan.teams,...ids])]:follow&&/제거|빼\s?줘|\bremove\b/.test(q)?plan.teams.filter(id=>!ids.includes(id)):ids;if(!explicitLeague)plan.league=recognized[0].league}
@@ -57,9 +54,12 @@
    if(plan.tool!=='venue'){if(/원정|\baway\b/.test(q))plan.venue='away';else if(/홈|\bhome\b/.test(q))plan.venue='home';else if(/전체\s?장소|all venues/.test(q))plan.venue='all'}
    const matches=Object.entries(metrics).sort((a,b)=>Math.max(...b[1].keys.map(k=>k.length))-Math.max(...a[1].keys.map(k=>k.length))).filter(([,m])=>m.keys.some(k=>q.includes(k)));
    if(matches.length)plan.metric=matches[0][0];
-   // 0.27.1 review R1: the goals-vs-xG mode carries over only when the follow-up names no club, metric or ranking;
-   // it compares xG with goals scored, or xGA with goals conceded when 기대 실점 / xGA is asked.
-   const carry=follow&&previous.compareGoals&&!recognized.length&&!metricNamed&&!rankingAsked;
+   // 0.27.1 review R1 (recheck-2): a follow-up keeps every earlier condition it does not name. The goals-vs-xG mode
+   // carries over unless the follow-up asks a ranking or names another metric; naming xG or xGA with a switch word
+   // ("기대 실점으로 바꿔", "change to xGA") switches the compared metric. It compares xG with goals scored, or xGA
+   // with goals conceded.
+   const switchWord=/바꿔|변경|대신|change|instead|switch/.test(q);
+   const carry=!!follow&&!!previous.compareGoals&&!rankingAsked&&(!metricNamed||(switchWord&&['xg','xga'].includes(plan.metric)));
    const asked=plan.metric==='xg'?/xg|기대\s?득점|expected goals/.test(q)&&/실제\s?득점|득점과|득점.*비교|actual goals|goals.*compar|compare.*goals.*xg|goals.*(?:and|vs).*xg|xg.*(?:and|vs).*goals/.test(q):plan.metric==='xga'&&/실제\s?실점|실점과|실점.*비교|goals conceded.*(?:and|vs|compar)|compar.*goals conceded|xga.*(?:and|vs).*(?:goals|conceded)/.test(q);
    plan.compareGoals=plan.teams.length===1&&!['venue','ranking'].includes(plan.tool)&&(carry||asked)&&['xg','xga'].includes(plan.metric);
    if(plan.compareGoals)plan.tool='trend';else if(plan.tool==='trend')plan.tool=plan.teams.length>1?'comparison':'team';
