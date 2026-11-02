@@ -60,5 +60,44 @@
   "test:odds PASS (877)",
   "compact_predictions.py --check PASS"
  ],
- "verdict": "No blocking issue. Data and evidence verified against the archive; wording accurate in ko and en. R1 is an older engine bug worth a separate fix."
+ "verdict": "No blocking issue. Data and evidence verified against the archive; wording accurate in ko and en. R1 is an older engine bug worth a separate fix.",
+ "rechecks": [
+  {
+   "id": "recheck-2",
+   "commit": "bbfca9d",
+   "observed_at": "2026-11-02",
+   "results": [
+    "R1 fixed for the reported sequence (ko and en, browser): \"맨유 최근 1경기 기대 실점\" after a goals-vs-xG comparison shows 2.56 (기대 실점); \"EPL 이번 시즌 기대 득점 순위\" gives the ranking; xGA comparison plots xGA with goals conceded (Chelsea 10-10 1.68* / 1).",
+    "Engine main vs branch, 71 questions (6 page examples, 31 single, 34 follow-up pairs): page examples and their 최근/작년/반대로 follow-ups unchanged; 18 differ, most intended (aliases, team not found, xGA compare, R1).",
+    "R2: marks only on the 3 shot_sum matches (review table, match-room label, recent/history/overview tables, team chart value table for xg_for/xg_against only, analysis * and footnote); none on 31249, 31256 or other matches; no overflow at 390.",
+    "R4: 50 mutations, Python and JS agree on all; unknown keys and bool values rejected; applying twice rejected.",
+    "R7: 56/56 teams have aliases; no alias matches another team; league-wide ranking questions never give team not found.",
+    "check_release fails on edits of the workbench copy outside or inside recorded edits, the engine copy, the engine source and the workbench source; predictions.js identical to main.",
+    "test:server 26, analysis/check 22, test:analysis-ui (NODE_PATH, Playwright Chromium) 9 groups, check_release, check-xg, build_pages --check, test:report, test:odds PASS; browser ko/en x 390/1440: no NaN, overflow, console errors or Hangul on the English page."
+   ],
+   "issues": [
+    {
+     "id": "RC2-1",
+     "severity": "important (regression from the R1 fix)",
+     "text": "Follow-ups that name a club or a metric now reset the context. \"리버풀 2024/25 승점\" then \"최근 10경기 기대 득점\" answers for the selected team (Arsenal) in 2026/27 (main: Liverpool 2024/25). \"리버풀 2024/25 승점\" then \"맨시티 최근 5경기\" drops season and metric (main: Man City, 2024/25, 승점). \"토트넘 최근 5경기 승률\" then \"작년 시즌 아스널\" drops 승률."
+    },
+    {
+     "id": "RC2-2",
+     "severity": "important",
+     "text": "\"리버풀로 바꿔\" / \"change to Liverpool\" after a goals-vs-xG comparison keeps the follow-up but drops the comparison (Liverpool xG total \"—\" instead of the Liverpool trend, as on main). \"기대 실점으로 바꿔\" gives an xGA total instead of xGA vs goals conceded."
+    },
+    {
+     "id": "RC2-3",
+     "severity": "minor",
+     "text": "otherClubs matches \"포르투\" inside \"포르투갈\", so \"포르투갈 리그 순위\" says team not found (unsupported either way)."
+    },
+    {
+     "id": "RC2-4",
+     "severity": "minor (disclosed / pre-existing)",
+     "text": "Partial names such as \"레알\", \"아틀레틱\", \"포레스트\" and unknown clubs (Inter Miami) still answer for the selected team; \"시리즈\" still matches Leeds (리즈)."
+    }
+   ],
+   "verdict": "R2, R4, R7 and the reported R1 sequence are fixed. RC2-1 and RC2-2 are follow-up regressions in the engine; fix before merge or accept explicitly."
+  }
+ ]
 }
