@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 26255,
-      "sha256": "4a6c4b8de55f8663ae56c8fe819d60de61b834fa5debd35634b1057346852c4f",
+      "bytes": 26271,
+      "sha256": "5219085e6ba17b7497ebb9dd54f28be47ea44050e5fec0a0d33aa90fb2748d09",
       "snapshot": "0.27.1"
     },
     {
@@ -1175,19 +1175,19 @@
     {
       "path": "analysis/check-result.json",
       "bytes": 112,
-      "sha256": "edb68dede934858aa224c94efa707e233135dc2eb618afff2c44de8bd126dad7",
+      "sha256": "51dfc0e5bc20ef1945347e0b358decc106645d0038022b775e6f00e02d03fdab",
       "snapshot": "0.27.1"
     },
     {
       "path": "analysis/check.cjs",
-      "bytes": 17899,
-      "sha256": "f85cd669225961b9f109f7c22ed79e2e811d28fc278294e08df1359bfa54574f",
+      "bytes": 19562,
+      "sha256": "46c3ccd72faa4539ff22568134e733a25e2ffc10dd6abd108467dde89d5a52a4",
       "snapshot": "0.27.1"
     },
     {
       "path": "analysis/record-engine.cjs",
-      "bytes": 14511,
-      "sha256": "eb7fac1746cb6c1f45600951de90a896cb45ba1637f209f9399ccfbb369349a7",
+      "bytes": 14671,
+      "sha256": "db0c4aa3bbd2b033334f7efccb08f67e79383e1bcef62b195a3372a02a34594c",
       "snapshot": "0.27.1"
     },
     {
@@ -6226,8 +6226,8 @@
     },
     {
       "path": "docs/SPEC-0.27.1.md",
-      "bytes": 20667,
-      "sha256": "58752f4b7979bc71f89877cc3f8a23827e62057aa62a69fcfd05f862be2157c2",
+      "bytes": 21111,
+      "sha256": "c20ea613cb33b068ca0197af9f596159819d5d28a129fc0ae9b289082a1f61fc",
       "snapshot": "0.27.1"
     },
     {
@@ -9562,14 +9562,14 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 203327,
-      "sha256": "152511ce70df296e5035e6a01114e00c34d12c3f99f3bb2f70a8c8903c3ed45b",
+      "bytes": 203511,
+      "sha256": "c860b78c8ef330e55ed3f57d5a1e9f02fb31e6744103859d9b4e4b2c4c6d4cf9",
       "snapshot": "0.27.1"
     },
     {
       "path": "index.html",
-      "bytes": 203196,
-      "sha256": "934a2d13c953555aac1ebd6ed956c273d08152aa01e2c374d30dc018cc8ff8ea",
+      "bytes": 203356,
+      "sha256": "46f3f6818f4b6bd2a61547fb4e55ef906d7a505498c6c247deefca7ed672dff7",
       "snapshot": "0.27.1"
     },
     {

@@ -36,8 +36,9 @@
    let season=seasonMatch?seasonMatch[1]+'/'+seasonMatch[2].slice(-2):/이번\s?시즌|this season|current season/.test(q)?'2026/27':null;
    if(relativeSeason!==null)season=relativeSeason+'/'+String(relativeSeason+1).slice(-2);
    if(season&&!['2023/24','2024/25','2025/26','2026/27'].includes(season))return {error:'season'};
+   // Follow-up words are main's list; 0.27.1 recheck-3 adds "back to" (as in "back to xG").
    const rankingAsked=/순위|높은 팀|상위|많은 순|적은 순|부터 순|오름차순|내림차순|ranking|rank|top teams|highest|fewest|lowest/.test(q),metricNamed=Object.values(metrics).some(m=>m.keys.some(k=>q.includes(k)));
-   const recent=q.match(/(?:최근|last|recent)\s*(\d+)\s*(?:경기|matches|games)?/),follow=/다시|이 결과|그 결과|이것|다른|대신|반대로|역순|reverse|opposite|그 비교|추가|바꿔|변경|제거|빼\s?줘|최근|작년|시즌|again|instead|same|those|only|add|change|remove|last season|recent/.test(q)&&previous;
+   const recent=q.match(/(?:최근|last|recent)\s*(\d+)\s*(?:경기|matches|games)?/),follow=/다시|이 결과|그 결과|이것|다른|대신|반대로|역순|reverse|opposite|그 비교|추가|바꿔|변경|제거|빼\s?줘|최근|작년|시즌|again|instead|same|those|only|add|change|remove|last season|recent|back to/.test(q)&&previous;
    const plan=follow?{...previous}:{tool:'team',teams:[],league:explicitLeague||defaults.league||'EPL',season:defaults.season||'2026/27',last:null,venue:'all',metric:'xg',perMatch:false,order:'desc'};
    const order=sortOrder(q,follow?(previous.order||'desc'):null);if(['conflict','missing'].includes(order))return {error:'unsupported'};if(order)plan.order=order;
    if(recognized.length){const ids=recognized.map(t=>t.id);plan.teams=follow&&/추가|더해|\badd\b/.test(q)?[...new Set([...plan.teams,...ids])]:follow&&/제거|빼\s?줘|\bremove\b/.test(q)?plan.teams.filter(id=>!ids.includes(id)):ids;if(!explicitLeague)plan.league=recognized[0].league}
@@ -56,9 +57,9 @@
    if(matches.length)plan.metric=matches[0][0];
    // 0.27.1 review R1 (recheck-2): a follow-up keeps every earlier condition it does not name. The goals-vs-xG mode
    // carries over unless the follow-up asks a ranking or names another metric; naming xG or xGA with a switch word
-   // ("기대 실점으로 바꿔", "change to xGA") switches the compared metric. It compares xG with goals scored, or xGA
+   // ("기대 실점으로 바꿔", "다시 기대 득점", "change to xGA", "back to xG") switches the compared metric. It compares xG with goals scored, or xGA
    // with goals conceded.
-   const switchWord=/바꿔|변경|대신|change|instead|switch/.test(q);
+   const switchWord=/바꿔|변경|대신|다시|change|instead|switch|again|back to/.test(q);
    const carry=!!follow&&!!previous.compareGoals&&!rankingAsked&&(!metricNamed||(switchWord&&['xg','xga'].includes(plan.metric)));
    const asked=plan.metric==='xg'?/xg|기대\s?득점|expected goals/.test(q)&&/실제\s?득점|득점과|득점.*비교|actual goals|goals.*compar|compare.*goals.*xg|goals.*(?:and|vs).*xg|xg.*(?:and|vs).*goals/.test(q):plan.metric==='xga'&&/실제\s?실점|실점과|실점.*비교|goals conceded.*(?:and|vs|compar)|compar.*goals conceded|xga.*(?:and|vs).*(?:goals|conceded)/.test(q);
    plan.compareGoals=plan.teams.length===1&&!['venue','ranking'].includes(plan.tool)&&(carry||asked)&&['xg','xga'].includes(plan.metric);
