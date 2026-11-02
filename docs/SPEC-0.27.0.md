@@ -78,7 +78,10 @@ python3 -I design/release-0.27.0/build_pages.py                        # 화면 
   - 머리글 기준일과 출처 줄, 끝난 경기 표(적중 EPL 14/30), 경기 분석실 예측·실제 패널(Arsenal–Leeds 2:1 적중, Malaga–Real Sociedad 2:5 적중)을 확인했다.
   - 슈팅·유효 슈팅과 "—" xG 표시, 팀 화면 xG "—"와 StatMuse 기준일 안내, 팀 그래프 빈 점, 순위표(8경기), 자연어 분석의 xG "—"(새 결과 3경기), 연기 표시(Rayo–Athletic)를 확인했다.
   - 콘솔 오류 0, 가로 넘침 없음, 영어 화면 본문에 한글 없음.
-- 변조 검사: `design/release-0.27.0/tamper-check.py`, 결과 `tamper-result.json`.
+- 변조 검사(`python3 -I design/release-0.27.0/tamper-check.py <저장소 밖 폴더>`, 결과 `tamper-result.json`): 커밋 d8362f0을 새로 복제해 한 가지씩 바꾼 16가지를 검사했다. 대조는 PASS, 나머지 15가지는 모두 FAIL이다.
+  - 자료 쪽: 새 결과 점수 변경, 새 결과에 xG 채우기, 기존 Understat 경기 변경, refresh.json만 변경, 저장 예측 확률 변경.
+  - 화면 쪽: page-patch.json 항목 삭제, 기록 안 된 코드 수정(xG 칸, calc의 0 처리), 화면 블록 삭제·변경, 한영 로직 차이, 영어 화면 한글, 도움 함수 변경, VERSION.
+  - 결과 하나를 빼고 refresh.json과 자료를 함께 다시 만든 경우: refresh.json이 기록 원본이라 `check_release.py`는 통과하고, `server/check.cjs`가 60개 확인으로 실패한다.
 
 ## 남은 확인
 - football-data 이용 조건(개인용, AI 학습 제품 금지 문구)에 대한 사용자 판단. 판단 전에는 병합·배포하지 않는다.
