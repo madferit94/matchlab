@@ -6,9 +6,14 @@
    "after": "data-id=\"라리가 이번 시즌 경기당 득점 순위\">라리가 이번 시즌 경기당 득점 순위</button>"
   },
   {
-   "why": "review R2: featured example asks for goals, not this season's xG (label list)",
+   "why": "review RC1-3: third featured example compares goals per match, not the default xG (button)",
+   "before": "data-id=\"바르셀로나 홈 원정 성적 비교\">바르셀로나 홈 원정 성적 비교</button>",
+   "after": "data-id=\"바르셀로나 홈 원정 경기당 득점 비교\">바르셀로나 홈 원정 경기당 득점 비교</button>"
+  },
+  {
+   "why": "review R2 and RC1-3: featured examples in the label list",
    "before": "\"라리가 이번 시즌 경기당 기대 득점 순위\", \"바르셀로나 홈 원정 성적 비교\"]",
-   "after": "\"라리가 이번 시즌 경기당 득점 순위\", \"바르셀로나 홈 원정 성적 비교\"]"
+   "after": "\"라리가 이번 시즌 경기당 득점 순위\", \"바르셀로나 홈 원정 경기당 득점 비교\"]"
   },
   {
    "why": "calc: count xG only when the match has it; null when any selected match lacks it",
@@ -98,9 +103,14 @@
    "after": "data-id=\"LaLiga this season goals per match ranking\">LaLiga this season goals per match ranking</button>"
   },
   {
-   "why": "review R2: featured example asks for goals, not this season's xG (label list)",
+   "why": "review RC1-3: third featured example compares goals per match, not the default xG (button)",
+   "before": "data-id=\"Compare Barcelona home and away\">Compare Barcelona home and away</button>",
+   "after": "data-id=\"Compare Barcelona home and away goals per match\">Compare Barcelona home and away goals per match</button>"
+  },
+  {
+   "why": "review R2 and RC1-3: featured examples in the label list",
    "before": "\"LaLiga this season xG per match ranking\", \"Compare Barcelona home and away\"]",
-   "after": "\"LaLiga this season goals per match ranking\", \"Compare Barcelona home and away\"]"
+   "after": "\"LaLiga this season goals per match ranking\", \"Compare Barcelona home and away goals per match\"]"
   },
   {
    "why": "calc: count xG only when the match has it; null when any selected match lacks it",

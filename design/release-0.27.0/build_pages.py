@@ -35,13 +35,16 @@ def rules(lang):
             'en': '<div class="muted">Matches without xG (football-data.co.uk results) have no point.</div>'}[lang]
     trend = {'ko': '<div class="muted">같은 경기 순서로 비교 · xG: 기회의 득점 기대치</div>',
              'en': '<div class="muted">Compared by match order · xG: expected goals from chances</div>'}[lang]
-    old_example, new_example, next_example = {'ko': ('라리가 이번 시즌 경기당 기대 득점 순위', '라리가 이번 시즌 경기당 득점 순위', '바르셀로나 홈 원정 성적 비교'),
-                                              'en': ('LaLiga this season xG per match ranking', 'LaLiga this season goals per match ranking', 'Compare Barcelona home and away')}[lang]
+    old_example, new_example, old_third, new_third = {
+        'ko': ('라리가 이번 시즌 경기당 기대 득점 순위', '라리가 이번 시즌 경기당 득점 순위', '바르셀로나 홈 원정 성적 비교', '바르셀로나 홈 원정 경기당 득점 비교'),
+        'en': ('LaLiga this season xG per match ranking', 'LaLiga this season goals per match ranking', 'Compare Barcelona home and away', 'Compare Barcelona home and away goals per match')}[lang]
     return [
         ('review R2: featured example asks for goals, not this season\'s xG (button)',
          'data-id="' + old_example + '">' + old_example + '</button>', 'data-id="' + new_example + '">' + new_example + '</button>'),
-        ('review R2: featured example asks for goals, not this season\'s xG (label list)',
-         '"' + old_example + '", "' + next_example + '"]', '"' + new_example + '", "' + next_example + '"]'),
+        ('review RC1-3: third featured example compares goals per match, not the default xG (button)',
+         'data-id="' + old_third + '">' + old_third + '</button>', 'data-id="' + new_third + '">' + new_third + '</button>'),
+        ('review R2 and RC1-3: featured examples in the label list',
+         '"' + old_example + '", "' + old_third + '"]', '"' + new_example + '", "' + new_third + '"]'),
         ('calc: count xG only when the match has it; null when any selected match lacks it',
          "xg=0,xga=0,w=0,d=0,l=0;ms.forEach(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;p+=f>a?3:f===a?1:0;w+=f>a;d+=f===a;l+=f<a;gf+=f;ga+=a;xg+=h?m.hx:m.ax;xga+=h?m.ax:m.hx});return {n,p,gf,ga,xg,xga,w,d,l}}",
          "xg=0,xga=0,w=0,d=0,l=0,nx=0;ms.forEach(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;p+=f>a?3:f===a?1:0;w+=f>a;d+=f===a;l+=f<a;gf+=f;ga+=a;if(hasXg(m)){nx++;xg+=h?m.hx:m.ax;xga+=h?m.ax:m.hx}});if(nx<n){xg=null;xga=null}return {n,p,gf,ga,xg,xga,w,d,l}}"),

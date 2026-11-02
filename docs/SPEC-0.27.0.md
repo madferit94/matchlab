@@ -99,6 +99,13 @@ python3 -I design/release-0.27.0/build_pages.py                        # 화면 
   - "결과 하나 제거"는 as_of 규칙에 맞게 고친 뒤에도 `server/check.cjs`가 60개 확인으로 잡는다.
 - **R3 좁은 화면 표**: 650px 이하에서는 끝난 경기 표의 각 행을 세로 카드(열 이름 + 값)로 바꿔, 실제·예측·판정이 가로 스크롤 없이 보인다. 한영 390px에서 표 영역 폭 328 = 내용 폭 328, 1440px은 표 그대로임을 확인했다.
 
+- **재검증 RC1-3·RC1-4 (2026-11-02)**
+  - 첫 화면 세 번째 예시가 기본 지표 xG라 "—"만 나왔다. "바르셀로나 홈 원정 경기당 득점 비교" / "Compare Barcelona home and away goals per match"로 바꿨다(기록된 수정 36 → 38곳).
+  - `validate_refresh`는 결과에 필요한 키가 없으면 KeyError 대신 "Refresh result is missing …" 안내로 멈춘다.
+- **F1 0.26.4와 함께 병합 준비**
+  - origin/main(aad82ec, F1 0.26.4) 위로 rebase했다.
+  - 충돌 파일과 해결: VERSION·package.json·README 두 개는 0.27.0, CHANGELOG는 0.26.4 위에 0.27.0, `tools/check_release.py`는 RELEASE 한 줄만 충돌했다. F1 검사와 축구 검사는 자동 병합으로 둘 다 남았다. publication_manifest.json은 마지막에 다시 만들었다.
+
 ## 남은 확인
 - football-data 이용 조건(개인용, AI 학습 제품 금지 문구)에 대한 사용자 판단. 판단 전에는 병합·배포하지 않는다.
 - 독립 검증, 운영 배포 후 확인, main 병합 결재.

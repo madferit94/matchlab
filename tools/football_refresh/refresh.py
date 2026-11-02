@@ -100,7 +100,10 @@ def validate_refresh(data, refresh):
     assert results and len({r['id'] for r in results}) == len(results), 'Empty or duplicate refresh results'
     assert results == sorted(results, key=lambda r: (r['date'], r['id'])), 'Refresh results not in date order'
     assert refresh['as_of'] == max(r['date'] for r in results), 'as_of is not the last result date'
+    required = ['id', 'league', 'date', 'provider_file', 'provider_line', 'provider_row', 'row_sha256', 'line_sha256'] + list(FIELDS)
     for r in results:
+        missing = [k for k in required if k not in r]
+        assert not missing, 'Refresh result is missing ' + ', '.join(missing) + ': ' + str(r.get('id'))
         m = by_id.get(r['id'])
         assert m and m['league'] == r['league'] and m['season'] == SEASON and m['hg'] is None, 'Not a stored scheduled fixture: ' + r['id']
         assert re.fullmatch(r'\d{4}-\d{2}-\d{2}', r['date']) and PREVIOUS_LAST_DATE < r['date'] <= refresh['as_of'], 'Result date outside (previous cutoff, as_of]: ' + r['id']
@@ -116,7 +119,7 @@ def validate_refresh(data, refresh):
         assert all(row[column] == str(r[field]) for field, column in FIELDS.items()), 'Provider values differ from the result: ' + r['id']
         ftr = 'H' if r['hg'] > r['ag'] else 'D' if r['hg'] == r['ag'] else 'A'
         assert row['FTR'] == ftr, 'Result letter differs from score: ' + r['id']
-        assert re.fullmatch(r'[0-9a-f]{64}', r['line_sha256']), 'Raw line fingerprint missing: ' + r['id']
+        assert isinstance(r['line_sha256'], str) and re.fullmatch(r'[0-9a-f]{64}', r['line_sha256']), 'Raw line fingerprint missing: ' + r['id']
 
 
 def verify(raw):
