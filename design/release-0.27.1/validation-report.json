@@ -98,6 +98,29 @@
     }
    ],
    "verdict": "R2, R4, R7 and the reported R1 sequence are fixed. RC2-1 and RC2-2 are follow-up regressions in the engine; fix before merge or accept explicitly."
+  },
+  {
+   "id": "recheck-3",
+   "commit": "807788f",
+   "observed_at": "2026-11-02",
+   "results": [
+    "RC2-1, RC2-2 and the R1 sequence fixed in ko and en (engine and browser): Liverpool 2024/25 then 최근 10경기 기대 득점 = Liverpool 2024/25 25.32; 맨시티 최근 5경기 = 2024/25 승점 13; 작년 시즌 아스널 keeps 승률; 리버풀로 바꿔 / change to Liverpool keep the comparison; 기대 실점으로 바꿔 / change to xGA compare xGA with goals conceded; 맨유 최근 1경기 기대 실점 = 2.56; ranking question gives a ranking.",
+    "Engine main vs branch, 71 questions: 14 differ, each reviewed: 5 Korean club names, 1 team not found, 5 xGA comparison/trend (values checked: Chelsea 10-10 xGA 1.68 conceded 1, Tottenham 10-19 xGA 1.14 conceded 1), 3 R1 sequence.",
+    "20 own follow-up chains (team, season, metric changes, compare to ranking, compare to other team to other metric, ko/en): 10 chains differ from main; all differences are the compare mode now following the asked metric (main plotted xG for under xGA, points or goals-conceded labels) or released by another metric.",
+    "RC2-3 fixed: 포르투갈 no longer gives team not found.",
+    "test:server 26, analysis/check 25, test:analysis-ui 9 groups, check_release, refresh check, check-xg, build_pages --check PASS; browser ko/en x 390/1440: no NaN, overflow, console errors or Hangul on the English page; predictions.js identical to main."
+   ],
+   "issues": [
+    {
+     "id": "RC3-1",
+     "severity": "minor",
+     "text": "After an xGA comparison, \"다시 기대 득점\" (no switch word) releases the comparison and gives an xG total (Man Utd last 5: —); \"기대 득점으로 바꿔\" switches the compared metric. main kept a comparison here."
+    }
+   ],
+   "notes": [
+    "Main behaviour, not counted: a follow-up keeps the earlier period/season (EPL 이번 시즌 기대 득점 순위 keeps 최근 1경기; a page example containing 최근 asked after other questions keeps their season); 포르투갈 리그 순위 answers the EPL ranking; 바르셀로나 최근 5경기 then 기대 득점과 실제 득점 비교 answers for the selected team (Arsenal)."
+   ],
+   "verdict": "No blocking or important issue. Ready from the review side."
   }
  ]
 }
