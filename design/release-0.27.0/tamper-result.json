@@ -3,7 +3,7 @@
   {
    "case": "control (no change)",
    "check_release": "PASS",
-   "check_release_message": "PASS release audit: 1786 hashed files, 12 local documentation links; design payloads identical; football data = v50 + refresh.json (60 results through 2026-10-26), pages = v50 after undoing 32 recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e",
+   "check_release_message": "PASS release audit: 1798 hashed files, 12 local documentation links; design payloads identical; football data = v50 + refresh.json (60 results through 2026-10-26), pages = v50 after undoing 36 recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e",
    "server_check": "PASS",
    "server_message": "24 server checks passed.",
    "outcome": "as expected"
@@ -35,15 +35,15 @@
   {
    "case": "refresh.json score changed, data files not rebuilt",
    "check_release": "FAIL",
-   "check_release_message": "AssertionError: Football data differs from apply(v50 data, refresh.json): data.ko.js",
+   "check_release_message": "AssertionError: Provider values differ from the result: understat:30845",
    "server_check": "FAIL",
-   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+   "server_message": "Error: Provider values differ from the result: understat:30845",
    "outcome": "as expected"
   },
   {
    "case": "one refreshed result dropped from data (refresh + data rebuilt, ?v=)",
    "check_release": "PASS",
-   "check_release_message": "PASS release audit: 1786 hashed files, 12 local documentation links; design payloads identical; football data = v50 + refresh.json (59 results through 2026-10-26), pages = v50 after undoing 32 recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e",
+   "check_release_message": "PASS release audit: 1798 hashed files, 12 local documentation links; design payloads identical; football data = v50 + refresh.json (59 results through 2026-10-25), pages = v50 after undoing 36 recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e",
    "server_check": "FAIL",
    "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
    "outcome": "as expected"
@@ -126,6 +126,38 @@
    "check_release_message": "AssertionError: VERSION differs from the release checker version: 0.26.3",
    "server_check": "FAIL",
    "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json score changed, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Provider values differ from the result: understat:30845",
+   "server_check": "FAIL",
+   "server_message": "Error: Provider values differ from the result: understat:30845",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json home/away goals swapped, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Provider values differ from the result: understat:30840",
+   "server_check": "FAIL",
+   "server_message": "Error: Provider values differ from the result: understat:30840",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json date 2026-09-19, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Result date outside (previous cutoff, as_of]: understat:30845",
+   "server_check": "FAIL",
+   "server_message": "Error: Result date outside (previous cutoff, as_of]: understat:30845",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json shots on target > shots, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Shots on target exceed shots: understat:30843",
+   "server_check": "FAIL",
+   "server_message": "Error: Shots on target exceed shots: understat:30843",
    "outcome": "as expected"
   }
  ],

@@ -94,6 +94,9 @@ python3 -I design/release-0.27.0/build_pages.py                        # 화면 
     - `line_sha256`: CSV 원본 줄의 지문. 원본 파일이 있으면 `refresh.py verify --raw`로 대조한다(60/60 일치).
   - 지문과 원문 열까지 함께 위조하면 원본 파일 없이는 잡을 수 없다. 그 경우는 `verify --raw`가 원본 파일 해시와 줄 지문으로 잡는다.
 - **R2 이번 시즌 xG 질문 안내**: 이번 시즌 xG 질문 결과 위에 한 줄 안내를 붙인다. 문구는 "2026-09-20 이후 경기(football-data.co.uk 결과)는 xG 자료가 없어 이번 시즌 xG를 계산하지 않습니다…" / "Matches after 2026-09-20 … have no xG, so this season's xG is not calculated…"이다. 다른 시즌 질문에는 붙지 않는다. 첫 화면 예시는 "라리가 이번 시즌 경기당 득점 순위" / "LaLiga this season goals per match ranking"으로 바꿨다(`build_pages.py` 규칙 2개 추가, 기록된 수정 32 → 36곳).
+- 변조 검사 재실행(커밋 ed48d80 이후, `tamper-result.json` 갱신): 20가지 중 대조 1개만 PASS, 19개 FAIL.
+  - 추가한 R1 변조 4가지(refresh.json 점수 변경, 홈·원정 골 맞바꿈, 날짜 2026-09-19, 유효 슈팅 > 슈팅, 각각 apply·build_pages 재실행)는 `check_release.py`와 `server/check.cjs` 둘 다에서 실패한다.
+  - "결과 하나 제거"는 as_of 규칙에 맞게 고친 뒤에도 `server/check.cjs`가 60개 확인으로 잡는다.
 - **R3 좁은 화면 표**: 650px 이하에서는 끝난 경기 표의 각 행을 세로 카드(열 이름 + 값)로 바꿔, 실제·예측·판정이 가로 스크롤 없이 보인다. 한영 390px에서 표 영역 폭 328 = 내용 폭 328, 1440px은 표 그대로임을 확인했다.
 
 ## 남은 확인
