@@ -493,5 +493,248 @@
    "result": "PASS; legacy failures only payload identity (R8)."
   }
  ],
- "verdict": "not merge-ready: 1 blocker (R1), 1 should-fix (R2)"
+ "verdict": "not merge-ready: 1 blocker (R1), 1 should-fix (R2)",
+ "rechecks": [
+  {
+   "id": "recheck",
+   "observed_at": "2026-11-02",
+   "producer_id": "reviewer-f1sync-2026-10-21",
+   "target": "4518fa0 (fixes for R1-R5 on top of 97ff7b2)",
+   "verdict": "PASS - R1 blocker resolved, R2 resolved; no blocker. Merge-ready after manifest regeneration, with notes RC-1..RC-4.",
+   "summary": "Reviewer scripts only (scratch review-0264/rc); main work tree not switched; tamper tests ran in an APFS copy-on-write clone (a full git worktree hit 'No space left on device' once, disk 1.9 GB free; clone removed). R1: OpenF1 re-fetched 2026-11-02 02:57-02:58 UTC (after the builder's 02:48:12 collection): Mexico City session_result, laps, pit, race_control, stints, weather, position identical row-for-row to the page; drivers differ only in the filled HIRAKAWA team fields. Result tab shows the revised order (LAWSON 7, BORTOLETO 8, HADJAR 9, HIRAKAWA 10 / 1 pt, ALBON 11, SAINZ 12, PIASTRI 13, HULKENBERG 14, COLAPINTO 15, PEREZ 16, GASLY 17) and the line 'OpenF1 결과 수집: 2026-11-02 02:48 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.' / 'OpenF1 result collected 2026-11-02 02:48 UTC · may change after post-race penalties.' on the 3 new GPs only (Singapore/US 02:01 UTC). Championship: OpenF1 championship_drivers at 02:57 UTC still un-updated for 7 drivers (e.g. PIA 150 vs 144); reviewer recompute points_start + session_result points (no sprint) equals the page for all 24 drivers and 11 teams (driver total = team total = 2,135). Three tied groups (7 pts OCO/ALO/SAI P16-18, 1 pt TSU/HIR P20-21, 0 pts STR/BOT/PER P22-24) are ordered by pre-race position; this equals a countback on 2026 GP finishes for all three groups. The screen shows distinct ranks without saying the standings were recomputed or how ties are ordered (RC-1). R2: lane-comparison source f1/release-0.26.4/comparison.js and circuit source map-comparison.js equal the page modules; laps wholly inside a suspension now hold at their start. Reviewer hold model (own code) = recordedState for every car in 19 GPs; Mexico held laps 22 = module; after the cars reach the pits (3,875.9 s) to the restart (6,094.6 s) predicted movement 0 and recorded movement 0 except three integer steps 44 -> 45 at the recorded lap ends (LAW 6,082.5 s, SAI 6,089.5 s, HIR 6,092.0 s), which do not move the circuit markers (both values are the start line) and move a lane by 1/71 (RC-2). 16 old GPs identical to 0.26.3 (main) at every sample, 4 upcoming identical, P1 = leader 0 difference, no overtakes. R3: HIRAKAWA team Haas F1 Team / 9C9FA2 with team_source listing FP1 11397, FP3 11399, Q 11400; reviewer fetch confirms all three sessions give the same value. R4: OCON shows '불참' / 'Did not take part' in both comparison tables; Singapore OCON (raced) still '완주'. R5: check_release PASS (1,797 files). Tamper (clone, --write-manifest): the 5 cases that passed last time (Mexico winner swap, profile point, dataset top-level key, forecast before-race condition removed, US date_end) and 8 new ones (collected_at, HIRAKAWA team removed, added map sample, maps as_of, summary log append, page-only hold rule change, page-only '불참' label, old GP char) all FAIL with the intended message. Still passing: removing the result-tab 'may change' sentence (page script not pinned) and any data change made together with re-pinning data-pins.json (pins live in the same repository) (RC-3). Tests: test:server 24, build + check-vercel 5, analysis 15, test:report 14 (checks.json reverted), test:odds 877, F1 check-conditions x2 and check-history PASS. Browser (Playwright 1.57, Chrome 156) Mexico City and Singapore ko/en x 390/1440: circuit 1x 0.998-1.001 recorded s/s, lanes 1x front mismatch 0, red-flag frames 4,100 vs 6,000 s: 22 predicted and 20 reconstructed rects identical, lanes unchanged; result note and revised ranks in both languages; HIRAKAWA profile Haas F1 Team, P21, 1 pt; page errors 0; no horizontal overflow; catalogue 19/2/4. f1/index.html 23,346,114 B.",
+   "issues": [
+    {
+     "severity": "note",
+     "id": "RC-1-standings-basis-not-on-screen",
+     "description": "Driver/team standings for Mexico City are recomputed (points_start + race points) because OpenF1 had not applied the revised classification; the basis and the tie order (pre-race position, equal to countback here) are stored in profile-data (status recomputed_from_session_result, note) but not shown on screen, where tied drivers get distinct ranks (e.g. TSU P20 and HIR P21 both 1 pt). Suggest a short on-screen note, and re-fetch OpenF1 standings once updated."
+    },
+    {
+     "severity": "note",
+     "id": "RC-2-held-lap-step",
+     "description": "Cars 30/55/50 step from lap 44 to 45 at their recorded lap ends 3-12 s before the restart while held. No circuit movement (start line both times); lane tab moves 1/71 of the lane. Acceptable."
+    },
+    {
+     "severity": "note",
+     "id": "RC-3-pins-in-repo",
+     "description": "data-pins.json catches every accidental change tested, but a deliberate change plus re-pinning passes, and the result-tab notice text is not pinned. Code review of data-pins.json changes remains the control."
+    },
+    {
+     "severity": "note",
+     "id": "RC-4-open-items",
+     "description": "publication_manifest.json must be regenerated after this commit. OpenF1 may still revise results/standings; re-collect a day after the race. Not verified: Vercel deployment, human full replay viewing. Low disk space on this Mac (about 2 GB free) blocks full git worktrees."
+    }
+   ],
+   "evidence": [
+    {
+     "path": "design/release-0.26.4/review/recheck-circuit-11404-ko-1440-redflag.png",
+     "description": "Recheck view at 4518fa0 (circuit-11404-ko-1440-redflag), Chrome 156, 0 page errors. sha256[:16] cd714aa83e2a7a6e"
+    },
+    {
+     "path": "design/release-0.26.4/review/recheck-lanes-11404-ko-390.png",
+     "description": "Recheck view at 4518fa0 (lanes-11404-ko-390), Chrome 156, 0 page errors. sha256[:16] 2c30066a0557a34a"
+    },
+    {
+     "path": "design/release-0.26.4/review/recheck-profile-hirakawa-ko-390.png",
+     "description": "Recheck view at 4518fa0 (profile-hirakawa-ko-390), Chrome 156, 0 page errors. sha256[:16] e33c98089530328d"
+    },
+    {
+     "path": "design/release-0.26.4/review/recheck-result-11404-en-390.png",
+     "description": "Recheck view at 4518fa0 (result-11404-en-390), Chrome 156, 0 page errors. sha256[:16] 1c32b0bca1b5dda8"
+    },
+    {
+     "path": "design/release-0.26.4/review/recheck-result-11404-ko-1440.png",
+     "description": "Recheck view at 4518fa0 (result-11404-ko-1440), Chrome 156, 0 page errors. sha256[:16] e15623f96c6dc34e"
+    }
+   ],
+   "tests": {
+    "browser_runs": [
+     {
+      "label": "11404-ko-390 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 1.001,
+      "pred_laps_px": 0.0594,
+      "act_laps_px": 0.0842,
+      "driver": 3,
+      "pred_over_act": 0.705
+     },
+     {
+      "label": "11404-ko-390 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01672,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 8.953,
+      "act_delta": 8.953
+     },
+     {
+      "label": "11404-ko-1440 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 1,
+      "pred_laps_px": 0.0586,
+      "act_laps_px": 0.0835,
+      "driver": 3,
+      "pred_over_act": 0.702
+     },
+     {
+      "label": "11404-ko-1440 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01668,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 8.758,
+      "act_delta": 8.758
+     },
+     {
+      "label": "11404-en-390 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 1,
+      "pred_laps_px": 0.0582,
+      "act_laps_px": 0.0831,
+      "driver": 3,
+      "pred_over_act": 0.7
+     },
+     {
+      "label": "11404-en-390 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01666,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 8.953,
+      "act_delta": 8.953
+     },
+     {
+      "label": "11404-en-1440 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 0.999,
+      "pred_laps_px": 0.0584,
+      "act_laps_px": 0.0833,
+      "driver": 3,
+      "pred_over_act": 0.701
+     },
+     {
+      "label": "11404-en-1440 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01663,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 8.914,
+      "act_delta": 8.914
+     },
+     {
+      "label": "11388-ko-390 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 0.998,
+      "pred_laps_px": 0.0485,
+      "act_laps_px": 0.073,
+      "driver": 3,
+      "pred_over_act": 0.664
+     },
+     {
+      "label": "11388-ko-390 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01669,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 6.266,
+      "act_delta": 6.266
+     },
+     {
+      "label": "11388-ko-1440 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 1,
+      "pred_laps_px": 0.0489,
+      "act_laps_px": 0.0734,
+      "driver": 3,
+      "pred_over_act": 0.666
+     },
+     {
+      "label": "11388-ko-1440 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01664,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 6.239,
+      "act_delta": 6.239
+     },
+     {
+      "label": "11388-en-390 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 1.001,
+      "pred_laps_px": 0.049,
+      "act_laps_px": 0.0736,
+      "driver": 3,
+      "pred_over_act": 0.666
+     },
+     {
+      "label": "11388-en-390 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01667,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 6.184,
+      "act_delta": 6.184
+     },
+     {
+      "label": "11388-en-1440 circuit 1x",
+      "speed": 1,
+      "recorded_s_per_real_s": 1.001,
+      "pred_laps_px": 0.0494,
+      "act_laps_px": 0.0741,
+      "driver": 3,
+      "pred_over_act": 0.667
+     },
+     {
+      "label": "11388-en-1440 lanes 1x",
+      "speed": 1,
+      "phase_per_real_s": 0.01664,
+      "expected": 0.01667,
+      "front_mismatch": 0,
+      "pred_delta": 6.267,
+      "act_delta": 6.267
+     }
+    ],
+    "r4_new_gps": {
+     "11388": {
+      "held_module": 0,
+      "effective_hold": [],
+      "p1": 0,
+      "lane": 0,
+      "overt": 0,
+      "back": 0,
+      "holdPred": 0,
+      "mine": 0,
+      "gap": 2
+     },
+     "11396": {
+      "held_module": 0,
+      "effective_hold": [],
+      "p1": 0,
+      "lane": 0,
+      "overt": 0,
+      "back": 0,
+      "holdPred": 0,
+      "mine": 0,
+      "gap": 2
+     },
+     "11404": {
+      "held_module": 22,
+      "effective_hold": [
+       [
+        3875.9,
+        6094.6
+       ]
+      ],
+      "p1": 0,
+      "lane": 0,
+      "overt": 0,
+      "back": 0,
+      "holdPred": 0,
+      "mine": 0,
+      "gap": 1.4592
+     }
+    },
+    "identity_vs_0263_samples_differing": 0
+   }
+  }
+ ]
 }
