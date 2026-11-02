@@ -4,7 +4,7 @@
   "role": "builder",
   "producer_id": "builder-f1data-2026-11-02",
   "status": "DONE",
-  "summary": "수집+시각화·웹 담당. 이미 끝났지만 자료에 없던 2026 GP 3개(싱가포르 11388, 미국 11396, 멕시코시티 11404)를 OpenF1 공개 API로 받아 완료 GP로 추가했다. 기존 GP 22개·서킷 22개·예측 블록은 바이트까지 그대로이고, 새 GP 비교에는 2026-10-07 경기 전 예측을 그대로 쓴다. 챔피언십 순위를 멕시코시티 기준으로 갱신. 0.26.3 동기화 규칙이 19개 완료 GP 모두에서 성립(차이 0, 추월 0, 적기 정지 4개 GP). 자가 점검이며 독립 검증이 아니다. 독립 검증(97ff7b2) 뒤 R1~R5 반영: 멕시코시티 결과 재수집(페널티 반영, 02:48 UTC)·결과 탭 수집 시각·챔피언십 결과로 재계산, 적기 안 랩 정지, HIRAKAWA 팀 채움, 불참 표시, check_release 해시 고정·예측 시각 조건 확인.",
+  "summary": "수집+시각화·웹 담당. 이미 끝났지만 자료에 없던 2026 GP 3개(싱가포르 11388, 미국 11396, 멕시코시티 11404)를 OpenF1 공개 API로 받아 완료 GP로 추가했다. 기존 GP 22개·서킷 22개·예측 블록은 바이트까지 그대로이고, 새 GP 비교에는 2026-10-07 경기 전 예측을 그대로 쓴다. 챔피언십 순위를 멕시코시티 기준으로 갱신. 0.26.3 동기화 규칙이 19개 완료 GP 모두에서 성립(차이 0, 추월 0, 적기 정지 4개 GP). 자가 점검이며 독립 검증이 아니다. 독립 검증(97ff7b2) 뒤 R1~R5 반영: 멕시코시티 결과 재수집(페널티 반영, 02:48 UTC)·결과 탭 수집 시각·챔피언십 결과로 재계산, 적기 안 랩 정지, HIRAKAWA 팀 채움, 불참 표시, check_release 해시 고정·예측 시각 조건 확인. 재검증(ba90390) 뒤 RC-1: 다시 계산한 순위 화면 5곳에 한영 안내 한 줄.",
   "cutoff_at": "2026-11-02T02:48:12.903616+00:00",
   "observed_at": "2026-11-02",
   "provider": "OpenF1 (https://openf1.org/docs/)",
@@ -53,6 +53,10 @@
     {
       "path": "design/release-0.26.4/tamper-check.py",
       "description": "check_release 변조 시험 5가지"
+    },
+    {
+      "path": "f1/profiles/profiles.js",
+      "description": "순위 안내(standingsNote) 5곳, 페이지에 그대로 실음"
     }
   ],
   "tests": [
@@ -62,7 +66,7 @@
     },
     {
       "command": "node design/release-0.26.4/check-browser.cjs",
-      "result": "PASS (94)"
+      "result": "PASS (98)"
     },
     {
       "command": "npm run test:server",

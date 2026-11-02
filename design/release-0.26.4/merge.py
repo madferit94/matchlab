@@ -54,6 +54,13 @@ completed=sorted([r for r in ds['races'] if r['state']=='completed'],key=lambda 
 champ=built['championship'];assert champ['basis_session']['session_key']==latest['session']['session_key']
 prof['portraits_collected_at']=prof['collected_at'];prof['collected_at']=built['collected_at'];prof['basis_session']=latest['session']
 for endpoint in ['championship_drivers','championship_teams']:prof['current'][endpoint]={k:champ[endpoint][k] for k in ['url','status','rows','fetched_at','note','openf1_rows'] if k in champ[endpoint]}
+# 0.26.4 (recheck RC-1): one-line bilingual notice shown wherever the recalculated standings appear.
+KO_GP={'Mexico City Grand Prix':'멕시코시티 GP','United States Grand Prix':'미국 GP','Singapore Grand Prix':'싱가포르 GP'}
+for endpoint in ['championship_drivers','championship_teams']:
+    if prof['current'][endpoint].get('status')=='recomputed_from_session_result':
+        gp=latest['meeting']['meeting_name']
+        prof['current'][endpoint]['note_display']={'ko':KO_GP.get(gp,gp)+' 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다.',
+            'en':'Standings recalculated from the '+gp.replace(' Grand Prix',' GP')+' result (before the official table update). Ties keep the pre-race order.'}
 old_drivers=prof['drivers'];drivers={}
 for r in completed:
     for d in r['records'].get('drivers',[]):

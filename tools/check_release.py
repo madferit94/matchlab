@@ -255,6 +255,9 @@ for r in now_ds['races']:
     if k in F1_ADDED_GPS:assert pin(r)==pins['dataset_races'][k], 'F1 added GP changed after collection: '+k
 assert pin(now_ds['summary'])==pins['dataset_summary'], 'F1 dataset summary changed after collection'
 assert hashlib.sha256(re.search(r'<script id="profile-data" type="application/json">([\s\S]*?)</script>',f1_html)[1].encode('utf8')).hexdigest()==pins['profile_data'], 'F1 profile data changed after collection'
+# Recheck RC-1: the profile module (source f1/profiles/profiles.js) shows the recalculated-standings notice.
+profile_module=re.search(r'<script id="f1-profile-module">([\s\S]*?)</script>',f1_html)[1]
+assert profile_module==(p/'f1/profiles/profiles.js').read_text(encoding='utf-8-sig') and profile_module.count('${standingsNote()}')==5, 'F1 profile module drift'
 # Completed GPs without a retrospective prediction may only use a forecast made before the race.
 assert f1_html.count("PreRaceForecasts=Object.fromEntries(D.races.filter(r=>r.state==='completed'&&!AllPredictions[String(r.session.session_key)]&&Forecast.races?.[String(r.session.session_key)]&&Date.parse(Forecast.races[String(r.session.session_key)].as_of)<Date.parse(r.session.date_start))")==1, 'F1 pre-race forecast rule drift'
 now_maps,before_maps=f1_block(f1_html,'maps'),f1_block(f1_before,'maps')

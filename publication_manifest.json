@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 23621,
-      "sha256": "fb039a78fa023b6c33d38eeaf4b298ed9946e2cc796c47884f8e96107be912ca",
+      "bytes": 23684,
+      "sha256": "8e7a5086d8bf10939b5bc743db10c222448828999439db9cea536729fcd0db2a",
       "snapshot": "0.26.4"
     },
     {
@@ -5560,20 +5560,20 @@
     },
     {
       "path": "design/release-0.26.4/browser-result.json",
-      "bytes": 11469,
-      "sha256": "5b0328cde697ffe9eb7e03db27b2b68e93db752aa96a2f98377d82a58d1598c9",
+      "bytes": 14949,
+      "sha256": "5dc9b37234f4ff88c18c20057252698000184e98ffe2104dc50c2e6650c360e8",
       "snapshot": "0.26.4"
     },
     {
       "path": "design/release-0.26.4/builder-report.json",
-      "bytes": 4617,
-      "sha256": "3dce7efd3bb5f4d19e0a7c89721ca6c60a8dc904722187d9f6c9e587fa788832",
+      "bytes": 4850,
+      "sha256": "a927e95974d232bace9b729a9bc186f95e2ebaee7b9fefa6c51397f0687d669a",
       "snapshot": "0.26.4"
     },
     {
       "path": "design/release-0.26.4/check-browser.cjs",
-      "bytes": 12174,
-      "sha256": "6699b421ea6f568829265ea359702419362f8781bc3b67f5b5b7cb5639583d1c",
+      "bytes": 13141,
+      "sha256": "c1d52d16a8906c3d97d8433fb1df3b8254fe8c9c42f713c474dc76c51f507bd8",
       "snapshot": "0.26.4"
     },
     {
@@ -5603,25 +5603,25 @@
     {
       "path": "design/release-0.26.4/data-pins.json",
       "bytes": 860,
-      "sha256": "cd508f7ba9ac046162f53e5024d88141a28e91f3ffe9e33eb8c1b3dd19ab2ebf",
+      "sha256": "651556d3b4a86007a13d65aed42f1c4706d7eb15cebfbb32ed588a9eb241709b",
       "snapshot": "0.26.4"
     },
     {
       "path": "design/release-0.26.4/lanes-11404-en-1440.png",
-      "bytes": 219866,
-      "sha256": "56e60a9f8d85e7cc0b20fa38879829f07c6858f5358ca8d2f655a3ed495aaf6f",
+      "bytes": 219841,
+      "sha256": "a984db121530767da26140827ea03c0444a95591387ca2616905232bff0a4760",
       "snapshot": "0.26.4"
     },
     {
       "path": "design/release-0.26.4/lanes-11404-ko-390.png",
-      "bytes": 167641,
-      "sha256": "63fca6b5511670062f3c8bf04351f4a9606a59cdc85d2a9bd856114b4aca88aa",
+      "bytes": 167470,
+      "sha256": "5194c7c1e08b248dc9e35ccb0bcf40effab121bc8d22f65ca74314b6d278ba8d",
       "snapshot": "0.26.4"
     },
     {
       "path": "design/release-0.26.4/merge.py",
-      "bytes": 5650,
-      "sha256": "330d0eccb3b1917384a0fff2d857c2d7d61edbc9de9adb8fc2f098de81d12974",
+      "bytes": 6441,
+      "sha256": "03174006b70a8ebf6715ee564f8930196c6515feb117af50a7637b1c4eab61cf",
       "snapshot": "0.26.4"
     },
     {
@@ -5649,6 +5649,36 @@
       "snapshot": "0.26.4"
     },
     {
+      "path": "design/release-0.26.4/review/recheck-circuit-11404-ko-1440-redflag.png",
+      "bytes": 197046,
+      "sha256": "cd714aa83e2a7a6e02c6a3b6e4e6b83ec66524056c534e32b19c22d52129a117",
+      "snapshot": "0.26.4"
+    },
+    {
+      "path": "design/release-0.26.4/review/recheck-lanes-11404-ko-390.png",
+      "bytes": 164976,
+      "sha256": "2c30066a0557a34abf9b643d997e13e144e662ff8ea02b286daee17c2d4b4ac9",
+      "snapshot": "0.26.4"
+    },
+    {
+      "path": "design/release-0.26.4/review/recheck-profile-hirakawa-ko-390.png",
+      "bytes": 52615,
+      "sha256": "e33c98089530328db762b3774c7426672a5ad32b8117d6bf90553baf0022e944",
+      "snapshot": "0.26.4"
+    },
+    {
+      "path": "design/release-0.26.4/review/recheck-result-11404-en-390.png",
+      "bytes": 71042,
+      "sha256": "1c32b0bca1b5dda8b16795eb34d9a419be72753a6c56e67b38881da9abca5238",
+      "snapshot": "0.26.4"
+    },
+    {
+      "path": "design/release-0.26.4/review/recheck-result-11404-ko-1440.png",
+      "bytes": 103631,
+      "sha256": "e15623f96c6dc34e09028237960ddcae8fd6fa1dcc993759f728e6de73788cf1",
+      "snapshot": "0.26.4"
+    },
+    {
       "path": "design/release-0.26.4/review/result-11404-en-390.png",
       "bytes": 62258,
       "sha256": "a12d0bbbd1297231f1d8a6bbafa508fb80154c7caff7731a23ab5407630e6851",
@@ -5657,7 +5687,7 @@
     {
       "path": "design/release-0.26.4/sync-result.json",
       "bytes": 14860,
-      "sha256": "bc1c946729bee0eac6edc174bea2358c6723ac910dd804fa517d8744496502e6",
+      "sha256": "ad7279e7cb74edc0db57cd402003628627a8df92c99a9d0d227b1e1d0f597309",
       "snapshot": "0.26.4"
     },
     {
@@ -5668,8 +5698,8 @@
     },
     {
       "path": "design/release-0.26.4/validation-report.json",
-      "bytes": 19844,
-      "sha256": "4e5fb14f3309414f7c01db69dc690ee94e5c69979d33d6b22edd727911700da0",
+      "bytes": 30741,
+      "sha256": "fea923bf2af1d3470d74ebff0e816d4d51654987742f812531176337211b9ec2",
       "snapshot": "0.26.4"
     },
     {
@@ -6022,8 +6052,8 @@
     },
     {
       "path": "docs/SPEC-0.26.4.md",
-      "bytes": 19019,
-      "sha256": "36e7d7e5dd3c96e0bce32a419e7ce89a25662093f5f24f32f7f307c46e19dc4e",
+      "bytes": 20513,
+      "sha256": "c5128e4e503fbc54ee5c66bc7c8de3c4f05e8d2aa3bc555079d2da2c38de6ae3",
       "snapshot": "0.26.4"
     },
     {
@@ -6394,8 +6424,8 @@
     },
     {
       "path": "f1/index.html",
-      "bytes": 23346114,
-      "sha256": "ec22670607390a43cc68bac09e1baeb70c6d7ab5a572f7897828707286ca2c1d",
+      "bytes": 23347071,
+      "sha256": "48258cd925c90c1aa7dcfcf7a0f2a9614f481aa80e46dad4e5779ce78a6e8ef3",
       "snapshot": "0.26.4"
     },
     {
@@ -6520,9 +6550,9 @@
     },
     {
       "path": "f1/profiles/profiles.js",
-      "bytes": 38396,
-      "sha256": "448b50e6a13a00a0f4464f187c08ba91adc38d741357b669e3e4df4773e38cc9",
-      "snapshot": "0.25.0"
+      "bytes": 38747,
+      "sha256": "41e3d0d5b63be0ccd64dd264a4340b0a8cdcb4db482ac26156d8e7638684aa03",
+      "snapshot": "0.26.4"
     },
     {
       "path": "f1/profiles/teams-desktop.png",
@@ -10744,8 +10774,8 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 29202,
-      "sha256": "4d1b30359de3edda6c1ffe28d1e35cf51afbb9948093c7f6d594f98f3539ef6c",
+      "bytes": 29564,
+      "sha256": "fc9494512e6193bfcb0103b2eee28cef7a6a4e7d840aad4eb8f566adf52c65c7",
       "snapshot": "0.26.4"
     },
     {

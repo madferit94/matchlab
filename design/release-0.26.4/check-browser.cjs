@@ -15,6 +15,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {chromium}=require('playwright');
 const root=path.resolve(__dirname,'../..'),ADDED={11388:'Max VERSTAPPEN',11396:'Kimi ANTONELLI',11404:'Max VERSTAPPEN'},RED=11404;
 const ABSENT={ko:'불참',en:'Did not take part'},COLLECTED={ko:'OpenF1 결과 수집:',en:'OpenF1 result collected'};
+const STANDINGS_NOTE={ko:'멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다.',en:'Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order.'};
 const NOTE={ko:'경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).',en:'Forecast published before this race (data as of 2026-10-07; the race result is not used).'};
 const TIP={ko:'1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.',en:'1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.'};
 const INSTALL=`(key)=>{const read=id=>JSON.parse(document.getElementById(id).textContent),D=read('dataset'),M=read('maps'),H=read('historical'),F=read('forecasts');
@@ -73,6 +74,10 @@ const PAUSE=sel=>`(()=>{const b=document.querySelector('${sel}');if(['일시정�
     if(+key===RED&&lang==='ko'&&width===390){const shot=`result-${key}-${lang}-${width}.png`;await page.locator('#detail').screenshot({path:path.join(__dirname,shot)});result.screenshots.push(shot)}
     run.gps.push(gp);
    }
+   // recheck RC-1: the recalculated standings carry a one-line notice wherever they are shown
+   run.standings_notice={};
+   for(const route of ['standings','drivers','teams','driver=lando-norris','team=mclaren']){await page.goto(base+'/f1/index.html?year=2026&lang='+lang+'#'+route,{waitUntil:'load',timeout:120000});await page.waitForSelector('[data-standings-recomputed]',{timeout:60000});run.standings_notice[route]=await page.$$eval('[data-standings-recomputed]',e=>e.map(x=>x.textContent))}
+   ok(Object.values(run.standings_notice).every(t=>t.length===1&&t[0]===STANDINGS_NOTE[lang]),`standings notice on standings, driver and team pages ${lang} ${width}`);
    const of=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));run.overflow=of;ok(of.scrollWidth<=of.clientWidth,`no horizontal overflow ${lang} ${width}`);
    run.page_errors=errors;ok(errors.length===0,`page errors 0 ${lang} ${width}`);result.runs.push(run);await ctx.close();
   }

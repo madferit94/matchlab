@@ -153,6 +153,20 @@
     - 미국 GP 출발일 바꾸기 → "F1 added GP changed after collection: 11396"
   - 앞서 확인한 기존 GP·서킷 변조도 계속 FAIL이다.
 
+### 재검증 후 수정 (RC-1, 2026-11-02)
+- 다시 계산한 챔피언십 순위가 보이는 모든 화면에 한 줄 안내를 넣었다. 대상은 프로필 화면의 챔피언십·드라이버 목록·팀 목록·드라이버 상세·팀 상세다.
+  - 한국어: "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+  - 영어: "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+- 구현:
+  - 문구는 `profile-data`의 `note_display`에 두고(`merge.py`가 다시 계산했을 때만 씀), 프로필 모듈(`f1/profiles/profiles.js`, 페이지에 그대로 실음)이 있을 때만 보인다.
+  - `data-pins.json`의 프로필 해시를 갱신했다.
+  - `check_release.py`는 페이지의 프로필 모듈이 원본과 같고 안내 자리 5곳이 있는지 확인한다.
+- 확인: `check-browser.cjs` PASS(98개 확인). 한영 × 390/1440, 다섯 화면 모두 안내가 정확히 한 줄 보인다.
+- 다시 돌린 검사:
+  - PASS: `check-sync`(122개), `npm run test:server` 24개, `npm run build` + `node server/check-vercel.cjs` 5개, `node analysis/check.cjs` 15개, `npm run test:report` 14개, `npm run test:odds`, F1 노드 검사, Chrome 복사본 6개.
+  - 고친 과거 검사 복사본 3개(`check-names`, `check-tyres`, `profiles/check-data`)도 PASS.
+- 크기: `f1/index.html` 23,347,071바이트.
+
 ### 후속(이번 범위 밖)
 - R7: `f1/index.html`이 23.3MB(gzip 3.07MB)다. 축구(0.26.0)처럼 F1 자료를 별도 파일로 나누는 작업을 시즌이 끝나기 전에 한다.
 - R6: OpenF1은 경기 뒤에도 값을 고친다. 경기 다음 날 다시 받는 절차(위 명령)를 쓴다.

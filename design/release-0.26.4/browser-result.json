@@ -96,6 +96,23 @@
     "cancelled": 2,
     "scheduled": 4
    },
+   "standings_notice": {
+    "standings": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "drivers": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "teams": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "driver=lando-norris": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "team=mclaren": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ]
+   },
    "overflow": {
     "scrollWidth": 390,
     "clientWidth": 390
@@ -157,7 +174,7 @@
       "rate": 1.003,
       "p1": [
        30.489311935067363,
-       30.536247924737285
+       30.536246694951867
       ]
      },
      "red_flag": {
@@ -223,6 +240,23 @@
     "cancelled": 2,
     "scheduled": 4
    },
+   "standings_notice": {
+    "standings": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "drivers": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "teams": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "driver=lando-norris": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ],
+    "team=mclaren": [
+     "멕시코시티 GP 결과 기준으로 다시 계산한 순위입니다(공식 순위표 갱신 전). 동점은 경기 전 순위 순서입니다."
+    ]
+   },
    "overflow": {
     "scrollWidth": 1440,
     "clientWidth": 1440
@@ -281,10 +315,10 @@
      "play_1x": {
       "samples": 16,
       "max_abs_diff_laps": 0,
-      "rate": 1,
+      "rate": 1.001,
       "p1": [
-       30.489517309229523,
-       30.536246694951867
+       30.48931156613169,
+       30.53624755580171
       ]
      },
      "red_flag": {
@@ -294,7 +328,7 @@
       ],
       "recorded_seconds": [
        3822.2,
-       4054.2
+       4048.2
       ],
       "predicted_canvas_unchanged": true,
       "p1": [
@@ -349,6 +383,23 @@
     "completed": 19,
     "cancelled": 2,
     "scheduled": 4
+   },
+   "standings_notice": {
+    "standings": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "drivers": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "teams": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "driver=lando-norris": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "team=mclaren": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ]
    },
    "overflow": {
     "scrollWidth": 390,
@@ -449,6 +500,23 @@
     "cancelled": 2,
     "scheduled": 4
    },
+   "standings_notice": {
+    "standings": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "drivers": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "teams": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "driver=lando-norris": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ],
+    "team=mclaren": [
+     "Standings recalculated from the Mexico City GP result (before the official table update). Ties keep the pre-race order."
+    ]
+   },
    "overflow": {
     "scrollWidth": 1440,
     "clientWidth": 1440
@@ -463,9 +531,9 @@
   "circuit-11404-en-390.png",
   "lanes-11404-en-1440.png"
  ],
- "checks": 94,
+ "checks": 98,
  "blocked_external_hosts": [
   "media.formula1.com"
  ],
- "checked_at": "2026-11-02T02:55:09.304Z"
+ "checked_at": "2026-11-02T03:11:46.839Z"
 }
