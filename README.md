@@ -14,6 +14,8 @@ A web service for looking up football and F1 records, choosing metrics in plain 
 
 The service uses saved data. Predictions are experimental results, and replays are screens rebuilt from records.
 
+Football results come from Understat and StatMuse up to 2026-09-20, and from the public football-data.co.uk CSV files (score, shots, shots on target; no xG) from then until 2026-10-26. Win/draw/loss predictions are the stored values made from data through 2026-09-20, and finished matches show the prediction next to the actual result.
+
 ## How to run
 
 Install Node.js 22 (the program needed to run the service), then run this in a terminal from the repository folder.
@@ -26,4 +28,4 @@ Open [localhost:8765](http://127.0.0.1:8765/) in your browser.
 
 [Setup and deployment guide](docs/VERCEL.ko.md) · [Detailed documents](docs/README.md) · [Changelog](CHANGELOG.md) (documents are in Korean)
 
-Current version: **0.26.4**
+Current version: **0.27.0**

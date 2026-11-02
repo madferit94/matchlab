@@ -1175,20 +1175,20 @@
     {
       "path": "analysis/check-result.json",
       "bytes": 112,
-      "sha256": "86693c47e9147654caaed2ee2670ee3be3fb06f209c3bb2a4392d3e1e88ac12b",
-      "snapshot": "0.7.0"
+      "sha256": "7a3b60d2e34ad13400a2e34447823ad8c96614b155c561dadf39cf8314bbe1c2",
+      "snapshot": "0.27.0"
     },
     {
       "path": "analysis/check.cjs",
-      "bytes": 5794,
-      "sha256": "6c231eaaaf4c1dfbc1bc879c31ae774ad5dec04e125d3e45867e579c68a9bd25",
-      "snapshot": "0.26.0"
+      "bytes": 7274,
+      "sha256": "0a96a0fbfc043ad8eb8b1435058d64ef10e4dffb32194dd2a88db80eb64f7cf5",
+      "snapshot": "0.27.0"
     },
     {
       "path": "analysis/record-engine.cjs",
-      "bytes": 9998,
-      "sha256": "5837d7ff665e4582aaf277af17f2c6eb6ec45dc9348c767e5810e41491ad56cd",
-      "snapshot": "0.25.1"
+      "bytes": 10249,
+      "sha256": "b18f804bfe81172e26bbf244ffcb0647e53b7a6aeaffc464096f8f45b17d5c84",
+      "snapshot": "0.27.0"
     },
     {
       "path": "analysis/release-0.21.3/browser-result.json",
@@ -4762,15 +4762,15 @@
     },
     {
       "path": "data/football/data.en.js",
-      "bytes": 1822191,
-      "sha256": "19f6185266ebbf41dc9cb8757582017d551e9d6274ea528bde6e1e6a90bc43c0",
-      "snapshot": "0.26.0"
+      "bytes": 1827454,
+      "sha256": "9db900467c0aef72fb1a9cbca2287826d2e8041da9c04950e85306735ad74e0a",
+      "snapshot": "0.27.0"
     },
     {
       "path": "data/football/data.ko.js",
-      "bytes": 1823065,
-      "sha256": "c57e411d877ac4dcbe64222ee3652ec677f0c9800bd3f353207e5d41d5239b7b",
-      "snapshot": "0.26.0"
+      "bytes": 1828328,
+      "sha256": "21cce185baf5561ab50e91986f389b26351ef9938f3a9a503b8ab5160346d33b",
+      "snapshot": "0.27.0"
     },
     {
       "path": "data/football/predictions.js",
@@ -9382,15 +9382,15 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 182735,
-      "sha256": "e0f009a3c4303a3fdb1c7cc8c13e0a8abc24565b586c5b744a279be42b881afe",
-      "snapshot": "0.26.2"
+      "bytes": 191937,
+      "sha256": "c32bd92f67a4615add253a3d4cd2eeeb92d6a434ff8645e94e73c8bb901d9c5c",
+      "snapshot": "0.27.0"
     },
     {
       "path": "index.html",
-      "bytes": 183665,
-      "sha256": "b684a801f647276674eb039ca22ed715c27a5063cfd4e07f1ef8c2f72596fd0e",
-      "snapshot": "0.26.2"
+      "bytes": 192919,
+      "sha256": "097750a45bcf19d7d881cd3a8361bb4744ba9f718f54490d81d307a1d7149fc5",
+      "snapshot": "0.27.0"
     },
     {
       "path": "modeling/.gitignore",
@@ -10066,15 +10066,15 @@
     },
     {
       "path": "reports/release-0.25.0/check.cjs",
-      "bytes": 9281,
-      "sha256": "f763c5a902280d050570a3cd1350413c533a3991322502702fab623a802d1f13",
-      "snapshot": "0.25.0"
+      "bytes": 9847,
+      "sha256": "fe83e987b04ef06de96156a8885cde06c87bece26ad60e975060df8eaeb1097f",
+      "snapshot": "0.27.0"
     },
     {
       "path": "reports/release-0.25.0/checks.json",
-      "bytes": 1801,
-      "sha256": "05d4a46bf02d0826e07e8c2874ba59f04644ca905cbd9e5f79493ca1f2cc8571",
-      "snapshot": "0.25.0"
+      "bytes": 1919,
+      "sha256": "b158396f1c53fd2a7bf824035101fce029a84aac28bcf3cb53bf550978e5864c",
+      "snapshot": "0.27.0"
     },
     {
       "path": "reports/release-0.25.0/live-check.json",
@@ -10156,9 +10156,9 @@
     },
     {
       "path": "server/check.cjs",
-      "bytes": 16775,
-      "sha256": "970fe10406a3f7973fe0fc81cc8d4d6008703297c2465a4e152482a664a87827",
-      "snapshot": "0.26.2"
+      "bytes": 17599,
+      "sha256": "09174400cab9c2a66af8a261f1652c9b663b1ff95d80b644d2b92b62291d934b",
+      "snapshot": "0.27.0"
     },
     {
       "path": "server/football-data.cjs",
@@ -10816,11 +10816,18 @@
     }
   ],
   "display_dataset": {
-    "completed": 2399,
-    "scheduled": 641,
+    "completed": 2459,
+    "scheduled": 581,
     "team_match_rows": 4798,
     "season_snapshots": 160,
-    "metrics": 47
+    "metrics": 47,
+    "result_refresh": {
+      "provider": "football-data.co.uk",
+      "previous_last_date": "2026-09-20",
+      "as_of": "2026-10-26",
+      "results": 60,
+      "xg_after_previous_last_date": null
+    }
   },
   "csv_demo": {
     "completed": 20,

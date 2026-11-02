@@ -25,7 +25,7 @@ for doc in link_docs:
         links+=1
 # 0.26.2: one release number everywhere. README "current version" lines must
 # match VERSION (they were left at 0.25.3 through 0.26.1).
-RELEASE='0.26.4'
+RELEASE='0.27.0'
 version_file=(p/'VERSION').read_text(encoding='utf8').strip()
 assert version_file==RELEASE, 'VERSION differs from the release checker version: '+version_file
 assert json.loads((p/'package.json').read_text(encoding='utf8'))['version']==RELEASE, 'package.json version differs from VERSION'
@@ -92,6 +92,45 @@ def notice_block(name):
 notice_logic=[notice_source(lang).replace(NOTICE_TEXT_LINE[lang]+'\n','',1) for lang in ['ko','en']]
 assert notice_logic[0]==notice_logic[1], 'Load notice logic differs by language'
 assert not re.search('[가-힣]',(p/'design/release-0.26.2/load-notice.en.js').read_text(encoding='utf8')), 'Korean text in the English load notice'
+# 0.27.0: football result refresh. The data files must equal the v50 blocks with the recorded refresh applied
+# (tools/football_refresh/refresh.py, refresh.json), byte for byte. The pages carry two new blocks and the
+# recorded code edits in design/release-0.27.0/page-patch.json (each must equal build_pages.py's rules). The
+# rebuild removes the blocks and undoes the edits, then compares with v50 exactly as before.
+import importlib.util
+sys.dont_write_bytecode=True  # no __pycache__ inside the published tree
+def load_module(name,path):
+    spec=importlib.util.spec_from_file_location(name,path); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); return module
+refresh_module=load_module('football_refresh',p/'tools/football_refresh/refresh.py')
+REFRESHED_TEXT=refresh_module.expected_texts()
+for data_name,text in REFRESHED_TEXT.items():
+    assert (data_dir/data_name).read_text(encoding='utf8')==text, 'Football data differs from apply(v50 data, refresh.json): '+data_name
+REFRESH=json.loads((p/'tools/football_refresh/0.27.0/refresh.json').read_text(encoding='utf8'))
+R0270=p/'design/release-0.27.0'
+build_module=load_module('build_pages_0270',R0270/'build_pages.py')
+PAGE_PATCH=json.loads((R0270/'page-patch.json').read_text(encoding='utf8'))
+for page,lang in [('index.html','ko'),('index.en.html','en')]:
+    assert PAGE_PATCH[page]==[dict(why=w,before=b,after=a) for w,b,a in build_module.rules(lang)], 'page-patch.json differs from build_pages.py rules: '+page
+REFRESH_TEXT_LINE_PREFIX='const text={'
+def refresh_ui_source(lang):
+    source=(R0270/('refresh-ui.'+lang+'.js')).read_text(encoding='utf8')
+    assert sum(line.startswith(REFRESH_TEXT_LINE_PREFIX) for line in source.split('\n'))==1, 'Refresh UI text line missing or repeated: '+lang
+    return source
+refresh_logic=['\n'.join(l for l in refresh_ui_source(lang).split('\n') if not l.startswith(REFRESH_TEXT_LINE_PREFIX)) for lang in ['ko','en']]
+assert refresh_logic[0]==refresh_logic[1], 'Refresh UI logic differs by language'
+assert not re.search('[가-힣]',refresh_ui_source('en')), 'Korean text in the English refresh UI'
+XG_HELPERS='<script id="matchlab-xg-helpers">'+(R0270/'xg-helpers.js').read_text(encoding='utf8').rstrip('\n')+'</script>'
+MAIN_SCRIPT_START='<script>\nlet metricHelpTrigger=null;'
+def undo_refresh(name,html):
+    lang=NOTICE_LANG[name]
+    ui='<script id="matchlab-refresh-ui">'+refresh_ui_source(lang).rstrip('\n')+'</script></body></html>'
+    assert html.endswith(ui) and html.count('matchlab-refresh-ui')==1, 'Refresh UI block missing, changed or moved: '+name
+    html=html[:-len(ui)]+'</body></html>'
+    assert html.count(XG_HELPERS+MAIN_SCRIPT_START)==1 and html.count('matchlab-xg-helpers')==1, 'xG helper block missing, changed or moved: '+name
+    html=html.replace(XG_HELPERS+MAIN_SCRIPT_START,MAIN_SCRIPT_START)
+    for patch in reversed(PAGE_PATCH[name]):
+        assert html.count(patch['after'])==1, 'Recorded 0.27.0 code edit missing or repeated: '+name+' '+patch['why']
+        html=html.replace(patch['after'],patch['before'])
+    return html
 def strict_equal(a,b):
     """JSON value equality that also compares types: True != 1 and 1 != 1.0."""
     if type(a) is not type(b): return False
@@ -108,14 +147,14 @@ def data_tag(name):
     digest=hashlib.sha256((data_dir/name).read_bytes()).hexdigest()[:16]
     return '<script src="data/football/'+name+'?v='+digest+'"></script>'
 def reconstruct_inline(name):
-    html=(p/name).read_text(encoding='utf8')
+    html=undo_refresh(name,(p/name).read_text(encoding='utf8'))
     notice=data_tag(FOOTBALL_DATA[name])+notice_block(name)
     assert html.count(notice_block(name))==1 and html.count(notice)==1, 'Load notice missing or moved: '+name
     html=html.replace(notice,data_tag(FOOTBALL_DATA[name]))
     for file,key,ident in [(FOOTBALL_DATA[name],'data','data'),('predictions.js','predictions','prematch-predictions-v22')]:
         tag=data_tag(file)
         assert html.count(tag)==1, 'Football data tag missing or ?v= hash differs from file contents: '+name+' '+file
-        block=ORIGINAL_PREDICTIONS if file=='predictions.js' else data_json_text(file,key)
+        block=ORIGINAL_PREDICTIONS if file=='predictions.js' else v50_block(name,'data')
         html=html.replace(tag,'<script id="'+ident+'" type="application/json">'+block+'</script>')
     reader=DATA_READERS[1][1]
     assert html.count(PREDICTION_EXPANSION)==1 and html.count(reader+PREDICTION_EXPANSION)==1, 'Score grid expansion missing or moved: '+name
@@ -138,8 +177,6 @@ for name in FOOTBALL_DATA:
         assert re.findall(rx,rebuilt)==re.findall(rx,archived) and len(re.findall(rx,archived))==1, 'Football data differs from v50: '+name+' '+ident
 assert data_json_text('data.ko.js','data')!=data_json_text('data.en.js','data'), 'Language data files unexpectedly identical'
 # 0.26.1 compact prediction file checks.
-import importlib.util
-sys.dont_write_bytecode=True  # no __pycache__ inside the published tree
 compact_spec=importlib.util.spec_from_file_location('compact_predictions',p/'design/release-0.26.1/compact_predictions.py')
 compact_module=importlib.util.module_from_spec(compact_spec); compact_spec.loader.exec_module(compact_module)
 assert compact_module.build().encode('utf8')==(data_dir/'predictions.js').read_bytes(), 'predictions.js differs from compact_predictions.py output'
@@ -325,13 +362,13 @@ for f in files:
     digest=hashlib.sha256(b).hexdigest()
     snapshot=labels[relative] if old_hashes.get(relative)==digest else RELEASE
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version=RELEASE,public_export=True,files=entries,display_dataset=dict(completed=2399,scheduled=641,team_match_rows=4798,season_snapshots=160,metrics=47),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version=RELEASE,public_export=True,files=entries,display_dataset=dict(completed=len(json.loads(data_json_text('data.ko.js','data'))['completed']),scheduled=len(json.loads(data_json_text('data.ko.js','data'))['scheduled']),team_match_rows=4798,season_snapshots=160,metrics=47,result_refresh=dict(provider=REFRESH['provider'],previous_last_date=REFRESH['previous_last_date'],as_of=REFRESH['as_of'],results=len(REFRESH['results']),xg_after_previous_last_date=None)),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
     actual=json.loads((p/'publication_manifest.json').read_text(encoding='utf8'))
     assert actual==manifest,'Manifest differs from current release files'
-print(f'PASS release audit: {len(entries)} hashed files, {links} local documentation links; design payloads identical; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error {worst_outcome_error:.1e}); no private/admin files or credential-pattern matches.')
+print(f'PASS release audit: {len(entries)} hashed files, {links} local documentation links; design payloads identical; football data = v50 + refresh.json ({len(REFRESH['results'])} results through {REFRESH['as_of']}), pages = v50 after undoing {sum(len(v) for v in PAGE_PATCH.values())} recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error {worst_outcome_error:.1e}); no private/admin files or credential-pattern matches.')
 
 
 

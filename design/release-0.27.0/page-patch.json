@@ -1,0 +1,166 @@
+{
+ "index.html": [
+  {
+   "why": "calc: count xG only when the match has it; null when any selected match lacks it",
+   "before": "xg=0,xga=0,w=0,d=0,l=0;ms.forEach(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;p+=f>a?3:f===a?1:0;w+=f>a;d+=f===a;l+=f<a;gf+=f;ga+=a;xg+=h?m.hx:m.ax;xga+=h?m.ax:m.hx});return {n,p,gf,ga,xg,xga,w,d,l}}",
+   "after": "xg=0,xga=0,w=0,d=0,l=0,nx=0;ms.forEach(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;p+=f>a?3:f===a?1:0;w+=f>a;d+=f===a;l+=f<a;gf+=f;ga+=a;if(hasXg(m)){nx++;xg+=h?m.hx:m.ax;xga+=h?m.ax:m.hx}});if(nx<n){xg=null;xga=null}return {n,p,gf,ga,xg,xga,w,d,l}}"
+  },
+  {
+   "why": "preview xG per match",
+   "before": "h.n?h.xg/h.n:null,a.n?a.xg/a.n:null,2]",
+   "after": "h.n&&h.xg!==null?h.xg/h.n:null,a.n&&a.xg!==null?a.xg/a.n:null,2]"
+  },
+  {
+   "why": "preview xG chart scale uses matches with xG",
+   "before": "let max=Math.max(1,...hs.map(g=>g.home===m.home?g.hx:g.ax),...as.map(g=>g.home===m.away?g.hx:g.ax));",
+   "after": "let max=Math.max(1,...hs.filter(hasXg).map(g=>g.home===m.home?g.hx:g.ax),...as.filter(hasXg).map(g=>g.home===m.away?g.hx:g.ax));"
+  },
+  {
+   "why": "preview xG chart line keeps match positions, draws only matches with xG",
+   "before": "function line(ms,id,c,dash){let points=ms.map((g,i)=>`",
+   "after": "function line(ms,id,c,dash){ms=ms.map((g,i)=>[g,i]).filter(([g])=>hasXg(g));let points=ms.map(([g,i])=>`"
+  },
+  {
+   "why": "preview xG chart points",
+   "before": "+ms.map((g,i)=>`<circle cx=\"${40+i*70}\"",
+   "after": "+ms.map(([g,i])=>`<circle cx=\"${40+i*70}\""
+  },
+  {
+   "why": "preview xG chart note when a match has no xG",
+   "before": "<div class=\"muted\">같은 경기 순서로 비교 · xG: 기회의 득점 기대치</div><details>",
+   "after": "<div class=\"muted\">같은 경기 순서로 비교 · xG: 기회의 득점 기대치</div>${hs.concat(as).some(g=>!hasXg(g))?'<div class=\"muted\">xG 자료가 없는 경기(football-data.co.uk 결과)는 점을 표시하지 않습니다.</div>':''}<details>"
+  },
+  {
+   "why": "rows(): xG cell",
+   "before": "<td>${h?m.hg:m.ag} : ${h?m.ag:m.hg}</td><td>${(h?m.hx:m.ax).toFixed(2)}</td>",
+   "after": "<td>${h?m.hg:m.ag} : ${h?m.ag:m.hg}</td><td>${xgText(h?m.hx:m.ax)}</td>"
+  },
+  {
+   "why": "historyRows(): xG cells",
+   "before": "${f} : ${a}</td><td>${(h?m.hx:m.ax).toFixed(2)}</td><td>${(h?m.ax:m.hx).toFixed(2)}</td>",
+   "after": "${f} : ${a}</td><td>${xgText(h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}</td>"
+  },
+  {
+   "why": "overviewRecent(): xG cell",
+   "before": "${f}:${a}</td><td>${(h?m.hx:m.ax).toFixed(2)}</td>",
+   "after": "${f}:${a}</td><td>${xgText(h?m.hx:m.ax)}</td>"
+  },
+  {
+   "why": "teamOverview(): xG per match bars",
+   "before": ",s.xg/s.n],",
+   "after": ",s.xg===null?null:s.xg/s.n],"
+  },
+  {
+   "why": "teamOverview(): xG conceded per match bars",
+   "before": ",s.xga/s.n]].map(([label,v])=>",
+   "after": ",s.xga===null?null:s.xga/s.n]].map(([label,v])=>"
+  },
+  {
+   "why": "teamOverview(): bar width and value for missing xG",
+   "before": "width:${v/max*100}%;background:${c}\"></span></div><span>${v.toFixed(2)}</span>",
+   "after": "width:${v===null?0:v/max*100}%;background:${c}\"></span></div><span>${v===null?'—':v.toFixed(2)}</span>"
+  },
+  {
+   "why": "updateTeam(): season card xG",
+   "before": " · xG ${v.n?(v.xg/v.n).toFixed(2):'—'}</span>",
+   "after": " · xG ${v.n&&v.xg!==null?(v.xg/v.n).toFixed(2):'—'}</span>"
+  },
+  {
+   "why": "updateTeam(): season table xG",
+   "before": "<td>${v.n?(v.xg/v.n).toFixed(2):'—'}</td></tr>",
+   "after": "<td>${v.n&&v.xg!==null?(v.xg/v.n).toFixed(2):'—'}</td></tr>"
+  },
+  {
+   "why": "renderCompletedMatch(): home xG",
+   "before": "<div class=\"stat\"><strong>${m.hx.toFixed(2)}</strong>",
+   "after": "<div class=\"stat\"><strong>${xgText(m.hx)}</strong>"
+  },
+  {
+   "why": "renderCompletedMatch(): away xG",
+   "before": "<strong>${m.ax.toFixed(2)}</strong></div></article>",
+   "after": "<strong>${xgText(m.ax)}</strong></div></article>"
+  }
+ ],
+ "index.en.html": [
+  {
+   "why": "calc: count xG only when the match has it; null when any selected match lacks it",
+   "before": "xg=0,xga=0,w=0,d=0,l=0;ms.forEach(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;p+=f>a?3:f===a?1:0;w+=f>a;d+=f===a;l+=f<a;gf+=f;ga+=a;xg+=h?m.hx:m.ax;xga+=h?m.ax:m.hx});return {n,p,gf,ga,xg,xga,w,d,l}}",
+   "after": "xg=0,xga=0,w=0,d=0,l=0,nx=0;ms.forEach(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;p+=f>a?3:f===a?1:0;w+=f>a;d+=f===a;l+=f<a;gf+=f;ga+=a;if(hasXg(m)){nx++;xg+=h?m.hx:m.ax;xga+=h?m.ax:m.hx}});if(nx<n){xg=null;xga=null}return {n,p,gf,ga,xg,xga,w,d,l}}"
+  },
+  {
+   "why": "preview xG per match",
+   "before": "h.n?h.xg/h.n:null,a.n?a.xg/a.n:null,2]",
+   "after": "h.n&&h.xg!==null?h.xg/h.n:null,a.n&&a.xg!==null?a.xg/a.n:null,2]"
+  },
+  {
+   "why": "preview xG chart scale uses matches with xG",
+   "before": "let max=Math.max(1,...hs.map(g=>g.home===m.home?g.hx:g.ax),...as.map(g=>g.home===m.away?g.hx:g.ax));",
+   "after": "let max=Math.max(1,...hs.filter(hasXg).map(g=>g.home===m.home?g.hx:g.ax),...as.filter(hasXg).map(g=>g.home===m.away?g.hx:g.ax));"
+  },
+  {
+   "why": "preview xG chart line keeps match positions, draws only matches with xG",
+   "before": "function line(ms,id,c,dash){let points=ms.map((g,i)=>`",
+   "after": "function line(ms,id,c,dash){ms=ms.map((g,i)=>[g,i]).filter(([g])=>hasXg(g));let points=ms.map(([g,i])=>`"
+  },
+  {
+   "why": "preview xG chart points",
+   "before": "+ms.map((g,i)=>`<circle cx=\"${40+i*70}\"",
+   "after": "+ms.map(([g,i])=>`<circle cx=\"${40+i*70}\""
+  },
+  {
+   "why": "preview xG chart note when a match has no xG",
+   "before": "<div class=\"muted\">Compared by match order · xG: expected goals from chances</div><details>",
+   "after": "<div class=\"muted\">Compared by match order · xG: expected goals from chances</div>${hs.concat(as).some(g=>!hasXg(g))?'<div class=\"muted\">Matches without xG (football-data.co.uk results) have no point.</div>':''}<details>"
+  },
+  {
+   "why": "rows(): xG cell",
+   "before": "<td>${h?m.hg:m.ag} : ${h?m.ag:m.hg}</td><td>${(h?m.hx:m.ax).toFixed(2)}</td>",
+   "after": "<td>${h?m.hg:m.ag} : ${h?m.ag:m.hg}</td><td>${xgText(h?m.hx:m.ax)}</td>"
+  },
+  {
+   "why": "historyRows(): xG cells",
+   "before": "${f} : ${a}</td><td>${(h?m.hx:m.ax).toFixed(2)}</td><td>${(h?m.ax:m.hx).toFixed(2)}</td>",
+   "after": "${f} : ${a}</td><td>${xgText(h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}</td>"
+  },
+  {
+   "why": "overviewRecent(): xG cell",
+   "before": "${f}:${a}</td><td>${(h?m.hx:m.ax).toFixed(2)}</td>",
+   "after": "${f}:${a}</td><td>${xgText(h?m.hx:m.ax)}</td>"
+  },
+  {
+   "why": "teamOverview(): xG per match bars",
+   "before": ",s.xg/s.n],",
+   "after": ",s.xg===null?null:s.xg/s.n],"
+  },
+  {
+   "why": "teamOverview(): xG conceded per match bars",
+   "before": ",s.xga/s.n]].map(([label,v])=>",
+   "after": ",s.xga===null?null:s.xga/s.n]].map(([label,v])=>"
+  },
+  {
+   "why": "teamOverview(): bar width and value for missing xG",
+   "before": "width:${v/max*100}%;background:${c}\"></span></div><span>${v.toFixed(2)}</span>",
+   "after": "width:${v===null?0:v/max*100}%;background:${c}\"></span></div><span>${v===null?'—':v.toFixed(2)}</span>"
+  },
+  {
+   "why": "updateTeam(): season card xG",
+   "before": " · xG ${v.n?(v.xg/v.n).toFixed(2):'—'}</span>",
+   "after": " · xG ${v.n&&v.xg!==null?(v.xg/v.n).toFixed(2):'—'}</span>"
+  },
+  {
+   "why": "updateTeam(): season table xG",
+   "before": "<td>${v.n?(v.xg/v.n).toFixed(2):'—'}</td></tr>",
+   "after": "<td>${v.n&&v.xg!==null?(v.xg/v.n).toFixed(2):'—'}</td></tr>"
+  },
+  {
+   "why": "renderCompletedMatch(): home xG",
+   "before": "<div class=\"stat\"><strong>${m.hx.toFixed(2)}</strong>",
+   "after": "<div class=\"stat\"><strong>${xgText(m.hx)}</strong>"
+  },
+  {
+   "why": "renderCompletedMatch(): away xG",
+   "before": "<strong>${m.ax.toFixed(2)}</strong></div></article>",
+   "after": "<strong>${xgText(m.ax)}</strong></div></article>"
+  }
+ ]
+}

@@ -13,7 +13,7 @@
   if(/반대로|역순|reverse|opposite/.test(q))return previous?(previous==='asc'?'desc':'asc'):'missing';
   return null;
  }
- function summary(id,ms){const s={n:ms.length,gf:0,ga:0,xg:0,xga:0,p:0,w:0,d:0,l:0};for(const m of ms){const h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;s.gf+=f;s.ga+=a;s.xg+=h?m.hx:m.ax;s.xga+=h?m.ax:m.hx;s.w+=f>a;s.d+=f===a;s.l+=f<a;s.p+=f>a?3:f===a?1:0}return s}
+ function summary(id,ms){const s={n:ms.length,gf:0,ga:0,xg:0,xga:0,p:0,w:0,d:0,l:0};let nx=0;for(const m of ms){const h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;s.gf+=f;s.ga+=a;if(Number.isFinite(m.hx)&&Number.isFinite(m.ax)){nx++;s.xg+=h?m.hx:m.ax;s.xga+=h?m.ax:m.hx}s.w+=f>a;s.d+=f===a;s.l+=f<a;s.p+=f>a?3:f===a?1:0}if(nx<s.n){s.xg=null;s.xga=null}return s}
  function create(data){
   const registry=new Map(),resolvers=[],teams=Object.entries(data.teams).map(([id,t])=>({...t,id}));
   function parse(question,defaults={},previous=null){
@@ -58,14 +58,14 @@
    plan.question=question;return plan;
   }
   function records(id,plan,venue=plan.venue){let ms=data.completed.filter(m=>m.season===plan.season&&(m.home===id||m.away===id)&&(venue==='all'||(venue==='home'?m.home===id:m.away===id))).sort((a,b)=>a.date.localeCompare(b.date)||a.id.localeCompare(b.id));return plan.last?ms.slice(-plan.last):ms}
-  function value(s,plan){return !s.n?null:plan.metric==='w'?s.w/s.n*100:plan.perMatch?s[plan.metric]/s.n:s[plan.metric]}
+  function value(s,plan){return !s.n||s[plan.metric]===null?null:plan.metric==='w'?s.w/s.n*100:plan.perMatch?s[plan.metric]/s.n:s[plan.metric]}
   const base=(plan,rows)=>({status:rows.some(r=>r.n>0)?'ok':'empty',tool:plan.tool,plan,rows,engine:'JavaScript',datasetThrough:data.completed.map(m=>m.date).sort().at(-1),metric:plan.compareGoals?'xg':plan.metric,perMatch:plan.perMatch,unit:plan.metric==='w'?'%':'',verification:{finite:rows.every(r=>r.value===null||Number.isFinite(r.value)),matches:rows.reduce((n,r)=>n+r.n,0)},formula:plan.metric==='w'?'wins / matches × 100':plan.perMatch?plan.metric+' / matches':'sum('+plan.metric+')'});
   function clubRows(plan){return plan.teams.map(id=>{const ms=records(id,plan),s=summary(id,ms);return {id,label:data.teams[id].name,...s,value:value(s,plan),dates:ms.map(m=>m.date)}})}
   registry.set('team',plan=>base(plan,clubRows(plan)));
   registry.set('comparison',plan=>base(plan,clubRows(plan)));
-  registry.set('ranking',plan=>{const ids=teams.filter(t=>t.league===plan.league).map(t=>t.id);const r=clubRows({...plan,teams:ids}).filter(r=>r.n);r.sort((a,b)=>(a.value-b.value)*(plan.order==='asc'?1:-1)||a.label.localeCompare(b.label));return base(plan,r)});
+  registry.set('ranking',plan=>{const ids=teams.filter(t=>t.league===plan.league).map(t=>t.id);const r=clubRows({...plan,teams:ids}).filter(r=>r.n);r.sort((a,b)=>a.value===null&&b.value===null?a.label.localeCompare(b.label):a.value===null?1:b.value===null?-1:(a.value-b.value)*(plan.order==='asc'?1:-1)||a.label.localeCompare(b.label));return base(plan,r)});
   registry.set('venue',plan=>{const id=plan.teams[0];return base(plan,['home','away'].map(venue=>{const ms=records(id,plan,venue),s=summary(id,ms);return {label:venue,...s,value:value(s,plan),dates:ms.map(m=>m.date)}}))});
-  registry.set('trend',plan=>{const id=plan.teams[0],ms=records(id,plan);return base(plan,ms.map(m=>{const h=m.home===id;return {id:m.id,label:m.date,n:1,value:h?m.hx:m.ax,actual:h?m.hg:m.ag,opponent:data.teams[h?m.away:m.home].name}}))});
+  registry.set('trend',plan=>{const id=plan.teams[0],ms=records(id,plan);return base(plan,ms.map(m=>{const h=m.home===id;return {id:m.id,label:m.date,n:1,value:Number.isFinite(h?m.hx:m.ax)?(h?m.hx:m.ax):null,actual:h?m.hg:m.ag,opponent:data.teams[h?m.away:m.home].name}}))});
   function execute(plan){if(plan.error)return {status:'unsupported',reason:plan.error};const tool=registry.get(plan.tool);if(!tool)return {status:'unavailable',reason:plan.tool};return tool(plan)}
   return {parse,execute,records,register(name,handler,match){if(typeof handler!=='function')throw new TypeError('Handler required');if(match&&typeof match!=='function')throw new TypeError('Matcher must be a function');registry.set(name,handler);if(match)resolvers.push({name,match})},capabilities(){return [...registry.keys()]}};
  }
