@@ -1,0 +1,497 @@
+{
+ "run_id": "matchlab-0.26.4-2026-11-02",
+ "match_key": "F1_LATEST_GP",
+ "role": "reviewer",
+ "producer_id": "reviewer-f1sync-2026-10-21",
+ "status": "DONE",
+ "summary": "Independent review of feat/f1-latest-gp-0.26.4 (2a66bf1 on main 5a653c7); builder scripts and result files not used (reviewer scripts in scratch review-0264). Page diff: of 26 blocks only dataset, maps, profile-data and the main page script differ; forecasts, historical, tracks, f1-history-2024, f1-predictions-2025, f1-query-history byte-identical; replay/lane/circuit modules byte-identical to main and to f1/release-0.26.3 sources. Dataset: 22 of 25 GP entries byte-identical, 11388/11396/11404 changed scheduled -> completed (11404 also meeting/session date_end 22:00 -> 23:00 UTC as now in OpenF1). Maps: 22 entries identical, 3 new OBSERVED_LOCATION. OpenF1 direct (reviewer fetch 2026-11-02 02:26-02:30 UTC, 25 min after the builder's 02:01:39 collection): Singapore and United States identical row-for-row in all 8 endpoints (drivers, session_result, laps, stints, pit, race_control, weather, position); every map sample of cars 63 and 3 is an exact OpenF1 location row in all 3 GPs. Mexico City: laps/stints/pit/race_control/weather/position identical, but session_result now differs in 11 rows (post-race time penalties: PIA P7->P13 +10 s, COL P8->P15 +10 s, GAS P10->P17 +30 s; LAW, BOR, HAD, HIRAKAWA, ALB, SAI, HUL, PER move up; points change, HIRAKAWA now P10 with 1 point) - the page shows the provisional classification (R1). OpenF1 championship_drivers/teams for 11404 still equal the page (not yet updated for the penalties). Winners/laps/red flags: Singapore VER 62 laps, no red flag, 0 SC; United States ANTONELLI 56 laps, no red flag; Mexico City VER 71 laps, one red flag (RED FLAG 21:06:02 UTC, restart SESSION STARTED 21:45:00, window 3,756.5-6,094.6 s), 2 SC; pit rows 25/32/67. Leakage: the forecasts block is byte-identical to main, to f1/release-0.8.6/index-before.html and to the f1/index.html of commit 0f74498 (2026-10-08 00:22 KST), merged on GitHub as PR #12 at 2026-10-07T15:23:54Z, before all three races; as_of 2026-10-07T02:36:16Z < race starts. Sync (19 completed GPs, new GPs 4,001-4,402 phases): predicted P1 = recorded leader lap progress (both tabs) 0 difference, P1 finish = T, overtakes/backwards 0, all at the line at phase 1, independent hold model = recordedState for all cars; gaps 2 / 2 / 1.4592 s; 16 old GPs identical to main at every sample; 4 upcoming identical. Mexico City: predicted cars do not move during the red flag, but three recorded lap-reconstructed cars (30 LAW, 55 SAI, 50 HIR) creep about 0.88 lap during the suspension because their lap 45 lies wholly inside the window and the hold rule skips it (R2). Browser (Chrome 156, ko/en x 390/1440, Mexico City and Singapore): circuit 1x clock 0.999-1.002 recorded s/s; at 60x the predicted car's pixel advance equals the leader-clock expectation exactly (2.8193 / 2.3458 laps) and is 0.98 of the same driver's recorded GPS advance; lane tab 1x phase 0.01663-0.01670/s, predicted front lane = recorded front lane in every sample; Mexico red flag frames 4,100 s vs 6,000 s: 22 predicted rects identical, 3 of 20 reconstructed rects moved, lanes of 30/50/55 61.67% -> 62.79%. Pre-race forecast note ko/en shown; OCON row '15 / — / 자료 없음(No data) / —'; HIRAKAWA result row team '—', profile page renders without photo, 0 page errors, no horizontal overflow, catalogue completed 19 / cancelled 2 / scheduled 4. check_release PASS; tamper: 11 cases FAIL as intended (old GP, old map, forecasts as_of, historical, new GP back to scheduled, laps emptied, missing log, race order, map status, re-serialisation, state counts); new-GP content, profile-data, dataset extra top-level key, page PreRaceForecasts before-race condition and new-GP date_end are not pinned (R5). Existing protections are not weakened for the 22 untouched entries and the prediction blocks. Tests: test:server 24, build + check-vercel 5, analysis 15, test:report 14 (checks.json reverted), test:odds 877, 0.8.5/0.8.6 check-conditions, 0.8.6 check-history PASS. Legacy checks: check-names, check-tyres (run as scratch copies with Chrome and NODE_PATH) and profiles/check-data (driver count 23->24) pass all other assertions; only the payload-identity step fails and only for maps, dataset, profile-data (R8). Verdict: not merge-ready until R1 is fixed (re-collect Mexico City session_result and later the championship rows, or mark the result as provisional). Manifest must be regenerated after this commit.",
+ "cutoff_at": "2026-11-02T02:30:00Z",
+ "observed_at": "2026-11-02",
+ "provider": null,
+ "model": null,
+ "evidence": [
+  {
+   "path": "design/release-0.26.4/review/circuit-11404-ko-1440-redflag.png",
+   "description": "Mexico City ko 1440 at 5,000 s inside the red flag (Chrome 156, reviewer static server, external requests blocked). sha256[:16] 327637afe8d35f99"
+  },
+  {
+   "path": "design/release-0.26.4/review/lanes-11404-ko-390.png",
+   "description": "Mexico City lane tab ko 390 at phase 0.6 with the R3 speed note; comparison table shows the provisional ranks (R1). sha256[:16] 06f1739bd1ccba7d"
+  },
+  {
+   "path": "design/release-0.26.4/review/result-11404-en-390.png",
+   "description": "Mexico City result tab en 390: provisional classification, HIRAKAWA team \"—\". sha256[:16] a12d0bbbd1297231"
+  },
+  {
+   "path": "design/release-0.26.4/review/profile-hirakawa-ko-390.png",
+   "description": "HIRAKAWA profile ko 390: no photo, team \"—\", no errors. sha256[:16] e0b6bdb6dc0aeaf0"
+  },
+  {
+   "path": "(scratch, not committed) review-0264/raw/*.json.gz, openf1-compare.json, r4-result.json, browser-result.json",
+   "description": "Reviewer OpenF1 fetch (fetch-log.json with times and sha256) and harness outputs."
+  }
+ ],
+ "issues": [
+  {
+   "severity": "blocker",
+   "id": "R1-mexico-provisional-classification",
+   "description": "Mexico City (11404) session_result in the page is the provisional classification collected 2026-11-02 02:01:39 UTC. At 02:27:58 UTC OpenF1 returned a revised classification for 11 drivers after post-race time penalties: PIA P7 (6 pts) -> P13 (0), COL P8 (4) -> P15, GAS P10 (1) -> P17 (+30 s), LAW P9 -> P7 (6 pts), BOR P11 -> P8 (4), HAD P12 -> P9 (2), HIRAKAWA P13 -> P10 (1 pt), ALB, SAI, HUL, PER each up. The result tab, comparison table actual ranks (e.g. LAWSON shown 9), final lane ranks and profile pages show the old order. OpenF1 championship_drivers/teams for 11404 were not yet updated at 02:29 UTC, so standings will change again. Re-collect session_result (and championship rows once updated) before merge, or label the result provisional with the collection time."
+  },
+  {
+   "severity": "should-fix",
+   "id": "R2-red-flag-lap-inside-window",
+   "description": "redFlagHold skips a lap that starts and ends inside the suspension (moving time 0). In Mexico City lap 45 of cars 30 LAW (3,792.6-6,082.3 s), 55 SAI (3,794.1-6,089.3 s) and 50 HIR (3,808.4-6,091.5 s) lies wholly inside the window 3,756.5-6,094.6 s, so these three lap-reconstructed recorded cars creep ~0.88 lap around the circuit (and 61.67% -> 62.79% in the lane tab) while everything else is held. The 19 held laps behave correctly and the predicted cars do not move. Suggested rule: a lap wholly inside a suspension holds at its start and completes at the restart (or at its recorded end)."
+  },
+  {
+   "severity": "note",
+   "id": "R3-hirakawa-team",
+   "description": "HIRAKAWA (50) has no team, colour or photo in the 11404 race drivers row. Display does not break (result team \"—\", profile without photo, default car colour, 0 errors); in the lane tab his predicted lane has no position and empty status (no pre-race prediction). OpenF1 lists him as \"Haas F1 Team\" / 9C9FA2 in the same meeting's Practice 1 (11397), Practice 3 (11399) and Qualifying (11400), and in 11308 and 11335; the team and colour can be filled from those sessions with the source recorded."
+  },
+  {
+   "severity": "note",
+   "id": "R4-ocon-not-entered",
+   "description": "OCON (31) is in the 2026-10-07 forecast but did not take part in Mexico City. Comparison row shows actual \"—\", status \"자료 없음 / No data\", difference \"—\"; nothing breaks. Wording such as \"불참 / Did not take part\" would be clearer."
+  },
+  {
+   "severity": "note",
+   "id": "R5-checker-scope",
+   "description": "check_release keeps byte identity for the 22 untouched races and maps and for the prediction blocks (tamper confirmed). Not pinned: contents of the 3 added GPs (a swapped winner passes), profile-data (already unpinned before), new top-level dataset keys, the page script condition that the forecast as_of precedes the race start, and changes of the added GP session dates. Acceptable for an added-data release; a hash of the added GP entries recorded in the SPEC would let review detect later drift."
+  },
+  {
+   "severity": "note",
+   "id": "R6-openf1-drift",
+   "description": "OpenF1 keeps revising data after a race: Mexico classification (R1), session date_end 22:00 -> 23:00 UTC (stored), location rows grew since collection (all stored samples still exact OpenF1 rows), and older GPs' pit/stint values (builder --verify). Record the collection time on screen or re-collect a day after each race."
+  },
+  {
+   "severity": "note",
+   "id": "R7-page-size",
+   "description": "f1/index.html 23,338,436 B (gzip-6 3,064,911 B; +19.6% over main). Local Chrome: DOMContentLoaded 253-365 ms vs 216-316 ms on main, JS heap 24.1-24.2 MB vs 20.4-20.5 MB (localhost, no throttling). Vercel serves dist/f1/index.html as a static file with compression; no known limit is reached at this size, but this was not checked on a deployment. On a slow mobile link 3 MB still costs several seconds, and each new GP adds ~1.2 MB raw; moving F1 data into separate files (as football did in 0.26.0) is recommended before the season ends."
+  },
+  {
+   "severity": "note",
+   "id": "R8-legacy-checks",
+   "description": "Confirmed: f1/release-0.9.2/check-names.cjs and f1/release-0.9.3/check-tyres.cjs (the latter also needs Playwright and an Edge path) pass everything except the final payload-identity loop, which reports exactly maps, dataset and profile-data; f1/profiles/check-data.cjs passes all assertions with the driver count changed 23 -> 24. Failures are caused only by the data addition."
+  },
+  {
+   "severity": "note",
+   "id": "R9-open-items",
+   "description": "publication_manifest.json must be regenerated after this commit. Not verified: Vercel preview/production, human viewing of a full replay, United States/Singapore red-flag paths (none exist), other Edge-pinned legacy browser checks."
+  }
+ ],
+ "tests": [
+  {
+   "command": "python3 -I scripts/fetch.py + compare.py (OpenF1, 2.5 s spacing, no key)",
+   "result": "11388/11396 identical in 8 endpoints; 11404 session_result 11 rows differ (R1); all map samples exact OpenF1 rows.",
+   "per_gp": {
+    "11388": {
+     "session_result": {
+      "openf1": 22,
+      "page": 22,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "laps": {
+      "openf1": 1240,
+      "page": 1240,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "pit": {
+      "openf1": 25,
+      "page": 25,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "race_control": {
+      "openf1": 155,
+      "page": 155,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "position": {
+      "openf1": 396,
+      "page": 396,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "top3": [
+      [
+       1,
+       3,
+       "Max VERSTAPPEN",
+       62
+      ],
+      [
+       2,
+       16,
+       "Charles LECLERC",
+       62
+      ],
+      [
+       3,
+       12,
+       "Kimi ANTONELLI",
+       62
+      ]
+     ],
+     "red_flags": []
+    },
+    "11396": {
+     "session_result": {
+      "openf1": 22,
+      "page": 22,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "laps": {
+      "openf1": 1166,
+      "page": 1166,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "pit": {
+      "openf1": 32,
+      "page": 32,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "race_control": {
+      "openf1": 173,
+      "page": 173,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "position": {
+      "openf1": 455,
+      "page": 455,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "top3": [
+      [
+       1,
+       12,
+       "Kimi ANTONELLI",
+       56
+      ],
+      [
+       2,
+       16,
+       "Charles LECLERC",
+       56
+      ],
+      [
+       3,
+       3,
+       "Max VERSTAPPEN",
+       56
+      ]
+     ],
+     "red_flags": []
+    },
+    "11404": {
+     "session_result": {
+      "openf1": 22,
+      "page": 22,
+      "only_openf1": 11,
+      "only_page": 11,
+      "order_and_keyorder_identical": false,
+      "example_openf1": [
+       "{\"dnf\": false, \"dns\": false, \"driver_number\": 30, \"dsq\": false, \"duration\": 8449.671, \"gap_to_leader\": 20.899, \"meeting_key\": 1298, \"number_of_laps\": 71, \"points\": 6.0, \"position\": 7, \"session_key\": 11404}"
+      ],
+      "example_page": [
+       "{\"dnf\": false, \"dns\": false, \"driver_number\": 81, \"dsq\": false, \"duration\": 8448.247, \"gap_to_leader\": 19.475, \"meeting_key\": 1298, \"number_of_laps\": 71, \"points\": 6.0, \"position\": 7, \"session_key\": 11404}"
+      ]
+     },
+     "laps": {
+      "openf1": 1360,
+      "page": 1360,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "pit": {
+      "openf1": 67,
+      "page": 67,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "race_control": {
+      "openf1": 169,
+      "page": 169,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "position": {
+      "openf1": 557,
+      "page": 557,
+      "only_openf1": 0,
+      "only_page": 0,
+      "order_and_keyorder_identical": true
+     },
+     "top3": [
+      [
+       1,
+       3,
+       "Max VERSTAPPEN",
+       71
+      ],
+      [
+       2,
+       44,
+       "Lewis HAMILTON",
+       71
+      ],
+      [
+       3,
+       12,
+       "Kimi ANTONELLI",
+       71
+      ]
+     ],
+     "red_flags": [
+      [
+       "2026-11-01T21:06:02+00:00",
+       45,
+       "RED FLAG - RACE SUSPENDED"
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "command": "node scripts/r4.cjs (PH=4000)",
+   "result": "PASS for sync/identity/upcoming; Mexico held laps 19 = module; R2 found separately.",
+   "new_gps": {
+    "11388": {
+     "laps": 62,
+     "duration": 6212.1,
+     "finish": 6121.4,
+     "gap": 2,
+     "windows": [],
+     "held_module": 0,
+     "pred_not_in_race": [],
+     "race_not_in_pred": [],
+     "p1": 0,
+     "lane": 0,
+     "overt": 0,
+     "back": 0,
+     "holdPred": 0,
+     "p1_finish_minus_T": 0
+    },
+    "11396": {
+     "laps": 56,
+     "duration": 5812,
+     "finish": 5717.1,
+     "gap": 2,
+     "windows": [],
+     "held_module": 0,
+     "pred_not_in_race": [],
+     "race_not_in_pred": [],
+     "p1": 0,
+     "lane": 0,
+     "overt": 0,
+     "back": 0,
+     "holdPred": 0,
+     "p1_finish_minus_T": 0
+    },
+    "11404": {
+     "laps": 71,
+     "duration": 8459.9,
+     "finish": 8429.3,
+     "gap": 1.4592,
+     "windows": [
+      [
+       3756.5,
+       6094.6
+      ]
+     ],
+     "held_module": 19,
+     "pred_not_in_race": [
+      31
+     ],
+     "race_not_in_pred": [
+      50
+     ],
+     "p1": 0,
+     "lane": 0,
+     "overt": 0,
+     "back": 0,
+     "holdPred": 0,
+     "p1_finish_minus_T": 0
+    }
+   }
+  },
+  {
+   "command": "node scripts/browser.cjs / browser60.cjs (Playwright 1.57, Chrome 156)",
+   "result": "see summary",
+   "runs": [
+    {
+     "label": "11404-ko-390 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 1.002,
+     "pred_laps_px": 0.0588,
+     "act_laps_px": 0.0837,
+     "driver": 3,
+     "pred_over_act": 0.703
+    },
+    {
+     "label": "11404-ko-390 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01668,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 8.953,
+     "act_delta": 8.953
+    },
+    {
+     "label": "11404-ko-1440 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 0.999,
+     "pred_laps_px": 0.058,
+     "act_laps_px": 0.083,
+     "driver": 3,
+     "pred_over_act": 0.699
+    },
+    {
+     "label": "11404-ko-1440 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01668,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 8.953,
+     "act_delta": 8.953
+    },
+    {
+     "label": "11404-en-390 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 1,
+     "pred_laps_px": 0.058,
+     "act_laps_px": 0.083,
+     "driver": 3,
+     "pred_over_act": 0.699
+    },
+    {
+     "label": "11404-en-390 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01664,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 8.914,
+     "act_delta": 8.914
+    },
+    {
+     "label": "11404-en-1440 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 1.001,
+     "pred_laps_px": 0.0592,
+     "act_laps_px": 0.0838,
+     "driver": 3,
+     "pred_over_act": 0.706
+    },
+    {
+     "label": "11404-en-1440 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01663,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 8.953,
+     "act_delta": 8.953
+    },
+    {
+     "label": "11388-ko-390 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 0.999,
+     "pred_laps_px": 0.0487,
+     "act_laps_px": 0.0732,
+     "driver": 3,
+     "pred_over_act": 0.665
+    },
+    {
+     "label": "11388-ko-390 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01668,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 6.266,
+     "act_delta": 6.266
+    },
+    {
+     "label": "11388-ko-1440 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 0.999,
+     "pred_laps_px": 0.0487,
+     "act_laps_px": 0.0732,
+     "driver": 3,
+     "pred_over_act": 0.665
+    },
+    {
+     "label": "11388-ko-1440 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01664,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 6.239,
+     "act_delta": 6.239
+    },
+    {
+     "label": "11388-en-390 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 0.999,
+     "pred_laps_px": 0.0487,
+     "act_laps_px": 0.0732,
+     "driver": 3,
+     "pred_over_act": 0.665
+    },
+    {
+     "label": "11388-en-390 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.0167,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 6.266,
+     "act_delta": 6.266
+    },
+    {
+     "label": "11388-en-1440 circuit 1x",
+     "speed": 1,
+     "recorded_s_per_real_s": 1.001,
+     "pred_laps_px": 0.0485,
+     "act_laps_px": 0.073,
+     "driver": 3,
+     "pred_over_act": 0.664
+    },
+    {
+     "label": "11388-en-1440 lanes 1x",
+     "speed": 1,
+     "phase_per_real_s": 0.01667,
+     "expected": 0.01667,
+     "front_mismatch": 0,
+     "pred_delta": 6.321,
+     "act_delta": 6.321
+    }
+   ]
+  },
+  {
+   "command": "python3 -I scripts/tamper.py (throwaway worktree, removed)",
+   "result": "11 FAIL as intended, 5 unpinned cases PASS (R5)."
+  },
+  {
+   "command": "check_release; npm test suites; F1 node checks; legacy check copies",
+   "result": "PASS; legacy failures only payload identity (R8)."
+  }
+ ],
+ "verdict": "not merge-ready: 1 blocker (R1), 1 should-fix (R2)"
+}
