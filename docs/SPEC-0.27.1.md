@@ -57,7 +57,7 @@ python3 -I design/release-0.27.1/build_pages.py                                 
 
 ## 화면 (한영, 로직 같음)
 - 머리글: "2026-09-20 이후 경기 결과: football-data.co.uk · xG는 60경기 중 5경기만 (Understat의 Internet Archive 사본)" / "results after 2026-09-20: football-data.co.uk · xG for 5 of 60 matches only (Internet Archive copies of Understat)". 숫자는 자료에서 센다.
-- 끝난 경기 표(카드): xG가 있는 경기는 실제 결과 칸에 "xG 1.38 : 1.68"을, `shot_sum`이면 "(슈팅 합계)" / "(shot sum)"을 붙인다.
+- 끝난 경기 표(카드): xG가 있는 경기는 실제 결과 칸에 "xG 1.38 : 1.68"을, `shot_sum`이면 " · 슈팅 합계" / " · shot sum"을 붙인다.
 - 경기 분석실: 기존 xG 칸(홈·원정)이 값을 보여 준다. 경기 기록 패널 안내를 경기별로 맞춘다. xG가 있으면 출처(Internet Archive 사본, 보관 시각)와 방법, `shot_sum`의 주의 문구를 보여 주고, 없으면 기존처럼 "xG 없음"을 표시한다.
 - 이번 시즌 xG 질문 안내: "2026-09-20 이후 60경기 중 55경기는 xG가 없어서, 그 경기가 들어간 합계·평균은 —로 표시합니다. xG가 있는 5경기만 고르면 값이 나옵니다."
 - 프리뷰 xG 그래프 안내: "xG 자료가 없는 경기(2026-09-20 이후 결과 대부분)는 점을 표시하지 않습니다."

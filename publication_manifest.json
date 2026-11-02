@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 25311,
-      "sha256": "0fbf4b5667442442b6a34b749dcce11041a2edb489c5f4e25bef9be9e14b76e9",
+      "bytes": 25377,
+      "sha256": "77fd0850aa1797a3f581bbb1d4dd03c425427e4643e4fd1d425e16e5a24dca94",
       "snapshot": "0.27.1"
     },
     {
@@ -5859,6 +5859,12 @@
       "snapshot": "0.27.1"
     },
     {
+      "path": "design/release-0.27.1/validation-report.json",
+      "bytes": 4513,
+      "sha256": "6354dfc48826a5eef0f557b042f8ff5eff99ff313443dc3d8774bb4024f96221",
+      "snapshot": "0.27.1"
+    },
+    {
       "path": "docs/AGENTS-AND-SKILLS.en.md",
       "bytes": 4170,
       "sha256": "c7c4335c35c450dfe51d3508da7d648b7534a1901c2cfa9215bfc58fbaf5a2b9",
@@ -6220,8 +6226,8 @@
     },
     {
       "path": "docs/SPEC-0.27.1.md",
-      "bytes": 13006,
-      "sha256": "eb92c5386c38b01e8fdfc057b35789d43d753b862c9d3769db72974ae18ddb2d",
+      "bytes": 13010,
+      "sha256": "79f9b8f2f7a968d7f5b1f3dbb4482473a387162daa35208dc10a1fda23367e82",
       "snapshot": "0.27.1"
     },
     {

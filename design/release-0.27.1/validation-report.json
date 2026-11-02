@@ -1,0 +1,64 @@
+{
+ "run_id": "matchlab-0.27.1-2026-11-02",
+ "match_key": "ARCHIVE_XG",
+ "role": "reviewer",
+ "producer_id": "reviewer-archive-xg-2026-11-02",
+ "status": "DONE",
+ "summary": "Independent review of feat/archive-xg-0.27.1 (6c75f75 on main 8bffcc6). Builder scripts were not reused for the source check.",
+ "observed_at": "2026-11-02",
+ "evidence": [
+  "Re-downloaded the 5 web.archive.org id_ captures (gzip) outside the repository with curl; own parser: bytes and sha256 equal archive-xg.json for all 5; match_info h_xg/a_xg and per-shot xG lists equal the evidence; shot sums (float and Decimal) give the stored hx/ax; id, date, teams, score equal refresh.json and stored team names; archive shot counts equal football-data HS/AS; goals counted from shots equal the score.",
+  "Re-downloaded getMatchData captures of La Liga 30823, 30829, 30831, 30832, 30836 (2026-09-20): shot sum minus stored match xG = +0.000325, -0.000001/-0.000003, +0.013436, -0.000001, +0.014283 (the SPEC table is correct).",
+  "data.ko.js / data.en.js vs main, parsed: only the 5 rows differ, only hx, ax and the added xg_source, xg_method; the other 55 refreshed rows and all 2,399 earlier rows and every other block are equal; predictions.js byte-identical (sha256 8850a2ae...).",
+  "50 mutations of archive-xg.json run through Python apply_archive_xg and JS applyArchiveXg: same accept/reject on 49; applying twice is rejected by both. File-level tampering (value, team string, id, method, data file value) makes check_release and test:server fail; git checkout restored each time.",
+  "Engine questions and browser (Playwright 1.57.0, ko/en x 390/1440, own script): 5 xG rows of 30 EPL review rows, 3 marked shot sum; match rooms, 8 team pages, 6 previews, 6 xG questions per language: no NaN/undefined/Infinity in text or SVG, no horizontal overflow, no console errors, no Hangul on English page."
+ ],
+ "issues": [
+  {
+   "id": "R1",
+   "severity": "important (pre-existing, not a 0.27.1 regression)",
+   "text": "Follow-up questions keep compareGoals: after \"토트넘 최근 5경기 기대 득점과 실제 득점 비교\", \"맨유 최근 1경기 기대 실점\" shows 0.84 (Man Utd xG for) labelled 기대 실점 (true xGA 2.56), and \"EPL 이번 시즌 기대 득점 순위\" repeats that trend instead of a ranking. record-engine.cjs parse(): follow regex includes 최근/시즌, compareGoals forces tool=trend, trend always plots xG for. Engine unchanged from main; 0.27.1 only makes a wrong number visible for these matches. Fix separately."
+  },
+  {
+   "id": "R2",
+   "severity": "minor",
+   "text": "shot_sum values are marked only in the finished-match table and the match-room note; the match-room score card, team recent table and analysis answers show them unmarked."
+  },
+  {
+   "id": "R3",
+   "severity": "minor",
+   "text": "31256 match_info was captured 2026-10-25 16:15:31 UTC, kickoff 14:00 UTC (about 20 minutes after full time). Score and shots equal the final record, but Understat could have revised xG later. The rules do not check archived_at is after the match."
+  },
+  {
+   "id": "R4",
+   "severity": "minor",
+   "text": "Mirror difference: archive_match.score [5, true] passes Python (True == 1) and fails JS. Output unaffected. Unknown extra keys are accepted by both."
+  },
+  {
+   "id": "R5",
+   "severity": "minor (by design)",
+   "text": "Offline checks cannot tie values to sha256: a consistent edit of h_xg + hx with regenerated data, pages and manifest passes check_release; test:server (hard-coded 5 values) and verify-xg (network) catch it."
+  },
+  {
+   "id": "R6",
+   "severity": "minor (fixed in this commit)",
+   "text": "CHANGELOG called 0.014 the maximum possible difference (it is the maximum of a 5-match sample); SPEC said \"(슈팅 합계)\" while the page shows \" · 슈팅 합계\". Both texts corrected."
+  },
+  {
+   "id": "R7",
+   "severity": "minor (pre-existing)",
+   "text": "No Korean aliases for 본머스, 뉴캐슬, 입스위치, 풀럼, 코번트리: such questions silently answer for the default team."
+  }
+ ],
+ "tests": [
+  "npm run test:server 25 PASS",
+  "node analysis/check.cjs 19 PASS",
+  "python3 -I tools/check_release.py PASS",
+  "refresh.py check, check-xg PASS",
+  "build_pages.py --check (0.27.1) PASS",
+  "test:report PASS",
+  "test:odds PASS (877)",
+  "compact_predictions.py --check PASS"
+ ],
+ "verdict": "No blocking issue. Data and evidence verified against the archive; wording accurate in ko and en. R1 is an older engine bug worth a separate fix."
+}
