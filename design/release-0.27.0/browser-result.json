@@ -1,0 +1,16 @@
+{
+ "release": "0.27.0",
+ "checked_at": "2026-11-02",
+ "method": "Manual checks in the Claude Code browser pane against PORT=8827 node server/gemini.cjs (working tree); values read with page JavaScript. Not a scripted Playwright run; screenshots were viewed, not saved.",
+ "cases": [
+  {"page": "index.html", "width": 1440, "view": "matches (EPL)", "header": "자료 기준 2026-10-26 · 2026-09-20 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)", "review_summary": "적중 14 / 30경기 (46.7%)", "first_fixture": "2026-10-31 Chelsea vs Manchester United", "preview_xg_per_match": "— / —", "trend_note_shown": true, "console_errors": 0, "horizontal_overflow": false},
+  {"page": "index.html", "width": 1440, "view": "#match=understat:31230 (Arsenal-Leeds)", "result": "2 : 1", "xg": "— / —", "prediction": "60.9% / 22.1% / 17.1%, home win = actual = predicted, 적중", "shots": "13-11, on target 6-5", "console_errors": 0},
+  {"page": "index.html", "width": 1440, "view": "#team=understat:83 (Arsenal 2026/27)", "season_matches": 8, "points": 21, "season_xg": "—", "recent_table_xg": "— for 3 refreshed matches, values for 2026-09-12 and 09-19", "statmuse_note_visible": true, "team_chart_gaps": "10-10, 10-18, 10-24 shown as —", "nan_or_undefined_text": false, "console_errors": 0},
+  {"page": "index.html", "width": 1440, "view": "#league (EPL standings)", "first_row": "Manchester City 8 games 21 points"},
+  {"page": "index.html", "width": 1440, "view": "local analysis question '아스널 최근 10경기 득점과 기대 득점을 비교해 줘'", "dataset_through": "2026-10-26", "rows": "8 matches in 2026/27; xG — for 10-10, 10-18, 10-24; actual goals shown"},
+  {"page": "index.en.html", "width": 390, "view": "matches (EPL)", "header": "Data through 2026-10-26 · results after 2026-09-20: football-data.co.uk (no xG or detailed stats)", "review_summary": "Hits 14 / 30 matches (46.7%)", "korean_in_main_text": false, "horizontal_overflow": false, "note": "review table scrolls inside its table area like the other tables"},
+  {"page": "index.en.html", "width": 390, "view": "#match=understat:30855 (Malaga-Real Sociedad)", "result": "2 : 5", "prediction": "21.0% / 24.3% / 54.8%, Hit", "shots": "17-21, on target 6-9", "korean_in_main_text": false, "horizontal_overflow": false, "console_errors": 0},
+  {"page": "index.html", "width": 390, "view": "#preview=understat:30847 (La Liga)", "fixtures": ["2026-10-11 Rayo Vallecano vs Athletic Club 결과 자료 없음 · 연기 여부 미확인", "2026-11-01 Athletic Club vs Real Sociedad", "2026-11-01 Real Betis vs Malaga"], "simulation_shown": true, "simulation_input_line": "선정 모델: 로지스틱 · 예측 입력 자료 기준 2026-09-20", "report_shown": true, "horizontal_overflow": false}
+ ],
+ "not_checked": ["Production (Vercel) deployment", "Saved screenshots", "Every view at every width (EN 1440 and KO 390 team view were not opened)"]
+}

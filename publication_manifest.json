@@ -1,5 +1,5 @@
 {
-  "version": "0.26.4",
+  "version": "0.27.0",
   "public_export": true,
   "files": [
     {
@@ -28,27 +28,27 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 23684,
-      "sha256": "8e7a5086d8bf10939b5bc743db10c222448828999439db9cea536729fcd0db2a",
-      "snapshot": "0.26.4"
+      "bytes": 24441,
+      "sha256": "eaa8a31dc1c1a939c7499fc6385d5c9500305045d186e5cfaef2e2b6957ffa81",
+      "snapshot": "0.27.0"
     },
     {
       "path": "README.ko.md",
-      "bytes": 1291,
-      "sha256": "9b8f1f2b95578c5c65bbbf85eb7cdda2b73d09c82ee9f2a3a917e917af5a803a",
-      "snapshot": "0.26.4"
+      "bytes": 1628,
+      "sha256": "c096bd8630432f5e9757e08bc0966b3dc39340b16b090c5c6f14e73fc6bf70ed",
+      "snapshot": "0.27.0"
     },
     {
       "path": "README.md",
-      "bytes": 1356,
-      "sha256": "d962a7710c927b4b35799dc19e58776631cb934efd46246b9fa9b27e5287e231",
-      "snapshot": "0.26.4"
+      "bytes": 1693,
+      "sha256": "b25e2a555c595842f51d8c4cc63896382b860ad0098a98f610d12c848fc1b30f",
+      "snapshot": "0.27.0"
     },
     {
       "path": "VERSION",
       "bytes": 7,
-      "sha256": "826f965a3a4e4242df08f18895837c35c28bbf33bf7e8fa5d187781a764b1325",
-      "snapshot": "0.26.4"
+      "sha256": "8056838d30429d7dff5aab40c0cbae02afaa75c7016b6cc9cd586563d31bea17",
+      "snapshot": "0.27.0"
     },
     {
       "path": "agent-team-2026-10-06-v01/.agents/skills/matchdesk-analysis/SKILL.md",
@@ -1175,20 +1175,20 @@
     {
       "path": "analysis/check-result.json",
       "bytes": 112,
-      "sha256": "86693c47e9147654caaed2ee2670ee3be3fb06f209c3bb2a4392d3e1e88ac12b",
-      "snapshot": "0.7.0"
+      "sha256": "beafe81b4a407e933804d92dd136bf16e89f78e549f5311263f6bf1e9c9f78c5",
+      "snapshot": "0.27.0"
     },
     {
       "path": "analysis/check.cjs",
-      "bytes": 5794,
-      "sha256": "6c231eaaaf4c1dfbc1bc879c31ae774ad5dec04e125d3e45867e579c68a9bd25",
-      "snapshot": "0.26.0"
+      "bytes": 7952,
+      "sha256": "2a154334916096332be1fa2c027991ba5f1e3e524d00a98ad8c26a22662dcd90",
+      "snapshot": "0.27.0"
     },
     {
       "path": "analysis/record-engine.cjs",
-      "bytes": 9998,
-      "sha256": "5837d7ff665e4582aaf277af17f2c6eb6ec45dc9348c767e5810e41491ad56cd",
-      "snapshot": "0.25.1"
+      "bytes": 10249,
+      "sha256": "b18f804bfe81172e26bbf244ffcb0647e53b7a6aeaffc464096f8f45b17d5c84",
+      "snapshot": "0.27.0"
     },
     {
       "path": "analysis/release-0.21.3/browser-result.json",
@@ -4762,15 +4762,15 @@
     },
     {
       "path": "data/football/data.en.js",
-      "bytes": 1822191,
-      "sha256": "19f6185266ebbf41dc9cb8757582017d551e9d6274ea528bde6e1e6a90bc43c0",
-      "snapshot": "0.26.0"
+      "bytes": 1827454,
+      "sha256": "9db900467c0aef72fb1a9cbca2287826d2e8041da9c04950e85306735ad74e0a",
+      "snapshot": "0.27.0"
     },
     {
       "path": "data/football/data.ko.js",
-      "bytes": 1823065,
-      "sha256": "c57e411d877ac4dcbe64222ee3652ec677f0c9800bd3f353207e5d41d5239b7b",
-      "snapshot": "0.26.0"
+      "bytes": 1828328,
+      "sha256": "21cce185baf5561ab50e91986f389b26351ef9938f3a9a503b8ab5160346d33b",
+      "snapshot": "0.27.0"
     },
     {
       "path": "data/football/predictions.js",
@@ -5703,6 +5703,126 @@
       "snapshot": "0.26.4"
     },
     {
+      "path": "design/release-0.27.0/browser-result.json",
+      "bytes": 2955,
+      "sha256": "65fb709f4d4e158e032b62436c5971593c5e9aa2ef9af7c7ce9051615a6c85a5",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/build_pages.py",
+      "bytes": 9019,
+      "sha256": "21ef221ece627872137f784ac3f297b03634d6361bad6ea361ad02d50699a581",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/page-patch.json",
+      "bytes": 10028,
+      "sha256": "9fb178991d91b6ee584894a196598124a138430b2a7e5a38a44acd675ea3a13a",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/refresh-ui.en.js",
+      "bytes": 10686,
+      "sha256": "82e16c01224db9efdf1d5a79f145f84b2f1c9eb99e13991390243f5768b2ab6d",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/refresh-ui.ko.js",
+      "bytes": 10742,
+      "sha256": "cc6bb1d60422ad01423338aecc9cf51dbf6d9c6e17ccd36a5bdee87eb0f6ae2f",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/analysis-ranking-en-390.png",
+      "bytes": 76007,
+      "sha256": "486b779336afa3e3ce1f589993b8e65f637afeef0be3231ea13bd5c6153ad487",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/analysis-ranking-ko-1440.png",
+      "bytes": 82788,
+      "sha256": "a6860f8a75488cc1a9c72fd593e385208b5990b32dbafa025b84a89c004116c3",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/match-31230-en-390.png",
+      "bytes": 302811,
+      "sha256": "f5c519060a15f228fb1dc6db927e22a25f7998d11cee5362a7be970a299bac7f",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/match-31230-ko-1440.png",
+      "bytes": 252638,
+      "sha256": "e68f66e1a2eabe6c335b30d0fd21895192e7ef948d3c439579b26dd67fe163ec",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/matches-ko-1440-EPL.png",
+      "bytes": 96972,
+      "sha256": "4fd1c00d7a581b11f2efca74d3e9f39e3bb3e44615bd47d654e32a7d67a66f0c",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/recheck-analysis-note-en-390.png",
+      "bytes": 36089,
+      "sha256": "d701761d9bde687f8acf51bbbc5861c74c5f0fc478420ead36bea3c1da7aff69",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/recheck-review-cards-ko-390.png",
+      "bytes": 84006,
+      "sha256": "fdea342e1b70b9520a24b5d9dfabee5bbf2a499c2dc63222c7c9f92fedeeaae7",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/review-en-1440-laliga.png",
+      "bytes": 172176,
+      "sha256": "64e668022bd8103ccbf5f816420480f6857a8634d74ced4981cc436dada05ded",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/review-ko-390-laliga.png",
+      "bytes": 151054,
+      "sha256": "a591254e919df8f0fa692fb7aaf4a7920d81bf511719b2f89d5de841215911f3",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/team-83-en-390.png",
+      "bytes": 44859,
+      "sha256": "508bb97748ed5683fffebf708574d2fbc39a5909ca10fe1c17582bd74efd6d3c",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/review/team-83-ko-1440.png",
+      "bytes": 71715,
+      "sha256": "f8393b952a13d361ea8032ca9e6c3bab8d4a27bd1978e6c16f4af93ba3903889",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/tamper-check.py",
+      "bytes": 8017,
+      "sha256": "e94134e75ed6ba044943031e18095eb12f4a01166b1d8b71d142de5413062095",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/tamper-result.json",
+      "bytes": 7404,
+      "sha256": "63e9354cf591439c33acdd1f5eb4f86064e4da1e5d52df9e0eb8d2c68bb14505",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/validation-report.json",
+      "bytes": 22079,
+      "sha256": "403d1ec32aa3feb46948265225618d73025411a81f6c24db5d67889196d2749b",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "design/release-0.27.0/xg-helpers.js",
+      "bytes": 205,
+      "sha256": "dea065404b3765b9946fb8747e35e9e9c716bab08bcc91a8d87e6103d36bff87",
+      "snapshot": "0.27.0"
+    },
+    {
       "path": "docs/AGENTS-AND-SKILLS.en.md",
       "bytes": 4170,
       "sha256": "c7c4335c35c450dfe51d3508da7d648b7534a1901c2cfa9215bfc58fbaf5a2b9",
@@ -6055,6 +6175,18 @@
       "bytes": 20513,
       "sha256": "c5128e4e503fbc54ee5c66bc7c8de3c4f05e8d2aa3bc555079d2da2c38de6ae3",
       "snapshot": "0.26.4"
+    },
+    {
+      "path": "docs/SPEC-0.27.0.md",
+      "bytes": 14849,
+      "sha256": "aee14234a28f9210b0a5b318fe410b6b1d1647d185b07c1fe205bb01d738f146",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "docs/SPEC-0.28.0-draft.md",
+      "bytes": 9174,
+      "sha256": "294ec54c0ab688c707b59cf44faca45f4f8b05532b7f94d0031cb65eb07d2b60",
+      "snapshot": "0.27.0"
     },
     {
       "path": "docs/SPEC-0.3.0.md",
@@ -9382,15 +9514,15 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 182735,
-      "sha256": "e0f009a3c4303a3fdb1c7cc8c13e0a8abc24565b586c5b744a279be42b881afe",
-      "snapshot": "0.26.2"
+      "bytes": 194362,
+      "sha256": "2bd62779bde533cdc6d05ef6296474d2ab72c84723491fdd3ff7bbbbbd56a7b1",
+      "snapshot": "0.27.0"
     },
     {
       "path": "index.html",
-      "bytes": 183665,
-      "sha256": "b684a801f647276674eb039ca22ed715c27a5063cfd4e07f1ef8c2f72596fd0e",
-      "snapshot": "0.26.2"
+      "bytes": 195328,
+      "sha256": "54a63fba7abf08a2ce67dc64c337385331e890d82fcc0776c24e2b0a677031a7",
+      "snapshot": "0.27.0"
     },
     {
       "path": "modeling/.gitignore",
@@ -10037,8 +10169,8 @@
     {
       "path": "package.json",
       "bytes": 442,
-      "sha256": "5b371f9e53b976d4a8ea713ee3446ddae1a01c33813785f8f8c93640ed632c5b",
-      "snapshot": "0.26.4"
+      "sha256": "ff84bda403e203432203724bdac0c77ce29748e8990c7445f31cdd3680f38a58",
+      "snapshot": "0.27.0"
     },
     {
       "path": "reports/release-0.25.0/README.md",
@@ -10066,15 +10198,15 @@
     },
     {
       "path": "reports/release-0.25.0/check.cjs",
-      "bytes": 9281,
-      "sha256": "f763c5a902280d050570a3cd1350413c533a3991322502702fab623a802d1f13",
-      "snapshot": "0.25.0"
+      "bytes": 9847,
+      "sha256": "fe83e987b04ef06de96156a8885cde06c87bece26ad60e975060df8eaeb1097f",
+      "snapshot": "0.27.0"
     },
     {
       "path": "reports/release-0.25.0/checks.json",
-      "bytes": 1801,
-      "sha256": "05d4a46bf02d0826e07e8c2874ba59f04644ca905cbd9e5f79493ca1f2cc8571",
-      "snapshot": "0.25.0"
+      "bytes": 1919,
+      "sha256": "bd7ffd78d5d5882aca094707c7d19ae926210250f1a6cbc038ce3f29bbb5ea9a",
+      "snapshot": "0.27.0"
     },
     {
       "path": "reports/release-0.25.0/live-check.json",
@@ -10156,9 +10288,9 @@
     },
     {
       "path": "server/check.cjs",
-      "bytes": 16775,
-      "sha256": "970fe10406a3f7973fe0fc81cc8d4d6008703297c2465a4e152482a664a87827",
-      "snapshot": "0.26.2"
+      "bytes": 17599,
+      "sha256": "09174400cab9c2a66af8a261f1652c9b663b1ff95d80b644d2b92b62291d934b",
+      "snapshot": "0.27.0"
     },
     {
       "path": "server/football-data.cjs",
@@ -10774,9 +10906,27 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 29564,
-      "sha256": "fc9494512e6193bfcb0103b2eee28cef7a6a4e7d840aad4eb8f566adf52c65c7",
-      "snapshot": "0.26.4"
+      "bytes": 33074,
+      "sha256": "3aecd45f461efd1c3a318c9015a078856138a16fd4fbf7e3fbeaaa7042e4f287",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "tools/football_refresh/0.27.0/refresh.json",
+      "bytes": 43549,
+      "sha256": "cccdbf8ac8117d0154d75f492d3dea9c5de3a0544077337ee9b3ba96a248b6ef",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "tools/football_refresh/apply.cjs",
+      "bytes": 4726,
+      "sha256": "b42db6d4204bef2ab19ccc8a62a572b49b6731a4258ea203848ffabd927a3bf2",
+      "snapshot": "0.27.0"
+    },
+    {
+      "path": "tools/football_refresh/refresh.py",
+      "bytes": 16841,
+      "sha256": "a3059006bb02fcc0515bfc451441dbe37c9f65e245de0a3720c480d8fbb6919e",
+      "snapshot": "0.27.0"
     },
     {
       "path": "tools/prepare_release_v03.py",
@@ -10816,11 +10966,18 @@
     }
   ],
   "display_dataset": {
-    "completed": 2399,
-    "scheduled": 641,
+    "completed": 2459,
+    "scheduled": 581,
     "team_match_rows": 4798,
     "season_snapshots": 160,
-    "metrics": 47
+    "metrics": 47,
+    "result_refresh": {
+      "provider": "football-data.co.uk",
+      "previous_last_date": "2026-09-20",
+      "as_of": "2026-10-26",
+      "results": 60,
+      "xg_after_previous_last_date": null
+    }
   },
   "csv_demo": {
     "completed": 20,

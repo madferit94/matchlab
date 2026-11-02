@@ -1,0 +1,166 @@
+{
+ "cases": [
+  {
+   "case": "control (no change)",
+   "check_release": "PASS",
+   "check_release_message": "PASS release audit: 1798 hashed files, 12 local documentation links; design payloads identical; football data = v50 + refresh.json (60 results through 2026-10-26), pages = v50 after undoing 36 recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "refreshed score changed in data.ko.js only (+ ?v=)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Football data differs from apply(v50 data, refresh.json): data.ko.js",
+   "server_check": "FAIL",
+   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "xG filled for a refreshed match in both data files (+ ?v=)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Football data differs from apply(v50 data, refresh.json): data.ko.js",
+   "server_check": "FAIL",
+   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "old Understat match changed in data.ko.js (+ ?v=)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Football data differs from apply(v50 data, refresh.json): data.ko.js",
+   "server_check": "FAIL",
+   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "refresh.json score changed, data files not rebuilt",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Provider values differ from the result: understat:30845",
+   "server_check": "FAIL",
+   "server_message": "Error: Provider values differ from the result: understat:30845",
+   "outcome": "as expected"
+  },
+  {
+   "case": "one refreshed result dropped from data (refresh + data rebuilt, ?v=)",
+   "check_release": "PASS",
+   "check_release_message": "PASS release audit: 1798 hashed files, 12 local documentation links; design payloads identical; football data = v50 + refresh.json (59 results through 2026-10-25), pages = v50 after undoing 36 recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error 1.2e",
+   "server_check": "FAIL",
+   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "stored prediction probability changed in predictions.js (+ ?v=)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: predictions.js differs from compact_predictions.py output",
+   "server_check": "FAIL",
+   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "recorded edit removed from page-patch.json only",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: page-patch.json differs from build_pages.py rules: index.html",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "unrecorded page code edit (ko): xgText back to toFixed in rows()",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Recorded 0.27.0 code edit missing or repeated: index.html rows(): xG cell",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "calc() counts missing xG as 0 again (ko page)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Recorded 0.27.0 code edit missing or repeated: index.html calc: count xG only when the match has it; null when any selected match lacks it",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "refresh UI block removed (en)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Refresh UI block missing, changed or moved: index.en.html",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "refresh UI logic changed in page only (ko)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Refresh UI block missing, changed or moved: index.html",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "refresh UI logic changed in ko source and page",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Refresh UI logic differs by language",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "Korean text in the English refresh UI (source and page)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Korean text in the English refresh UI",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "xG helper changed in page only (ko)",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: xG helper block missing, changed or moved: index.html",
+   "server_check": "PASS",
+   "server_message": "24 server checks passed.",
+   "outcome": "as expected"
+  },
+  {
+   "case": "VERSION 0.26.3",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: VERSION differs from the release checker version: 0.26.3",
+   "server_check": "FAIL",
+   "server_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json score changed, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Provider values differ from the result: understat:30845",
+   "server_check": "FAIL",
+   "server_message": "Error: Provider values differ from the result: understat:30845",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json home/away goals swapped, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Provider values differ from the result: understat:30840",
+   "server_check": "FAIL",
+   "server_message": "Error: Provider values differ from the result: understat:30840",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json date 2026-09-19, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Result date outside (previous cutoff, as_of]: understat:30845",
+   "server_check": "FAIL",
+   "server_message": "Error: Result date outside (previous cutoff, as_of]: understat:30845",
+   "outcome": "as expected"
+  },
+  {
+   "case": "R1 refresh.json shots on target > shots, apply + build_pages rerun",
+   "check_release": "FAIL",
+   "check_release_message": "AssertionError: Shots on target exceed shots: understat:30843",
+   "server_check": "FAIL",
+   "server_message": "Error: Shots on target exceed shots: understat:30843",
+   "outcome": "as expected"
+  }
+ ],
+ "unexpected": 0,
+ "note": "A refresh.json edit that is also applied to the data files is the recorded source and passes by design; it is reviewed as data, not detected as tampering."
+}

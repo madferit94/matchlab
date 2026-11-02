@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-10-08T02:43:52.425Z",
+  "testedAt": "2026-11-02T02:59:30.288Z",
   "method": "real local HTTP and mocked provider; not live news",
   "checks": [
     {
@@ -8,6 +8,10 @@
     },
     {
       "name": "future and post-input-cutoff records cannot change report statistics",
+      "status": "PASS"
+    },
+    {
+      "name": "finished matches (0.27.0 result refresh) get no pre-match report",
       "status": "PASS"
     },
     {

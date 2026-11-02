@@ -1,0 +1,145 @@
+{
+ "run_id": "matchlab-0.27.0-2026-11-02",
+ "match_key": "FOOTBALL_REFRESH",
+ "role": "reviewer",
+ "producer_id": "reviewer-football-refresh-2026-11-02",
+ "status": "DONE",
+ "summary": "Independent review of feat/football-refresh-0.27.0 (d8362f0, 670c5fb on main 5a653c7). Builder scripts and results were not reused. (1) Data: both raw CSVs re-read with the reviewer's own parser and an independently inferred team-name mapping; all 60 refreshed matches (EPL 30, La Liga 30) match the provider rows for date, score, shots and shots on target, xG stays null; 18 date changes and the missing Rayo-Athletic result handled as described. (2) predictions.js byte-identical; 30/60 hits (EPL 14, La Liga 16), log loss 0.9953; predictions predate every refreshed match (no leakage). (3) The 2,399 previous matches and all other data blocks are unchanged. check_release still fails every direct edit of data, pages, blocks, engine or predictions, but refresh.json content is not re-validated at check time (R1), and new page edits are legitimised by adding build_pages.py rules (R4, by design; all 16 rules read). (4) No NaN or zero xG in sums, averages, charts, natural-language analysis or /api/analyze; the moved report fixture keeps the cutoff guarantee (report facts unchanged with and without the 60 new results). The featured current-season xG ranking now shows only dashes with no explanation (R2). (5) Browser ko/en x 390/1440: 0 page errors, no overflow, tables and panels as specified. (6) All test suites and check_release PASS. No blocker. Merge gate outside code: the user decision on football-data.co.uk terms (G1). DONE means the review was performed, not final approval.",
+ "cutoff_at": null,
+ "observed_at": "2026-11-02",
+ "provider": "football-data.co.uk",
+ "model": null,
+ "evidence": [
+  {
+   "path": "design/release-0.27.0/review/analysis-ranking-en-390.png",
+   "description": "en 390, same featured ranking in English: all \"—\" (R2). Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] 486b779336afa3e3"
+  },
+  {
+   "path": "design/release-0.27.0/review/analysis-ranking-ko-1440.png",
+   "description": "ko 1440, featured example \"라리가 이번 시즌 경기당 기대 득점 순위\": every club \"—\" with empty grey bars and no explanation (R2). Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] a6860f8a75488cc1"
+  },
+  {
+   "path": "design/release-0.27.0/review/match-31230-en-390.png",
+   "description": "en 390, Arsenal 2:1 Leeds (2026-10-10): xG \"—\", pre-match prediction 60.9/22.1/17.1 home win = actual = pick, Hit; shots 13-11, on target 6-5; no horizontal overflow. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] f5c519060a15f228"
+  },
+  {
+   "path": "design/release-0.27.0/review/match-31230-ko-1440.png",
+   "description": "ko 1440, Arsenal 2:1 Leeds match analysis (same values, Korean). Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] e68f66e1a2eabe6c"
+  },
+  {
+   "path": "design/release-0.27.0/review/matches-ko-1440-EPL.png",
+   "description": "ko 1440, matches view (EPL): header \"자료 기준 2026-10-26 · 2026-09-20 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)\", preview xG per match \"—\" for Chelsea vs Manchester United (recent matches without xG), finished-match table EPL 14/30. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] 4fd1c00d7a581b11"
+  },
+  {
+   "path": "design/release-0.27.0/review/review-en-1440-laliga.png",
+   "description": "en 1440, La Liga finished-match table, English labels, no Korean text. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] 64e668022bd8103c"
+  },
+  {
+   "path": "design/release-0.27.0/review/review-ko-390-laliga.png",
+   "description": "ko 390, La Liga finished-match table after one \"더 보기\": 15 of 30 rows, 16/30 hits (53.3%); prediction and verdict columns scroll inside the table area at 390 px (R3 note). Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] a591254e919df8f0"
+  },
+  {
+   "path": "design/release-0.27.0/review/team-83-en-390.png",
+   "description": "en 390, Arsenal team view (English), no overflow. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] 508bb97748ed5683"
+  },
+  {
+   "path": "design/release-0.27.0/review/team-83-ko-1440.png",
+   "description": "ko 1440, Arsenal 2026/27 team view: season xG and xGA \"—\", recent table \"—\" for 10-10/10-18/10-24 and values for 09-12/09-19, StatMuse 2026-09-20 note visible. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless against PORT=8851 node server/gemini.cjs on a fresh clone of 670c5fb (no Gemini key), external requests aborted. sha256[:16] f8393b952a13d361"
+  },
+  {
+   "path": "(scratch, not committed) review-ml27/csvcheck.py, pred.py, unchanged.py, nulls.cjs, api.cjs, tamper.py, browser.cjs, browser-raw.json, tamper-out.json",
+   "description": "Reviewer scripts and raw outputs in the session scratchpad; numbers below come from them. Builder scripts (tamper-check.py, browser-result.json) were not reused."
+  },
+  {
+   "path": "design/release-0.27.0/review/recheck-review-cards-ko-390.png",
+   "description": "Recheck: ko 390, La Liga finished-match table as stacked cards (labels 실제 / 예측 (홈·무·원정) / 판정 from data-label), table area 328 = content 328, no sideways scroll. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless, PORT=8852 node server/gemini.cjs in the review worktree, external requests aborted. sha256[:16] fdea342e1b70b952"
+  },
+  {
+   "path": "design/release-0.27.0/review/recheck-analysis-note-en-390.png",
+   "description": "Recheck: en 390, current-season xG question with the new one-line explanation above the result. Same setup. sha256[:16] d701761d9bde687f"
+  },
+  {
+   "path": "(scratch, not committed) review-ml27/r1/r1.py, jsapply.cjs, cases.json, r1-result.json, browser2.cjs, browser2.json, ex3.cjs",
+   "description": "Recheck scripts and raw outputs; builder tamper-check.py and tamper-result.json were not reused."
+  }
+ ],
+ "issues": [
+  {
+   "severity": "should-fix",
+   "id": "R1-refresh-json-not-validated-at-check-time",
+   "description": "tools/check_release.py and server/check.cjs accept any refresh.json that apply() can consume. The provider rules (date after 2026-09-20 and not after as_of, non-negative integers, shots on target <= shots, result letter) exist only in refresh.py build(), which needs the raw CSV outside the repository. Reviewer tamper on a fresh clone (edit refresh.json, then refresh.py apply and build_pages.py so the ?v= hash follows): score +1, home/away goals swapped, a result dated 2026-09-19, and hst > hs all PASS check_release --write-manifest, test:server and analysis/check. Only an extra (61st) invented result is caught (server/check.cjs count). Before 0.27.0 the data had to equal v50 byte for byte; now it is only as good as refresh.json. Suggested: re-assert the build() invariants inside apply_refresh()/applyRefresh() (date window, integer ranges, hst<=hs, hs/as present, unique ids, all 60 ids are 2026/27 scheduled fixtures) and record a per-row hash of the provider CSV line in refresh.json so a later re-fetch can be compared. The data itself is correct: the reviewer re-read both CSVs independently (see tests)."
+  },
+  {
+   "severity": "should-fix",
+   "id": "R2-featured-xg-ranking-all-dashes",
+   "description": "The featured example button '라리가 이번 시즌 경기당 기대 득점 순위' / 'LaLiga this season xG per match ranking' (default season 2026/27) now returns 20 clubs with '—' and empty grey bars, sorted alphabetically, with no reason given (every club has refreshed matches without xG). Same for every current-season xG team/comparison/venue/ranking question (engine returns value null for all 40 clubs). It is not wrong (no NaN, no 0, header line says 'no xG'), but a promoted example now shows an empty result. Suggested: a one-line note when every value is null because matches after 2026-09-20 lack xG (optionally offer the season up to 2026-09-20), or change the example."
+  },
+  {
+   "severity": "note",
+   "id": "R3-review-table-390",
+   "description": "At 390 px the finished-match table shows the match and result columns; the prediction and verdict (hit/miss) columns need horizontal scrolling inside the table area (like other tables). No page overflow (scrollWidth = clientWidth). Consider putting the verdict next to the result on narrow screens."
+  },
+  {
+   "severity": "note",
+   "id": "R4-check-design-trust",
+   "description": "By design, any page code edit passes check_release if it is added as a rule in design/release-0.27.0/build_pages.py and the pages are rebuilt (reviewer added a rule changing 'probabilities.home' to 'probabilities.home*0.5': PASS, 34 recorded edits). The same holds for identical logic edits in refresh-ui.ko.js and refresh-ui.en.js, and for analysis/record-engine.cjs (pre-existing rule). So the 16 rules x 2 pages must be read by a reviewer; the reviewer read all 16: each only routes xG through hasXg/xgText or null checks; no other behaviour changed."
+  },
+  {
+   "severity": "note",
+   "id": "R5-minor",
+   "description": "(a) teamOverview still computes trendMax/line from raw hx (null -> 0) but the variable is unused (dead code, no visible effect). (b) Refreshed rows keep ids 'understat:<n>' while source/provider are football-data.co.uk (stable ids, just a naming caveat). (c) npm run test:report rewrites reports/release-0.25.0/checks.json testedAt (pre-existing; revert before check_release). (d) publication_manifest.json was not regenerated by the reviewer: this commit adds review files, so check_release reports a manifest difference until the manifest is regenerated."
+  },
+  {
+   "severity": "merge-gate (not code)",
+   "id": "G1-football-data-terms",
+   "description": "SPEC records that football-data.co.uk data.php says the data is for private individuals and not for commercial or data-training products using automated bots/scrapers/AI. The reviewer did not re-open the site. The user decision required by the SPEC before merge/deploy remains open; the 0.28.0 draft (training on this data) should stay blocked on it."
+  }
+ ],
+ "tests": [
+  {
+   "command": "python3 -I csvcheck.py (reviewer, scratch) on football-raw-0.27.0 E0.csv/SP1.csv",
+   "result": "CSV sha256 equal to fetch-log (4cd9d41c..., f5643d70...). Team-name mapping inferred independently by voting from the 119 stored 2026/27 Understat results (date + score) = 20/20 teams per league, identical to modeling/odds-0.24.0/team-aliases.json; no unmapped provider or stored team. All 60 provider rows dated after 2026-09-20 map to exactly one stored scheduled fixture; data file values equal the CSV for date, FTHG/FTAG, HS/AS, HST/AST, home/away, league, provider; hx/ax null; EPL 30, La Liga 30; set of new completed ids = set of provider rows; no pre-cutoff provider row missing from stored results; 0 problems. Date changes: 18 (EPL Liverpool-Brighton 10-24->10-25; 17 La Liga, e.g. Malaga-Espanyol 10-11->10-09, Sevilla-Osasuna 10-25->10-26). Rayo Vallecano-Athletic Club (understat:30847, 2026-10-11) absent from SP1.csv, still scheduled, the only scheduled match dated <= as_of 2026-10-26, flagged 'result missing / postponement unconfirmed' on the page. Max provider date 2026-10-26 = last_date. Provider HxG present on all 60 rows but not used."
+  },
+  {
+   "command": "python3 -I pred.py (reviewer) + git diff 5a653c7 HEAD -- data/football/predictions.js",
+   "result": "predictions.js byte-identical to 5a653c7 (and compact_predictions.py --check PASS). 641 predictions; all 60 refreshed matches have one; 581/581 remaining scheduled have one. Top-probability = actual: EPL 14/30, La Liga 16/30, total 30/60; mean log loss of the actual outcome 0.9953 (SPEC 0.995); no top-probability ties. No leakage: the Arsenal-Leeds probability string first appears in commit 3785e2b (2026-10-07 11:24 KST), before the earliest refreshed match (2026-10-09); model cutoff_date 2026-10-07, input data through 2026-09-20. SPEC comparison 48.2%/1.023 = modeling/logistic-111-2026-10-07-v01/metrics.json evaluation 2025/26 logistic (0.4815, 1.0229)."
+  },
+  {
+   "command": "python3 -I unchanged.py (reviewer)",
+   "result": "ko and en: all 2,399 previous completed matches identical and in the same order (prefix of the new list); 581 remaining scheduled identical and in order; teams, match_detail, snapshots, metric_meta identical; only new key refresh; last_date 2026-09-20 -> 2026-10-26. ko/en completed, scheduled and refresh identical. refresh.py check PASS."
+  },
+  {
+   "command": "python3 -I tamper.py (reviewer, fresh clone of 670c5fb, check_release --write-manifest + node server/check.cjs + node analysis/check.cjs per case)",
+   "result": "control PASS. FAIL as intended: data-only score change, xG filled on refreshed rows, old Understat row changed, a result removed (data only), predictions.js one digit, a recorded page edit undone, an unrecorded page edit, refresh-ui block edited in page only, xg-helpers block edited in page only, ko-only refresh-ui logic change (source+page rebuilt), page-patch.json entry removed, record-engine.cjs changed without the page, Korean text in the English refresh UI, invented 61st result (server/check only). PASS (not caught): refresh.json score +1, home/away goals swapped, date 2026-09-19, hst>hs (each with apply + build_pages) -> R1; identical logic edit in refresh-ui ko+en; a new build_pages.py rule changing unrelated code -> R4."
+  },
+  {
+   "command": "node nulls.cjs / api.cjs (reviewer)",
+   "result": "Engine, 12 questions (team, comparison, ranking, venue, trend; 2026/27 and 2025/26): no NaN/Infinity anywhere; current-season xG values null (never 0 or partial sums) for all clubs, nulls sorted last; trend rows null for the 3 refreshed Arsenal matches and numbers for Understat matches; 2025/26 ranking full numbers; goals ranking unaffected. engine.summary partial xG sums: 0. HTTP /api/analyze through createHandler with mocked Gemini plans (team, ranking, trend): 200, no NaN, value null, no zero values. Pre-match report facts (buildFacts) for 40 scheduled fixtures identical with and without the 60 refreshed results -> the moved report fixture (Arsenal-Hull) does not weaken the cutoff test; finished matches get no report (test added). Report check date literals all shifted by 28 days consistently (training_last_date = match date still rejected; search window 39 days kept)."
+  },
+  {
+   "command": "node browser.cjs / team.cjs / enko.cjs (reviewer Playwright)",
+   "result": "index.html and index.en.html x 390/1440: header source line ko/en as SPEC; finished-match tables EPL 14/30 (46.7%), La Liga 16/30 (53.3%), 5 rows + more (15 after one click); Rayo-Athletic overdue badge; preview xG per match '—' when recent matches lack xG and numbers when they have it (Rayo-Athletic preview from pre-cutoff matches: 1.33 / 1.96); trend chart only draws matches with xG; Arsenal-Leeds and Malaga-Real Sociedad match panels (prediction vs result, shots, no-xG note); team view xG '—', StatMuse note; league table (Manchester City / Arsenal 21 pts, 8 games); local analysis trend and ranking. Page errors 0, console errors 0 apart from the reviewer's aborted external requests, scrollWidth = clientWidth in every view, no NaN/undefined/null/Infinity text, English pages show Korean only in the '한국어' language link."
+  },
+  {
+   "command": "npm run test:server; npm run test:report; npm run test:odds; node analysis/check.cjs; compact_predictions.py --check; refresh.py check; build_pages.py --check; npm run build + node server/check-vercel.cjs; python3 -I tools/check_release.py (fresh clone)",
+   "result": "24 server checks PASS; test:report 15 PASS (checks.json testedAt rewritten and reverted); test:odds PASS 877; analysis 17 PASS; compact predictions PASS; refresh check PASS; pages = build_pages output PASS; build + check-vercel PASS; check_release PASS (1,788 files, 32 recorded edits). Sizes reproduced: index.html 192,919 / gzip-6 58,930; index.en.html 191,937 / 58,339; data.ko.js 1,828,328 / 243,679; data.en.js 1,827,454 / 243,423; predictions.js unchanged 2,132,671 / 722,824. VERSION, package.json, README current version 0.27.0; f1/ unchanged."
+  }
+ ],
+ "verdict": "merge-ready after the user decides on the football-data.co.uk terms (G1); no blocker; 2 should-fix (R1 validate refresh.json at check time, R2 explain all-dash current-season xG results)",
+ "rechecks": [
+  {
+   "id": "recheck-1",
+   "observed_at": "2026-11-02",
+   "producer_id": "reviewer-football-refresh-2026-11-02",
+   "target": "ed48d80 (R1 re-validation in apply, provider_row/row_sha256/line_sha256, R2 note and example, R3 cards), a0157fd, f03014a; tip f03014a on afd1a00",
+   "verdict": "PASS - no blocker. R1, R2 and R3 resolved; recheck notes RC1-1..RC1-4. G1 (football-data.co.uk terms, user decision) still gates merge and deploy.",
+   "summary": "Reviewer scripts only; run read/execute in the existing review worktree (no full clone; disk ~5 GB free), file tampers reverted with git checkout. (1) R1: refresh.py verify --raw PASS 60/60. Independent re-read of both raw CSVs: every result's provider_row equals its CSV line (found by teams, not by the stored line number), provider_line correct, line_sha256 = sha256 of the raw line, row_sha256 = sha256 of the canonical 12-column JSON, and the stored values equal the line: 60/60. Result core fields (id, dates, line, six values) unchanged from afd1a00; data files unchanged since afd1a00; predictions.js unchanged since 5a653c7. In-memory tamper of refresh.json against both Python apply_refresh and JS applyRefresh (24 cases): control PASS; 22 of 23 tampers FAIL in Python with the intended message, including the four from the first review (score +1, goals swapped, date 2026-09-19, hst>hs), duplicate id, string/bool/negative values, date after as_of, as_of moved, order, team swap and date change inside provider_row with row_sha256 recomputed, wrong row_sha256, missing line_sha256, completed-match id, invented Rayo-Athletic, wrong division, extra column, provider changed. JS catches the same except float 2.0 (RC1-2). The one PASS in both is a fully consistent forgery (result, provider_row, FTR and row_sha256 all edited): check_release --write-manifest and server/check.cjs PASS, refresh.py verify --raw FAIL ('Provider columns differ from the raw line') (RC1-1, as stated in the SPEC). File-level: score +1 in refresh.json -> apply, check_release, server/check and verify all FAIL. (2) R2: page diff vs afd1a00 has 25 changed regions per page: the featured example text (button + label list, xG -> goals), the analysisNote text, the R3 card style and data-label cells, and the MutationObserver hook; nothing else. The 18 recorded rules per page (36) = the 16 read before + 2 example-text rules. Browser ko/en x 390/650/651/1440: example 2 is now the goals ranking (numbers, no note); current-season xG ranking, Arsenal goals vs xG, Real Madrid xG conceded show the note ko/en; LaLiga 2025/26 xG ranking shows numbers and no note. (3) R3: at 390 and 650 px thead hidden, rows are blocks, ::before labels from data-label, all four cells inside the viewport, table area scrollWidth = clientWidth (328/328, 588/588); at 651 and 1440 the normal table. Page errors 0, console errors 0 (besides aborted external requests to cdn.jsdelivr.net and cdn.statmuse.com), document overflow 0 in matches, analysis and match views, no NaN/undefined/Infinity text. (4) Tests in the worktree: test:server 24 PASS, test:report 15 PASS (checks.json testedAt reverted), test:odds PASS 877, analysis 18 PASS, compact predictions PASS, refresh check PASS, build_pages --check PASS, build + check-vercel PASS, check_release PASS (1,798 files, 36 recorded edits) before this recheck commit. This commit changes validation-report.json and adds two screenshots, so publication_manifest.json must be regenerated again.",
+   "notes": [
+    "RC1-1 A fully self-consistent forgery of refresh.json (result values, provider_row, FTR and row_sha256 edited together) still passes check_release and server/check; only refresh.py verify --raw with the raw files catches it. Documented in the SPEC; keep the raw CSVs (outside the repository) and run verify --raw in the release checklist.",
+    "RC1-2 JS applyRefresh accepts hg 2.0 (Number.isInteger(2.0) is true and JSON parsing in JS cannot tell 2.0 from 2); Python rejects it, and check_release runs the Python path on the same file, so the file cannot carry 2.0 through the release check. No action needed.",
+    "RC1-3 The third featured example '바르셀로나 홈 원정 성적 비교' / 'Compare Barcelona home and away' defaults to the xG metric, so on a fresh page it shows only '홈 — / 원정 —' (now with the explanation line). Explained, not broken; consider making it a goals or points comparison like example 2.",
+    "RC1-4 Python validate_refresh reports a missing line_sha256 as KeyError 'line_sha256' instead of the friendly message the JS mirror gives; it still fails."
+   ]
+  }
+ ]
+}
