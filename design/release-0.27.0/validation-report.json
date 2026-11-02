@@ -49,6 +49,18 @@
   {
    "path": "(scratch, not committed) review-ml27/csvcheck.py, pred.py, unchanged.py, nulls.cjs, api.cjs, tamper.py, browser.cjs, browser-raw.json, tamper-out.json",
    "description": "Reviewer scripts and raw outputs in the session scratchpad; numbers below come from them. Builder scripts (tamper-check.py, browser-result.json) were not reused."
+  },
+  {
+   "path": "design/release-0.27.0/review/recheck-review-cards-ko-390.png",
+   "description": "Recheck: ko 390, La Liga finished-match table as stacked cards (labels 실제 / 예측 (홈·무·원정) / 판정 from data-label), table area 328 = content 328, no sideways scroll. Reviewer Playwright-core 1.57.0 + Chrome 156.0.8078.74 headless, PORT=8852 node server/gemini.cjs in the review worktree, external requests aborted. sha256[:16] fdea342e1b70b952"
+  },
+  {
+   "path": "design/release-0.27.0/review/recheck-analysis-note-en-390.png",
+   "description": "Recheck: en 390, current-season xG question with the new one-line explanation above the result. Same setup. sha256[:16] d701761d9bde687f"
+  },
+  {
+   "path": "(scratch, not committed) review-ml27/r1/r1.py, jsapply.cjs, cases.json, r1-result.json, browser2.cjs, browser2.json, ex3.cjs",
+   "description": "Recheck scripts and raw outputs; builder tamper-check.py and tamper-result.json were not reused."
   }
  ],
  "issues": [
@@ -113,5 +125,21 @@
    "result": "24 server checks PASS; test:report 15 PASS (checks.json testedAt rewritten and reverted); test:odds PASS 877; analysis 17 PASS; compact predictions PASS; refresh check PASS; pages = build_pages output PASS; build + check-vercel PASS; check_release PASS (1,788 files, 32 recorded edits). Sizes reproduced: index.html 192,919 / gzip-6 58,930; index.en.html 191,937 / 58,339; data.ko.js 1,828,328 / 243,679; data.en.js 1,827,454 / 243,423; predictions.js unchanged 2,132,671 / 722,824. VERSION, package.json, README current version 0.27.0; f1/ unchanged."
   }
  ],
- "verdict": "merge-ready after the user decides on the football-data.co.uk terms (G1); no blocker; 2 should-fix (R1 validate refresh.json at check time, R2 explain all-dash current-season xG results)"
+ "verdict": "merge-ready after the user decides on the football-data.co.uk terms (G1); no blocker; 2 should-fix (R1 validate refresh.json at check time, R2 explain all-dash current-season xG results)",
+ "rechecks": [
+  {
+   "id": "recheck-1",
+   "observed_at": "2026-11-02",
+   "producer_id": "reviewer-football-refresh-2026-11-02",
+   "target": "ed48d80 (R1 re-validation in apply, provider_row/row_sha256/line_sha256, R2 note and example, R3 cards), a0157fd, f03014a; tip f03014a on afd1a00",
+   "verdict": "PASS - no blocker. R1, R2 and R3 resolved; recheck notes RC1-1..RC1-4. G1 (football-data.co.uk terms, user decision) still gates merge and deploy.",
+   "summary": "Reviewer scripts only; run read/execute in the existing review worktree (no full clone; disk ~5 GB free), file tampers reverted with git checkout. (1) R1: refresh.py verify --raw PASS 60/60. Independent re-read of both raw CSVs: every result's provider_row equals its CSV line (found by teams, not by the stored line number), provider_line correct, line_sha256 = sha256 of the raw line, row_sha256 = sha256 of the canonical 12-column JSON, and the stored values equal the line: 60/60. Result core fields (id, dates, line, six values) unchanged from afd1a00; data files unchanged since afd1a00; predictions.js unchanged since 5a653c7. In-memory tamper of refresh.json against both Python apply_refresh and JS applyRefresh (24 cases): control PASS; 22 of 23 tampers FAIL in Python with the intended message, including the four from the first review (score +1, goals swapped, date 2026-09-19, hst>hs), duplicate id, string/bool/negative values, date after as_of, as_of moved, order, team swap and date change inside provider_row with row_sha256 recomputed, wrong row_sha256, missing line_sha256, completed-match id, invented Rayo-Athletic, wrong division, extra column, provider changed. JS catches the same except float 2.0 (RC1-2). The one PASS in both is a fully consistent forgery (result, provider_row, FTR and row_sha256 all edited): check_release --write-manifest and server/check.cjs PASS, refresh.py verify --raw FAIL ('Provider columns differ from the raw line') (RC1-1, as stated in the SPEC). File-level: score +1 in refresh.json -> apply, check_release, server/check and verify all FAIL. (2) R2: page diff vs afd1a00 has 25 changed regions per page: the featured example text (button + label list, xG -> goals), the analysisNote text, the R3 card style and data-label cells, and the MutationObserver hook; nothing else. The 18 recorded rules per page (36) = the 16 read before + 2 example-text rules. Browser ko/en x 390/650/651/1440: example 2 is now the goals ranking (numbers, no note); current-season xG ranking, Arsenal goals vs xG, Real Madrid xG conceded show the note ko/en; LaLiga 2025/26 xG ranking shows numbers and no note. (3) R3: at 390 and 650 px thead hidden, rows are blocks, ::before labels from data-label, all four cells inside the viewport, table area scrollWidth = clientWidth (328/328, 588/588); at 651 and 1440 the normal table. Page errors 0, console errors 0 (besides aborted external requests to cdn.jsdelivr.net and cdn.statmuse.com), document overflow 0 in matches, analysis and match views, no NaN/undefined/Infinity text. (4) Tests in the worktree: test:server 24 PASS, test:report 15 PASS (checks.json testedAt reverted), test:odds PASS 877, analysis 18 PASS, compact predictions PASS, refresh check PASS, build_pages --check PASS, build + check-vercel PASS, check_release PASS (1,798 files, 36 recorded edits) before this recheck commit. This commit changes validation-report.json and adds two screenshots, so publication_manifest.json must be regenerated again.",
+   "notes": [
+    "RC1-1 A fully self-consistent forgery of refresh.json (result values, provider_row, FTR and row_sha256 edited together) still passes check_release and server/check; only refresh.py verify --raw with the raw files catches it. Documented in the SPEC; keep the raw CSVs (outside the repository) and run verify --raw in the release checklist.",
+    "RC1-2 JS applyRefresh accepts hg 2.0 (Number.isInteger(2.0) is true and JSON parsing in JS cannot tell 2.0 from 2); Python rejects it, and check_release runs the Python path on the same file, so the file cannot carry 2.0 through the release check. No action needed.",
+    "RC1-3 The third featured example '바르셀로나 홈 원정 성적 비교' / 'Compare Barcelona home and away' defaults to the xG metric, so on a fresh page it shows only '홈 — / 원정 —' (now with the explanation line). Explained, not broken; consider making it a goals or points comparison like example 2.",
+    "RC1-4 Python validate_refresh reports a missing line_sha256 as KeyError 'line_sha256' instead of the friendly message the JS mirror gives; it still fails."
+   ]
+  }
+ ]
 }
