@@ -1,0 +1,126 @@
+{
+ "run_id": "matchlab-0.27.1-2026-11-02",
+ "match_key": "ARCHIVE_XG",
+ "role": "reviewer",
+ "producer_id": "reviewer-archive-xg-2026-11-02",
+ "status": "DONE",
+ "summary": "Independent review of feat/archive-xg-0.27.1 (6c75f75 on main 8bffcc6). Builder scripts were not reused for the source check.",
+ "observed_at": "2026-11-02",
+ "evidence": [
+  "Re-downloaded the 5 web.archive.org id_ captures (gzip) outside the repository with curl; own parser: bytes and sha256 equal archive-xg.json for all 5; match_info h_xg/a_xg and per-shot xG lists equal the evidence; shot sums (float and Decimal) give the stored hx/ax; id, date, teams, score equal refresh.json and stored team names; archive shot counts equal football-data HS/AS; goals counted from shots equal the score.",
+  "Re-downloaded getMatchData captures of La Liga 30823, 30829, 30831, 30832, 30836 (2026-09-20): shot sum minus stored match xG = +0.000325, -0.000001/-0.000003, +0.013436, -0.000001, +0.014283 (the SPEC table is correct).",
+  "data.ko.js / data.en.js vs main, parsed: only the 5 rows differ, only hx, ax and the added xg_source, xg_method; the other 55 refreshed rows and all 2,399 earlier rows and every other block are equal; predictions.js byte-identical (sha256 8850a2ae...).",
+  "50 mutations of archive-xg.json run through Python apply_archive_xg and JS applyArchiveXg: same accept/reject on 49; applying twice is rejected by both. File-level tampering (value, team string, id, method, data file value) makes check_release and test:server fail; git checkout restored each time.",
+  "Engine questions and browser (Playwright 1.57.0, ko/en x 390/1440, own script): 5 xG rows of 30 EPL review rows, 3 marked shot sum; match rooms, 8 team pages, 6 previews, 6 xG questions per language: no NaN/undefined/Infinity in text or SVG, no horizontal overflow, no console errors, no Hangul on English page."
+ ],
+ "issues": [
+  {
+   "id": "R1",
+   "severity": "important (pre-existing, not a 0.27.1 regression)",
+   "text": "Follow-up questions keep compareGoals: after \"토트넘 최근 5경기 기대 득점과 실제 득점 비교\", \"맨유 최근 1경기 기대 실점\" shows 0.84 (Man Utd xG for) labelled 기대 실점 (true xGA 2.56), and \"EPL 이번 시즌 기대 득점 순위\" repeats that trend instead of a ranking. record-engine.cjs parse(): follow regex includes 최근/시즌, compareGoals forces tool=trend, trend always plots xG for. Engine unchanged from main; 0.27.1 only makes a wrong number visible for these matches. Fix separately."
+  },
+  {
+   "id": "R2",
+   "severity": "minor",
+   "text": "shot_sum values are marked only in the finished-match table and the match-room note; the match-room score card, team recent table and analysis answers show them unmarked."
+  },
+  {
+   "id": "R3",
+   "severity": "minor",
+   "text": "31256 match_info was captured 2026-10-25 16:15:31 UTC, kickoff 14:00 UTC (about 20 minutes after full time). Score and shots equal the final record, but Understat could have revised xG later. The rules do not check archived_at is after the match."
+  },
+  {
+   "id": "R4",
+   "severity": "minor",
+   "text": "Mirror difference: archive_match.score [5, true] passes Python (True == 1) and fails JS. Output unaffected. Unknown extra keys are accepted by both."
+  },
+  {
+   "id": "R5",
+   "severity": "minor (by design)",
+   "text": "Offline checks cannot tie values to sha256: a consistent edit of h_xg + hx with regenerated data, pages and manifest passes check_release; test:server (hard-coded 5 values) and verify-xg (network) catch it."
+  },
+  {
+   "id": "R6",
+   "severity": "minor (fixed in this commit)",
+   "text": "CHANGELOG called 0.014 the maximum possible difference (it is the maximum of a 5-match sample); SPEC said \"(슈팅 합계)\" while the page shows \" · 슈팅 합계\". Both texts corrected."
+  },
+  {
+   "id": "R7",
+   "severity": "minor (pre-existing)",
+   "text": "No Korean aliases for 본머스, 뉴캐슬, 입스위치, 풀럼, 코번트리: such questions silently answer for the default team."
+  }
+ ],
+ "tests": [
+  "npm run test:server 25 PASS",
+  "node analysis/check.cjs 19 PASS",
+  "python3 -I tools/check_release.py PASS",
+  "refresh.py check, check-xg PASS",
+  "build_pages.py --check (0.27.1) PASS",
+  "test:report PASS",
+  "test:odds PASS (877)",
+  "compact_predictions.py --check PASS"
+ ],
+ "verdict": "No blocking issue. Data and evidence verified against the archive; wording accurate in ko and en. R1 is an older engine bug worth a separate fix.",
+ "rechecks": [
+  {
+   "id": "recheck-2",
+   "commit": "bbfca9d",
+   "observed_at": "2026-11-02",
+   "results": [
+    "R1 fixed for the reported sequence (ko and en, browser): \"맨유 최근 1경기 기대 실점\" after a goals-vs-xG comparison shows 2.56 (기대 실점); \"EPL 이번 시즌 기대 득점 순위\" gives the ranking; xGA comparison plots xGA with goals conceded (Chelsea 10-10 1.68* / 1).",
+    "Engine main vs branch, 71 questions (6 page examples, 31 single, 34 follow-up pairs): page examples and their 최근/작년/반대로 follow-ups unchanged; 18 differ, most intended (aliases, team not found, xGA compare, R1).",
+    "R2: marks only on the 3 shot_sum matches (review table, match-room label, recent/history/overview tables, team chart value table for xg_for/xg_against only, analysis * and footnote); none on 31249, 31256 or other matches; no overflow at 390.",
+    "R4: 50 mutations, Python and JS agree on all; unknown keys and bool values rejected; applying twice rejected.",
+    "R7: 56/56 teams have aliases; no alias matches another team; league-wide ranking questions never give team not found.",
+    "check_release fails on edits of the workbench copy outside or inside recorded edits, the engine copy, the engine source and the workbench source; predictions.js identical to main.",
+    "test:server 26, analysis/check 22, test:analysis-ui (NODE_PATH, Playwright Chromium) 9 groups, check_release, check-xg, build_pages --check, test:report, test:odds PASS; browser ko/en x 390/1440: no NaN, overflow, console errors or Hangul on the English page."
+   ],
+   "issues": [
+    {
+     "id": "RC2-1",
+     "severity": "important (regression from the R1 fix)",
+     "text": "Follow-ups that name a club or a metric now reset the context. \"리버풀 2024/25 승점\" then \"최근 10경기 기대 득점\" answers for the selected team (Arsenal) in 2026/27 (main: Liverpool 2024/25). \"리버풀 2024/25 승점\" then \"맨시티 최근 5경기\" drops season and metric (main: Man City, 2024/25, 승점). \"토트넘 최근 5경기 승률\" then \"작년 시즌 아스널\" drops 승률."
+    },
+    {
+     "id": "RC2-2",
+     "severity": "important",
+     "text": "\"리버풀로 바꿔\" / \"change to Liverpool\" after a goals-vs-xG comparison keeps the follow-up but drops the comparison (Liverpool xG total \"—\" instead of the Liverpool trend, as on main). \"기대 실점으로 바꿔\" gives an xGA total instead of xGA vs goals conceded."
+    },
+    {
+     "id": "RC2-3",
+     "severity": "minor",
+     "text": "otherClubs matches \"포르투\" inside \"포르투갈\", so \"포르투갈 리그 순위\" says team not found (unsupported either way)."
+    },
+    {
+     "id": "RC2-4",
+     "severity": "minor (disclosed / pre-existing)",
+     "text": "Partial names such as \"레알\", \"아틀레틱\", \"포레스트\" and unknown clubs (Inter Miami) still answer for the selected team; \"시리즈\" still matches Leeds (리즈)."
+    }
+   ],
+   "verdict": "R2, R4, R7 and the reported R1 sequence are fixed. RC2-1 and RC2-2 are follow-up regressions in the engine; fix before merge or accept explicitly."
+  },
+  {
+   "id": "recheck-3",
+   "commit": "807788f",
+   "observed_at": "2026-11-02",
+   "results": [
+    "RC2-1, RC2-2 and the R1 sequence fixed in ko and en (engine and browser): Liverpool 2024/25 then 최근 10경기 기대 득점 = Liverpool 2024/25 25.32; 맨시티 최근 5경기 = 2024/25 승점 13; 작년 시즌 아스널 keeps 승률; 리버풀로 바꿔 / change to Liverpool keep the comparison; 기대 실점으로 바꿔 / change to xGA compare xGA with goals conceded; 맨유 최근 1경기 기대 실점 = 2.56; ranking question gives a ranking.",
+    "Engine main vs branch, 71 questions: 14 differ, each reviewed: 5 Korean club names, 1 team not found, 5 xGA comparison/trend (values checked: Chelsea 10-10 xGA 1.68 conceded 1, Tottenham 10-19 xGA 1.14 conceded 1), 3 R1 sequence.",
+    "20 own follow-up chains (team, season, metric changes, compare to ranking, compare to other team to other metric, ko/en): 10 chains differ from main; all differences are the compare mode now following the asked metric (main plotted xG for under xGA, points or goals-conceded labels) or released by another metric.",
+    "RC2-3 fixed: 포르투갈 no longer gives team not found.",
+    "test:server 26, analysis/check 25, test:analysis-ui 9 groups, check_release, refresh check, check-xg, build_pages --check PASS; browser ko/en x 390/1440: no NaN, overflow, console errors or Hangul on the English page; predictions.js identical to main."
+   ],
+   "issues": [
+    {
+     "id": "RC3-1",
+     "severity": "minor",
+     "text": "After an xGA comparison, \"다시 기대 득점\" (no switch word) releases the comparison and gives an xG total (Man Utd last 5: —); \"기대 득점으로 바꿔\" switches the compared metric. main kept a comparison here."
+    }
+   ],
+   "notes": [
+    "Main behaviour, not counted: a follow-up keeps the earlier period/season (EPL 이번 시즌 기대 득점 순위 keeps 최근 1경기; a page example containing 최근 asked after other questions keeps their season); 포르투갈 리그 순위 answers the EPL ranking; 바르셀로나 최근 5경기 then 기대 득점과 실제 득점 비교 answers for the selected team (Arsenal)."
+   ],
+   "verdict": "No blocking or important issue. Ready from the review side."
+  }
+ ]
+}

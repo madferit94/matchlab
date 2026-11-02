@@ -28,4 +28,6 @@ Open [localhost:8765](http://127.0.0.1:8765/) in your browser.
 
 [Setup and deployment guide](docs/VERCEL.ko.md) · [Detailed documents](docs/README.md) · [Changelog](CHANGELOG.md) (documents are in Korean)
 
-Current version: **0.27.0**
+Current version: **0.27.1**
+
+0.27.1: of the 60 football results added after 2026-09-20, 5 now show xG, taken from Internet Archive copies of Understat (understat.com itself is unreachable). The other 55 still show no xG.

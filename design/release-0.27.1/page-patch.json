@@ -1,0 +1,156 @@
+{
+ "index.html": [
+  {
+   "why": "preview xG chart note: some football-data.co.uk results now have xG",
+   "before": "<div class=\"muted\">xG 자료가 없는 경기(football-data.co.uk 결과)는 점을 표시하지 않습니다.</div>",
+   "after": "<div class=\"muted\">xG 자료가 없는 경기(2026-09-20 이후 결과 대부분)는 점을 표시하지 않습니다.</div>"
+  },
+  {
+   "why": "R2: xgMark() helper for shot-sum xG (next to xgText)",
+   "before": "function xgText(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(2):'—'}</script>",
+   "after": "function xgText(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(2):'—'}\nfunction xgMark(m,v){return m&&m.xg_method==='shot_sum'&&typeof v==='number'&&Number.isFinite(v)?'<br><small class=\"muted xg-mark\">슈팅 합계</small>':''}</script>"
+  },
+  {
+   "why": "R2: rows() xG cell mark",
+   "before": "<td>${xgText(h?m.hx:m.ax)}</td></tr>`}).join('')}</tbody></table></div>`}\nconst fixtureLimits",
+   "after": "<td>${xgText(h?m.hx:m.ax)}${xgMark(m,h?m.hx:m.ax)}</td></tr>`}).join('')}</tbody></table></div>`}\nconst fixtureLimits"
+  },
+  {
+   "why": "R2: historyRows() xG cell marks",
+   "before": "<td>${xgText(h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}</td>",
+   "after": "<td>${xgText(h?m.hx:m.ax)}${xgMark(m,h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}${xgMark(m,h?m.ax:m.hx)}</td>"
+  },
+  {
+   "why": "R2: overviewRecent() xG cell mark",
+   "before": "${f}:${a}</td><td>${xgText(h?m.hx:m.ax)}</td>",
+   "after": "${f}:${a}</td><td>${xgText(h?m.hx:m.ax)}${xgMark(m,h?m.hx:m.ax)}</td>"
+  },
+  {
+   "why": "R2: match room xG label mark",
+   "before": "<div class=\"stat\"><strong>${xgText(m.hx)}</strong><div><label>기대 득점 (xG)</label></div>",
+   "after": "<div class=\"stat\"><strong>${xgText(m.hx)}</strong><div><label>기대 득점 (xG)${xgMark(m,m.hx)}</label></div>"
+  },
+  {
+   "why": "R1, R2, R7: analysis texts for xGA trends, the shot-sum note and team not found",
+   "before": "\"actual\": \"실제 득점\", ",
+   "after": "\"actual\": \"실제 득점\", \"actualAgainst\": \"실제 실점\", \"seriesAgainst\": \"초록 막대: 기대 실점 · 노랑 막대: 실제 실점\", \"shotSumNote\": \"* 슈팅 합계: Understat 슈팅별 xG를 더한 값(Internet Archive 사본)이 들어간 수치입니다.\", \"team_not_found\": \"팀을 찾지 못했어요. 프리미어리그·라리가 구단 이름으로 다시 질문해 주세요.\", "
+  },
+  {
+   "why": "R2: analysis chart value mark",
+   "before": "<strong>${r.value===null?'—':r.value.toFixed(2)}${result.unit}${r.actual!==undefined?' / '+r.actual:''}</strong>",
+   "after": "<strong>${r.value===null?'—':r.value.toFixed(2)}${r.shotSum?'*':''}${result.unit}${r.actual!==undefined?' / '+r.actual:''}</strong>"
+  },
+  {
+   "why": "R2: analysis table value mark",
+   "before": "<td>${r.value===null?'—':r.value.toFixed(2)}${result.unit}</td>",
+   "after": "<td>${r.value===null?'—':r.value.toFixed(2)}${r.shotSum?'*':''}${result.unit}</td>"
+  },
+  {
+   "why": "R1, R2: analysis labels follow xG / xGA; shot-sum note",
+   "before": "const actual=result.rows.some(r=>r.actual!==undefined);",
+   "after": "const actual=result.rows.some(r=>r.actual!==undefined),against=result.metric==='xga',actualLabel=against?analystText.actualAgainst:analystText.actual,shotNote=result.rows.some(r=>r.shotSum)?'<p class=\"analystlegend\">'+esc(analystText.shotSumNote)+'</p>':'';"
+  },
+  {
+   "why": "R1: analysis heading",
+   "before": "<h3>${esc(metric)}${actual?' / '+esc(analystText.actual):''}</h3>",
+   "after": "<h3>${esc(metric)}${actual?' / '+esc(actualLabel):''}</h3>"
+  },
+  {
+   "why": "R1: analysis legend",
+   "before": "${actual?`<p class=\"analystlegend\">${esc(analystText.series)}</p>`:''}",
+   "after": "${actual?`<p class=\"analystlegend\">${esc(against?analystText.seriesAgainst:analystText.series)}</p>`:''}"
+  },
+  {
+   "why": "R1, R2: analysis table heading and shot-sum note",
+   "before": "${actual?'<th>'+esc(analystText.actual)+'</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>`;",
+   "after": "${actual?'<th>'+esc(actualLabel)+'</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>${shotNote}`;"
+  },
+  {
+   "why": "R1: analysis condition summary (shared workbench copy in this page)",
+   "before": "(p.compareGoals?tr(' / 실제 득점',' / actual goals'):'')",
+   "after": "(p.compareGoals?(p.metric==='xga'?tr(' / 실제 실점',' / goals conceded'):tr(' / 실제 득점',' / actual goals')):'')"
+  },
+  {
+   "why": "R7: team not found message (shared workbench copy in this page)",
+   "before": "team:['구단 이름을 적거나",
+   "after": "team_not_found:['팀을 찾지 못했어요. 프리미어리그·라리가 구단 이름으로 다시 질문해 주세요.','Team not found. Ask about a Premier League or LaLiga club.'],team:['구단 이름을 적거나"
+  }
+ ],
+ "index.en.html": [
+  {
+   "why": "preview xG chart note: some football-data.co.uk results now have xG",
+   "before": "<div class=\"muted\">Matches without xG (football-data.co.uk results) have no point.</div>",
+   "after": "<div class=\"muted\">Matches without xG (most results after 2026-09-20) have no point.</div>"
+  },
+  {
+   "why": "R2: xgMark() helper for shot-sum xG (next to xgText)",
+   "before": "function xgText(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(2):'—'}</script>",
+   "after": "function xgText(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(2):'—'}\nfunction xgMark(m,v){return m&&m.xg_method==='shot_sum'&&typeof v==='number'&&Number.isFinite(v)?'<br><small class=\"muted xg-mark\">shot sum</small>':''}</script>"
+  },
+  {
+   "why": "R2: rows() xG cell mark",
+   "before": "<td>${xgText(h?m.hx:m.ax)}</td></tr>`}).join('')}</tbody></table></div>`}\nconst fixtureLimits",
+   "after": "<td>${xgText(h?m.hx:m.ax)}${xgMark(m,h?m.hx:m.ax)}</td></tr>`}).join('')}</tbody></table></div>`}\nconst fixtureLimits"
+  },
+  {
+   "why": "R2: historyRows() xG cell marks",
+   "before": "<td>${xgText(h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}</td>",
+   "after": "<td>${xgText(h?m.hx:m.ax)}${xgMark(m,h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}${xgMark(m,h?m.ax:m.hx)}</td>"
+  },
+  {
+   "why": "R2: overviewRecent() xG cell mark",
+   "before": "${f}:${a}</td><td>${xgText(h?m.hx:m.ax)}</td>",
+   "after": "${f}:${a}</td><td>${xgText(h?m.hx:m.ax)}${xgMark(m,h?m.hx:m.ax)}</td>"
+  },
+  {
+   "why": "R2: match room xG label mark",
+   "before": "<div class=\"stat\"><strong>${xgText(m.hx)}</strong><div><label>Expected goals (xG)</label></div>",
+   "after": "<div class=\"stat\"><strong>${xgText(m.hx)}</strong><div><label>Expected goals (xG)${xgMark(m,m.hx)}</label></div>"
+  },
+  {
+   "why": "R1, R2, R7: analysis texts for xGA trends, the shot-sum note and team not found",
+   "before": "\"actual\": \"Actual goals\", ",
+   "after": "\"actual\": \"Actual goals\", \"actualAgainst\": \"Goals conceded\", \"seriesAgainst\": \"Green bars: expected goals against · Yellow bars: goals conceded\", \"shotSumNote\": \"* Shot sum: includes xG added up from Understat per-shot values (Internet Archive copy).\", \"team_not_found\": \"Team not found. Ask about a Premier League or LaLiga club.\", "
+  },
+  {
+   "why": "R2: analysis chart value mark",
+   "before": "<strong>${r.value===null?'—':r.value.toFixed(2)}${result.unit}${r.actual!==undefined?' / '+r.actual:''}</strong>",
+   "after": "<strong>${r.value===null?'—':r.value.toFixed(2)}${r.shotSum?'*':''}${result.unit}${r.actual!==undefined?' / '+r.actual:''}</strong>"
+  },
+  {
+   "why": "R2: analysis table value mark",
+   "before": "<td>${r.value===null?'—':r.value.toFixed(2)}${result.unit}</td>",
+   "after": "<td>${r.value===null?'—':r.value.toFixed(2)}${r.shotSum?'*':''}${result.unit}</td>"
+  },
+  {
+   "why": "R1, R2: analysis labels follow xG / xGA; shot-sum note",
+   "before": "const actual=result.rows.some(r=>r.actual!==undefined);",
+   "after": "const actual=result.rows.some(r=>r.actual!==undefined),against=result.metric==='xga',actualLabel=against?analystText.actualAgainst:analystText.actual,shotNote=result.rows.some(r=>r.shotSum)?'<p class=\"analystlegend\">'+esc(analystText.shotSumNote)+'</p>':'';"
+  },
+  {
+   "why": "R1: analysis heading",
+   "before": "<h3>${esc(metric)}${actual?' / '+esc(analystText.actual):''}</h3>",
+   "after": "<h3>${esc(metric)}${actual?' / '+esc(actualLabel):''}</h3>"
+  },
+  {
+   "why": "R1: analysis legend",
+   "before": "${actual?`<p class=\"analystlegend\">${esc(analystText.series)}</p>`:''}",
+   "after": "${actual?`<p class=\"analystlegend\">${esc(against?analystText.seriesAgainst:analystText.series)}</p>`:''}"
+  },
+  {
+   "why": "R1, R2: analysis table heading and shot-sum note",
+   "before": "${actual?'<th>'+esc(analystText.actual)+'</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>`;",
+   "after": "${actual?'<th>'+esc(actualLabel)+'</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>${shotNote}`;"
+  },
+  {
+   "why": "R1: analysis condition summary (shared workbench copy in this page)",
+   "before": "(p.compareGoals?tr(' / 실제 득점',' / actual goals'):'')",
+   "after": "(p.compareGoals?(p.metric==='xga'?tr(' / 실제 실점',' / goals conceded'):tr(' / 실제 득점',' / actual goals')):'')"
+  },
+  {
+   "why": "R7: team not found message (shared workbench copy in this page)",
+   "before": "team:['구단 이름을 적거나",
+   "after": "team_not_found:['팀을 찾지 못했어요. 프리미어리그·라리가 구단 이름으로 다시 질문해 주세요.','Team not found. Ask about a Premier League or LaLiga club.'],team:['구단 이름을 적거나"
+  }
+ ]
+}

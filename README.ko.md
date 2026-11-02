@@ -28,4 +28,6 @@ npm start
 
 [설정·배포 안내](docs/VERCEL.ko.md) · [상세 문서](docs/README.md) · [변경 이력](CHANGELOG.md)
 
-현재 버전: **0.27.0**
+현재 버전: **0.27.1**
+
+0.27.1: 2026-09-20 이후 추가한 축구 결과 60경기 중 5경기에 xG를 넣었습니다. Understat 자료의 Internet Archive 사본에서 가져왔습니다(understat.com은 지금 열리지 않음). 나머지 55경기는 여전히 xG가 없습니다.

@@ -2,7 +2,7 @@ const {chromium}=require('playwright'),fs=require('node:fs'),assert=require('nod
 const {createServer}=require('../../server/gemini.cjs');
 (async()=>{let calls=0;const plan={tool:'team',teams:['understat:83'],league:'EPL',season:'2026/27',last:5,venue:'all',metric:'xg',perMatch:true,compareGoals:false,order:'desc'};
  const server=createServer({key:'test-fixture-only',fetchImpl:async(url,options)=>{if(JSON.parse(options.body).tools?.some(t=>t.name==='analyze_records'))calls++;return {ok:true,status:200,json:async()=>({steps:[{type:'function_call',name:'analyze_records',arguments:plan}]})};}});await new Promise(r=>server.listen(0,'127.0.0.1',r));
- const base='http://127.0.0.1:'+server.address().port,browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true}),checks=[];
+ const base='http://127.0.0.1:'+server.address().port,browser=await chromium.launch({executablePath:process.env.MATCHLAB_BROWSER||(process.platform==='win32'?'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe':undefined),headless:true}),checks=[];
  try{const p=await browser.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
  const noForm=async()=>{assert.equal(await p.locator('[data-plan-apply],[data-plan-field],.ml-plan-review').count(),0,'No mandatory conditions form');assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);};
  for(const lang of ['ko','en'])for(const width of [390,1440]){
@@ -31,4 +31,6 @@ const {createServer}=require('../../server/gemini.cjs');
  await p.goto(base+'/');await p.locator('#analystmode').selectOption('gemini');await p.locator('#analystquery').fill('아스널 최근 5경기 평균 기대 득점');await p.locator('#analystsubmit').click();await p.locator('#analystresult .ml-analysis-context').waitFor();assert.equal(calls,1);assert((await p.locator('#analystresult').innerText()).includes('Arsenal'));await noForm();checks.push({sport:'football',mode:'mocked Gemini',immediate:true,providerCalls:calls});
  assert.deepEqual(errors,[]);fs.writeFileSync(__dirname+'/browser-result.json',JSON.stringify({status:'PASS',checks,pageErrors:errors,provider:'mocked; no external AI calls'},null,2));console.log('PASS',checks.length,'direct-analysis browser groups');
  }finally{await browser.close();server.closeAllConnections();await new Promise(r=>server.close(r));}
-})().catch(e=>{console.error(e);process.exitCode=1});
+// 0.27.1: if the browser cannot start (e.g. the Windows Edge path on macOS), the local server is still listening;
+// exit instead of hanging. Elsewhere: NODE_PATH=<folder with playwright> MATCHLAB_BROWSER=<browser path, optional>.
+})().catch(e=>{console.error(e);process.exitCode=1;setImmediate(()=>process.exit(1))});

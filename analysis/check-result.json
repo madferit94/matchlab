@@ -1,5 +1,5 @@
 {
-  "checks": 18,
+  "checks": 26,
   "failures": 0,
   "method": "Node engine checks against saved match data; no real browser"
 }

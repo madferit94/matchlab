@@ -25,7 +25,7 @@ for doc in link_docs:
         links+=1
 # 0.26.2: one release number everywhere. README "current version" lines must
 # match VERSION (they were left at 0.25.3 through 0.26.1).
-RELEASE='0.27.0'
+RELEASE='0.27.1'
 version_file=(p/'VERSION').read_text(encoding='utf8').strip()
 assert version_file==RELEASE, 'VERSION differs from the release checker version: '+version_file
 assert json.loads((p/'package.json').read_text(encoding='utf8'))['version']==RELEASE, 'package.json version differs from VERSION'
@@ -103,8 +103,20 @@ def load_module(name,path):
 refresh_module=load_module('football_refresh',p/'tools/football_refresh/refresh.py')
 REFRESHED_TEXT=refresh_module.expected_texts()
 for data_name,text in REFRESHED_TEXT.items():
-    assert (data_dir/data_name).read_text(encoding='utf8')==text, 'Football data differs from apply(v50 data, refresh.json): '+data_name
+    assert (data_dir/data_name).read_text(encoding='utf8')==text, 'Football data differs from apply(v50 data, refresh.json, archive-xg.json): '+data_name
 REFRESH=json.loads((p/'tools/football_refresh/0.27.0/refresh.json').read_text(encoding='utf8'))
+# 0.27.1: xG for 5 refreshed matches from Internet Archive copies of understat.com. expected_texts() above already
+# applies archive-xg.json and re-checks its rules (ids in refresh.json once each, finite non-negative values,
+# match_info strings and shot sums recomputed); the counts below go into the manifest.
+ARCHIVE_XG=json.loads((p/'tools/football_refresh/0.27.1/archive-xg.json').read_text(encoding='utf8'))
+assert {e['id'] for e in ARCHIVE_XG['matches']}<= {r['id'] for r in REFRESH['results']}, 'Archive xG id outside refresh.json'
+XG_AFTER=dict(count=len(ARCHIVE_XG['matches']),of_results=len(REFRESH['results']),source=ARCHIVE_XG['source'],
+              methods={k:sum(e['method']==k for e in ARCHIVE_XG['matches']) for k in ['match_info','shot_sum']},
+              ids=[e['id'] for e in ARCHIVE_XG['matches']],evidence='tools/football_refresh/0.27.1/archive-xg.json')
+for name in FOOTBALL_DATA:
+    rows=[m for m in json.loads(data_json_text(FOOTBALL_DATA[name],'data'))['completed'] if m.get('provider')==REFRESH['provider']]
+    assert sorted(m['id'] for m in rows if m['hx'] is not None)==sorted(XG_AFTER['ids']), 'Refreshed matches with xG differ from archive-xg.json: '+name
+    assert all(m['hx'] is None and m['ax'] is None and 'xg_source' not in m for m in rows if m['id'] not in XG_AFTER['ids']), 'A refreshed match outside archive-xg.json has xG: '+name
 R0270=p/'design/release-0.27.0'
 build_module=load_module('build_pages_0270',R0270/'build_pages.py')
 PAGE_PATCH=json.loads((R0270/'page-patch.json').read_text(encoding='utf8'))
@@ -120,6 +132,31 @@ assert refresh_logic[0]==refresh_logic[1], 'Refresh UI logic differs by language
 assert not re.search('[가-힣]',refresh_ui_source('en')), 'Korean text in the English refresh UI'
 XG_HELPERS='<script id="matchlab-xg-helpers">'+(R0270/'xg-helpers.js').read_text(encoding='utf8').rstrip('\n')+'</script>'
 MAIN_SCRIPT_START='<script>\nlet metricHelpTrigger=null;'
+# 0.27.1: the pages are the 0.27.0 pages with the refresh UI block replaced by design/release-0.27.1/refresh-ui.<lang>.js
+# and the edits in design/release-0.27.1/page-patch.json (= its build_pages.py rules). undo_0271() puts the 0.27.0
+# block back and undoes those edits; undo_refresh() then undoes 0.27.0 as before.
+R0271=p/'design/release-0.27.1'
+build_module_0271=load_module('build_pages_0271',R0271/'build_pages.py')
+PAGE_PATCH_0271=json.loads((R0271/'page-patch.json').read_text(encoding='utf8'))
+for page,lang in [('index.html','ko'),('index.en.html','en')]:
+    assert PAGE_PATCH_0271[page]==[dict(why=w,before=b,after=a) for w,b,a in build_module_0271.rules(lang)], 'page-patch.json differs from build_pages.py rules (0.27.1): '+page
+def refresh_ui_0271(lang):
+    source=(R0271/('refresh-ui.'+lang+'.js')).read_text(encoding='utf8')
+    assert sum(line.startswith(REFRESH_TEXT_LINE_PREFIX) for line in source.split('\n'))==1, 'Refresh UI text line missing or repeated (0.27.1): '+lang
+    assert '</script' not in source, 'Refresh UI source cannot be inlined (0.27.1): '+lang
+    return source
+refresh_logic_0271=['\n'.join(l for l in refresh_ui_0271(lang).split('\n') if not l.startswith(REFRESH_TEXT_LINE_PREFIX)) for lang in ['ko','en']]
+assert refresh_logic_0271[0]==refresh_logic_0271[1], 'Refresh UI logic differs by language (0.27.1)'
+assert not re.search('[가-힣]',refresh_ui_0271('en')), 'Korean text in the English refresh UI (0.27.1)'
+def undo_0271(name,html):
+    lang=NOTICE_LANG[name]
+    ui='<script id="matchlab-refresh-ui">'+refresh_ui_0271(lang).rstrip('\n')+'</script></body></html>'
+    assert html.endswith(ui) and html.count('matchlab-refresh-ui')==1, 'Refresh UI block (0.27.1) missing, changed or moved: '+name
+    html=html[:-len(ui)]+'<script id="matchlab-refresh-ui">'+refresh_ui_source(lang).rstrip('\n')+'</script></body></html>'
+    for patch in reversed(PAGE_PATCH_0271[name]):
+        assert html.count(patch['after'])==1, 'Recorded 0.27.1 edit missing or repeated: '+name+' '+patch['why']
+        html=html.replace(patch['after'],patch['before'])
+    return html
 def undo_refresh(name,html):
     lang=NOTICE_LANG[name]
     ui='<script id="matchlab-refresh-ui">'+refresh_ui_source(lang).rstrip('\n')+'</script></body></html>'
@@ -147,7 +184,7 @@ def data_tag(name):
     digest=hashlib.sha256((data_dir/name).read_bytes()).hexdigest()[:16]
     return '<script src="data/football/'+name+'?v='+digest+'"></script>'
 def reconstruct_inline(name):
-    html=undo_refresh(name,(p/name).read_text(encoding='utf8'))
+    html=undo_refresh(name,undo_0271(name,(p/name).read_text(encoding='utf8')))
     notice=data_tag(FOOTBALL_DATA[name])+notice_block(name)
     assert html.count(notice_block(name))==1 and html.count(notice)==1, 'Load notice missing or moved: '+name
     html=html.replace(notice,data_tag(FOOTBALL_DATA[name]))
@@ -235,8 +272,11 @@ assert engine_source in (p/'index.html').read_text(encoding='utf8'), 'Korean ana
 engine_en=re.sub('[가-힣]',lambda m:'\\u%04x'%ord(m[0]),engine_source)
 assert engine_en in (p/'index.en.html').read_text(encoding='utf8'), 'English analysis engine drift'
 assert (p/'analysis/release-0.23.0/f1-natural-analysis.js').read_text(encoding='utf8').strip() in (p/'f1/index.html').read_text(encoding='utf8'), 'F1 analysis engine drift'
+# 0.27.1: the football pages carry two recorded edits inside their workbench copy (page-patch.json); compare after undoing them.
 for entry in ['index.html','index.en.html','f1/index.html']:
-    assert (p/'analysis/release-0.25.2/workbench.js').read_text(encoding='utf8') in (p/entry).read_text(encoding='utf8'), 'Analysis workbench drift: '+entry
+    text=(p/entry).read_text(encoding='utf8')
+    if entry in FOOTBALL_DATA: text=undo_0271(entry,text)
+    assert (p/'analysis/release-0.25.2/workbench.js').read_text(encoding='utf8') in text, 'Analysis workbench drift: '+entry
 f1_html=(p/'f1/index.html').read_text(encoding='utf8')
 assert (p/'f1/release-0.9.3/tyre-help.js').read_text(encoding='utf8') in f1_html, 'Tyre help module drift'
 for tag,ident,source in [('script','f1-archive-catalog','archive-catalog.js'),('style','f1-archive-catalog-styles','archive.css')]:
@@ -362,13 +402,13 @@ for f in files:
     digest=hashlib.sha256(b).hexdigest()
     snapshot=labels[relative] if old_hashes.get(relative)==digest else RELEASE
     entries.append(dict(path=relative,bytes=len(b),sha256=digest,snapshot=snapshot))
-manifest=dict(version=RELEASE,public_export=True,files=entries,display_dataset=dict(completed=len(json.loads(data_json_text('data.ko.js','data'))['completed']),scheduled=len(json.loads(data_json_text('data.ko.js','data'))['scheduled']),team_match_rows=4798,season_snapshots=160,metrics=47,result_refresh=dict(provider=REFRESH['provider'],previous_last_date=REFRESH['previous_last_date'],as_of=REFRESH['as_of'],results=len(REFRESH['results']),xg_after_previous_last_date=None)),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
+manifest=dict(version=RELEASE,public_export=True,files=entries,display_dataset=dict(completed=len(json.loads(data_json_text('data.ko.js','data'))['completed']),scheduled=len(json.loads(data_json_text('data.ko.js','data'))['scheduled']),team_match_rows=4798,season_snapshots=160,metrics=47,result_refresh=dict(provider=REFRESH['provider'],previous_last_date=REFRESH['previous_last_date'],as_of=REFRESH['as_of'],results=len(REFRESH['results']),xg_after_previous_last_date=XG_AFTER)),csv_demo=dict(completed=20,scheduled=2),published_model_evidence=['prematch-v2 features, model weights, metrics and future probabilities','prior-rank ablation and independent review'],excluded=['full provider caches','complete source modeling CSV','ignored baseline generated runs','local administrator source report','credentials','workshop materials','root personal work journal'],text_hash_encoding='UTF-8 with LF line endings, matching published blob contents')
 if '--write-manifest' in sys.argv:
     (p/'publication_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 else:
     actual=json.loads((p/'publication_manifest.json').read_text(encoding='utf8'))
     assert actual==manifest,'Manifest differs from current release files'
-print(f'PASS release audit: {len(entries)} hashed files, {links} local documentation links; design payloads identical; football data = v50 + refresh.json ({len(REFRESH['results'])} results through {REFRESH['as_of']}), pages = v50 after undoing {sum(len(v) for v in PAGE_PATCH.values())} recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error {worst_outcome_error:.1e}); no private/admin files or credential-pattern matches.')
+print(f'PASS release audit: {len(entries)} hashed files, {links} local documentation links; design payloads identical; football data = v50 + refresh.json ({len(REFRESH['results'])} results through {REFRESH['as_of']}) + archive-xg.json (xG for {XG_AFTER['count']}), pages = v50 after undoing {sum(len(v) for v in PAGE_PATCH_0271.values())} + {sum(len(v) for v in PAGE_PATCH.values())} recorded edits; compact predictions = v50 except 8-digit score cells (641 matches, worst outcome error {worst_outcome_error:.1e}); no private/admin files or credential-pattern matches.')
 
 
 
