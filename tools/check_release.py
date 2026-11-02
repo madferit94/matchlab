@@ -25,7 +25,7 @@ for doc in link_docs:
         links+=1
 # 0.26.2: one release number everywhere. README "current version" lines must
 # match VERSION (they were left at 0.25.3 through 0.26.1).
-RELEASE='0.26.3'
+RELEASE='0.26.4'
 version_file=(p/'VERSION').read_text(encoding='utf8').strip()
 assert version_file==RELEASE, 'VERSION differs from the release checker version: '+version_file
 assert json.loads((p/'package.json').read_text(encoding='utf8'))['version']==RELEASE, 'package.json version differs from VERSION'
@@ -211,18 +211,61 @@ for ident,source in [('f1-query-history','query-history.json'),('f1-history-anal
 # 0.26.3: the circuit replay and lane comparison modules (prediction vs recorded race) are
 # shipped from versioned sources. Exactly one copy, equal to the file; the 0.26.2 copy is kept for comparison.
 map_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1MapComparison=' in b]
-assert len(map_blocks)==1 and map_blocks[0]==(p/'f1/release-0.26.3/map-comparison.js').read_text(encoding='utf8'), 'F1 circuit replay module drift'
+assert len(map_blocks)==1 and map_blocks[0]==(p/'f1/release-0.26.4/map-comparison.js').read_text(encoding='utf8'), 'F1 circuit replay module drift'
 assert map_blocks[0].count('global.MatchLabF1Comparison.leaderSync(timeline,lapCount,predicted.length,race)')==1, 'F1 replay leader clock missing'
 # The lane comparison module carries the shared leader clock (used by both replays).
 cmp_blocks=[b for b in re.findall(r'<script>([\s\S]*?)</script>',f1_html) if 'global.MatchLabF1Comparison={' in b]
-assert len(cmp_blocks)==1 and cmp_blocks[0]==(p/'f1/release-0.26.3/comparison.js').read_text(encoding='utf8'), 'F1 lane comparison module drift'
+assert len(cmp_blocks)==1 and cmp_blocks[0]==(p/'f1/release-0.26.4/comparison.js').read_text(encoding='utf8'), 'F1 lane comparison module drift'
 assert cmp_blocks[0].count('function leaderSync(')==1 and 'function leaderSync(' not in map_blocks[0] and map_blocks[0].count('global.MatchLabF1Comparison.syncedState(prediction,phase,sync)')==1 and cmp_blocks[0].count(',sync=leaderSync(recorded,null,predicted.length,race);')==1, 'F1 replays must share one leader clock'
 # Red-flag hold: one definition, used by the recorded reconstruction (recordedState) and the leader clock.
 assert cmp_blocks[0].count('function redFlagHold(')==1 and cmp_blocks[0].count('hold=redFlagHold(model,race)')==1 and cmp_blocks[0].count('const hold=redFlagHold(timeline,race);')==1 and 'redFlagHold' not in map_blocks[0], 'F1 red-flag hold must be shared'
 f1_before=(p/'f1/release-0.8.6/index-before.html').read_text(encoding='utf8')
-for ident in ['dataset','forecasts','historical','maps','tracks']:
+for ident in ['forecasts','historical','tracks']:
     rx=r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>'
     assert re.search(rx,f1_html)[1]==re.search(rx,f1_before)[1], 'F1 original data drift: '+ident
+# 0.26.4: GPs finished after the 0.8.6 snapshot are added as completed races. Every other
+# race/map entry must keep its exact bytes; the added GPs must have been scheduled (upcoming
+# reference layouts) before and now carry recorded data. Pre-race forecasts stay unchanged.
+F1_ADDED_GPS={'11388','11396','11404'}
+def f1_block(html,ident):
+    raw=re.search(r'<script id="'+ident+r'" type="application/json">([\s\S]*?)</script>',html)[1]
+    data=json.loads(raw);assert json.dumps(data,ensure_ascii=False)==raw, 'F1 block serialisation drift: '+ident
+    return data
+now_ds,before_ds=f1_block(f1_html,'dataset'),f1_block(f1_before,'dataset')
+assert [r['session']['session_key'] for r in now_ds['races']]==[r['session']['session_key'] for r in before_ds['races']], 'F1 race list drift'
+for new,old in zip(now_ds['races'],before_ds['races']):
+    k=str(old['session']['session_key'])
+    if k in F1_ADDED_GPS:
+        assert old['state']=='scheduled' and new['state']=='completed' and new['records']['session_result'] and new['records']['laps'], 'F1 added GP not completed: '+k
+        assert new['session']['session_key']==old['session']['session_key'] and new['venue']==old['venue'] and set(new['coverage'])==set(before_ds['races'][0]['coverage']), 'F1 added GP shape drift: '+k
+        assert json.loads(re.search(r'<script id="forecasts" type="application/json">([\s\S]*?)</script>',f1_html)[1])['races'][k]['as_of']<new['session']['date_start'], 'F1 forecast not before race: '+k
+    else:
+        assert json.dumps(new,ensure_ascii=False)==json.dumps(old,ensure_ascii=False), 'F1 original race drift: '+k
+counts={s:sum(r['state']==s for r in now_ds['races']) for s in before_ds['summary']['state_counts']}
+assert now_ds['summary']['state_counts']==counts and {k:v for k,v in now_ds['summary'].items() if k not in ('as_of','state_counts','missing_or_failed')}=={k:v for k,v in before_ds['summary'].items() if k not in ('as_of','state_counts','missing_or_failed')}, 'F1 dataset summary drift'
+assert now_ds['summary']['missing_or_failed'][:len(before_ds['summary']['missing_or_failed'])]==before_ds['summary']['missing_or_failed'], 'F1 missing-data log rewritten'
+assert list(now_ds)==list(before_ds), 'F1 dataset top-level keys drift'
+# 0.26.4 review R5: the added GPs, the dataset summary, the added maps and profile-data are pinned
+# by hash (design/release-0.26.4/data-pins.json, written by merge.py).
+pins=json.loads((p/'design/release-0.26.4/data-pins.json').read_text(encoding='utf8'))
+pin=lambda value:hashlib.sha256(json.dumps(value,ensure_ascii=False).encode('utf8')).hexdigest()
+assert sorted(pins['dataset_races'])==sorted(F1_ADDED_GPS)==sorted(pins['maps_races']), 'F1 data pins incomplete'
+for r in now_ds['races']:
+    k=str(r['session']['session_key'])
+    if k in F1_ADDED_GPS:assert pin(r)==pins['dataset_races'][k], 'F1 added GP changed after collection: '+k
+assert pin(now_ds['summary'])==pins['dataset_summary'], 'F1 dataset summary changed after collection'
+assert hashlib.sha256(re.search(r'<script id="profile-data" type="application/json">([\s\S]*?)</script>',f1_html)[1].encode('utf8')).hexdigest()==pins['profile_data'], 'F1 profile data changed after collection'
+# Recheck RC-1: the profile module (source f1/profiles/profiles.js) shows the recalculated-standings notice.
+profile_module=re.search(r'<script id="f1-profile-module">([\s\S]*?)</script>',f1_html)[1]
+assert profile_module==(p/'f1/profiles/profiles.js').read_text(encoding='utf-8-sig') and profile_module.count('${standingsNote()}')==5, 'F1 profile module drift'
+# Completed GPs without a retrospective prediction may only use a forecast made before the race.
+assert f1_html.count("PreRaceForecasts=Object.fromEntries(D.races.filter(r=>r.state==='completed'&&!AllPredictions[String(r.session.session_key)]&&Forecast.races?.[String(r.session.session_key)]&&Date.parse(Forecast.races[String(r.session.session_key)].as_of)<Date.parse(r.session.date_start))")==1, 'F1 pre-race forecast rule drift'
+now_maps,before_maps=f1_block(f1_html,'maps'),f1_block(f1_before,'maps')
+assert now_maps['as_of']==pins['maps_as_of'], 'F1 maps as_of drift'
+assert list(now_maps['races'])==list(before_maps['races']) and {k:v for k,v in now_maps.items() if k not in ('as_of','races')}=={k:v for k,v in before_maps.items() if k not in ('as_of','races')}, 'F1 maps drift'
+for k,old in before_maps['races'].items():
+    if k in F1_ADDED_GPS:assert old['status']=='HISTORICAL_REFERENCE' and now_maps['races'][k]['status']=='OBSERVED_LOCATION' and len(now_maps['races'][k]['points'])>=100 and pin(now_maps['races'][k])==pins['maps_races'][k], 'F1 added map not observed or changed: '+k
+    else:assert json.dumps(now_maps['races'][k],ensure_ascii=False)==json.dumps(old,ensure_ascii=False), 'F1 original map drift: '+k
 assert presentation_base('index.html')==(p/'archive/visualizations/visualization-design-2026-10-08-v50/index.html').read_text(encoding='utf8'), 'Default entry differs from adopted v50'
 
 en_html=presentation_base('index.en.html')

@@ -1,0 +1,16 @@
+{
+ "note": "sha256 of json.dumps(value, ensure_ascii=False); written by merge.py, checked by tools/check_release.py",
+ "dataset_races": {
+  "11388": "b006a14e9fc349d7799677627f3e46231b6051ebf4ef63ccbab886c59678bfbe",
+  "11396": "502a8c10b41a34f05c67ef9bece6739bde701ffce6af85c0030f895941519855",
+  "11404": "8ee9a976a0fe4a8efde79bfd31ac2fedfc1418ed34d92a7cf8713966932f5f93"
+ },
+ "dataset_summary": "048f6931e68d3e389386f0b8e5db96586424c9048aa7c9c8942cd0fcea4d5941",
+ "maps_races": {
+  "11388": "8a2cfd5c7eaef3669e99917779b7a5a0a362fea6feb9584c9b58a51d7fc8f4d5",
+  "11396": "5b641f2f1dbdcd1e1e34eec5d69f60ae8526cce30dbfca528ddafc17d88aeecb",
+  "11404": "ea243ebee10ce52bbd24e447f82d30ce9bdf540e61bf94c51724c4a08e4af1e5"
+ },
+ "maps_as_of": "2026-11-02T02:49:29.589722+00:00",
+ "profile_data": "34d95d5db3f438b425b8f8a032f5f7ac6b68cd3b8cbb6d8d543168ece8462c6b"
+}
