@@ -47,7 +47,7 @@
 6. 0.26.3 재생 동기화(`leaderSync`, `redFlagHold`)는 코드를 바꾸지 않고 새 GP에 그대로 적용한다. 멕시코시티 GP에는 적기가 한 번 있다.
 
 ## 상태
-구현·자체 검사 완료(수집 + 시각화·웹 담당, 2026-11-02). 브랜치 `feat/f1-latest-gp-0.26.4`에만 커밋했고 push·PR·배포는 하지 않았다. 독립 검증, main 병합 결재, 운영 배포 후 확인이 남아 있다.
+구현·자체 검사 완료(수집 + 시각화·웹 담당, 2026-11-02). 독립 검증(커밋 97ff7b2, 차단 1건) 뒤 R1~R5를 반영했다(아래 "검증 후 수정"). 브랜치 `feat/f1-latest-gp-0.26.4`에만 커밋했고 push·PR·배포는 하지 않았다. 수정분 재검증, main 병합 결재, 운영 배포 후 확인이 남아 있다.
 
 ## 실행 결과 (2026-11-02)
 ### 수집
@@ -67,16 +67,16 @@
 
 - **멕시코시티 특이사항**
   - 적기가 한 번 있었다(3,756~6,095초, 운영 메시지 기준). 정지 랩 19개.
-  - Esteban OCON(31번)이 나오지 않고 Ryo HIRAKAWA(50번, OpenF1 팀 정보 없음)가 출전했다.
-  - 경기 전 예측은 31번을 포함하므로, 비교 표에서 31번 실제 순위는 "—"이고 50번은 예측이 없어 표에 없다. 50번은 실제 재생과 결과 표에는 나온다.
-- **누적 자료**: 챔피언십 1위는 Kimi ANTONELLI 380점이다(멕시코시티 기준, 드라이버 24명·팀 11개). 프로필 드라이버는 23명에서 24명이 되었고, 현재 출전 명단은 22명이다(OCON 제외, HIRAKAWA 포함).
+  - Esteban OCON(31번)이 나오지 않고 Ryo HIRAKAWA(50번)가 출전했다. 경기 결과 행에는 팀이 비어 있어, 같은 대회 다른 세션 값으로 채웠다(아래 R3).
+  - 경기 전 예측은 31번을 포함하므로, 비교 표에서 31번은 "불참"(R4)이다. 50번은 예측이 없어 비교 표에 없고, 실제 재생과 결과 표에는 나온다.
+- **누적 자료**: 챔피언십 1위는 Kimi ANTONELLI 380점이다(멕시코시티 기준, 드라이버 24명·팀 11개, 경기 뒤 페널티 반영해 다시 계산 — 아래 R1). 프로필 드라이버는 23명에서 24명이 되었고, 현재 출전 명단은 22명이다(OCON 제외, HIRAKAWA 포함).
 
 ### 바뀐 파일
 - `f1/index.html`
   - 자료 블록 3개를 바꿨다. `dataset`은 GP 3개만, `maps`는 GP 3개와 `as_of`, `profile-data`는 현재 순위·기준 세션·드라이버 목록을 바꿨다.
   - 화면 코드 두 곳을 바꿨다. `recordPrediction`이 경기 전 예측을 쓸 수 있게 했고, 비교 탭 설명을 바꿨다.
   - 나머지 자료 블록 6개와 코드는 그대로다.
-  - 크기는 19,758,191 → 23,338,436바이트(gzip-6 `-n` 2,563,110 → 3,064,911)다.
+  - 크기는 19,758,191 → 23,346,114바이트(gzip-6 `-n` 2,563,110 → 3,065,807)다.
 - 새 파일: `design/release-0.26.4/collect.py`, `merge.py`, `check-sync.cjs`, `check-browser.cjs`, 결과 JSON·스크린샷.
 - `tools/check_release.py`
   - RELEASE 0.26.4.
@@ -85,20 +85,21 @@
 - `VERSION`·`package.json`·README 두 개(0.26.4), `CHANGELOG.md`, `publication_manifest.json`.
 
 ### 검사
-- `node design/release-0.26.4/check-sync.cjs`(0.26.3 = 5a653c7과 비교): **PASS**, 124개 확인, 결과 `sync-result.json`.
-  - 재생 모듈 3개는 0.26.3과 바이트가 같다. 예측 블록 2개(과거 재현·경기 전)도 같다.
+- `node design/release-0.26.4/check-sync.cjs`(0.26.3 = 5a653c7과 비교): **PASS**, 122개 확인(검증 후 수정 반영 뒤 마지막 실행), 결과 `sync-result.json`.
+  - 기록 재생 모듈은 0.26.3과 바이트가 같다. 두 비교 모듈은 `f1/release-0.26.4` 원본과 같다(R2·R4 수정). 예측 블록 2개(과거 재현·경기 전)도 같다.
   - 완료 GP 19개 전부에서 다음을 확인했다.
     - 예측 1위와 실제 선두의 랩 진행 차이는 서킷·줄 비교 두 탭 모두 0이다.
     - 결승 통과 시각 차이 0초, 추월 0, 뒤로 간 경우 0, 끝에 모두 결승선 정지.
   - 새 GP 3개는 경기 전 예측의 기준 시각(2026-10-07)이 출발 전이다. 순위당 간격은 싱가포르·미국 2초, 멕시코시티 1.46초(마지막 차가 끝까지 결승선에 닿도록 줄어듦)다.
-  - 적기 4개 GP(모나코·네덜란드·이탈리아·멕시코시티): 실제 선두가 멈춘 뒤부터 재출발까지 예측 1위와 모든 예측 순위의 이동이 0이다. 정지 랩 차량(멕시코시티 19대)의 실제 진행 이동도 0이다.
+  - 적기 4개 GP(모나코·네덜란드·이탈리아·멕시코시티): 실제 선두가 멈춘 뒤부터 재출발까지 예측 1위와 모든 예측 순위의 이동이 0이다. 정지 랩 차량(멕시코시티 22대, 적기 안에서 시작하고 끝난 랩 3개 포함)의 실제 진행 이동도 0이다.
   - 기존 GP 16개: 진행값 표본 전부(GP당 약 2,060개)에서 예측·실제 표시가 0.26.3과 같다(차이 0).
   - 예정 GP 4개: 180초 연출이 0.26.3과 같다.
-- `check-browser.cjs`(Chrome 155, Playwright 1.57.0은 저장소 밖): **PASS**, 66개 확인, 결과 `browser-result.json`, 스크린샷 5장.
+- `check-browser.cjs`(Chrome 155, Playwright 1.57.0은 저장소 밖): **PASS**, 94개 확인(검증 후 수정 반영 뒤), 결과 `browser-result.json`, 스크린샷 5장.
   - 한영 × 390/1440 모두: 2026 목록이 완료 19·예정 4다. 새 GP 3개 모두 서킷 탭(예측판·실제판), 실제 기록용 배속 설명, 줄 비교 탭의 "경기 전에 공개한 예측" 설명이 보인다. 줄 비교 재생 중 예측 1위 줄 = 실제 앞줄(불일치 0)이고, 결과 표는 22명에 실제 우승자가 첫 줄이다.
   - 멕시코시티(ko 1440·en 390):
     - 서킷 1×로 4초 재생하는 동안 예측 1위 = 실제 선두(차이 0)이고, 속도는 0.999~1.001 기록 초/초다.
     - 적기 중 60×로 4초(기록 약 232초) 재생하는 동안 예측판 그림이 바뀌지 않고, 두 값 모두 45랩에 멈춰 있다.
+  - 검증 후 수정 확인(한영 × 390/1440): 결과 탭 수집 시각 줄, 멕시코시티 바뀐 순위(LAWSON 7·PIASTRI 13·GASLY 17), HIRAKAWA 10위·Haas F1 Team, OCON "불참"(서킷·줄 비교 두 표).
   - 페이지 오류 0, 가로 넘침 없음. 외부 이미지(media.formula1.com)는 막고 확인했다.
 - 기존 검사
   - `npm run test:server` 24개, `npm run build` + `node server/check-vercel.cjs` 5개, `node analysis/check.cjs` 15개, `npm run test:report` 14개(`checks.json` 변경은 되돌림), `npm run test:odds` 877경기 모두 PASS.
@@ -106,9 +107,55 @@
   - 저장소 밖 Chrome 복사본: 0.9.3 `check-regression`, 0.9.2·0.9.1 `check-browser`, 0.7.3 `check-rank-motion`, 0.8.4 `check-links`(8823 포트 서버, PID로 종료)는 PASS다.
 - **이번 변경 때문에 그대로는 실패하는 과거 검사**: 모두 "자료 블록이 예전과 같다"는 마지막 확인에서만 실패한다.
   - `f1/release-0.9.2/check-names.cjs`, 0.9.3 `check-tyres.cjs`: 바뀐 블록 3개만 그 비교에서 빼면 나머지 확인이 모두 PASS다.
-  - `f1/profiles/check-data.cjs`: 드라이버 수 23→24로 고치면 모델 확인(팀 11개·현재 명단 22명·순위 합계·남은 경기 점수·팀 집계)은 모두 PASS다.
+  - `f1/profiles/check-data.cjs`: 드라이버 수 23→24, 순위표 상태에 `recomputed_from_session_result` 허용, 바뀐 블록 비교 제외로 고치면 모델 확인(팀 11개·현재 명단 22명·드라이버 합계 = 팀 합계·남은 경기 점수·팀 집계)은 모두 PASS다.
   - 과거 기록이라 고치지 않았다.
 - `python3 -I tools/check_release.py`: manifest 갱신 후 PASS.
+
+### 검증 후 수정 (R1~R5, 2026-11-02)
+- **R1(차단) 멕시코시티 잠정 결과**
+  - 원인: 처음 수집(02:01 UTC)이 경기 뒤 시간 페널티를 반영하기 전 잠정 순위였다.
+  - 조치: 멕시코시티 자료를 02:48 UTC에 다시 받았다. 결과·드라이버 두 항목이 바뀌었고, 랩·피트·타이어·운영 메시지·날씨·순위 기록·위치 기록은 같았다.
+  - 지금 결과(OpenF1 기준): LAWSON 7, BORTOLETO 8, HADJAR 9, HIRAKAWA 10, ALBON 11, SAINZ 12, PIASTRI 13, HULKENBERG 14, COLAPINTO 15, PEREZ 16, GASLY 17.
+  - 수집 시각을 남겼다.
+    - 새 GP마다 `collected_at`(결과를 받은 시각): 싱가포르 02:01:51, 미국 02:02:25, 멕시코시티 02:48:12 UTC.
+    - 결과 탭 맨 위에 "OpenF1 결과 수집: … UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다." / "OpenF1 result collected … UTC · may change after post-race penalties."를 보인다. `collected_at`이 있는 새 GP에만 나오고, 기존 GP 화면은 그대로다.
+  - 챔피언십: OpenF1 순위표(02:48 UTC)는 아직 페널티를 반영하지 않아 7명이 결과와 맞지 않았다(예: PIASTRI 150점, 결과대로면 144점).
+    - 수집기가 이를 감지해 `점수 = 경기 전 점수(points_start) + 이번 결과 점수`로 다시 계산했다. 이번 대회에는 스프린트가 없다.
+    - 순위는 점수순이고, 같은 점수는 경기 전 순위 순서를 따른다.
+    - `status: recomputed_from_session_result`로 적고, OpenF1 원래 행은 `openf1_rows`, 설명은 `note`, 받은 시각은 `fetched_at`에 남겼다.
+    - 드라이버 10명의 점수·순위가 바뀌었다(예: HIRAKAWA 23위 0점 → 21위 1점). 팀은 Red Bull Racing 382, McLaren 365, Racing Bulls 108 등이다.
+  - 다시 받는 명령(저장소 밖 폴더 지정):
+    ```
+    python3 -I design/release-0.26.4/collect.py --raw <저장소 밖 폴더>/openf1/raw --out <저장소 밖 폴더>/built.json --keys 11388,11396,11404 --refresh 11404
+    python3 -I design/release-0.26.4/merge.py <저장소 밖 폴더>/built.json --from-base
+    ```
+    - `--refresh`는 그 세션의 저장된 응답(챔피언십 포함)을 지우고 새로 받는다.
+    - `--from-base`는 세 블록을 0.26.3(5a653c7) 상태로 되돌린 뒤 병합하고, `design/release-0.26.4/data-pins.json`을 다시 쓴다.
+- **R2 적기 안에서 시작하고 끝나는 랩**
+  - 원인: 움직인 시간이 0이라 정지 규칙에서 빠졌다. 그래서 멕시코시티 재구성 차 3대(30 LAW, 55 SAI, 50 HIR)가 적기 중 0.88랩을 기어갔다.
+  - 조치: 이런 랩도 정지 랩에 넣고, 랩 시작 값에 고정한 뒤 기록된 랩 끝에서 다음 랩으로 넘어간다. 새 원본은 `f1/release-0.26.4/comparison.js`다.
+  - 기존 16개 GP에는 이런 랩이 없어 표시가 0.26.3과 같다(`check-sync` 비교 차이 0). 멕시코시티 정지 랩은 19개 → 22개다.
+- **R3 HIRAKAWA 팀**: 수집기 규칙을 추가했다.
+  - 경기 결과 행에 팀 이름이나 색이 비어 있으면, 같은 대회 다른 세션의 OpenF1 드라이버 값이 모두 같을 때 그 값으로 채운다.
+  - 근거는 `team_source`에 남긴다(FP1 11397, FP3 11399, 예선 11400 → Haas F1 Team, 9C9FA2).
+  - 프로필에서도 Haas 소속으로 나온다. 사진은 여전히 없다.
+- **R4**: 경기 전 예측에 있지만 그 경기에 나오지 않은 드라이버는 비교 표 두 곳(서킷 탭 표, 줄 비교 탭 표)에 "불참" / "Did not take part"로 표시한다. 새 원본은 `f1/release-0.26.4/map-comparison.js`·`comparison.js`다. 기존 16개 GP에는 해당 드라이버가 없다.
+- **R5 검사 강화**(`tools/check_release.py`)
+  - 새 GP 3개의 자료·서킷 항목, `dataset` 요약, `maps.as_of`, `profile-data` 블록을 해시로 고정했다(`design/release-0.26.4/data-pins.json`, `merge.py`가 씀).
+  - `dataset` 맨 위 키 목록이 같아야 한다.
+  - 화면 코드에 "경기 전 예측 기준 시각 < 출발 시각" 조건이 그대로 있어야 한다.
+  - 모듈 원본 경로를 `f1/release-0.26.4`로 바꿨다.
+  - 변조 시험(`design/release-0.26.4/tamper-check.py`, 각각 바꾼 뒤 되돌림)은 5가지 모두 FAIL이다:
+    - 멕시코시티 1·2위 바꾸기 → "F1 added GP changed after collection: 11404"
+    - 프로필 점수 1점 바꾸기 → "F1 profile data changed after collection"
+    - `dataset` 맨 위 키 추가 → "F1 dataset top-level keys drift"
+    - 예측 시각 조건 삭제 → "F1 pre-race forecast rule drift"
+    - 미국 GP 출발일 바꾸기 → "F1 added GP changed after collection: 11396"
+  - 앞서 확인한 기존 GP·서킷 변조도 계속 FAIL이다.
+
+### 후속(이번 범위 밖)
+- R7: `f1/index.html`이 23.3MB(gzip 3.07MB)다. 축구(0.26.0)처럼 F1 자료를 별도 파일로 나누는 작업을 시즌이 끝나기 전에 한다.
+- R6: OpenF1은 경기 뒤에도 값을 고친다. 경기 다음 날 다시 받는 절차(위 명령)를 쓴다.
 
 ### 남은 확인
 - 독립 검증, main 병합, 운영(Vercel) 배포 후 확인은 하지 않았다.

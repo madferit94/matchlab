@@ -4,8 +4,8 @@
   "role": "builder",
   "producer_id": "builder-f1data-2026-11-02",
   "status": "DONE",
-  "summary": "수집+시각화·웹 담당. 이미 끝났지만 자료에 없던 2026 GP 3개(싱가포르 11388, 미국 11396, 멕시코시티 11404)를 OpenF1 공개 API로 받아 완료 GP로 추가했다. 기존 GP 22개·서킷 22개·예측 블록은 바이트까지 그대로이고, 새 GP 비교에는 2026-10-07 경기 전 예측을 그대로 쓴다. 챔피언십 순위를 멕시코시티 기준으로 갱신. 0.26.3 동기화 규칙이 19개 완료 GP 모두에서 성립(차이 0, 추월 0, 적기 정지 4개 GP). 자가 점검이며 독립 검증이 아니다.",
-  "cutoff_at": "2026-11-02T02:01:39.652945+00:00",
+  "summary": "수집+시각화·웹 담당. 이미 끝났지만 자료에 없던 2026 GP 3개(싱가포르 11388, 미국 11396, 멕시코시티 11404)를 OpenF1 공개 API로 받아 완료 GP로 추가했다. 기존 GP 22개·서킷 22개·예측 블록은 바이트까지 그대로이고, 새 GP 비교에는 2026-10-07 경기 전 예측을 그대로 쓴다. 챔피언십 순위를 멕시코시티 기준으로 갱신. 0.26.3 동기화 규칙이 19개 완료 GP 모두에서 성립(차이 0, 추월 0, 적기 정지 4개 GP). 자가 점검이며 독립 검증이 아니다. 독립 검증(97ff7b2) 뒤 R1~R5 반영: 멕시코시티 결과 재수집(페널티 반영, 02:48 UTC)·결과 탭 수집 시각·챔피언십 결과로 재계산, 적기 안 랩 정지, HIRAKAWA 팀 채움, 불참 표시, check_release 해시 고정·예측 시각 조건 확인.",
+  "cutoff_at": "2026-11-02T02:48:12.903616+00:00",
   "observed_at": "2026-11-02",
   "provider": "OpenF1 (https://openf1.org/docs/)",
   "model": null,
@@ -20,7 +20,7 @@
     },
     {
       "path": "f1/index.html",
-      "description": "자료 블록 3개 + 경기 전 예측 사용 코드 2곳. 19,758,191 → 23,338,436바이트"
+      "description": "자료 블록 3개 + 화면 코드(경기 전 예측 사용, 비교 탭 설명, 결과 수집 시각) + 비교 모듈 2개(f1/release-0.26.4). 23,346,114바이트"
     },
     {
       "path": "tools/check_release.py",
@@ -28,25 +28,41 @@
     },
     {
       "path": "design/release-0.26.4/sync-result.json",
-      "description": "PASS 124개 확인. 19개 완료 GP 동기화, 적기 4개 GP 정지, 기존 16개 GP 0.26.3과 동일, 예정 4개 동일"
+      "description": "PASS 122개 확인. 19개 완료 GP 동기화, 적기 4개 GP 정지(멕시코시티 정지 랩 22개), 기존 16개 GP 0.26.3과 동일, 예정 4개 동일"
     },
     {
       "path": "design/release-0.26.4/browser-result.json",
-      "description": "PASS 66개 확인. 한영×390/1440, 새 GP 3개 서킷·줄 비교·결과 표, 멕시코시티 1× 재생과 적기 정지"
+      "description": "PASS 94개 확인. 새 GP 3개, 멕시코시티 재생·적기·바뀐 순위·불참·수집 시각"
     },
     {
       "path": "docs/SPEC-0.26.4.md",
       "description": "자료 블록 출처 조사, 기준 시각, 규칙, 실행 결과"
+    },
+    {
+      "path": "f1/release-0.26.4/comparison.js",
+      "description": "공유 정지 규칙(적기 안 랩 포함), 불참 표시"
+    },
+    {
+      "path": "f1/release-0.26.4/map-comparison.js",
+      "description": "서킷 표 불참 표시"
+    },
+    {
+      "path": "design/release-0.26.4/data-pins.json",
+      "description": "새 GP·요약·서킷·프로필 해시"
+    },
+    {
+      "path": "design/release-0.26.4/tamper-check.py",
+      "description": "check_release 변조 시험 5가지"
     }
   ],
   "tests": [
     {
       "command": "node design/release-0.26.4/check-sync.cjs",
-      "result": "PASS (124)"
+      "result": "PASS (122)"
     },
     {
       "command": "node design/release-0.26.4/check-browser.cjs",
-      "result": "PASS (66)"
+      "result": "PASS (94)"
     },
     {
       "command": "npm run test:server",
@@ -76,9 +92,10 @@
   "issues": [
     "독립 검증·main 병합·운영 배포 확인 안 함.",
     "과거 검사 check-names(0.9.2)·check-tyres(0.9.3)·profiles/check-data는 자료 블록 동일 비교/드라이버 수 23 고정 때문에 그대로는 실패(나머지 확인은 PASS).",
-    "멕시코시티: OCON 미출전·HIRAKAWA(팀 정보 없음) 출전. 비교 표에서 31번 실제 '—', 50번 예측 없음.",
     "경기 전 예측은 2026-10-07 기준이라 이후 결과 미반영(누수 방지). 남은 예정 GP 예측도 그대로.",
     "기존 GP 타이어·피트 값은 OpenF1이 이후 고친 값과 다르지만 그대로 둠.",
-    "f1/index.html 크기 23.3MB(gzip 3.06MB)로 증가."
+    "f1/index.html 크기 23.3MB(gzip 3.06MB)로 증가.",
+    "챔피언십은 OpenF1 순위표가 페널티를 반영하지 않아 결과로 다시 계산(동점은 경기 전 순위 순서, 공식 순위 규칙은 아님).",
+    "R7(F1 자료 분리)은 후속."
   ]
 }

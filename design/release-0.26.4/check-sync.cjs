@@ -15,8 +15,8 @@ function load(html){
  return {code,replay:ctx.MatchLabF1Replay,cmp:ctx.MatchLabF1Comparison,map:ctx.MatchLabF1MapComparison};
 }
 const NEW=load(live),OLD=load(before),checks=[],ok=(c,m)=>{assert(c,m);checks.push(m)};
-for(const k of ['replay','comparison','map'])ok(NEW.code[k]===OLD.code[k],'replay module unchanged from 0.26.3: '+k);
-ok(NEW.code.comparison===fs.readFileSync(path.join(root,'f1/release-0.26.3/comparison.js'),'utf8')&&NEW.code.map===fs.readFileSync(path.join(root,'f1/release-0.26.3/map-comparison.js'),'utf8'),'shipped modules = f1/release-0.26.3 sources');
+ok(NEW.code.replay===OLD.code.replay,'replay module unchanged from 0.26.3');
+ok(NEW.code.comparison===fs.readFileSync(path.join(root,'f1/release-0.26.4/comparison.js'),'utf8')&&NEW.code.map===fs.readFileSync(path.join(root,'f1/release-0.26.4/map-comparison.js'),'utf8'),'shipped modules = f1/release-0.26.4 sources (review R2 hold rule, R4 wording)');
 const D=json(live,'dataset'),Dold=json(before,'dataset'),maps=json(live,'maps').races,mapsOld=json(before,'maps').races,H=json(live,'historical').races,F=json(live,'forecasts').races;
 ok(JSON.stringify(json(live,'historical'))===JSON.stringify(json(before,'historical'))&&JSON.stringify(json(live,'forecasts'))===JSON.stringify(json(before,'forecasts')),'historical and forecast predictions unchanged');
 const SAMPLES=2000,EPS=1e-9,clamp=x=>Math.max(0,Math.min(1,x));
@@ -54,9 +54,9 @@ for(const race of D.races.filter(r=>r.state==='completed'&&(!process.env.ONLY||p
   {let lo=Infinity,hi=-Infinity;for(let i=0;i<=400;i++){const t=leaderStop+(b-leaderStop)*i/400-1e-6*(i===400),v=NEW.map.predictedMarkers(prediction,t/timeline.duration,map,count,sync)[0].lap_progress;lo=Math.min(lo,v);hi=Math.max(hi,v)}p1Move=hi-lo}
   for(let r=1;r<=n;r++){let lo=Infinity,hi=-Infinity;for(let i=0;i<=100;i++){const t=core+(r-1)*sync.gap+(b-core)*i/100-1e-6*(i===100),v=NEW.map.predictedMarkers(prediction,t/timeline.duration,map,count,sync)[r-1].lap_progress;lo=Math.min(lo,v);hi=Math.max(hi,v)}predMove=Math.max(predMove,hi-lo)}
   // Recorded side: every held car keeps its lap progress (what the lane tab and the circuit reconstruction draw) from its own stop start until the restart.
-  let cars=0;for(const h of held){const [p,q]=h.stops.find(([x,y])=>y>a&&x<b),t0=p+0.5,t1=Math.min(q,b)-1e-6;if(t1<=t0)continue;cars++;let lo=Infinity,hi=-Infinity;
+  let cars=0,zeroMoving=0;for(const h of held){if(!(h.moving>1e-9))zeroMoving++;const [p,q]=h.stops.find(([x,y])=>y>a&&x<b),t0=p+0.5,t1=Math.min(q,b)-1e-6;if(t1<=t0)continue;cars++;let lo=Infinity,hi=-Infinity;
    for(let i=0;i<=20;i++){const t=t0+(t1-t0)*i/20,d=NEW.cmp.recordedState(race,timeline,t/timeline.duration).find(x=>x.driver.driver_number===h.driver_number);lo=Math.min(lo,d.progress);hi=Math.max(hi,d.progress)}recMove=Math.max(recMove,hi-lo)}
-  return {window_seconds:[+a.toFixed(1),+b.toFixed(1)],held_laps:sync.held.length,leader_stop_seconds:[+leaderStop.toFixed(1),+b.toFixed(1)],p1_movement_laps:p1Move,all_cars_stop_seconds:[+core.toFixed(1),+b.toFixed(1)],predicted_movement_laps:predMove,recorded_held_cars:cars,recorded_held_movement_laps:recMove}});
+  return {window_seconds:[+a.toFixed(1),+b.toFixed(1)],held_laps:sync.held.length,leader_stop_seconds:[+leaderStop.toFixed(1),+b.toFixed(1)],p1_movement_laps:p1Move,all_cars_stop_seconds:[+core.toFixed(1),+b.toFixed(1)],predicted_movement_laps:predMove,recorded_held_cars:cars,laps_wholly_inside_suspension:zeroMoving,recorded_held_movement_laps:recMove}});
  const result={session_key:key,name:race.meeting.meeting_name,added_in_0_26_4:added,prediction_source:source,laps:count,predicted_cars:n,recorded_cars:timeline.drivers.length,recorded_seconds:+timeline.duration.toFixed(1),gap_seconds_per_rank:+sync.gap.toFixed(4),samples:ordered.length,
   max_abs_diff_laps:maxDiff,lane_max_abs_diff_fraction:laneMax,p1_finish_minus_recorded_leader_finish_seconds:+((predFinish-realFinish)*timeline.duration).toFixed(6),overtakes,backward_moves:backward,left_finish:leftFinish,all_stopped_on_line_at_phase1:end.every(d=>d.lap_progress===count),
   red_flag_suspensions:stops,samples_differing_from_0_26_3:added?null:regress,

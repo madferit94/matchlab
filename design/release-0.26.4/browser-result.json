@@ -16,6 +16,7 @@
      "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 결과 수집: 2026-11-02 02:01 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.",
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     },
@@ -28,6 +29,7 @@
      "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 결과 수집: 2026-11-02 02:02 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.",
      "result_rows": 22,
      "result_first": "Kimi ANTONELLI"
     },
@@ -41,10 +43,50 @@
        6094.646
       ]
      ],
-     "held_laps": 19,
+     "held_laps": 22,
+     "ocon_map_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "불참",
+      "—",
+      "0.3%"
+     ],
      "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "ocon_lane_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "불참",
+      "—",
+      "0.3%"
+     ],
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 결과 수집: 2026-11-02 02:48 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.",
+     "hirakawa": [
+      "10",
+      "Ryo HIRAKAWA",
+      "Haas F1 Team",
+      "71",
+      "25.373",
+      "1",
+      "—"
+     ],
+     "revised": [
+      [
+       "Liam LAWSON",
+       "7"
+      ],
+      [
+       "Oscar PIASTRI",
+       "13"
+      ],
+      [
+       "Pierre GASLY",
+       "17"
+      ]
+     ],
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     }
@@ -73,6 +115,7 @@
      "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 결과 수집: 2026-11-02 02:01 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.",
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     },
@@ -85,6 +128,7 @@
      "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 결과 수집: 2026-11-02 02:02 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.",
      "result_rows": 22,
      "result_first": "Kimi ANTONELLI"
     },
@@ -98,14 +142,22 @@
        6094.646
       ]
      ],
-     "held_laps": 19,
+     "held_laps": 22,
+     "ocon_map_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "불참",
+      "—",
+      "0.3%"
+     ],
      "play_1x": {
       "samples": 16,
       "max_abs_diff_laps": 0,
-      "rate": 0.999,
+      "rate": 1.003,
       "p1": [
-       30.489517309229523,
-       30.536246694951867
+       30.489311935067363,
+       30.536247924737285
       ]
      },
      "red_flag": {
@@ -115,7 +167,7 @@
       ],
       "recorded_seconds": [
        3822.2,
-       4054.2
+       4053.2
       ],
       "predicted_canvas_unchanged": true,
       "p1": [
@@ -128,8 +180,40 @@
       ]
      },
      "note": "경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).",
+     "ocon_lane_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "불참",
+      "—",
+      "0.3%"
+     ],
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 결과 수집: 2026-11-02 02:48 UTC · 경기 뒤 페널티 등으로 바뀔 수 있습니다.",
+     "hirakawa": [
+      "10",
+      "Ryo HIRAKAWA",
+      "Haas F1 Team",
+      "71",
+      "25.373",
+      "1",
+      "—"
+     ],
+     "revised": [
+      [
+       "Liam LAWSON",
+       "7"
+      ],
+      [
+       "Oscar PIASTRI",
+       "13"
+      ],
+      [
+       "Pierre GASLY",
+       "17"
+      ]
+     ],
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     }
@@ -158,6 +242,7 @@
      "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 result collected 2026-11-02 02:01 UTC · may change after post-race penalties.",
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     },
@@ -170,6 +255,7 @@
      "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 result collected 2026-11-02 02:02 UTC · may change after post-race penalties.",
      "result_rows": 22,
      "result_first": "Kimi ANTONELLI"
     },
@@ -183,13 +269,21 @@
        6094.646
       ]
      ],
-     "held_laps": 19,
+     "held_laps": 22,
+     "ocon_map_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "Did not take part",
+      "—",
+      "0.3%"
+     ],
      "play_1x": {
       "samples": 16,
       "max_abs_diff_laps": 0,
-      "rate": 1.001,
+      "rate": 1,
       "p1": [
-       30.489311935067363,
+       30.489517309229523,
        30.536246694951867
       ]
      },
@@ -200,7 +294,7 @@
       ],
       "recorded_seconds": [
        3822.2,
-       4055.2
+       4054.2
       ],
       "predicted_canvas_unchanged": true,
       "p1": [
@@ -213,8 +307,40 @@
       ]
      },
      "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "ocon_lane_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "Did not take part",
+      "—",
+      "0.3%"
+     ],
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 result collected 2026-11-02 02:48 UTC · may change after post-race penalties.",
+     "hirakawa": [
+      "10",
+      "Ryo HIRAKAWA",
+      "Haas F1 Team",
+      "71",
+      "25.373",
+      "1",
+      "—"
+     ],
+     "revised": [
+      [
+       "Liam LAWSON",
+       "7"
+      ],
+      [
+       "Oscar PIASTRI",
+       "13"
+      ],
+      [
+       "Pierre GASLY",
+       "17"
+      ]
+     ],
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     }
@@ -243,6 +369,7 @@
      "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 result collected 2026-11-02 02:01 UTC · may change after post-race penalties.",
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     },
@@ -255,6 +382,7 @@
      "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 result collected 2026-11-02 02:02 UTC · may change after post-race penalties.",
      "result_rows": 22,
      "result_first": "Kimi ANTONELLI"
     },
@@ -268,10 +396,50 @@
        6094.646
       ]
      ],
-     "held_laps": 19,
+     "held_laps": 22,
+     "ocon_map_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "Did not take part",
+      "—",
+      "0.3%"
+     ],
      "note": "Forecast published before this race (data as of 2026-10-07; the race result is not used).",
+     "ocon_lane_row": [
+      "Esteban OCON",
+      "15",
+      "—",
+      "Did not take part",
+      "—",
+      "0.3%"
+     ],
      "lane_samples": 10,
      "lane_mismatch": 0,
+     "collected_line": "OpenF1 result collected 2026-11-02 02:48 UTC · may change after post-race penalties.",
+     "hirakawa": [
+      "10",
+      "Ryo HIRAKAWA",
+      "Haas F1 Team",
+      "71",
+      "25.373",
+      "1",
+      "—"
+     ],
+     "revised": [
+      [
+       "Liam LAWSON",
+       "7"
+      ],
+      [
+       "Oscar PIASTRI",
+       "13"
+      ],
+      [
+       "Pierre GASLY",
+       "17"
+      ]
+     ],
      "result_rows": 22,
      "result_first": "Max VERSTAPPEN"
     }
@@ -295,9 +463,9 @@
   "circuit-11404-en-390.png",
   "lanes-11404-en-1440.png"
  ],
- "checks": 66,
+ "checks": 94,
  "blocked_external_hosts": [
   "media.formula1.com"
  ],
- "checked_at": "2026-11-02T02:19:40.615Z"
+ "checked_at": "2026-11-02T02:55:09.304Z"
 }

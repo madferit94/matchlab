@@ -8,8 +8,19 @@ in a folder OUTSIDE the repository (--raw); only the built JSON goes to --out.
 
 Usage:
   python3 -I design/release-0.26.4/collect.py --raw <scratch>/openf1 --out <scratch>/built.json \
-      --keys 11388,11396,11404 [--verify 11731,11377]
+      --keys 11388,11396,11404 [--verify 11731,11377] [--refresh 11404]
 --verify rebuilds already-published GPs and compares them with the current page data.
+--refresh drops the cached responses of those sessions (and their meeting / championship
+rows) first, so results revised after the race (penalties) are fetched again.
+
+Review fixes (0.26.4 R1, R3):
+- every built race carries `collected_at` (time its session_result was fetched).
+- a race driver row without team_name/team_colour takes them from the same meeting's
+  other sessions (practice, qualifying) when those agree; the source is recorded in
+  `team_source`.
+- if OpenF1 championship rows for the race do not yet match points_start + the race
+  session_result points, the standings are recomputed from the results (status
+  `recomputed_from_session_result`, OpenF1 rows kept in `openf1_rows`).
 """
 from pathlib import Path
 from urllib.request import Request,urlopen
@@ -25,9 +36,12 @@ SPACING=2.1  # seconds between live requests (same as the 0.4.0 map collector)
 last_request=[0.0]
 manifest=[]
 
+def cache_name(endpoint,params):
+    return re.sub(r'[^A-Za-z0-9_.=-]+','_',endpoint+'-'+urlencode(params))[:180]+'.json.gz'
+
 def fetch(raw_dir,endpoint,params):
     query=urlencode(params);url=API+endpoint+'?'+query
-    name=re.sub(r'[^A-Za-z0-9_.=-]+','_',endpoint+'-'+query)[:180]+'.json.gz';f=raw_dir/name
+    name=cache_name(endpoint,params);f=raw_dir/name
     if f.exists():
         blob=gzip.decompress(f.read_bytes());status='cached'
     else:
@@ -46,7 +60,8 @@ def fetch(raw_dir,endpoint,params):
                 status=type(exc).__name__;blob=b'[]';break
     rows=json.loads(blob)
     if isinstance(rows,dict):rows=[]  # OpenF1 answers {"detail": ...} when nothing matches
-    manifest.append({'url':url,'cache_file':name,'status':status,'rows':len(rows),'sha256':hashlib.sha256(blob).hexdigest()})
+    fetched=datetime.fromtimestamp(f.stat().st_mtime,timezone.utc).isoformat() if f.exists() else datetime.now(timezone.utc).isoformat()
+    manifest.append({'url':url,'cache_file':name,'status':status,'rows':len(rows),'sha256':hashlib.sha256(blob).hexdigest(),'fetched_at':fetched})
     return rows,status
 
 def coverage_status(status,rows):
@@ -56,18 +71,39 @@ def coverage_status(status,rows):
 def build_race(raw_dir,key,previous=None):
     sessions,_=fetch(raw_dir,'sessions',{'session_key':key});session=sessions[0]
     meetings,_=fetch(raw_dir,'meetings',{'meeting_key':session['meeting_key']});meeting=meetings[0]
-    records={};coverage={};missing=[]
+    records={};coverage={};missing=[];collected_at=None
     for endpoint in ENDPOINTS:
         rows,status=fetch(raw_dir,endpoint,{'session_key':key})
+        if endpoint=='session_result':collected_at=manifest[-1]['fetched_at']
         records[endpoint]=rows;coverage[endpoint]={'status':coverage_status(status,rows),'rows':len(rows)}
         if coverage[endpoint]['status']!='ok':missing.append({'session_key':key,'endpoint':endpoint,'status':coverage[endpoint]['status'],'rows':len(rows)})
+    fill_teams(raw_dir,session,records['drivers'])
     lap_keys=[(l['driver_number'],l['lap_number']) for l in records['laps']]
     drivers={d['driver_number'] for d in records['drivers']}
     validation={'duplicate_lap_keys':len(lap_keys)-len(set(lap_keys)),'unmatched_lap_drivers':len({l['driver_number'] for l in records['laps']}-drivers),
                 'null_lap_durations':sum(l.get('lap_duration') is None for l in records['laps'])}
     state='completed' if records['session_result'] else ('cancelled' if session.get('is_cancelled') else 'scheduled')
     venue=(previous or {}).get('venue') or {'country':session['country_name'],'location':session['location'],'circuit':session['circuit_short_name'],'circuit_key':session['circuit_key'],'verification':'OpenF1 fields; not independently confirmed','sources':['https://openf1.org/docs/']}
-    return {'meeting':meeting,'session':session,'state':state,'coverage':coverage,'records':records,'validation':validation,'venue':venue},missing
+    return {'meeting':meeting,'session':session,'state':state,'coverage':coverage,'records':records,'validation':validation,'venue':venue,'collected_at':collected_at},missing
+
+def fill_teams(raw_dir,session,drivers):
+    # R3: OpenF1 sometimes leaves team_name/team_colour empty for a stand-in driver in the race.
+    missing=[d for d in drivers if not d.get('team_name') or not d.get('team_colour')]
+    if not missing:return
+    others,_=fetch(raw_dir,'sessions',{'meeting_key':session['meeting_key']})
+    for d in missing:
+        seen=[]
+        for other in sorted(others,key=lambda s:s['date_start']):
+            if other['session_key']==session['session_key']:continue
+            rows,_=fetch(raw_dir,'drivers',{'session_key':other['session_key'],'driver_number':d['driver_number']})
+            for row in rows:
+                if row.get('team_name') and row.get('team_colour'):seen.append((other['session_key'],other['session_name'],row['team_name'],row['team_colour']))
+        teams={(t,c) for _,_,t,c in seen}
+        if len(teams)==1:
+            team,colour=teams.pop()
+            if not d.get('team_name'):d['team_name']=team
+            if not d.get('team_colour'):d['team_colour']=colour
+            d['team_source']={'rule':'same meeting, other sessions agree; race row had no team','sessions':[{'session_key':k,'session_name':n} for k,n,_,_ in seen],'provider':'OpenF1 drivers'}
 
 def instant(s):return datetime.fromisoformat(s.replace('Z','+00:00'))
 def epoch(s):return int(round(instant(s).timestamp()*1000))
@@ -113,7 +149,7 @@ def build_map(raw_dir,race):
           'samples':sparse,'source_rows':len(raw),'valid_original_samples':len(points),'max_original_gap_ms':max(gaps,default=None),
           'original_gaps_over_2s':sum(g>2000 for g in gaps),'median_original_interval_ms':statistics.median(gaps) if gaps else None,
           'status':'OBSERVED_LOCATION' if points else 'MISSING',
-          'source':{'url':url,'file':'raw/'+source_entry['cache_file'],'sha256_uncompressed':source_entry['sha256'],'rows':len(raw),'status':'ok' if status in ('ok','cached') else status,'error':None,'recorded_at':datetime.now(timezone.utc).isoformat()}}
+          'source':{'url':url,'file':'raw/'+source_entry['cache_file'],'sha256_uncompressed':source_entry['sha256'],'rows':len(raw),'status':'ok' if status in ('ok','cached') else status,'error':None,'recorded_at':source_entry['fetched_at']}}
         if not record['points'] and points:
             for lap in reference_lap_choices(race,num):
                 t0=epoch(lap['date_start']);t1=t0+int(round(lap['lap_duration']*1000));lap_points=[p for p in points if t0<=p[0]<=t1]
@@ -123,14 +159,38 @@ def build_map(raw_dir,race):
     record['status']='OBSERVED_LOCATION' if len(record['points'])>=100 else 'MISSING_TRACK_REFERENCE'
     return record
 
+def reconcile_championship(champ,race):
+    # R1: standings must agree with the (possibly revised) race classification.
+    points={r['driver_number']:(r.get('points') or 0) for r in race['records']['session_result']}
+    team_of={d['driver_number']:d.get('team_name') for d in race['records']['drivers']}
+    drivers=champ['championship_drivers']['rows'];teams=champ['championship_teams']['rows']
+    def recompute(rows,gained,ident):
+        out=[{**r,'points_current':r['points_start']+gained.get(r[ident],0)} for r in rows]
+        # rank by points; equal points keep the order OpenF1 gave before the race (position_start)
+        order=sorted(out,key=lambda r:(-r['points_current'],r.get('position_start') or 99))
+        for i,r in enumerate(order):r['position_current']=i+1
+        return sorted(out,key=lambda r:r['position_current'])
+    team_gain={}
+    for num,p in points.items():
+        if team_of.get(num):team_gain[team_of[num]]=team_gain.get(team_of[num],0)+p
+    agree=all(abs(r['points_start']+points.get(r['driver_number'],0)-r['points_current'])<1e-9 for r in drivers)
+    champ['agrees_with_session_result']=agree
+    if not agree:
+        for endpoint,gained,ident in [('championship_drivers',points,'driver_number'),('championship_teams',team_gain,'team_name')]:
+            pack=champ[endpoint];pack['openf1_rows']=pack['rows'];pack['rows']=recompute(pack['rows'],gained,ident);pack['status']='recomputed_from_session_result'
+            pack['note']='OpenF1 standings for this race had not applied the revised classification at fetch time; points_current = points_start + race points from session_result (no sprint in this meeting); ties keep position_start order.'
+
 def page_block(name):
     html=(ROOT/'f1/index.html').read_text(encoding='utf8')
     return json.loads(re.search(r'<script id="'+name+r'" type="application/json">([\s\S]*?)</script>',html)[1])
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--raw',required=True);ap.add_argument('--out',required=True);ap.add_argument('--keys',required=True);ap.add_argument('--verify',default='')
+    ap=argparse.ArgumentParser();ap.add_argument('--raw',required=True);ap.add_argument('--out',required=True);ap.add_argument('--keys',required=True);ap.add_argument('--verify',default='');ap.add_argument('--refresh',default='')
     a=ap.parse_args();raw_dir=Path(a.raw).resolve();raw_dir.mkdir(parents=True,exist_ok=True)
     assert ROOT not in raw_dir.parents and raw_dir!=ROOT,'raw cache must be outside the repository'
+    for key in [k for k in a.refresh.split(',') if k]:
+        for f in raw_dir.iterdir():
+            if re.search(r'session_key[=_]'+key+r'(\b|_|\.)',f.name) or f.name.startswith('championship_') and key in f.name:f.unlink()
     dataset=page_block('dataset');maps=page_block('maps')['races'];by_key={r['session']['session_key']:r for r in dataset['races']}
     report={'collected_at':datetime.now(timezone.utc).isoformat(),'source':'https://openf1.org/docs/','verify':{},'races':{},'maps':{},'missing':[]}
     for key in [int(k) for k in a.verify.split(',') if k]:
@@ -150,7 +210,8 @@ def main():
     report['championship']={'basis_session':latest['session']}
     for endpoint in ['championship_drivers','championship_teams']:
         rows,status=fetch(raw_dir,endpoint,{'session_key':latest['session']['session_key']})
-        report['championship'][endpoint]={'url':API+endpoint+'?session_key='+str(latest['session']['session_key']),'status':'ok' if status in ('ok','cached') else status,'rows':rows}
+        report['championship'][endpoint]={'url':API+endpoint+'?session_key='+str(latest['session']['session_key']),'status':'ok' if status in ('ok','cached') else status,'rows':rows,'fetched_at':manifest[-1]['fetched_at']}
+    reconcile_championship(report['championship'],report['races'].get(str(latest['session']['session_key']))or latest)
     report['manifest']=manifest
     Path(a.out).write_text(json.dumps(report,ensure_ascii=False),encoding='utf8')
     print('DONE',a.out,flush=True)

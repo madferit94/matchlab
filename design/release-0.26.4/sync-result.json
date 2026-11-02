@@ -2,7 +2,7 @@
  "status": "PASS",
  "release": "0.26.4",
  "base_commit": "5a653c7",
- "checked_at": "2026-11-02T02:13:06.081Z",
+ "checked_at": "2026-11-02T02:54:00.947Z",
  "races": [
   {
    "session_key": 11234,
@@ -155,6 +155,7 @@
      ],
      "predicted_movement_laps": 0,
      "recorded_held_cars": 25,
+     "laps_wholly_inside_suspension": 0,
      "recorded_held_movement_laps": 0
     }
    ],
@@ -313,6 +314,7 @@
      ],
      "predicted_movement_laps": 0,
      "recorded_held_cars": 20,
+     "laps_wholly_inside_suspension": 0,
      "recorded_held_movement_laps": 0
     }
    ],
@@ -356,6 +358,7 @@
      ],
      "predicted_movement_laps": 0,
      "recorded_held_cars": 21,
+     "laps_wholly_inside_suspension": 0,
      "recorded_held_movement_laps": 0
     }
    ],
@@ -502,7 +505,7 @@
       3756.5,
       6094.6
      ],
-     "held_laps": 19,
+     "held_laps": 22,
      "leader_stop_seconds": [
       3788.7,
       6094.6
@@ -513,7 +516,8 @@
       6094.6
      ],
      "predicted_movement_laps": 0,
-     "recorded_held_cars": 19,
+     "recorded_held_cars": 22,
+     "laps_wholly_inside_suspension": 3,
      "recorded_held_movement_laps": 0
     }
    ],
@@ -548,5 +552,5 @@
    "marker_differences": 0
   }
  ],
- "checks": 124
+ "checks": 122
 }

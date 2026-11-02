@@ -14,6 +14,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 const root=path.resolve(__dirname,'../..'),ADDED={11388:'Max VERSTAPPEN',11396:'Kimi ANTONELLI',11404:'Max VERSTAPPEN'},RED=11404;
+const ABSENT={ko:'불참',en:'Did not take part'},COLLECTED={ko:'OpenF1 결과 수집:',en:'OpenF1 result collected'};
 const NOTE={ko:'경기 전에 공개한 예측입니다(자료 기준 2026-10-07, 경기 결과는 쓰지 않음).',en:'Forecast published before this race (data as of 2026-10-07; the race result is not used).'};
 const TIP={ko:'1배속은 실제 기록 시간과 같고, 예측 차도 실제 선두의 랩 진행에 맞춰 움직입니다.',en:'1× follows recorded elapsed time, and predicted cars follow the lap progress of the recorded leader.'};
 const INSTALL=`(key)=>{const read=id=>JSON.parse(document.getElementById(id).textContent),D=read('dataset'),M=read('maps'),H=read('historical'),F=read('forecasts');
@@ -40,6 +41,7 @@ const PAUSE=sel=>`(()=>{const b=document.querySelector('${sel}');if(['일시정�
     const gp={key:+key};gp.tooltip=await page.$eval('[data-map-speed]',s=>s.title);gp.panes=await page.$$eval('.f1-map-comparison canvas',c=>c.length);
     ok(gp.tooltip===TIP[lang]&&gp.panes===2,`circuit tab with recorded and predicted panes ${key} ${lang} ${width}`);
     const info=await page.evaluate(`(${INSTALL})(${key})`);gp.suspensions=info.suspensions;gp.held_laps=info.held;
+    if(+key===RED){gp.ocon_map_row=await page.$$eval('[data-map-table] tr',rows=>rows.map(r=>[...r.cells].map(c=>c.textContent)).find(c=>/OCON/.test(c[0])));ok(gp.ocon_map_row&&gp.ocon_map_row[3]===ABSENT[lang],`absent forecast driver shown as not taking part (circuit table) ${lang} ${width}`)}
     if(+key===RED&&lang==='ko'&&width===1440||+key===RED&&lang==='en'&&width===390){
      await page.evaluate(([p])=>{const r=window.__s.root;r.querySelector('[data-map-speed]').value='1';window.__s.seek(p);r.querySelector('[data-map-play]').click()},[0.3]);
      const s=[];const t0=Date.now();while(Date.now()-t0<4000){await page.waitForTimeout(250);s.push(await page.evaluate(()=>({w:performance.now(),...window.__s.at(window.__s.phase())})))}
@@ -56,12 +58,16 @@ const PAUSE=sel=>`(()=>{const b=document.querySelector('${sel}');if(['일시정�
     }
     await page.click('[data-tab="comparison"]');await page.waitForSelector('.f1-comparison [data-compare-play]',{timeout:60000});
     gp.note=await page.$eval('#body > p.muted',e=>e.textContent);ok(gp.note===NOTE[lang],`lane tab says pre-race forecast ${key} ${lang} ${width}`);
+    if(+key===RED){gp.ocon_lane_row=await page.$$eval('[data-compare-table] tr',rows=>rows.map(r=>[...r.cells].map(c=>c.textContent)).find(c=>/OCON/.test(c[0])));ok(gp.ocon_lane_row&&gp.ocon_lane_row[2]==='—'&&gp.ocon_lane_row[3]===ABSENT[lang],`absent forecast driver shown as not taking part (lane table) ${lang} ${width}`)}
     await page.evaluate(()=>{const r=document.querySelector('.f1-comparison'),s=r.querySelector('[data-compare-seek]');s.value='0.4';s.dispatchEvent(new Event('input'));r.querySelector('[data-compare-play]').click()});
     const lanes=[];const t2=Date.now();while(Date.now()-t2<2500){await page.waitForTimeout(250);lanes.push(await page.evaluate(()=>{const r=document.querySelector('.f1-comparison'),pred=[...r.querySelectorAll('[data-predicted-lanes] .f1-lane')],rec=[...r.querySelectorAll('[data-recorded-lanes] .f1-lane')],p1=pred.find(x=>/^(예측|Pred) 1( ·|$)/.test(x.querySelector('.f1-lane-status').textContent)),lefts=rec.map(x=>x.querySelector('.f1-lane-car').style.left);return {p1:p1.querySelector('.f1-lane-car').style.left,front:lefts.reduce((a,b)=>parseFloat(b)>parseFloat(a)?b:a)}}))}
     await page.evaluate(PAUSE('.f1-comparison [data-compare-play]'));
     gp.lane_samples=lanes.length;gp.lane_mismatch=lanes.filter(x=>x.p1!==x.front).length;ok(gp.lane_mismatch===0,`lane tab: predicted P1 lane = front recorded lane ${key} ${lang} ${width}`);
     if(+key===RED&&(lang==='ko'&&width===390||lang==='en'&&width===1440)){const shot=`lanes-${key}-${lang}-${width}.png`;await page.locator('.f1-comparison').screenshot({path:path.join(__dirname,shot)});result.screenshots.push(shot)}
     await page.click('[data-tab="result"]');await page.waitForSelector('#body table tbody tr');
+    gp.collected_line=await page.$eval('[data-result-collected]',e=>e.textContent).catch(()=>null);ok(!!gp.collected_line&&gp.collected_line.startsWith(COLLECTED[lang]),`result shows collection time ${key} ${lang} ${width}`);
+    if(+key===RED){gp.hirakawa=await page.$$eval('#body table tbody tr',rows=>rows.map(r=>[...r.cells].map(c=>c.textContent.trim())).find(c=>/HIRAKAWA/.test(c[1])));ok(gp.hirakawa&&gp.hirakawa[0]==='10'&&gp.hirakawa[2]==='Haas F1 Team',`HIRAKAWA classified 10th with team Haas F1 Team ${lang} ${width}`);
+     gp.revised=await page.$$eval('#body table tbody tr',rows=>rows.map(r=>[...r.cells].map(c=>c.textContent.trim())).filter(c=>/PIASTRI|LAWSON|GASLY/.test(c[1])).map(c=>[c[1],c[0]]));ok(JSON.stringify(gp.revised.map(x=>x[1]).sort())===JSON.stringify(['13','17','7']),`revised Mexico classification (PIA 13, LAW 7, GAS 17) ${lang} ${width}`)}
     gp.result_rows=await page.$$eval('#body table tbody tr',r=>r.length);gp.result_first=await page.$eval('#body table tbody tr td:nth-child(2)',e=>e.textContent.trim());
     ok(gp.result_rows===22&&gp.result_first===winner,`result table 22 rows, winner ${winner} ${key} ${lang} ${width}`);
     if(+key===RED&&lang==='ko'&&width===390){const shot=`result-${key}-${lang}-${width}.png`;await page.locator('#detail').screenshot({path:path.join(__dirname,shot)});result.screenshots.push(shot)}
