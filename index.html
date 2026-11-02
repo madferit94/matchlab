@@ -393,7 +393,7 @@ if(typeof document!=='undefined'){const s=document.createElement('style');s.id='
 <section id="team" hidden><label class="catalogsearch">팀 검색 <input id="teamsearch" type="search" placeholder="팀 이름" aria-label="팀 이름 검색"></label><div id="teamcatalog" class="catalog" aria-label="팀 목록"></div><div class="teamchooser"><label>팀 <select id="teamselect"></select></label><label>시즌 <select id="season"><option>2026/27</option><option>2025/26</option><option>2024/25</option><option>2023/24</option></select></label><label>장소 <select id="venue"><option value="all">전체</option><option value="home">홈</option><option value="away">원정</option></select></label><label>결과 <select id="resultfilter"><option value="all">전체</option><option value="win">승리</option><option value="draw">무승부</option><option value="loss">패배</option></select></label></div><div class="filterdeck"><label>경기 범위 <select id="rangefilter"><option value="season">시즌 전체</option><option value="5">최근 5경기</option><option value="10">최근 10경기</option><option value="custom">날짜 선택</option></select></label><label>시작 <input id="startdate" type="date" disabled></label><label>종료 <input id="enddate" type="date" disabled></label></div><div id="filtererror" class="filtererror" role="status"></div><article class="panel" id="teamcontent"></article><article class="panel"><div class="scope"><h3>시즌 상세 통계</h3><span id="snapcount" class="status"></span></div><p class="muted">StatMuse 시즌 전체 · 기간/장소/결과 필터 미적용</p><div class="statfilters"><label>지표 <select id="metricgroup"><option value="all">전체 지표</option><option value="attack">공격</option><option value="passing">패스·점유</option><option value="defence">수비·골키핑</option><option value="duels">경합</option><option value="discipline">반칙·징계</option></select></label><input id="metricsearch" type="search" placeholder="슈팅, 패스, 페널티킥…" aria-label="지표 검색"></div><div id="snapshotstats" class="metricgrid"></div></article></section>
 <section id="matchdetail" hidden></section><section id="leagueview" hidden><article class="panel"><h2>2026/27 · 승점순 통계</h2><div class="tablewrap" id="standings"></div></article></section><footer>저장 자료 기반 미리보기 · 경기 날짜는 원본 표기 · 구단 로고: StatMuse · 시즌 기록은 수집 리그 범위</footer></main><aside id="metricpopover" class="metric-popover" role="dialog" aria-modal="false" aria-labelledby="metrichelptitle" hidden>
 <div class="metric-popover-head"><h3 id="metrichelptitle"></h3><button id="metrichelpclose" type="button" aria-label="지표 설명 닫기">×</button></div>
-<p id="metrichelpmeaning"></p><div class="metric-reading"><b>읽는 법</b><p id="metrichelpreading"></p></div></aside><script src="data/football/data.ko.js?v=21cce185baf5561a"></script><script id="matchlab-load-notice">(function(){
+<p id="metrichelpmeaning"></p><div class="metric-reading"><b>읽는 법</b><p id="metrichelpreading"></p></div></aside><script src="data/football/data.ko.js?v=5c60ec46e32b5c05"></script><script id="matchlab-load-notice">(function(){
 'use strict';
 const text={data:'경기 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.',predictions:'예측 자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'};
 // 0.26.2: shown only when a football data file did not load (or loaded without its object). Normal pages add nothing.
@@ -456,7 +456,7 @@ function renderMatches(){let all=upcomingSchedule(L),fs=all.slice(0,fixtureLimit
 let stats=[['승점',h.p,a.p,0],['경기당 득점',h.n?h.gf/h.n:null,a.n?a.gf/a.n:null,1],['경기당 실점',h.n?h.ga/h.n:null,a.n?a.ga/a.n:null,1],['경기당 기대 득점',h.n&&h.xg!==null?h.xg/h.n:null,a.n&&a.xg!==null?a.xg/a.n:null,2]];
 $('comparison').innerHTML=`<div class="preview-title"><h3>경기 프리뷰</h3><span class="muted">${m.date} · ${esc(T[m.home].name)} vs ${esc(T[m.away].name)}</span></div><div class="matchhead"><div class="club">${badge(m.home,true)}${teamName(m.home)}</div><div class="versus">VS</div><div class="club right">${teamName(m.away)}${badge(m.away,true)}</div></div>${stats.map(([label,x,y,n],i)=>{let max=Math.max(x||0,y||0,1);return `<div class="stat"><strong>${x===null?'—':x.toFixed(n)}</strong><div><label>${label}${i===2?'<small>낮을수록 좋음</small>':''}</label><div class="bars"><div class="track left"><span class="fill" style="width:${(x||0)/max*100}%;background:${c1}"></span></div><div class="track"><span class="fill" style="width:${(y||0)/max*100}%;background:${c2}"></span></div></div></div><strong>${y===null?'—':y.toFixed(n)}</strong></div>`}).join('')}<div class="matchhead"><div>${form(m.home,hs)}<span class="muted">${h.n}경기</span></div><span></span><div style="justify-self:end">${form(m.away,as)}<span class="muted">${a.n}경기</span></div></div>`;
 let max=Math.max(1,...hs.filter(hasXg).map(g=>g.home===m.home?g.hx:g.ax),...as.filter(hasXg).map(g=>g.home===m.away?g.hx:g.ax));max=Math.ceil(max);function line(ms,id,c,dash){ms=ms.map((g,i)=>[g,i]).filter(([g])=>hasXg(g));let points=ms.map(([g,i])=>`${40+i*70},${145-(g.home===id?g.hx:g.ax)/max*115}`).join(' ');return `<polyline points="${points}" fill="none" stroke="${c}" stroke-width="3" ${dash?'stroke-dasharray="7 5"':''}/>`+ms.map(([g,i])=>`<circle cx="${40+i*70}" cy="${145-(g.home===id?g.hx:g.ax)/max*115}" r="4" fill="${c}"><title>${esc(T[id].name)} ${g.date} xG ${(g.home===id?g.hx:g.ax).toFixed(2)}</title></circle>`).join('')}
-$('trend').innerHTML=`<div class="legend"><span><i style="--c:${c1}"></i>${esc(T[m.home].name)}</span><span><i class="dash" style="--c:${c2}"></i>${esc(T[m.away].name)}</span></div><svg class="chart" viewBox="0 0 360 180" role="img" aria-label="양 팀 최근 리그 경기 기대 득점, 상세 수치는 표에 표시">${[0,max/2,max].map(v=>`<line x1="35" x2="330" y1="${145-v/max*115}" y2="${145-v/max*115}" stroke="#e0e6ee"/><text x="4" y="${150-v/max*115}" fill="#536174" font-size="11">${v.toFixed(1)}</text>`).join('')}${line(hs,m.home,c1,false)}${line(as,m.away,c2,true)}<text x="35" y="171" fill="#536174" font-size="11">이전 경기</text><text x="270" y="171" fill="#536174" font-size="11">최근 경기</text></svg><div class="muted">같은 경기 순서로 비교 · xG: 기회의 득점 기대치</div>${hs.concat(as).some(g=>!hasXg(g))?'<div class="muted">xG 자료가 없는 경기(football-data.co.uk 결과)는 점을 표시하지 않습니다.</div>':''}<details><summary>수치 보기</summary>${rows(m.home,hs)}${rows(m.away,as)}</details>`;$('recent').innerHTML=rows(m.home,hs)}
+$('trend').innerHTML=`<div class="legend"><span><i style="--c:${c1}"></i>${esc(T[m.home].name)}</span><span><i class="dash" style="--c:${c2}"></i>${esc(T[m.away].name)}</span></div><svg class="chart" viewBox="0 0 360 180" role="img" aria-label="양 팀 최근 리그 경기 기대 득점, 상세 수치는 표에 표시">${[0,max/2,max].map(v=>`<line x1="35" x2="330" y1="${145-v/max*115}" y2="${145-v/max*115}" stroke="#e0e6ee"/><text x="4" y="${150-v/max*115}" fill="#536174" font-size="11">${v.toFixed(1)}</text>`).join('')}${line(hs,m.home,c1,false)}${line(as,m.away,c2,true)}<text x="35" y="171" fill="#536174" font-size="11">이전 경기</text><text x="270" y="171" fill="#536174" font-size="11">최근 경기</text></svg><div class="muted">같은 경기 순서로 비교 · xG: 기회의 득점 기대치</div>${hs.concat(as).some(g=>!hasXg(g))?'<div class="muted">xG 자료가 없는 경기(2026-09-20 이후 결과 대부분)는 점을 표시하지 않습니다.</div>':''}<details><summary>수치 보기</summary>${rows(m.home,hs)}${rows(m.away,as)}</details>`;$('recent').innerHTML=rows(m.home,hs)}
 function renderTeam(){let ts=Object.values(T).filter(t=>t.league===L).sort((a,b)=>a.name.localeCompare(b.name));let old=$('teamselect').value;$('teamselect').innerHTML=ts.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');if(ts.some(t=>t.id===old))$('teamselect').value=old;else $('teamselect').value=L==='EPL'?'understat:83':'understat:148';refreshTeam()}
 function historyRows(id,ms){return `<div class="tablewrap"><table><thead><tr><th>날짜 / 상대</th><th>장소</th><th>결과</th><th>xG</th><th>상대 xG</th></tr></thead><tbody>${ms.slice().reverse().map(m=>{let h=m.home===id,opp=h?m.away:m.home,f=h?m.hg:m.ag,a=h?m.ag:m.hg;return `<tr><td>${team(opp)}<small class="muted">${m.date}</small>${matchLink(m)}</td><td>${h?'홈':'원정'}</td><td>${f>a?'승':f===a?'무':'패'} ${f} : ${a}</td><td>${xgText(h?m.hx:m.ax)}</td><td>${xgText(h?m.ax:m.hx)}</td></tr>`}).join('')}</tbody></table></div>`}
 function filterHistory(id,ms){let venue=$('venue').value,result=$('resultfilter').value;return ms.filter(m=>{let h=m.home===id,f=h?m.hg:m.ag,a=h?m.ag:m.hg;return (venue==='all'||(venue==='home'?h:!h))&&(result==='all'||(result==='win'?f>a:result==='draw'?f===a:f<a))})}
@@ -963,7 +963,7 @@ mountTeamChart();
 })();
 </script><script id="matchlab-refresh-ui">(function(){
 'use strict';
-const text={source:'{date} 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)',reviewTitle:'끝난 경기 · 경기 전 예측과 실제',reviewNote:'예측은 {date} 자료로 만든 저장값이며 바꾸지 않았습니다. 가장 높은 확률의 결과가 실제 결과와 같으면 적중입니다.',summary:'적중 {hit} / {n}경기 ({rate})',empty:'이 리그에서 비교할 끝난 경기가 없습니다.',date:'날짜',match:'경기',actual:'실제',predicted:'예측 (홈·무·원정)',verdict:'판정',hit:'적중',miss:'빗나감',tie:'동률',home:'홈 승',draw:'무승부',away:'원정 승',more:'더 보기',open:'경기 보기 →',detailTitle:'경기 전 예측과 실제 결과',detailInput:'예측 입력 자료 기준 {date} · 저장된 예측(변경 없음)',pick:'예측 결과',outcome:'실제 결과',statsTitle:'경기 기록 · football-data.co.uk',shots:'슈팅',shotsOnTarget:'유효 슈팅',statsNote:'xG·PPDA·위험 지역 패스 등 상세 지표는 이 출처에 없어 표시하지 않습니다. 이전 경기(Understat)와 섞지 않습니다.',noResult:'결과 자료 없음 · 연기 여부 미확인',snapshot:'2026/27 상세 지표(StatMuse 시즌 누적)는 {date}까지의 값이며 갱신하지 않았습니다.',analysisNote:'{date} 이후 경기(football-data.co.uk 결과)는 xG 자료가 없어 이번 시즌 xG를 계산하지 않습니다. 해당 경기와 그 경기가 들어간 합계·평균은 —로 표시합니다.'};
+const text={source:'{date} 이후 경기 결과: football-data.co.uk · xG는 {n}경기 중 {x}경기만 (Understat의 Internet Archive 사본)',reviewTitle:'끝난 경기 · 경기 전 예측과 실제',reviewNote:'예측은 {date} 자료로 만든 저장값이며 바꾸지 않았습니다. 가장 높은 확률의 결과가 실제 결과와 같으면 적중입니다.',summary:'적중 {hit} / {n}경기 ({rate})',empty:'이 리그에서 비교할 끝난 경기가 없습니다.',date:'날짜',match:'경기',actual:'실제',predicted:'예측 (홈·무·원정)',verdict:'판정',hit:'적중',miss:'빗나감',tie:'동률',home:'홈 승',draw:'무승부',away:'원정 승',more:'더 보기',open:'경기 보기 →',detailTitle:'경기 전 예측과 실제 결과',detailInput:'예측 입력 자료 기준 {date} · 저장된 예측(변경 없음)',pick:'예측 결과',outcome:'실제 결과',statsTitle:'경기 기록 · football-data.co.uk',shots:'슈팅',shotsOnTarget:'유효 슈팅',statsNote:'xG·PPDA·위험 지역 패스 등 상세 지표는 이 출처에 없어 표시하지 않습니다. 이전 경기(Understat)와 섞지 않습니다.',noResult:'결과 자료 없음 · 연기 여부 미확인',snapshot:'2026/27 상세 지표(StatMuse 시즌 누적)는 {date}까지의 값이며 갱신하지 않았습니다.',analysisNote:'{date} 이후 {n}경기 중 xG가 있는 경기는 {x}경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다.',sourceNoXg:'{date} 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)',xg:'xG (홈 : 원정)',shotSum:'슈팅 합계',statsNoteXg:'위 xG는 Understat 자료의 Internet Archive 사본({at} 보관)에서 가져왔습니다 · {method}. PPDA·위험 지역 패스 등 다른 상세 지표는 없습니다.',methodMatchInfo:'경기 xG',methodShotSum:'슈팅 합계(슈팅별 xG를 더한 값이라 Understat 경기 xG와 조금 다를 수 있음)',archiveLink:'보관본 보기'};
 const store=window.MatchLabData||{},data=store.data,bundle=store.predictions;
 if(!data||!data.refresh||!Array.isArray(data.completed))return;
 const info=data.refresh,outcomes=['home','draw','away'],shown=new Map();
@@ -982,6 +982,10 @@ function review(m){
  return {p,actual,pick,hit:pick===actual};
 }
 const refreshed=()=>data.completed.filter(m=>m.provider===info.provider).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+// 0.27.1: a few refreshed matches have xG from Internet Archive copies of Understat (xg_source, xg_method).
+const xgCount=()=>{const all=refreshed();return {date:info.previous_last_date,n:all.length,x:all.filter(hasXg).length};};
+const xgCell=m=>hasXg(m)?xgText(m.hx)+' : '+xgText(m.ax)+(m.xg_method==='shot_sum'?' · '+text.shotSum:''):'—';
+const archivedAt=m=>{const t=/^https:\/\/web\.archive\.org\/web\/(\d{4})(\d{2})(\d{2})\d{6}id_\//.exec(typeof m.xg_source==='string'?m.xg_source:'');return t?t[1]+'-'+t[2]+'-'+t[3]:'';};
 // Review R3: below 650px each finished match becomes a stacked card (labels from the column headers), so the
 // prediction and verdict are visible without sideways scrolling.
 function style(){
@@ -999,13 +1003,13 @@ function analysisNote(){
  let note=document.getElementById('refresh-analysis-note-0270');
  const results=[...out.children].filter(e=>e!==note).length;
  const show=!!(plan&&results&&plan.season===refreshedSeason&&(plan.metric==='xg'||plan.metric==='xga'||plan.compareGoals));
- if(show&&!note){note=node('p','note',fill(text.analysisNote,{date:info.previous_last_date}));note.id='refresh-analysis-note-0270';out.prepend(note);}
+ if(show&&!note){note=node('p','note',fill(text.analysisNote,xgCount()));note.id='refresh-analysis-note-0270';out.prepend(note);}
  else if(!show&&note)note.remove();
 }
 function source(){
  const date=document.getElementById('lastdate');
  if(!date||document.getElementById('refresh-source-0270'))return;
- const span=node('span',null,' · '+fill(text.source,{date:info.previous_last_date}));span.id='refresh-source-0270';
+ const count=xgCount(),span=node('span',null,' · '+fill(count.x?text.source:text.sourceNoXg,count));span.id='refresh-source-0270';
  date.parentNode.appendChild(span);
 }
 function league(){const select=document.getElementById('league');return select?select.value:'EPL';}
@@ -1023,13 +1027,13 @@ function reviewPanel(){
  host.appendChild(node('p','muted',fill(text.reviewNote,{date:inputDate()})));
  if(!rows.length){host.appendChild(node('p','muted',text.empty));return;}
  const wrap=node('div','tablewrap'),table=node('table'),thead=node('thead'),tr=node('tr');
- [text.match,text.actual,text.predicted,text.verdict].forEach(h=>tr.appendChild(node('th',null,h)));thead.appendChild(tr);table.appendChild(thead);
+ [text.match,text.actual,text.xg,text.predicted,text.verdict].forEach(h=>tr.appendChild(node('th',null,h)));thead.appendChild(tr);table.appendChild(thead);
  const body=node('tbody');
  rows.slice(0,limit).forEach(({m,r})=>{
   const row=node('tr');row.dataset.review=m.id;
   const cell=node('td');cell.dataset.label=text.match;cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
   const link=node('a','match-link',text.open);link.href='#match='+encodeURIComponent(m.id);cell.appendChild(link);row.appendChild(cell);
-  [[text.actual,m.hg+' : '+m.ag+' · '+text[r.actual]],[text.predicted,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')],[text.verdict,r.pick===null?text.tie:r.hit?text.hit:text.miss]].forEach(([label,value])=>{const td=node('td',null,value);td.dataset.label=label;row.appendChild(td);});
+  [[text.actual,m.hg+' : '+m.ag+' · '+text[r.actual]],[text.xg,xgCell(m)],[text.predicted,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')],[text.verdict,r.pick===null?text.tie:r.hit?text.hit:text.miss]].forEach(([label,value])=>{const td=node('td',null,value);td.dataset.label=label;row.appendChild(td);});
   body.appendChild(row);
  });
  table.appendChild(body);wrap.appendChild(table);host.appendChild(wrap);
@@ -1049,7 +1053,9 @@ function detail(){
  if(m.provider===info.provider&&!document.getElementById('refresh-stats-0270')){
   const panel=node('article','panel');panel.id='refresh-stats-0270';panel.appendChild(node('h2',null,text.statsTitle));
   [[text.shots,m.hs,m.as],[text.shotsOnTarget,m.hst,m.ast]].forEach(([label,h,a])=>{const s=node('div','stat');s.appendChild(node('strong',null,String(h)));const mid=node('div');mid.appendChild(node('label',null,label));s.appendChild(mid);s.appendChild(node('strong',null,String(a)));panel.appendChild(s);});
-  panel.appendChild(node('p','note',text.statsNote));first.after(panel);
+  const note=node('p','note',hasXg(m)?fill(text.statsNoteXg,{at:archivedAt(m),method:m.xg_method==='shot_sum'?text.methodShotSum:text.methodMatchInfo}):text.statsNote);
+  if(hasXg(m)&&archivedAt(m)){const link=node('a',null,text.archiveLink);link.href=m.xg_source;link.target='_blank';link.rel='noopener noreferrer';note.append(' ',link);}
+  panel.appendChild(note);first.after(panel);
  }
  const r=review(m);
  if(r&&!document.getElementById('refresh-review-0270')){

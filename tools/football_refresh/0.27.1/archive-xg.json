@@ -1,0 +1,265 @@
+{
+ "version": "0.27.1",
+ "source": "Internet Archive (web.archive.org) copies of understat.com",
+ "reason": "understat.com does not resolve (2026-11-02); the Internet Archive holds Understat data for these refreshed matches only",
+ "refresh": "tools/football_refresh/0.27.0/refresh.json",
+ "methods": {
+  "match_info": "match page match_info h_xg / a_xg (Understat match xG)",
+  "shot_sum": "getMatchData per-shot xG added in archived order, rounded to 6 decimals (can differ slightly from Understat match xG)"
+ },
+ "sha256_of": "archived bytes after gzip is undone",
+ "matches": [
+  {
+   "id": "understat:31232",
+   "date": "2026-10-10",
+   "method": "shot_sum",
+   "hx": 1.375904,
+   "ax": 1.677447,
+   "archive_url": "https://web.archive.org/web/20261010204330id_/https://understat.com/getMatchData/31232",
+   "original_url": "https://understat.com/getMatchData/31232",
+   "archived_at": "2026-10-10T20:43:30Z",
+   "bytes": 36035,
+   "sha256": "bdb50ed46c9290afa67bd320208564748d0226e9df8f6f90ade3f0fc11a5ce68",
+   "archive_match": {
+    "date": "2026-10-10",
+    "home": "Chelsea",
+    "away": "Bournemouth",
+    "score": [
+     5,
+     1
+    ]
+   },
+   "shots": {
+    "archive": [
+     10,
+     9
+    ],
+    "football_data": [
+     10,
+     9
+    ]
+   },
+   "shot_xg": {
+    "h": [
+     "0.036960095167160034",
+     "0.328635573387146",
+     "0.06328863650560379",
+     "0.11668635159730911",
+     "0.02316225692629814",
+     "0.09214531630277634",
+     "0.03140927478671074",
+     "0.11421648412942886",
+     "0.5253304839134216",
+     "0.044069159775972366"
+    ],
+    "a": [
+     "0.05713247135281563",
+     "0.28916290402412415",
+     "0.008282899856567383",
+     "0.08860214054584503",
+     "0.3479458689689636",
+     "0.7914536595344543",
+     "0.025897089391946793",
+     "0.035716716200113297",
+     "0.033252883702516556"
+    ]
+   }
+  },
+  {
+   "id": "understat:31233",
+   "date": "2026-10-10",
+   "method": "shot_sum",
+   "hx": 1.259182,
+   "ax": 1.778564,
+   "archive_url": "https://web.archive.org/web/20261010175440id_/https://understat.com/getMatchData/31233",
+   "original_url": "https://understat.com/getMatchData/31233",
+   "archived_at": "2026-10-10T17:54:40Z",
+   "bytes": 39551,
+   "sha256": "ee3aff2bb03f7336498e4e211352d6987676460ba9497b29d86f5b5a41db87c3",
+   "archive_match": {
+    "date": "2026-10-10",
+    "home": "Ipswich",
+    "away": "Fulham",
+    "score": [
+     2,
+     1
+    ]
+   },
+   "shots": {
+    "archive": [
+     11,
+     13
+    ],
+    "football_data": [
+     11,
+     13
+    ]
+   },
+   "shot_xg": {
+    "h": [
+     "0.0238528810441494",
+     "0.03258847817778587",
+     "0.05400662124156952",
+     "0.017514100298285484",
+     "0.31016719341278076",
+     "0.04689047113060951",
+     "0.06932929903268814",
+     "0.04872053116559982",
+     "0.0946253091096878",
+     "0.010050387121737003",
+     "0.5514363646507263"
+    ],
+    "a": [
+     "0.09369973093271255",
+     "0.04238184913992882",
+     "0.05960281938314438",
+     "0.04362943023443222",
+     "0.07231917977333069",
+     "0.07064685225486755",
+     "0.04776190593838692",
+     "0.445612370967865",
+     "0.01674712635576725",
+     "0.4949480891227722",
+     "0.21565036475658417",
+     "0.11533459275960922",
+     "0.06022922322154045"
+    ]
+   }
+  },
+  {
+   "id": "understat:31239",
+   "date": "2026-10-12",
+   "method": "shot_sum",
+   "hx": 1.664928,
+   "ax": 2.222626,
+   "archive_url": "https://web.archive.org/web/20261017135551id_/https://understat.com/getMatchData/31239",
+   "original_url": "https://understat.com/getMatchData/31239",
+   "archived_at": "2026-10-17T13:55:51Z",
+   "bytes": 40885,
+   "sha256": "3caa868a43b49f8df056acaae1752300c7e0e468b9680453c7f28dedf399b216",
+   "archive_match": {
+    "date": "2026-10-12",
+    "home": "Coventry",
+    "away": "Newcastle United",
+    "score": [
+     4,
+     1
+    ]
+   },
+   "shots": {
+    "archive": [
+     9,
+     19
+    ],
+    "football_data": [
+     9,
+     19
+    ]
+   },
+   "shot_xg": {
+    "h": [
+     "0.7611688375473022",
+     "0.1124611347913742",
+     "0.06596764922142029",
+     "0.42939674854278564",
+     "0.09052685648202896",
+     "0.01992950402200222",
+     "0.03537123277783394",
+     "0.07129257917404175",
+     "0.07881303131580353"
+    ],
+    "a": [
+     "0.05445341765880585",
+     "0.06799856573343277",
+     "0.0326496958732605",
+     "0.12189226597547531",
+     "0.015272418968379498",
+     "0.5544856786727905",
+     "0.05911071226000786",
+     "0.8070139288902283",
+     "0.05047840625047684",
+     "0.12888945639133453",
+     "0.019529156386852264",
+     "0.08953487873077393",
+     "0.009949702769517899",
+     "0.02124130167067051",
+     "0.02098916843533516",
+     "0.07388892024755478",
+     "0.03337186574935913",
+     "0.04308904707431793",
+     "0.018787071108818054"
+    ]
+   }
+  },
+  {
+   "id": "understat:31249",
+   "date": "2026-10-19",
+   "method": "match_info",
+   "hx": 0.971825,
+   "ax": 1.1439,
+   "archive_url": "https://web.archive.org/web/20261025161437id_/https://understat.com/match/31249",
+   "original_url": "https://understat.com/match/31249",
+   "archived_at": "2026-10-25T16:14:37Z",
+   "bytes": 30156,
+   "sha256": "e1f1b9369a7dceb1345c768adc91e3a3aa2d72e82d4cb40cebe9d2c07a2d3791",
+   "archive_match": {
+    "date": "2026-10-19",
+    "home": "Tottenham",
+    "away": "Coventry",
+    "home_id": "understat:82",
+    "away_id": "understat:294",
+    "score": [
+     3,
+     1
+    ]
+   },
+   "shots": {
+    "archive": [
+     16,
+     12
+    ],
+    "football_data": [
+     16,
+     12
+    ]
+   },
+   "h_xg": "0.971825",
+   "a_xg": "1.1439"
+  },
+  {
+   "id": "understat:31256",
+   "date": "2026-10-25",
+   "method": "match_info",
+   "hx": 0.84372,
+   "ax": 2.56254,
+   "archive_url": "https://web.archive.org/web/20261025161531id_/https://understat.com/match/31256",
+   "original_url": "https://understat.com/match/31256",
+   "archived_at": "2026-10-25T16:15:31Z",
+   "bytes": 30038,
+   "sha256": "e917e1538b61b6430da3bda123ac35f089d0389fdef62150882960c5b561a689",
+   "archive_match": {
+    "date": "2026-10-25",
+    "home": "Manchester United",
+    "away": "Bournemouth",
+    "home_id": "understat:89",
+    "away_id": "understat:73",
+    "score": [
+     0,
+     3
+    ]
+   },
+   "shots": {
+    "archive": [
+     17,
+     10
+    ],
+    "football_data": [
+     17,
+     10
+    ]
+   },
+   "h_xg": "0.84372",
+   "a_xg": "2.56254"
+  }
+ ]
+}

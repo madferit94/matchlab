@@ -1,0 +1,16 @@
+{
+ "index.html": [
+  {
+   "why": "preview xG chart note: some football-data.co.uk results now have xG",
+   "before": "<div class=\"muted\">xG 자료가 없는 경기(football-data.co.uk 결과)는 점을 표시하지 않습니다.</div>",
+   "after": "<div class=\"muted\">xG 자료가 없는 경기(2026-09-20 이후 결과 대부분)는 점을 표시하지 않습니다.</div>"
+  }
+ ],
+ "index.en.html": [
+  {
+   "why": "preview xG chart note: some football-data.co.uk results now have xG",
+   "before": "<div class=\"muted\">Matches without xG (football-data.co.uk results) have no point.</div>",
+   "after": "<div class=\"muted\">Matches without xG (most results after 2026-09-20) have no point.</div>"
+  }
+ ]
+}

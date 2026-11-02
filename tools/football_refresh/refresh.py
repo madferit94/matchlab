@@ -5,7 +5,13 @@ Commands (run from the repository root, Python 3, standard library only):
   python3 -I tools/football_refresh/refresh.py build --raw <same folder>     # writes tools/football_refresh/0.27.0/refresh.json
   python3 -I tools/football_refresh/refresh.py verify --raw <same folder>    # raw line fingerprints = refresh.json
   python3 -I tools/football_refresh/refresh.py apply                         # writes data/football/data.ko.js and data.en.js
-  python3 -I tools/football_refresh/refresh.py check                         # data files == apply(v50 data, refresh.json)
+  python3 -I tools/football_refresh/refresh.py check                         # data files == apply(v50 data, refresh.json, archive-xg.json)
+
+0.27.1 archive xG (Internet Archive copies of understat.com, which is unreachable):
+  python3 -I tools/football_refresh/refresh.py fetch-xg --raw <folder outside the repository>
+  python3 -I tools/football_refresh/refresh.py build-xg --raw <same folder>  # writes tools/football_refresh/0.27.1/archive-xg.json
+  python3 -I tools/football_refresh/refresh.py verify-xg --raw <folder>      # downloads again; hashes and values = archive-xg.json
+  python3 -I tools/football_refresh/refresh.py check-xg                      # offline: evidence rules, xG recomputed from stored strings
 
 Rules
 - Only values from the same provider row are used: final score, shots, shots on target.
@@ -16,9 +22,11 @@ Rules
   must appear in the provider file with the same date and the same score.
 - The base is always the archived v50 data block, so applying twice gives the same bytes.
 - Stored predictions (data/football/predictions.js) are never read for writing and never changed.
+- 0.27.1: of those results, only the matches in archive-xg.json get hx/ax (plus xg_source, xg_method);
+  every other refreshed match keeps hx/ax = null.
 """
 from pathlib import Path
-import argparse, csv, datetime, email.utils, hashlib, io, json, re, sys, urllib.request
+import argparse, csv, datetime, email.utils, gzip, hashlib, io, json, math, re, sys, urllib.request
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -243,9 +251,10 @@ def apply_refresh(data, refresh):
 
 def expected_texts():
     refresh = json.loads(OUT.read_text(encoding='utf8'))
+    xg = json.loads(XG_OUT.read_text(encoding='utf8'))
     out = {}
     for page, name in [('index.html', 'data.ko.js'), ('index.en.html', 'data.en.js')]:
-        refreshed = apply_refresh(json.loads(v50_block(page)), refresh)
+        refreshed = apply_archive_xg(apply_refresh(json.loads(v50_block(page)), refresh), refresh, xg)
         out[name] = PREFIX + json.dumps(refreshed, ensure_ascii=False, separators=(',', ':')) + ';\n'
     return out
 
@@ -258,15 +267,255 @@ def apply():
 
 def check():
     for name, text in expected_texts().items():
-        assert (DATA / name).read_text(encoding='utf8') == text, name + ' differs from apply(v50, refresh.json)'
-    print('PASS data files = apply(v50 data, refresh.json)')
+        assert (DATA / name).read_text(encoding='utf8') == text, name + ' differs from apply(v50, refresh.json, archive-xg.json)'
+    print('PASS data files = apply(v50 data, refresh.json, archive-xg.json)')
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# 0.27.1: xG for a few refreshed matches from Internet Archive copies of understat.com.
+# understat.com itself does not resolve (its name servers do not answer, 2026-11-02). web.archive.org still holds
+# Understat data for 5 of the 60 refreshed matches. archive-xg.json is the evidence: capture URL, sha256 of the
+# archived bytes (after gzip is undone), method, the raw xG strings and the resulting hx/ax.
+#   match_info: hx/ax = the match page's match_info h_xg/a_xg (the same match xG as the stored Understat rows)
+#   shot_sum:   hx/ax = sum of the per-shot xG in getMatchData, in archived order, rounded to 6 decimals.
+#               A shot sum can differ slightly from Understat's match xG (up to 0.0143 on 5 stored matches).
+# ---------------------------------------------------------------------------------------------------------------
+XG_OUT = HERE / '0.27.1' / 'archive-xg.json'
+XG_VERSION = '0.27.1'
+XG_SOURCE = 'Internet Archive (web.archive.org) copies of understat.com'
+ARCHIVE_URL = 'https://web.archive.org/web/{stamp}id_/{url}'
+XG_METHODS = {'match_info': 'https://understat.com/match/{n}', 'shot_sum': 'https://understat.com/getMatchData/{n}'}
+# (match id, archive capture time, method). The original URL follows from the method.
+XG_CAPTURES = [
+    ('understat:31232', '20261010204330', 'shot_sum'),
+    ('understat:31233', '20261010175440', 'shot_sum'),
+    ('understat:31239', '20261017135551', 'shot_sum'),
+    ('understat:31249', '20261025161437', 'match_info'),
+    ('understat:31256', '20261025161531', 'match_info'),
+]
+XG_REQUIRED = ['id', 'date', 'method', 'hx', 'ax', 'archive_url', 'original_url', 'archived_at', 'bytes', 'sha256',
+               'archive_match', 'shots']
+DECIMAL = re.compile(r'[0-9]+(?:\.[0-9]+)?')  # ASCII digits only, as in apply.cjs
+
+
+def json_int(value):
+    """A JSON number with an integer value (JavaScript Number.isInteger); booleans are not numbers."""
+    return type(value) in (int, float) and math.isfinite(value) and value == int(value)
+
+
+def original_url(match_id, method):
+    return XG_METHODS[method].format(n=match_id.split(':', 1)[1])
+
+
+def stamp_iso(stamp):
+    return datetime.datetime.strptime(stamp, '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
+def raw_name(match_id, method):
+    return match_id.split(':', 1)[1] + ('.json' if method == 'shot_sum' else '.html')
+
+
+def shot_sum(values):
+    """Per-shot xG strings added left to right (not sum(), which compensates in Python 3.12+), rounded to
+    6 decimals. Same arithmetic as shotSum() in apply.cjs."""
+    total = 0.0
+    for value in values:
+        total += float(value)
+    return float('%.6f' % total)
+
+
+def fetch_capture(url):
+    request = urllib.request.Request(url, headers={'User-Agent': 'MatchLab archive xG check (manual run)'})
+    with urllib.request.urlopen(request, timeout=90) as response:
+        body = response.read()
+    return gzip.decompress(body) if body[:2] == b'\x1f\x8b' else body
+
+
+def raw_outside(raw):
+    raw.mkdir(parents=True, exist_ok=True)
+    assert ROOT not in raw.resolve().parents and raw.resolve() != ROOT, 'Raw archive files stay outside the repository'
+
+
+def fetch_xg(raw):
+    raw_outside(raw)
+    log = []
+    for match_id, stamp, method in XG_CAPTURES:
+        url = ARCHIVE_URL.format(stamp=stamp, url=original_url(match_id, method))
+        body = fetch_capture(url)
+        (raw / raw_name(match_id, method)).write_bytes(body)
+        log.append(dict(id=match_id, url=url, bytes=len(body), sha256=hashlib.sha256(body).hexdigest()))
+    (raw / 'xg-fetch-log.json').write_text(json.dumps(log, indent=1) + '\n', encoding='utf8')
+    print(json.dumps(log, indent=1))
+
+
+def decode_js_string(text):
+    """Undo the escapes inside Understat's JSON.parse('...'): \\xNN, \\uNNNN, \\\\, \\' and \\/. Anything else stops."""
+    out, i = [], 0
+    while i < len(text):
+        if text[i] != '\\':
+            out.append(text[i])
+            i += 1
+            continue
+        kind = text[i + 1:i + 2]
+        size = {'x': 2, 'u': 4}.get(kind)
+        if size:
+            digits = text[i + 2:i + 2 + size]
+            assert re.fullmatch('[0-9a-fA-F]{%d}' % size, digits), 'Bad escape in match_info'
+            out.append(chr(int(digits, 16)))
+            i += 2 + size
+        else:
+            assert kind in ('\\', "'", '/'), 'Unexpected escape in match_info'
+            out.append(kind)
+            i += 2
+    return ''.join(out)
+
+
+def read_capture(match_id, method, body):
+    """Archived (gunzipped) bytes -> the evidence fields taken from them."""
+    number = match_id.split(':', 1)[1]
+    if method == 'match_info':
+        found = re.findall(r"var match_info\s*=\s*JSON\.parse\('([^']*)'\)", body.decode('utf8'))
+        assert len(found) == 1, 'match_info missing or repeated: ' + match_id
+        info = json.loads(decode_js_string(found[0]))
+        assert info['id'] == number, 'match_info is for another match: ' + match_id
+        return dict(archive_match=dict(date=info['date'][:10], home=info['team_h'], away=info['team_a'],
+                                       home_id='understat:' + info['h'], away_id='understat:' + info['a'],
+                                       score=[int(info['h_goals']), int(info['a_goals'])]),
+                    archive_shots=[int(info['h_shot']), int(info['a_shot'])], h_xg=info['h_xg'], a_xg=info['a_xg'])
+    shots = json.loads(body.decode('utf8'))['shots']
+    every = shots['h'] + shots['a']
+    keys = {(s['match_id'], s['date'], s['h_team'], s['a_team'], s['h_goals'], s['a_goals']) for s in every}
+    assert len(keys) == 1, 'No shots, or shots disagree on the match: ' + match_id
+    number_seen, date, home, away, hg, ag = keys.pop()
+    assert number_seen == number, 'getMatchData is for another match: ' + match_id
+    assert all(s['h_a'] == side for side in 'ha' for s in shots[side]), 'Shot side differs from its list: ' + match_id
+    return dict(archive_match=dict(date=date[:10], home=home, away=away, score=[int(hg), int(ag)]),
+                archive_shots=[len(shots['h']), len(shots['a'])],
+                shot_xg={side: [s['xG'] for s in shots[side]] for side in 'ha'})
+
+
+def validate_archive_xg(data, refresh, xg):
+    """Content rules for archive-xg.json against refreshed data (apply_refresh output). Same rules as apply.cjs."""
+    assert xg['version'] == XG_VERSION and xg['source'] == XG_SOURCE, 'Archive xG header differs'
+    results = {r['id']: r for r in refresh['results']}
+    matches = xg['matches']
+    assert matches and len({e['id'] for e in matches}) == len(matches) <= len(results), 'Empty, duplicate or too many archive xG entries'
+    rows = {m['id']: m for m in data['completed']}
+    for e in matches:
+        missing = [k for k in XG_REQUIRED if k not in e]
+        assert not missing, 'Archive xG entry is missing ' + ', '.join(missing) + ': ' + str(e.get('id'))
+        r, m = results.get(e['id']), rows.get(e['id'])
+        assert r and m, 'Archive xG match is not a refreshed result: ' + e['id']
+        assert m['provider'] == PROVIDER and m['hx'] is None and m['ax'] is None, 'Archive xG target is not a refreshed match without xG: ' + e['id']
+        method = e['method']
+        assert method in XG_METHODS and e['original_url'] == original_url(e['id'], method), 'Archive xG method or original URL differs: ' + e['id']
+        assert re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', e['archived_at']), 'Archive capture time malformed: ' + e['id']
+        stamp = re.sub(r'\D', '', e['archived_at'])
+        assert e['archive_url'] == ARCHIVE_URL.format(stamp=stamp, url=e['original_url']), 'Archive URL differs: ' + e['id']
+        assert json_int(e['bytes']) and e['bytes'] > 0 and isinstance(e['sha256'], str) and re.fullmatch('[0-9a-f]{64}', e['sha256']), 'Archive fingerprint missing: ' + e['id']
+        a = e['archive_match']
+        assert e['date'] == a['date'] == r['date'], 'Archive date differs from the result: ' + e['id']
+        assert a['score'] == [r['hg'], r['ag']], 'Archive score differs from the result: ' + e['id']
+        assert (a['home'], a['away']) == (data['teams'][m['home']]['name'], data['teams'][m['away']]['name']), 'Archive teams differ: ' + e['id']
+        if method == 'match_info':
+            assert (a.get('home_id'), a.get('away_id')) == (m['home'], m['away']), 'Archive team ids differ: ' + e['id']
+        shots = e['shots']
+        assert shots['football_data'] == [r['hs'], r['as']], 'Recorded football-data shots differ from refresh.json: ' + e['id']
+        assert len(shots['archive']) == 2 and all(json_int(v) and v >= 0 for v in shots['archive']), 'Archive shot counts malformed: ' + e['id']
+        for v in (e['hx'], e['ax']):
+            assert type(v) in (int, float) and math.isfinite(v) and v >= 0, 'xG is not a non-negative finite number: ' + e['id']
+        if method == 'match_info':
+            assert 'shot_xg' not in e and all(type(e[k]) is str and DECIMAL.fullmatch(e[k]) for k in ('h_xg', 'a_xg')), 'match_info xG strings malformed: ' + e['id']
+            expected = (float(e['h_xg']), float(e['a_xg']))
+        else:
+            sx = e['shot_xg']
+            assert 'h_xg' not in e and 'a_xg' not in e and list(sx) == ['h', 'a'], 'shot_sum evidence malformed: ' + e['id']
+            assert all(type(sx[side]) is list for side in 'ha') and all(type(v) is str and DECIMAL.fullmatch(v) for side in 'ha' for v in sx[side]), 'Shot xG strings malformed: ' + e['id']
+            assert shots['archive'] == [len(sx['h']), len(sx['a'])], 'Archive shot count differs from the shot list: ' + e['id']
+            expected = (shot_sum(sx['h']), shot_sum(sx['a']))
+        assert (e['hx'], e['ax']) == expected, 'Stored xG differs from the archived values: ' + e['id']
+
+
+def apply_archive_xg(data, refresh, xg):
+    """Pure function: refreshed data object + archive-xg.json -> data with those matches' hx/ax filled."""
+    data = json.loads(json.dumps(data))
+    validate_archive_xg(data, refresh, xg)
+    rows = {m['id']: m for m in data['completed']}
+    for e in xg['matches']:
+        m = rows[e['id']]
+        m['hx'], m['ax'] = e['hx'], e['ax']
+        m['xg_source'], m['xg_method'] = e['archive_url'], e['method']
+    return data
+
+
+def evidence(match_id, stamp, method, body, result):
+    fields = read_capture(match_id, method, body)
+    if method == 'match_info':
+        hx, ax = float(fields['h_xg']), float(fields['a_xg'])
+    else:
+        hx, ax = shot_sum(fields['shot_xg']['h']), shot_sum(fields['shot_xg']['a'])
+    entry = dict(id=match_id, date=result['date'], method=method, hx=hx, ax=ax,
+                 archive_url=ARCHIVE_URL.format(stamp=stamp, url=original_url(match_id, method)),
+                 original_url=original_url(match_id, method), archived_at=stamp_iso(stamp),
+                 bytes=len(body), sha256=hashlib.sha256(body).hexdigest(), archive_match=fields['archive_match'],
+                 shots=dict(archive=fields['archive_shots'], football_data=[result['hs'], result['as']]))
+    if method == 'match_info':
+        entry.update(h_xg=fields['h_xg'], a_xg=fields['a_xg'])
+    else:
+        entry['shot_xg'] = fields['shot_xg']
+    return entry
+
+
+def build_xg(raw):
+    refresh = json.loads(OUT.read_text(encoding='utf8'))
+    results = {r['id']: r for r in refresh['results']}
+    matches = [evidence(match_id, stamp, method, (raw / raw_name(match_id, method)).read_bytes(), results[match_id])
+               for match_id, stamp, method in XG_CAPTURES]
+    xg = dict(version=XG_VERSION, source=XG_SOURCE,
+              reason='understat.com does not resolve (2026-11-02); the Internet Archive holds Understat data for these refreshed matches only',
+              refresh='tools/football_refresh/0.27.0/refresh.json',
+              methods=dict(match_info='match page match_info h_xg / a_xg (Understat match xG)',
+                           shot_sum='getMatchData per-shot xG added in archived order, rounded to 6 decimals (can differ slightly from Understat match xG)'),
+              sha256_of='archived bytes after gzip is undone',
+              matches=matches)
+    validate_archive_xg(apply_refresh(json.loads(v50_block('index.html')), refresh), refresh, xg)
+    XG_OUT.parent.mkdir(parents=True, exist_ok=True)
+    XG_OUT.write_text(json.dumps(xg, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
+    for e in matches:
+        print(e['id'], e['method'], e['hx'], e['ax'], 'shots archive', e['shots']['archive'], 'football-data', e['shots']['football_data'])
+
+
+def check_xg():
+    refresh = json.loads(OUT.read_text(encoding='utf8'))
+    xg = json.loads(XG_OUT.read_text(encoding='utf8'))
+    for page in ('index.html', 'index.en.html'):
+        validate_archive_xg(apply_refresh(json.loads(v50_block(page)), refresh), refresh, xg)
+    print('PASS archive-xg.json rules (%d matches, xG recomputed from the stored strings)' % len(xg['matches']))
+
+
+def verify_xg(raw):
+    """Download every capture again: bytes, sha256 and the fields read from them = archive-xg.json."""
+    raw_outside(raw)
+    xg = json.loads(XG_OUT.read_text(encoding='utf8'))
+    for e in xg['matches']:
+        body = fetch_capture(e['archive_url'])
+        (raw / ('verify-' + raw_name(e['id'], e['method']))).write_bytes(body)
+        assert len(body) == e['bytes'] and hashlib.sha256(body).hexdigest() == e['sha256'], 'Archived bytes differ: ' + e['id']
+        fields = read_capture(e['id'], e['method'], body)
+        assert fields.pop('archive_shots') == e['shots']['archive'], 'Archive shot counts differ: ' + e['id']
+        assert all(e[k] == v for k, v in fields.items()), 'Archive fields differ: ' + e['id']
+        print('match', e['id'], e['method'], e['hx'], e['ax'])
+    check_xg()
+    print('PASS archive-xg.json = Internet Archive captures (%d downloaded again, hashes and values match)' % len(xg['matches']))
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['fetch', 'build', 'verify', 'apply', 'check'])
+    parser.add_argument('command', choices=['fetch', 'build', 'verify', 'apply', 'check', 'fetch-xg', 'build-xg', 'verify-xg', 'check-xg'])
     parser.add_argument('--raw', type=Path)
     args = parser.parse_args()
-    if args.command in ('fetch', 'build', 'verify'):
+    if args.command in ('fetch', 'build', 'verify', 'fetch-xg', 'build-xg', 'verify-xg'):
         assert args.raw, '--raw folder required'
-    {'fetch': lambda: fetch(args.raw), 'build': lambda: build(args.raw), 'verify': lambda: verify(args.raw), 'apply': apply, 'check': check}[args.command]()
+    {'fetch': lambda: fetch(args.raw), 'build': lambda: build(args.raw), 'verify': lambda: verify(args.raw), 'apply': apply, 'check': check,
+     'fetch-xg': lambda: fetch_xg(args.raw), 'build-xg': lambda: build_xg(args.raw), 'verify-xg': lambda: verify_xg(args.raw),
+     'check-xg': check_xg}[args.command]()
