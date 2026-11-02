@@ -3,6 +3,7 @@
 Commands (run from the repository root, Python 3, standard library only):
   python3 -I tools/football_refresh/refresh.py fetch --raw <folder outside the repository>
   python3 -I tools/football_refresh/refresh.py build --raw <same folder>     # writes tools/football_refresh/0.27.0/refresh.json
+  python3 -I tools/football_refresh/refresh.py verify --raw <same folder>    # raw line fingerprints = refresh.json
   python3 -I tools/football_refresh/refresh.py apply                         # writes data/football/data.ko.js and data.en.js
   python3 -I tools/football_refresh/refresh.py check                         # data files == apply(v50 data, refresh.json)
 
@@ -33,6 +34,11 @@ TERMS_URL = 'https://www.football-data.co.uk/disclaimer.php'
 NOTES_URL = 'https://www.football-data.co.uk/notes.txt'
 PREVIOUS_LAST_DATE = '2026-09-20'
 FIELDS = {'hg': 'FTHG', 'ag': 'FTAG', 'hs': 'HS', 'as': 'AS', 'hst': 'HST', 'ast': 'AST'}
+# 0.27.0 review R1: the provider columns behind each result are stored in refresh.json with two fingerprints:
+# row_sha256 (canonical JSON of these columns; re-checked by apply_refresh, so by check_release and the JS mirror)
+# and line_sha256 (the exact raw CSV line; re-checked by `verify --raw` when the raw files are available).
+ROW_COLUMNS = ['Div', 'Date', 'Time', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'HS', 'AS', 'HST', 'AST']
+DIVISION = {'EPL': 'E0', 'La_liga': 'SP1'}
 
 
 def v50_block(page):
@@ -77,6 +83,60 @@ def read_rows(raw, div):
     return list(csv.DictReader(io.StringIO(text)))
 
 
+def canonical_row(row):
+    return json.dumps({k: row[k] for k in ROW_COLUMNS}, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+
+
+def row_sha256(row):
+    return hashlib.sha256(canonical_row(row).encode('utf8')).hexdigest()
+
+
+def validate_refresh(data, refresh):
+    """Content rules for refresh.json against the v50 data. Same rules as build() and as tools/football_refresh/apply.cjs."""
+    names = {k: aliases().get(v['name'], v['name']) for k, v in data['teams'].items()}
+    by_id = {m['id']: m for m in data['scheduled']}
+    assert refresh['provider'] == PROVIDER and refresh['previous_last_date'] == PREVIOUS_LAST_DATE == data['last_date'], 'Refresh header differs'
+    results = refresh['results']
+    assert results and len({r['id'] for r in results}) == len(results), 'Empty or duplicate refresh results'
+    assert results == sorted(results, key=lambda r: (r['date'], r['id'])), 'Refresh results not in date order'
+    assert refresh['as_of'] == max(r['date'] for r in results), 'as_of is not the last result date'
+    for r in results:
+        m = by_id.get(r['id'])
+        assert m and m['league'] == r['league'] and m['season'] == SEASON and m['hg'] is None, 'Not a stored scheduled fixture: ' + r['id']
+        assert re.fullmatch(r'\d{4}-\d{2}-\d{2}', r['date']) and PREVIOUS_LAST_DATE < r['date'] <= refresh['as_of'], 'Result date outside (previous cutoff, as_of]: ' + r['id']
+        for field in FIELDS:
+            assert type(r[field]) is int and r[field] >= 0, 'Value is not a non-negative integer: ' + r['id'] + ' ' + field
+        assert r['hst'] <= r['hs'] and r['ast'] <= r['as'], 'Shots on target exceed shots: ' + r['id']
+        row = r['provider_row']
+        assert list(row) == ROW_COLUMNS and all(type(v) is str for v in row.values()), 'Provider row columns differ: ' + r['id']
+        assert row_sha256(row) == r['row_sha256'], 'Provider row fingerprint differs: ' + r['id']
+        assert row['Div'] == DIVISION[r['league']] == r['provider_file'], 'Provider division differs: ' + r['id']
+        assert iso(row['Date']) == r['date'], 'Provider date differs: ' + r['id']
+        assert (row['HomeTeam'], row['AwayTeam']) == (names[m['home']], names[m['away']]), 'Provider teams differ from the fixture: ' + r['id']
+        assert all(row[column] == str(r[field]) for field, column in FIELDS.items()), 'Provider values differ from the result: ' + r['id']
+        ftr = 'H' if r['hg'] > r['ag'] else 'D' if r['hg'] == r['ag'] else 'A'
+        assert row['FTR'] == ftr, 'Result letter differs from score: ' + r['id']
+        assert re.fullmatch(r'[0-9a-f]{64}', r['line_sha256']), 'Raw line fingerprint missing: ' + r['id']
+
+
+def verify(raw):
+    """With the raw files: file hashes, raw line fingerprints and provider columns all match refresh.json."""
+    refresh = json.loads(OUT.read_text(encoding='utf8'))
+    files = {f['league']: f for f in refresh['files']}
+    lines = {}
+    for league, div in FILES.items():
+        body = (raw / (div + '.csv')).read_bytes()
+        assert hashlib.sha256(body).hexdigest() == files[league]['sha256'], 'Raw file hash differs: ' + div
+        lines[div] = body.decode('utf-8-sig').splitlines()
+    for r in refresh['results']:
+        line = lines[r['provider_file']][r['provider_line'] - 1]
+        assert hashlib.sha256(line.encode('utf8')).hexdigest() == r['line_sha256'], 'Raw line fingerprint differs: ' + r['id']
+        parsed = next(csv.DictReader(io.StringIO(lines[r['provider_file']][0] + '\n' + line)))
+        assert {k: parsed[k] for k in ROW_COLUMNS} == r['provider_row'], 'Provider columns differ from the raw line: ' + r['id']
+    validate_refresh(json.loads(v50_block('index.html')), refresh)
+    print('PASS refresh.json = raw provider files (%d results, raw line fingerprints match)' % len(refresh['results']))
+
+
 def build(raw):
     data = json.loads(v50_block('index.html'))
     names = {k: aliases().get(v['name'], v['name']) for k, v in data['teams'].items()}
@@ -88,6 +148,8 @@ def build(raw):
         body = (raw / (div + '.csv')).read_bytes()
         assert hashlib.sha256(body).hexdigest() == fetch_log[league]['sha256'], 'Raw file changed after fetch: ' + div
         rows = read_rows(raw, div)
+        raw_lines = body.decode('utf-8-sig').splitlines()
+        assert len(raw_lines) == len(rows) + 1, 'CSV rows span several lines: ' + div
         by_pair = {}
         for i, r in enumerate(rows, start=2):
             assert r['Div'] == div, 'Unexpected division row'
@@ -120,8 +182,13 @@ def build(raw):
             assert r['FTR'] == ftr, 'Result letter differs from score: ' + fixture['id']
             day = iso(r['Date'])
             assert day > PREVIOUS_LAST_DATE, 'Refreshed match dated on or before the previous cutoff: ' + fixture['id']
+            raw_line = raw_lines[line - 1]
+            assert raw_line.split(',')[:5] == [r['Div'], r['Date'], r['Time'], r['HomeTeam'], r['AwayTeam']], 'Raw line does not match the parsed row: ' + fixture['id']
+            provider_row = {k: r[k] for k in ROW_COLUMNS}
             new.append(dict(id=fixture['id'], league=league, date=day, scheduled_date=fixture['date'],
-                            kickoff_uk=r['Time'], provider_file=div, provider_line=line, **values))
+                            kickoff_uk=r['Time'], provider_file=div, provider_line=line, **values,
+                            provider_row=provider_row, row_sha256=row_sha256(provider_row),
+                            line_sha256=hashlib.sha256(raw_line.encode('utf8')).hexdigest()))
         results += new
         consistency[league] = dict(stored_completed_checked=len(checked), same_date_and_score=len(checked),
                                    provider_rows=len(rows), new_results=len(new))
@@ -139,6 +206,7 @@ def build(raw):
                    files=files, consistency=consistency,
                    scheduled_after=len(remaining), scheduled_dated_on_or_before_as_of=overdue,
                    results=results)
+    validate_refresh(data, refresh)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(refresh, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
     print(json.dumps({k: v for k, v in refresh.items() if k != 'results'}, ensure_ascii=False, indent=1))
@@ -148,6 +216,7 @@ def build(raw):
 def apply_refresh(data, refresh):
     """Pure function: v50 data object + refresh.json -> refreshed data object."""
     data = json.loads(json.dumps(data))
+    validate_refresh(data, refresh)
     by_id = {m['id']: m for m in data['scheduled']}
     url = {f['league']: f['url'] for f in refresh['files']}
     moved = set()
@@ -192,9 +261,9 @@ def check():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['fetch', 'build', 'apply', 'check'])
+    parser.add_argument('command', choices=['fetch', 'build', 'verify', 'apply', 'check'])
     parser.add_argument('--raw', type=Path)
     args = parser.parse_args()
-    if args.command in ('fetch', 'build'):
+    if args.command in ('fetch', 'build', 'verify'):
         assert args.raw, '--raw folder required'
-    {'fetch': lambda: fetch(args.raw), 'build': lambda: build(args.raw), 'apply': apply, 'check': check}[args.command]()
+    {'fetch': lambda: fetch(args.raw), 'build': lambda: build(args.raw), 'verify': lambda: verify(args.raw), 'apply': apply, 'check': check}[args.command]()

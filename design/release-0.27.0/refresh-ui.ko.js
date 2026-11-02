@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const text={source:'{date} 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)',reviewTitle:'끝난 경기 · 경기 전 예측과 실제',reviewNote:'예측은 {date} 자료로 만든 저장값이며 바꾸지 않았습니다. 가장 높은 확률의 결과가 실제 결과와 같으면 적중입니다.',summary:'적중 {hit} / {n}경기 ({rate})',empty:'이 리그에서 비교할 끝난 경기가 없습니다.',date:'날짜',match:'경기',actual:'실제',predicted:'예측 (홈·무·원정)',verdict:'판정',hit:'적중',miss:'빗나감',tie:'동률',home:'홈 승',draw:'무승부',away:'원정 승',more:'더 보기',open:'경기 보기 →',detailTitle:'경기 전 예측과 실제 결과',detailInput:'예측 입력 자료 기준 {date} · 저장된 예측(변경 없음)',pick:'예측 결과',outcome:'실제 결과',statsTitle:'경기 기록 · football-data.co.uk',shots:'슈팅',shotsOnTarget:'유효 슈팅',statsNote:'xG·PPDA·위험 지역 패스 등 상세 지표는 이 출처에 없어 표시하지 않습니다. 이전 경기(Understat)와 섞지 않습니다.',noResult:'결과 자료 없음 · 연기 여부 미확인',snapshot:'2026/27 상세 지표(StatMuse 시즌 누적)는 {date}까지의 값이며 갱신하지 않았습니다.'};
+const text={source:'{date} 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)',reviewTitle:'끝난 경기 · 경기 전 예측과 실제',reviewNote:'예측은 {date} 자료로 만든 저장값이며 바꾸지 않았습니다. 가장 높은 확률의 결과가 실제 결과와 같으면 적중입니다.',summary:'적중 {hit} / {n}경기 ({rate})',empty:'이 리그에서 비교할 끝난 경기가 없습니다.',date:'날짜',match:'경기',actual:'실제',predicted:'예측 (홈·무·원정)',verdict:'판정',hit:'적중',miss:'빗나감',tie:'동률',home:'홈 승',draw:'무승부',away:'원정 승',more:'더 보기',open:'경기 보기 →',detailTitle:'경기 전 예측과 실제 결과',detailInput:'예측 입력 자료 기준 {date} · 저장된 예측(변경 없음)',pick:'예측 결과',outcome:'실제 결과',statsTitle:'경기 기록 · football-data.co.uk',shots:'슈팅',shotsOnTarget:'유효 슈팅',statsNote:'xG·PPDA·위험 지역 패스 등 상세 지표는 이 출처에 없어 표시하지 않습니다. 이전 경기(Understat)와 섞지 않습니다.',noResult:'결과 자료 없음 · 연기 여부 미확인',snapshot:'2026/27 상세 지표(StatMuse 시즌 누적)는 {date}까지의 값이며 갱신하지 않았습니다.',analysisNote:'{date} 이후 경기(football-data.co.uk 결과)는 xG 자료가 없어 이번 시즌 xG를 계산하지 않습니다. 해당 경기와 그 경기가 들어간 합계·평균은 —로 표시합니다.'};
 const store=window.MatchLabData||{},data=store.data,bundle=store.predictions;
 if(!data||!data.refresh||!Array.isArray(data.completed))return;
 const info=data.refresh,outcomes=['home','draw','away'],shown=new Map();
@@ -19,6 +19,26 @@ function review(m){
  return {p,actual,pick,hit:pick===actual};
 }
 const refreshed=()=>data.completed.filter(m=>m.provider===info.provider).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+// Review R3: below 650px each finished match becomes a stacked card (labels from the column headers), so the
+// prediction and verdict are visible without sideways scrolling.
+function style(){
+ if(document.getElementById('refresh-ui-style-0270'))return;
+ const css=node('style');css.id='refresh-ui-style-0270';
+ css.textContent='@media (max-width:650px){#prediction-review-0270 .tablewrap{overflow:visible}#prediction-review-0270 table,#prediction-review-0270 tbody{display:block;width:100%}#prediction-review-0270 thead{display:none}#prediction-review-0270 tr{display:block;padding:10px 0;border-bottom:1px solid #e7ebf0}#prediction-review-0270 td{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border:0;text-align:right;white-space:normal}#prediction-review-0270 td::before{content:attr(data-label);color:#536174;text-align:left;flex-shrink:0}#prediction-review-0270 td:first-child{display:block;text-align:left}#prediction-review-0270 td:first-child::before{content:none}}';
+ document.head.appendChild(css);
+}
+// Review R2: an analysis of this season's xG gets one line explaining why values are "—".
+const refreshedSeason=(refreshed()[0]||{}).season;
+function analysisNote(){
+ const out=document.getElementById('analystresult');if(!out)return;
+ let plan=null;
+ try{plan=(typeof footballWorkbench!=='undefined'&&footballWorkbench.previous)||(typeof analystPrevious!=='undefined'?analystPrevious:null);}catch(error){plan=null;}
+ let note=document.getElementById('refresh-analysis-note-0270');
+ const results=[...out.children].filter(e=>e!==note).length;
+ const show=!!(plan&&results&&plan.season===refreshedSeason&&(plan.metric==='xg'||plan.metric==='xga'||plan.compareGoals));
+ if(show&&!note){note=node('p','note',fill(text.analysisNote,{date:info.previous_last_date}));note.id='refresh-analysis-note-0270';out.prepend(note);}
+ else if(!show&&note)note.remove();
+}
 function source(){
  const date=document.getElementById('lastdate');
  if(!date||document.getElementById('refresh-source-0270'))return;
@@ -44,11 +64,9 @@ function reviewPanel(){
  const body=node('tbody');
  rows.slice(0,limit).forEach(({m,r})=>{
   const row=node('tr');row.dataset.review=m.id;
-  const cell=node('td');cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
+  const cell=node('td');cell.dataset.label=text.match;cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
   const link=node('a','match-link',text.open);link.href='#match='+encodeURIComponent(m.id);cell.appendChild(link);row.appendChild(cell);
-  row.appendChild(node('td',null,m.hg+' : '+m.ag+' · '+text[r.actual]));
-  row.appendChild(node('td',null,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')));
-  row.appendChild(node('td',null,r.pick===null?text.tie:r.hit?text.hit:text.miss));
+  [[text.actual,m.hg+' : '+m.ag+' · '+text[r.actual]],[text.predicted,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')],[text.verdict,r.pick===null?text.tie:r.hit?text.hit:text.miss]].forEach(([label,value])=>{const td=node('td',null,value);td.dataset.label=label;row.appendChild(td);});
   body.appendChild(row);
  });
  table.appendChild(body);wrap.appendChild(table);host.appendChild(wrap);
@@ -86,10 +104,12 @@ function snapshotNote(){
  if(!note){note=node('p','note',fill(text.snapshot,{date:info.previous_last_date}));note.id='refresh-snapshot-0270';stats.after(note);}
  note.hidden=!(season&&season.value==='2026/27');
 }
-function update(){source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
+function update(){style();source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
 const previousMatches=renderMatches;renderMatches=function(){previousMatches();update();};
 const previousDetail=renderCompletedMatch;renderCompletedMatch=function(){previousDetail();update();};
 const previousRender=render;render=function(){previousRender();update();};
 document.addEventListener('change',event=>{if(event.target&&(event.target.id==='season'||event.target.id==='teamselect'))snapshotNote();});
+const analysisHost=document.getElementById('analystresult');
+if(analysisHost&&typeof MutationObserver==='function')new MutationObserver(()=>setTimeout(analysisNote,0)).observe(analysisHost,{childList:true});
 update();
 })();

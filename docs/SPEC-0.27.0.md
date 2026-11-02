@@ -83,6 +83,19 @@ python3 -I design/release-0.27.0/build_pages.py                        # 화면 
   - 화면 쪽: page-patch.json 항목 삭제, 기록 안 된 코드 수정(xG 칸, calc의 0 처리), 화면 블록 삭제·변경, 한영 로직 차이, 영어 화면 한글, 도움 함수 변경, VERSION.
   - 결과 하나를 빼고 refresh.json과 자료를 함께 다시 만든 경우: refresh.json이 기록 원본이라 `check_release.py`는 통과하고, `server/check.cjs`가 60개 확인으로 실패한다.
 
+## 독립 검증 반영 (validation-report.json, afd1a00 이후)
+- **R1 refresh.json 내용 규칙 재확인**
+  - 문제: 내용 규칙이 `build`에만 있어서, refresh.json을 손으로 고친 뒤 apply·build_pages를 다시 돌리면 검사가 모두 통과했다.
+  - 같은 규칙을 이제 `apply_refresh`(Python)와 `applyRefresh`(JS, `tools/football_refresh/apply.cjs`)가 매번 다시 확인한다. `check_release.py`, `server/check.cjs`, `analysis/check.cjs` 모두 이 경로를 거친다.
+  - 확인하는 규칙: 날짜가 2026-09-20 초과 ~ 기준일, 0 이상 정수, 유효 슈팅 ≤ 슈팅, 결과 글자와 점수, 저장된 예정 경기와 같은 리그·팀, 날짜순·중복 없음, as_of = 마지막 날짜.
+  - 결과마다 원본 행 기록을 더했다.
+    - `provider_row`: 쓰는 열 12개를 원문 그대로 저장한다. 저장된 값·날짜·팀 이름이 이 원문과 같아야 한다.
+    - `row_sha256`: 그 12개 열의 지문. 검사 때마다 다시 계산해 대조한다.
+    - `line_sha256`: CSV 원본 줄의 지문. 원본 파일이 있으면 `refresh.py verify --raw`로 대조한다(60/60 일치).
+  - 지문과 원문 열까지 함께 위조하면 원본 파일 없이는 잡을 수 없다. 그 경우는 `verify --raw`가 원본 파일 해시와 줄 지문으로 잡는다.
+- **R2 이번 시즌 xG 질문 안내**: 이번 시즌 xG 질문 결과 위에 한 줄 안내를 붙인다. 문구는 "2026-09-20 이후 경기(football-data.co.uk 결과)는 xG 자료가 없어 이번 시즌 xG를 계산하지 않습니다…" / "Matches after 2026-09-20 … have no xG, so this season's xG is not calculated…"이다. 다른 시즌 질문에는 붙지 않는다. 첫 화면 예시는 "라리가 이번 시즌 경기당 득점 순위" / "LaLiga this season goals per match ranking"으로 바꿨다(`build_pages.py` 규칙 2개 추가, 기록된 수정 32 → 36곳).
+- **R3 좁은 화면 표**: 650px 이하에서는 끝난 경기 표의 각 행을 세로 카드(열 이름 + 값)로 바꿔, 실제·예측·판정이 가로 스크롤 없이 보인다. 한영 390px에서 표 영역 폭 328 = 내용 폭 328, 1440px은 표 그대로임을 확인했다.
+
 ## 남은 확인
 - football-data 이용 조건(개인용, AI 학습 제품 금지 문구)에 대한 사용자 판단. 판단 전에는 병합·배포하지 않는다.
 - 독립 검증, 운영 배포 후 확인, main 병합 결재.

@@ -40,6 +40,13 @@ def json_edit(path, fn):
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
 
 
+def refresh_edit(d, fn):
+    json_edit(d / 'tools/football_refresh/0.27.0/refresh.json', fn)
+    for script in [['tools/football_refresh/refresh.py', 'apply'], ['design/release-0.27.0/build_pages.py']]:
+        subprocess.run([sys.executable, '-I'] + script, cwd=d, capture_output=True)  # may refuse; the check must still fail
+    rehash(d)
+
+
 def run(d, args):
     r = subprocess.run(args, cwd=d, capture_output=True, text=True)
     text = (r.stdout + r.stderr).strip().splitlines()
@@ -70,6 +77,11 @@ cases = {
     'Korean text in the English refresh UI (source and page)': lambda d: [sub(d / x, "hit:'Hit'", "hit:'적중'") for x in ['design/release-0.27.0/refresh-ui.en.js', 'index.en.html']],
     'xG helper changed in page only (ko)': lambda d: sub(d / 'index.html', "v.toFixed(2):'—'}</script>", "v.toFixed(1):'—'}</script>"),
     'VERSION 0.26.3': lambda d: (d / 'VERSION').write_text('0.26.3\n'),
+    # 0.27.0 review R1: refresh.json edited by hand, then apply and build_pages run again (+ ?v=).
+    'R1 refresh.json score changed, apply + build_pages rerun': lambda d: refresh_edit(d, lambda r: r['results'][0].update(hg=r['results'][0]['hg'] + 1)),
+    'R1 refresh.json home/away goals swapped, apply + build_pages rerun': lambda d: refresh_edit(d, lambda r: (lambda x: x.update(hg=x['ag'], ag=x['hg']))(next(x for x in r['results'] if x['hg'] != x['ag']))),
+    'R1 refresh.json date 2026-09-19, apply + build_pages rerun': lambda d: refresh_edit(d, lambda r: r['results'][0].update(date='2026-09-19')),
+    'R1 refresh.json shots on target > shots, apply + build_pages rerun': lambda d: refresh_edit(d, lambda r: r['results'][2].update(hst=r['results'][2]['hs'] + 1)),
 }
 results = []
 for name, change in cases.items():

@@ -389,7 +389,7 @@ if(typeof document!=='undefined'){const s=document.createElement('style');s.id='
 <rect x="73" y="63" width="8" height="8" fill="#ffceac"/><rect x="69" y="71" width="16" height="12" fill="#f66d7a"/><rect x="69" y="83" width="6" height="9" fill="#f9efd8"/><rect x="79" y="83" width="6" height="9" fill="#f9efd8"/>
 <rect x="157" y="59" width="8" height="8" fill="#ffceac"/><rect x="153" y="67" width="16" height="12" fill="#77c8ee"/><rect x="153" y="79" width="6" height="9" fill="#f9efd8"/><rect x="163" y="79" width="6" height="9" fill="#f9efd8"/>
 <rect x="110" y="89" width="8" height="8" fill="#fff9e7"/><rect x="113" y="92" width="3" height="3" fill="#182b3b"/></svg></section><div class="toolbar"><div><h1 id="heading">다가오는 경기</h1><div class="muted">자료 기준 <span id="lastdate"></span></div></div><label>리그 <select id="league"><option value="EPL">프리미어리그</option><option value="La_liga">라리가</option></select></label></div>
-<section class="panel analyst-workbench" aria-labelledby="analysttitle"><h2 id="analysttitle">AI 분석관에게 물어보세요</h2><p id="analystconnection" class="muted">저장된 기록을 분석합니다. 현재는 지원하는 표현을 해석하는 방식이며 AI 모델은 연결 전입니다.</p><label>분석 방식 <select id="analystmode"><option value="local">저장 기록 분석</option><option value="gemini">AI 분석관</option></select></label><form id="analystform"><label for="analystquery">AI 분석관에게 물어보세요</label><div class="analystinput"><textarea id="analystquery" rows="2" maxlength="500" placeholder="아스널 최근 10경기 득점과 기대 득점을 비교해 줘"></textarea><button id="analystsubmit" type="submit">분석하기</button></div></form><div id="analystexamples" class="analystexamples"><button type="button" data-id="아스널 최근 10경기 득점과 기대 득점을 비교해 줘">아스널 최근 10경기 득점과 기대 득점을 비교해 줘</button><button type="button" data-id="라리가 이번 시즌 경기당 기대 득점 순위">라리가 이번 시즌 경기당 기대 득점 순위</button><button type="button" data-id="바르셀로나 홈 원정 성적 비교">바르셀로나 홈 원정 성적 비교</button></div><p id="analyststatus" role="status" aria-live="polite"></p><div id="analystresult"></div></section><section id="matches"><div class="cards" id="fixtures"></div><div id="fixturepagination" class="schedule-pagination" aria-live="polite"></div><article class="panel"><div class="toolbar"><h2 style="margin:0">최근 전력 비교</h2><span class="status">최근 리그 5경기</span></div><div id="comparison" tabindex="-1" aria-label="경기 프리뷰"></div></article><div class="grid"><article class="panel"><h2>기대 득점 흐름</h2><div id="trend"></div></article><article class="panel"><h2>최근 경기</h2><div id="recent"></div></article></div></section>
+<section class="panel analyst-workbench" aria-labelledby="analysttitle"><h2 id="analysttitle">AI 분석관에게 물어보세요</h2><p id="analystconnection" class="muted">저장된 기록을 분석합니다. 현재는 지원하는 표현을 해석하는 방식이며 AI 모델은 연결 전입니다.</p><label>분석 방식 <select id="analystmode"><option value="local">저장 기록 분석</option><option value="gemini">AI 분석관</option></select></label><form id="analystform"><label for="analystquery">AI 분석관에게 물어보세요</label><div class="analystinput"><textarea id="analystquery" rows="2" maxlength="500" placeholder="아스널 최근 10경기 득점과 기대 득점을 비교해 줘"></textarea><button id="analystsubmit" type="submit">분석하기</button></div></form><div id="analystexamples" class="analystexamples"><button type="button" data-id="아스널 최근 10경기 득점과 기대 득점을 비교해 줘">아스널 최근 10경기 득점과 기대 득점을 비교해 줘</button><button type="button" data-id="라리가 이번 시즌 경기당 득점 순위">라리가 이번 시즌 경기당 득점 순위</button><button type="button" data-id="바르셀로나 홈 원정 성적 비교">바르셀로나 홈 원정 성적 비교</button></div><p id="analyststatus" role="status" aria-live="polite"></p><div id="analystresult"></div></section><section id="matches"><div class="cards" id="fixtures"></div><div id="fixturepagination" class="schedule-pagination" aria-live="polite"></div><article class="panel"><div class="toolbar"><h2 style="margin:0">최근 전력 비교</h2><span class="status">최근 리그 5경기</span></div><div id="comparison" tabindex="-1" aria-label="경기 프리뷰"></div></article><div class="grid"><article class="panel"><h2>기대 득점 흐름</h2><div id="trend"></div></article><article class="panel"><h2>최근 경기</h2><div id="recent"></div></article></div></section>
 <section id="team" hidden><label class="catalogsearch">팀 검색 <input id="teamsearch" type="search" placeholder="팀 이름" aria-label="팀 이름 검색"></label><div id="teamcatalog" class="catalog" aria-label="팀 목록"></div><div class="teamchooser"><label>팀 <select id="teamselect"></select></label><label>시즌 <select id="season"><option>2026/27</option><option>2025/26</option><option>2024/25</option><option>2023/24</option></select></label><label>장소 <select id="venue"><option value="all">전체</option><option value="home">홈</option><option value="away">원정</option></select></label><label>결과 <select id="resultfilter"><option value="all">전체</option><option value="win">승리</option><option value="draw">무승부</option><option value="loss">패배</option></select></label></div><div class="filterdeck"><label>경기 범위 <select id="rangefilter"><option value="season">시즌 전체</option><option value="5">최근 5경기</option><option value="10">최근 10경기</option><option value="custom">날짜 선택</option></select></label><label>시작 <input id="startdate" type="date" disabled></label><label>종료 <input id="enddate" type="date" disabled></label></div><div id="filtererror" class="filtererror" role="status"></div><article class="panel" id="teamcontent"></article><article class="panel"><div class="scope"><h3>시즌 상세 통계</h3><span id="snapcount" class="status"></span></div><p class="muted">StatMuse 시즌 전체 · 기간/장소/결과 필터 미적용</p><div class="statfilters"><label>지표 <select id="metricgroup"><option value="all">전체 지표</option><option value="attack">공격</option><option value="passing">패스·점유</option><option value="defence">수비·골키핑</option><option value="duels">경합</option><option value="discipline">반칙·징계</option></select></label><input id="metricsearch" type="search" placeholder="슈팅, 패스, 페널티킥…" aria-label="지표 검색"></div><div id="snapshotstats" class="metricgrid"></div></article></section>
 <section id="matchdetail" hidden></section><section id="leagueview" hidden><article class="panel"><h2>2026/27 · 승점순 통계</h2><div class="tablewrap" id="standings"></div></article></section><footer>저장 자료 기반 미리보기 · 경기 날짜는 원본 표기 · 구단 로고: StatMuse · 시즌 기록은 수집 리그 범위</footer></main><aside id="metricpopover" class="metric-popover" role="dialog" aria-modal="false" aria-labelledby="metrichelptitle" hidden>
 <div class="metric-popover-head"><h3 id="metrichelptitle"></h3><button id="metrichelpclose" type="button" aria-label="지표 설명 닫기">×</button></div>
@@ -609,7 +609,7 @@ syncLanguageLinks();
  const api={create,metrics,summary,sortOrder};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.MatchDeskAnalysis=api;
 })(globalThis);
 
-const analystText={"title": "AI 분석관에게 물어보세요", "hint": "저장된 기록을 분석합니다. 현재는 지원하는 표현을 해석하는 방식이며 AI 모델은 연결 전입니다.", "placeholder": "아스널 최근 10경기 득점과 기대 득점을 비교해 줘", "submit": "분석하기", "examples": ["아스널 최근 10경기 득점과 기대 득점을 비교해 줘", "라리가 이번 시즌 경기당 기대 득점 순위", "바르셀로나 홈 원정 성적 비교"], "done": "분석 완료 · 표와 차트를 확인해 주세요.", "running": "기록을 계산하고 있습니다.", "empty": "선택 조건에 해당하는 완료 경기 자료가 없습니다.", "unsupported": "지원하는 기록 분석 요청을 입력해 주세요. 아래 예시를 사용할 수 있습니다.", "prediction": "승리·무승부·패배 확률 도구는 아직 연결되지 않았습니다. 검증된 모델을 연결한 후 제공하겠습니다.", "league": "현재 지원하는 리그는 프리미어리그와 라리가입니다.", "league_mismatch": "선택한 리그와 팀이 다릅니다. 리그나 팀을 다시 지정해 주세요.", "season": "2023/24~2026/27 시즌 자료만 있습니다.", "range": "최근 경기 수는 1~38 사이로 지정해 주세요.", "metric": "이 요청의 지표는 현재 분석 도구에서 지원하지 않습니다. 득점·실점·기대 득점·기대 실점·승점·승률을 사용할 수 있습니다.", "team": "분석할 팀을 지정해 주세요.", "full": "시즌 전체", "last": "최근 {n}경기", "split": "홈·원정 각각", "all": "전체 장소", "home": "홈", "away": "원정", "average": "경기당 평균", "total": "합계", "actual": "실제 득점", "through": "자료 기준", "local": "저장된 완료 경기만 사용", "series": "초록 막대: 기대 득점 · 노랑 막대: 실제 득점", "tableBelow": "상세 수치는 아래 표", "item": "팀 / 경기", "matches": "경기 수", "proof": "계산 과정 보기", "execution": "실제 실행: 브라우저 JavaScript. AI 모델·SQL·Python 실행은 아직 연결되지 않았습니다.", "formula": "계산식", "scopeNote": "표시 조건만 적용합니다. 날짜 직접 지정·승무패 필터는 이 분석창에서 지원하지 않습니다. 최근 N경기는 선택 시즌 안에서 가져오며 홈·원정 비교에서는 각 장소별 N경기를 사용합니다. 승률은 과거 승리 비율이며 미래 승리 확률이 아닙니다."};const analystLanguage="ko";
+const analystText={"title": "AI 분석관에게 물어보세요", "hint": "저장된 기록을 분석합니다. 현재는 지원하는 표현을 해석하는 방식이며 AI 모델은 연결 전입니다.", "placeholder": "아스널 최근 10경기 득점과 기대 득점을 비교해 줘", "submit": "분석하기", "examples": ["아스널 최근 10경기 득점과 기대 득점을 비교해 줘", "라리가 이번 시즌 경기당 득점 순위", "바르셀로나 홈 원정 성적 비교"], "done": "분석 완료 · 표와 차트를 확인해 주세요.", "running": "기록을 계산하고 있습니다.", "empty": "선택 조건에 해당하는 완료 경기 자료가 없습니다.", "unsupported": "지원하는 기록 분석 요청을 입력해 주세요. 아래 예시를 사용할 수 있습니다.", "prediction": "승리·무승부·패배 확률 도구는 아직 연결되지 않았습니다. 검증된 모델을 연결한 후 제공하겠습니다.", "league": "현재 지원하는 리그는 프리미어리그와 라리가입니다.", "league_mismatch": "선택한 리그와 팀이 다릅니다. 리그나 팀을 다시 지정해 주세요.", "season": "2023/24~2026/27 시즌 자료만 있습니다.", "range": "최근 경기 수는 1~38 사이로 지정해 주세요.", "metric": "이 요청의 지표는 현재 분석 도구에서 지원하지 않습니다. 득점·실점·기대 득점·기대 실점·승점·승률을 사용할 수 있습니다.", "team": "분석할 팀을 지정해 주세요.", "full": "시즌 전체", "last": "최근 {n}경기", "split": "홈·원정 각각", "all": "전체 장소", "home": "홈", "away": "원정", "average": "경기당 평균", "total": "합계", "actual": "실제 득점", "through": "자료 기준", "local": "저장된 완료 경기만 사용", "series": "초록 막대: 기대 득점 · 노랑 막대: 실제 득점", "tableBelow": "상세 수치는 아래 표", "item": "팀 / 경기", "matches": "경기 수", "proof": "계산 과정 보기", "execution": "실제 실행: 브라우저 JavaScript. AI 모델·SQL·Python 실행은 아직 연결되지 않았습니다.", "formula": "계산식", "scopeNote": "표시 조건만 적용합니다. 날짜 직접 지정·승무패 필터는 이 분석창에서 지원하지 않습니다. 최근 N경기는 선택 시즌 안에서 가져오며 홈·원정 비교에서는 각 장소별 N경기를 사용합니다. 승률은 과거 승리 비율이며 미래 승리 확률이 아닙니다."};const analystLanguage="ko";
 // Adapter-driven workbench. All labels and data are supplied by the version builder.
 const recordAnalyst=MatchDeskAnalysis.create(D);
 const analysisRenderers=new Map();
@@ -963,7 +963,7 @@ mountTeamChart();
 })();
 </script><script id="matchlab-refresh-ui">(function(){
 'use strict';
-const text={source:'{date} 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)',reviewTitle:'끝난 경기 · 경기 전 예측과 실제',reviewNote:'예측은 {date} 자료로 만든 저장값이며 바꾸지 않았습니다. 가장 높은 확률의 결과가 실제 결과와 같으면 적중입니다.',summary:'적중 {hit} / {n}경기 ({rate})',empty:'이 리그에서 비교할 끝난 경기가 없습니다.',date:'날짜',match:'경기',actual:'실제',predicted:'예측 (홈·무·원정)',verdict:'판정',hit:'적중',miss:'빗나감',tie:'동률',home:'홈 승',draw:'무승부',away:'원정 승',more:'더 보기',open:'경기 보기 →',detailTitle:'경기 전 예측과 실제 결과',detailInput:'예측 입력 자료 기준 {date} · 저장된 예측(변경 없음)',pick:'예측 결과',outcome:'실제 결과',statsTitle:'경기 기록 · football-data.co.uk',shots:'슈팅',shotsOnTarget:'유효 슈팅',statsNote:'xG·PPDA·위험 지역 패스 등 상세 지표는 이 출처에 없어 표시하지 않습니다. 이전 경기(Understat)와 섞지 않습니다.',noResult:'결과 자료 없음 · 연기 여부 미확인',snapshot:'2026/27 상세 지표(StatMuse 시즌 누적)는 {date}까지의 값이며 갱신하지 않았습니다.'};
+const text={source:'{date} 이후 경기 결과: football-data.co.uk (xG·상세 지표 없음)',reviewTitle:'끝난 경기 · 경기 전 예측과 실제',reviewNote:'예측은 {date} 자료로 만든 저장값이며 바꾸지 않았습니다. 가장 높은 확률의 결과가 실제 결과와 같으면 적중입니다.',summary:'적중 {hit} / {n}경기 ({rate})',empty:'이 리그에서 비교할 끝난 경기가 없습니다.',date:'날짜',match:'경기',actual:'실제',predicted:'예측 (홈·무·원정)',verdict:'판정',hit:'적중',miss:'빗나감',tie:'동률',home:'홈 승',draw:'무승부',away:'원정 승',more:'더 보기',open:'경기 보기 →',detailTitle:'경기 전 예측과 실제 결과',detailInput:'예측 입력 자료 기준 {date} · 저장된 예측(변경 없음)',pick:'예측 결과',outcome:'실제 결과',statsTitle:'경기 기록 · football-data.co.uk',shots:'슈팅',shotsOnTarget:'유효 슈팅',statsNote:'xG·PPDA·위험 지역 패스 등 상세 지표는 이 출처에 없어 표시하지 않습니다. 이전 경기(Understat)와 섞지 않습니다.',noResult:'결과 자료 없음 · 연기 여부 미확인',snapshot:'2026/27 상세 지표(StatMuse 시즌 누적)는 {date}까지의 값이며 갱신하지 않았습니다.',analysisNote:'{date} 이후 경기(football-data.co.uk 결과)는 xG 자료가 없어 이번 시즌 xG를 계산하지 않습니다. 해당 경기와 그 경기가 들어간 합계·평균은 —로 표시합니다.'};
 const store=window.MatchLabData||{},data=store.data,bundle=store.predictions;
 if(!data||!data.refresh||!Array.isArray(data.completed))return;
 const info=data.refresh,outcomes=['home','draw','away'],shown=new Map();
@@ -982,6 +982,26 @@ function review(m){
  return {p,actual,pick,hit:pick===actual};
 }
 const refreshed=()=>data.completed.filter(m=>m.provider===info.provider).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+// Review R3: below 650px each finished match becomes a stacked card (labels from the column headers), so the
+// prediction and verdict are visible without sideways scrolling.
+function style(){
+ if(document.getElementById('refresh-ui-style-0270'))return;
+ const css=node('style');css.id='refresh-ui-style-0270';
+ css.textContent='@media (max-width:650px){#prediction-review-0270 .tablewrap{overflow:visible}#prediction-review-0270 table,#prediction-review-0270 tbody{display:block;width:100%}#prediction-review-0270 thead{display:none}#prediction-review-0270 tr{display:block;padding:10px 0;border-bottom:1px solid #e7ebf0}#prediction-review-0270 td{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border:0;text-align:right;white-space:normal}#prediction-review-0270 td::before{content:attr(data-label);color:#536174;text-align:left;flex-shrink:0}#prediction-review-0270 td:first-child{display:block;text-align:left}#prediction-review-0270 td:first-child::before{content:none}}';
+ document.head.appendChild(css);
+}
+// Review R2: an analysis of this season's xG gets one line explaining why values are "—".
+const refreshedSeason=(refreshed()[0]||{}).season;
+function analysisNote(){
+ const out=document.getElementById('analystresult');if(!out)return;
+ let plan=null;
+ try{plan=(typeof footballWorkbench!=='undefined'&&footballWorkbench.previous)||(typeof analystPrevious!=='undefined'?analystPrevious:null);}catch(error){plan=null;}
+ let note=document.getElementById('refresh-analysis-note-0270');
+ const results=[...out.children].filter(e=>e!==note).length;
+ const show=!!(plan&&results&&plan.season===refreshedSeason&&(plan.metric==='xg'||plan.metric==='xga'||plan.compareGoals));
+ if(show&&!note){note=node('p','note',fill(text.analysisNote,{date:info.previous_last_date}));note.id='refresh-analysis-note-0270';out.prepend(note);}
+ else if(!show&&note)note.remove();
+}
 function source(){
  const date=document.getElementById('lastdate');
  if(!date||document.getElementById('refresh-source-0270'))return;
@@ -1007,11 +1027,9 @@ function reviewPanel(){
  const body=node('tbody');
  rows.slice(0,limit).forEach(({m,r})=>{
   const row=node('tr');row.dataset.review=m.id;
-  const cell=node('td');cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
+  const cell=node('td');cell.dataset.label=text.match;cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
   const link=node('a','match-link',text.open);link.href='#match='+encodeURIComponent(m.id);cell.appendChild(link);row.appendChild(cell);
-  row.appendChild(node('td',null,m.hg+' : '+m.ag+' · '+text[r.actual]));
-  row.appendChild(node('td',null,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')));
-  row.appendChild(node('td',null,r.pick===null?text.tie:r.hit?text.hit:text.miss));
+  [[text.actual,m.hg+' : '+m.ag+' · '+text[r.actual]],[text.predicted,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')],[text.verdict,r.pick===null?text.tie:r.hit?text.hit:text.miss]].forEach(([label,value])=>{const td=node('td',null,value);td.dataset.label=label;row.appendChild(td);});
   body.appendChild(row);
  });
  table.appendChild(body);wrap.appendChild(table);host.appendChild(wrap);
@@ -1049,10 +1067,12 @@ function snapshotNote(){
  if(!note){note=node('p','note',fill(text.snapshot,{date:info.previous_last_date}));note.id='refresh-snapshot-0270';stats.after(note);}
  note.hidden=!(season&&season.value==='2026/27');
 }
-function update(){source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
+function update(){style();source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
 const previousMatches=renderMatches;renderMatches=function(){previousMatches();update();};
 const previousDetail=renderCompletedMatch;renderCompletedMatch=function(){previousDetail();update();};
 const previousRender=render;render=function(){previousRender();update();};
 document.addEventListener('change',event=>{if(event.target&&(event.target.id==='season'||event.target.id==='teamselect'))snapshotNote();});
+const analysisHost=document.getElementById('analystresult');
+if(analysisHost&&typeof MutationObserver==='function')new MutationObserver(()=>setTimeout(analysisNote,0)).observe(analysisHost,{childList:true});
 update();
 })();</script></body></html>

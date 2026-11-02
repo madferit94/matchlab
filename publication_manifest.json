@@ -1175,13 +1175,13 @@
     {
       "path": "analysis/check-result.json",
       "bytes": 112,
-      "sha256": "7a3b60d2e34ad13400a2e34447823ad8c96614b155c561dadf39cf8314bbe1c2",
+      "sha256": "beafe81b4a407e933804d92dd136bf16e89f78e549f5311263f6bf1e9c9f78c5",
       "snapshot": "0.27.0"
     },
     {
       "path": "analysis/check.cjs",
-      "bytes": 7274,
-      "sha256": "0a96a0fbfc043ad8eb8b1435058d64ef10e4dffb32194dd2a88db80eb64f7cf5",
+      "bytes": 7952,
+      "sha256": "2a154334916096332be1fa2c027991ba5f1e3e524d00a98ad8c26a22662dcd90",
       "snapshot": "0.27.0"
     },
     {
@@ -9382,14 +9382,14 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 191937,
-      "sha256": "c32bd92f67a4615add253a3d4cd2eeeb92d6a434ff8645e94e73c8bb901d9c5c",
+      "bytes": 194314,
+      "sha256": "85364fd1c433847e2cafdaa0ae63c5e616463237e04f7b0a482b7fe53cfbb747",
       "snapshot": "0.27.0"
     },
     {
       "path": "index.html",
-      "bytes": 192919,
-      "sha256": "097750a45bcf19d7d881cd3a8361bb4744ba9f718f54490d81d307a1d7149fc5",
+      "bytes": 195298,
+      "sha256": "81f9e5157ba9d9a25a9f6e42d25632f0c1c57a29327a0485416bb60369c1fa85",
       "snapshot": "0.27.0"
     },
     {
@@ -10073,7 +10073,7 @@
     {
       "path": "reports/release-0.25.0/checks.json",
       "bytes": 1919,
-      "sha256": "b158396f1c53fd2a7bf824035101fce029a84aac28bcf3cb53bf550978e5864c",
+      "sha256": "bd7ffd78d5d5882aca094707c7d19ae926210250f1a6cbc038ce3f29bbb5ea9a",
       "snapshot": "0.27.0"
     },
     {

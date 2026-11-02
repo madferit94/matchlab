@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const text={source:'results after {date}: football-data.co.uk (no xG or detailed stats)',reviewTitle:'Finished matches · pre-match prediction vs result',reviewNote:'Predictions are the stored values made from records through {date}; they were not changed. A prediction counts as a hit when its most likely outcome is the actual outcome.',summary:'Hits {hit} / {n} matches ({rate})',empty:'No finished matches to compare in this league.',date:'Date',match:'Match',actual:'Result',predicted:'Prediction (home · draw · away)',verdict:'Verdict',hit:'Hit',miss:'Miss',tie:'Tie',home:'Home win',draw:'Draw',away:'Away win',more:'Show more',open:'View match →',detailTitle:'Pre-match prediction vs result',detailInput:'Prediction input records through {date} · stored prediction (unchanged)',pick:'predicted',outcome:'actual',statsTitle:'Match record · football-data.co.uk',shots:'Shots',shotsOnTarget:'Shots on target',statsNote:'xG, PPDA, deep completions and other detailed metrics are not in this source and are not shown. They are not mixed with earlier (Understat) matches.',noResult:'No result in the data · postponement not confirmed',snapshot:'2026/27 detailed metrics (StatMuse season totals) are values through {date} and were not refreshed.'};
+const text={source:'results after {date}: football-data.co.uk (no xG or detailed stats)',reviewTitle:'Finished matches · pre-match prediction vs result',reviewNote:'Predictions are the stored values made from records through {date}; they were not changed. A prediction counts as a hit when its most likely outcome is the actual outcome.',summary:'Hits {hit} / {n} matches ({rate})',empty:'No finished matches to compare in this league.',date:'Date',match:'Match',actual:'Result',predicted:'Prediction (home · draw · away)',verdict:'Verdict',hit:'Hit',miss:'Miss',tie:'Tie',home:'Home win',draw:'Draw',away:'Away win',more:'Show more',open:'View match →',detailTitle:'Pre-match prediction vs result',detailInput:'Prediction input records through {date} · stored prediction (unchanged)',pick:'predicted',outcome:'actual',statsTitle:'Match record · football-data.co.uk',shots:'Shots',shotsOnTarget:'Shots on target',statsNote:'xG, PPDA, deep completions and other detailed metrics are not in this source and are not shown. They are not mixed with earlier (Understat) matches.',noResult:'No result in the data · postponement not confirmed',snapshot:'2026/27 detailed metrics (StatMuse season totals) are values through {date} and were not refreshed.',analysisNote:'Matches after {date} (football-data.co.uk results) have no xG, so this season\'s xG is not calculated. Those matches, and totals or averages that include them, show —.'};
 const store=window.MatchLabData||{},data=store.data,bundle=store.predictions;
 if(!data||!data.refresh||!Array.isArray(data.completed))return;
 const info=data.refresh,outcomes=['home','draw','away'],shown=new Map();
@@ -19,6 +19,26 @@ function review(m){
  return {p,actual,pick,hit:pick===actual};
 }
 const refreshed=()=>data.completed.filter(m=>m.provider===info.provider).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+// Review R3: below 650px each finished match becomes a stacked card (labels from the column headers), so the
+// prediction and verdict are visible without sideways scrolling.
+function style(){
+ if(document.getElementById('refresh-ui-style-0270'))return;
+ const css=node('style');css.id='refresh-ui-style-0270';
+ css.textContent='@media (max-width:650px){#prediction-review-0270 .tablewrap{overflow:visible}#prediction-review-0270 table,#prediction-review-0270 tbody{display:block;width:100%}#prediction-review-0270 thead{display:none}#prediction-review-0270 tr{display:block;padding:10px 0;border-bottom:1px solid #e7ebf0}#prediction-review-0270 td{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border:0;text-align:right;white-space:normal}#prediction-review-0270 td::before{content:attr(data-label);color:#536174;text-align:left;flex-shrink:0}#prediction-review-0270 td:first-child{display:block;text-align:left}#prediction-review-0270 td:first-child::before{content:none}}';
+ document.head.appendChild(css);
+}
+// Review R2: an analysis of this season's xG gets one line explaining why values are "—".
+const refreshedSeason=(refreshed()[0]||{}).season;
+function analysisNote(){
+ const out=document.getElementById('analystresult');if(!out)return;
+ let plan=null;
+ try{plan=(typeof footballWorkbench!=='undefined'&&footballWorkbench.previous)||(typeof analystPrevious!=='undefined'?analystPrevious:null);}catch(error){plan=null;}
+ let note=document.getElementById('refresh-analysis-note-0270');
+ const results=[...out.children].filter(e=>e!==note).length;
+ const show=!!(plan&&results&&plan.season===refreshedSeason&&(plan.metric==='xg'||plan.metric==='xga'||plan.compareGoals));
+ if(show&&!note){note=node('p','note',fill(text.analysisNote,{date:info.previous_last_date}));note.id='refresh-analysis-note-0270';out.prepend(note);}
+ else if(!show&&note)note.remove();
+}
 function source(){
  const date=document.getElementById('lastdate');
  if(!date||document.getElementById('refresh-source-0270'))return;
@@ -44,11 +64,9 @@ function reviewPanel(){
  const body=node('tbody');
  rows.slice(0,limit).forEach(({m,r})=>{
   const row=node('tr');row.dataset.review=m.id;
-  const cell=node('td');cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
+  const cell=node('td');cell.dataset.label=text.match;cell.appendChild(node('span',null,teamName(m.home)+' vs '+teamName(m.away)));cell.appendChild(node('br'));cell.appendChild(node('small','muted',m.date));
   const link=node('a','match-link',text.open);link.href='#match='+encodeURIComponent(m.id);cell.appendChild(link);row.appendChild(cell);
-  row.appendChild(node('td',null,m.hg+' : '+m.ag+' · '+text[r.actual]));
-  row.appendChild(node('td',null,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')));
-  row.appendChild(node('td',null,r.pick===null?text.tie:r.hit?text.hit:text.miss));
+  [[text.actual,m.hg+' : '+m.ag+' · '+text[r.actual]],[text.predicted,outcomes.map(k=>pct(r.p.probabilities[k])).join(' · ')],[text.verdict,r.pick===null?text.tie:r.hit?text.hit:text.miss]].forEach(([label,value])=>{const td=node('td',null,value);td.dataset.label=label;row.appendChild(td);});
   body.appendChild(row);
  });
  table.appendChild(body);wrap.appendChild(table);host.appendChild(wrap);
@@ -86,10 +104,12 @@ function snapshotNote(){
  if(!note){note=node('p','note',fill(text.snapshot,{date:info.previous_last_date}));note.id='refresh-snapshot-0270';stats.after(note);}
  note.hidden=!(season&&season.value==='2026/27');
 }
-function update(){source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
+function update(){style();source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
 const previousMatches=renderMatches;renderMatches=function(){previousMatches();update();};
 const previousDetail=renderCompletedMatch;renderCompletedMatch=function(){previousDetail();update();};
 const previousRender=render;render=function(){previousRender();update();};
 document.addEventListener('change',event=>{if(event.target&&(event.target.id==='season'||event.target.id==='teamselect'))snapshotNote();});
+const analysisHost=document.getElementById('analystresult');
+if(analysisHost&&typeof MutationObserver==='function')new MutationObserver(()=>setTimeout(analysisNote,0)).observe(analysisHost,{childList:true});
 update();
 })();
