@@ -59,12 +59,19 @@ const XG=path.join(__dirname,'0.27.1','archive-xg.json');
 const XG_VERSION='0.27.1',XG_SOURCE='Internet Archive (web.archive.org) copies of understat.com';
 const XG_METHODS={match_info:'https://understat.com/match/',shot_sum:'https://understat.com/getMatchData/'};
 const XG_REQUIRED=['id','date','method','hx','ax','archive_url','original_url','archived_at','bytes','sha256','archive_match','shots'];
+// 0.27.1 review R4: no keys beyond these (same lists in refresh.py).
+const XG_TOP_KEYS=['version','source','reason','refresh','methods','sha256_of','matches'];
+const XG_METHOD_KEYS={match_info:['h_xg','a_xg'],shot_sum:['shot_xg']};
+const XG_MATCH_KEYS={match_info:['date','home','away','home_id','away_id','score'],shot_sum:['date','home','away','score']};
+const isObject=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
+const sameKeys=(x,keys)=>isObject(x)&&Object.keys(x).length===keys.length&&keys.every(k=>Object.hasOwn(x,k));
 const DECIMAL=/^[0-9]+(?:\.[0-9]+)?$/;
 function loadArchiveXg(){return JSON.parse(fs.readFileSync(XG,'utf8'))}
 function originalUrl(id,method){return XG_METHODS[method]+id.slice(id.indexOf(':')+1)}
 // Per-shot xG strings added left to right, rounded to 6 decimals. Same arithmetic as shot_sum() in refresh.py.
 function shotSum(values){let total=0;for(const value of values)total+=Number(value);return Number(total.toFixed(6))}
 function validateArchiveXg(data,refresh,xg){
+ check(isObject(xg)&&Object.keys(xg).every(k=>XG_TOP_KEYS.includes(k)),'Archive xG file has unknown keys');
  check(xg.version===XG_VERSION&&xg.source===XG_SOURCE,'Archive xG header differs');
  const results=new Map(refresh.results.map(r=>[r.id,r])),matches=xg.matches,rows=new Map(data.completed.map(m=>[m.id,m]));
  check(Array.isArray(matches)&&matches.length&&new Set(matches.map(e=>e.id)).size===matches.length&&matches.length<=results.size,'Empty, duplicate or too many archive xG entries');
@@ -75,13 +82,16 @@ function validateArchiveXg(data,refresh,xg){
   check(r&&m,'Archive xG match is not a refreshed result: '+e.id);
   check(m.provider===PROVIDER&&m.hx===null&&m.ax===null,'Archive xG target is not a refreshed match without xG: '+e.id);
   const method=e.method;
-  check(Object.hasOwn(XG_METHODS,method)&&e.original_url===originalUrl(e.id,method),'Archive xG method or original URL differs: '+e.id);
+  check(Object.hasOwn(XG_METHODS,method)&&Object.keys(e).every(k=>XG_REQUIRED.includes(k)||XG_METHOD_KEYS[method].includes(k)),'Archive xG entry has unknown keys: '+e.id);
+  check(sameKeys(e.archive_match,XG_MATCH_KEYS[method]),'Archive match keys differ: '+e.id);
+  check(sameKeys(e.shots,['archive','football_data']),'Archive shots keys differ: '+e.id);
+  check(e.original_url===originalUrl(e.id,method),'Archive xG method or original URL differs: '+e.id);
   check(typeof e.archived_at==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(e.archived_at),'Archive capture time malformed: '+e.id);
   check(e.archive_url==='https://web.archive.org/web/'+e.archived_at.replace(/\D/g,'')+'id_/'+e.original_url,'Archive URL differs: '+e.id);
   check(Number.isInteger(e.bytes)&&e.bytes>0&&typeof e.sha256==='string'&&/^[0-9a-f]{64}$/.test(e.sha256),'Archive fingerprint missing: '+e.id);
   const a=e.archive_match;
   check(e.date===a.date&&a.date===r.date,'Archive date differs from the result: '+e.id);
-  check(Array.isArray(a.score)&&a.score.length===2&&a.score[0]===r.hg&&a.score[1]===r.ag,'Archive score differs from the result: '+e.id);
+  check(Array.isArray(a.score)&&a.score.length===2&&a.score.every(Number.isInteger)&&a.score[0]===r.hg&&a.score[1]===r.ag,'Archive score differs from the result: '+e.id);
   check(a.home===data.teams[m.home].name&&a.away===data.teams[m.away].name,'Archive teams differ: '+e.id);
   if(method==='match_info')check(a.home_id===m.home&&a.away_id===m.away,'Archive team ids differ: '+e.id);
   const shots=e.shots;

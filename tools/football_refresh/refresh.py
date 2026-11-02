@@ -295,6 +295,10 @@ XG_CAPTURES = [
 ]
 XG_REQUIRED = ['id', 'date', 'method', 'hx', 'ax', 'archive_url', 'original_url', 'archived_at', 'bytes', 'sha256',
                'archive_match', 'shots']
+# 0.27.1 review R4: no keys beyond these (same lists in apply.cjs).
+XG_TOP_KEYS = ['version', 'source', 'reason', 'refresh', 'methods', 'sha256_of', 'matches']
+XG_METHOD_KEYS = {'match_info': ['h_xg', 'a_xg'], 'shot_sum': ['shot_xg']}
+XG_MATCH_KEYS = {'match_info': ['date', 'home', 'away', 'home_id', 'away_id', 'score'], 'shot_sum': ['date', 'home', 'away', 'score']}
 DECIMAL = re.compile(r'[0-9]+(?:\.[0-9]+)?')  # ASCII digits only, as in apply.cjs
 
 
@@ -396,6 +400,7 @@ def read_capture(match_id, method, body):
 
 def validate_archive_xg(data, refresh, xg):
     """Content rules for archive-xg.json against refreshed data (apply_refresh output). Same rules as apply.cjs."""
+    assert type(xg) is dict and set(xg) <= set(XG_TOP_KEYS), 'Archive xG file has unknown keys'
     assert xg['version'] == XG_VERSION and xg['source'] == XG_SOURCE, 'Archive xG header differs'
     results = {r['id']: r for r in refresh['results']}
     matches = xg['matches']
@@ -408,20 +413,23 @@ def validate_archive_xg(data, refresh, xg):
         assert r and m, 'Archive xG match is not a refreshed result: ' + e['id']
         assert m['provider'] == PROVIDER and m['hx'] is None and m['ax'] is None, 'Archive xG target is not a refreshed match without xG: ' + e['id']
         method = e['method']
-        assert method in XG_METHODS and e['original_url'] == original_url(e['id'], method), 'Archive xG method or original URL differs: ' + e['id']
+        assert method in XG_METHODS and set(e) <= set(XG_REQUIRED + XG_METHOD_KEYS[method]), 'Archive xG entry has unknown keys: ' + e['id']
+        assert type(e['archive_match']) is dict and set(e['archive_match']) == set(XG_MATCH_KEYS[method]), 'Archive match keys differ: ' + e['id']
+        assert type(e['shots']) is dict and set(e['shots']) == {'archive', 'football_data'}, 'Archive shots keys differ: ' + e['id']
+        assert e['original_url'] == original_url(e['id'], method), 'Archive xG method or original URL differs: ' + e['id']
         assert re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z', e['archived_at']), 'Archive capture time malformed: ' + e['id']
         stamp = re.sub(r'\D', '', e['archived_at'])
         assert e['archive_url'] == ARCHIVE_URL.format(stamp=stamp, url=e['original_url']), 'Archive URL differs: ' + e['id']
         assert json_int(e['bytes']) and e['bytes'] > 0 and isinstance(e['sha256'], str) and re.fullmatch('[0-9a-f]{64}', e['sha256']), 'Archive fingerprint missing: ' + e['id']
         a = e['archive_match']
         assert e['date'] == a['date'] == r['date'], 'Archive date differs from the result: ' + e['id']
-        assert a['score'] == [r['hg'], r['ag']], 'Archive score differs from the result: ' + e['id']
+        assert type(a['score']) is list and len(a['score']) == 2 and all(json_int(v) for v in a['score']) and a['score'] == [r['hg'], r['ag']], 'Archive score differs from the result: ' + e['id']
         assert (a['home'], a['away']) == (data['teams'][m['home']]['name'], data['teams'][m['away']]['name']), 'Archive teams differ: ' + e['id']
         if method == 'match_info':
             assert (a.get('home_id'), a.get('away_id')) == (m['home'], m['away']), 'Archive team ids differ: ' + e['id']
         shots = e['shots']
-        assert shots['football_data'] == [r['hs'], r['as']], 'Recorded football-data shots differ from refresh.json: ' + e['id']
-        assert len(shots['archive']) == 2 and all(json_int(v) and v >= 0 for v in shots['archive']), 'Archive shot counts malformed: ' + e['id']
+        assert type(shots['football_data']) is list and all(json_int(v) for v in shots['football_data']) and shots['football_data'] == [r['hs'], r['as']], 'Recorded football-data shots differ from refresh.json: ' + e['id']
+        assert type(shots['archive']) is list and len(shots['archive']) == 2 and all(json_int(v) and v >= 0 for v in shots['archive']), 'Archive shot counts malformed: ' + e['id']
         for v in (e['hx'], e['ax']):
             assert type(v) in (int, float) and math.isfinite(v) and v >= 0, 'xG is not a non-negative finite number: ' + e['id']
         if method == 'match_info':

@@ -272,8 +272,11 @@ assert engine_source in (p/'index.html').read_text(encoding='utf8'), 'Korean ana
 engine_en=re.sub('[가-힣]',lambda m:'\\u%04x'%ord(m[0]),engine_source)
 assert engine_en in (p/'index.en.html').read_text(encoding='utf8'), 'English analysis engine drift'
 assert (p/'analysis/release-0.23.0/f1-natural-analysis.js').read_text(encoding='utf8').strip() in (p/'f1/index.html').read_text(encoding='utf8'), 'F1 analysis engine drift'
+# 0.27.1: the football pages carry two recorded edits inside their workbench copy (page-patch.json); compare after undoing them.
 for entry in ['index.html','index.en.html','f1/index.html']:
-    assert (p/'analysis/release-0.25.2/workbench.js').read_text(encoding='utf8') in (p/entry).read_text(encoding='utf8'), 'Analysis workbench drift: '+entry
+    text=(p/entry).read_text(encoding='utf8')
+    if entry in FOOTBALL_DATA: text=undo_0271(entry,text)
+    assert (p/'analysis/release-0.25.2/workbench.js').read_text(encoding='utf8') in text, 'Analysis workbench drift: '+entry
 f1_html=(p/'f1/index.html').read_text(encoding='utf8')
 assert (p/'f1/release-0.9.3/tyre-help.js').read_text(encoding='utf8') in f1_html, 'Tyre help module drift'
 for tag,ident,source in [('script','f1-archive-catalog','archive-catalog.js'),('style','f1-archive-catalog-styles','archive.css')]:

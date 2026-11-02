@@ -1,7 +1,7 @@
 {
  "release": "0.27.1",
  "checked_at": "2026-11-02",
- "method": "Scripted Playwright 1.57.0 (playwright-core, Chromium headless) against PORT=8831 node server/gemini.cjs (working tree), viewports 390x900 and 1440x900. Each view is checked for NaN/undefined/Infinity text and horizontal overflow (scrollWidth - innerWidth > 0); console and page errors collected. Views: #matches (EPL finished-match table expanded to all 30 rows), #match= for the 5 archive-xG matches and understat:31230 (no xG), #team=understat:73, #preview=understat:31264, analysis question.",
+ "method": "Scripted Playwright 1.57.0 (playwright-core, Chromium headless) with design/release-0.27.1/browser-check.cjs against PORT=8831 node server/gemini.cjs (working tree), viewports 390x900 and 1440x900. Each view is checked for NaN/undefined/Infinity text and horizontal overflow (scrollWidth - innerWidth > 0); console and page errors collected. Views: #matches (EPL finished-match table expanded to all 30 rows), #match= for the 5 archive-xG matches and understat:31230 (no xG), #team=understat:73, #team=understat:80 (shot-sum marks), #preview=understat:31264, analysis questions incl. the review R1 sequence and R7 unknown club.",
  "failures": 0,
  "cases": [
   {
@@ -18,37 +18,56 @@
    ],
    "match_room": {
     "understat:31232": {
-     "xg": "1.38 기대 득점 (xG) 1.68",
+     "xg": "1.38 기대 득점 (xG) 슈팅 합계 1.68",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31233": {
-     "xg": "1.26 기대 득점 (xG) 1.78",
+     "xg": "1.26 기대 득점 (xG) 슈팅 합계 1.78",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31239": {
-     "xg": "1.66 기대 득점 (xG) 2.22",
+     "xg": "1.66 기대 득점 (xG) 슈팅 합계 2.22",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31249": {
      "xg": "0.97 기대 득점 (xG) 1.14",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31256": {
      "xg": "0.84 기대 득점 (xG) 2.56",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31230": {
      "xg": "— 기대 득점 (xG) —",
+     "shot_sum_mark": null,
      "archive_link": false
     }
    },
    "team_73_svg_nan": false,
+   "team_80_shot_sum_marks": {
+    "rows": 12,
+    "marked": 5,
+    "chartMarked": true,
+    "unmarkedElsewhere": 0
+   },
    "preview_31264": {
     "circles": 6,
     "svgNaN": false,
     "note": "xG 자료가 없는 경기(2026-09-20 이후 결과 대부분)는 점을 표시하지 않습니다."
    },
    "analysis_man_utd_last_1": "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다.",
+   "review_r1_r7_sequence": [
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    " | 팀을 찾지 못했어요. 프리미어리그·라리가 구단 이름으로 다시 질문해 주세요."
+   ],
    "checks": {
     "nan_undefined_infinity_text": false,
     "horizontal_overflow": false,
@@ -71,37 +90,56 @@
    ],
    "match_room": {
     "understat:31232": {
-     "xg": "1.38 기대 득점 (xG) 1.68",
+     "xg": "1.38 기대 득점 (xG) 슈팅 합계 1.68",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31233": {
-     "xg": "1.26 기대 득점 (xG) 1.78",
+     "xg": "1.26 기대 득점 (xG) 슈팅 합계 1.78",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31239": {
-     "xg": "1.66 기대 득점 (xG) 2.22",
+     "xg": "1.66 기대 득점 (xG) 슈팅 합계 2.22",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31249": {
      "xg": "0.97 기대 득점 (xG) 1.14",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31256": {
      "xg": "0.84 기대 득점 (xG) 2.56",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31230": {
      "xg": "— 기대 득점 (xG) —",
+     "shot_sum_mark": null,
      "archive_link": false
     }
    },
    "team_73_svg_nan": false,
+   "team_80_shot_sum_marks": {
+    "rows": 12,
+    "marked": 5,
+    "chartMarked": true,
+    "unmarkedElsewhere": 0
+   },
    "preview_31264": {
     "circles": 6,
     "svgNaN": false,
     "note": "xG 자료가 없는 경기(2026-09-20 이후 결과 대부분)는 점을 표시하지 않습니다."
    },
    "analysis_man_utd_last_1": "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다.",
+   "review_r1_r7_sequence": [
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    "2026-09-20 이후 60경기 중 xG가 있는 경기는 5경기뿐입니다(Understat의 Internet Archive 사본). xG가 없는 경기가 들어간 합계·평균은 —로 표시합니다. | 분석했습니다. 이어서 기간이나 지표를 바꿔 질문할 수 있습니다.",
+    " | 팀을 찾지 못했어요. 프리미어리그·라리가 구단 이름으로 다시 질문해 주세요."
+   ],
    "checks": {
     "nan_undefined_infinity_text": false,
     "horizontal_overflow": false,
@@ -124,37 +162,56 @@
    ],
    "match_room": {
     "understat:31232": {
-     "xg": "1.38 Expected goals (xG) 1.68",
+     "xg": "1.38 Expected goals (xG) shot sum 1.68",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31233": {
-     "xg": "1.26 Expected goals (xG) 1.78",
+     "xg": "1.26 Expected goals (xG) shot sum 1.78",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31239": {
-     "xg": "1.66 Expected goals (xG) 2.22",
+     "xg": "1.66 Expected goals (xG) shot sum 2.22",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31249": {
      "xg": "0.97 Expected goals (xG) 1.14",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31256": {
      "xg": "0.84 Expected goals (xG) 2.56",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31230": {
      "xg": "— Expected goals (xG) —",
+     "shot_sum_mark": null,
      "archive_link": false
     }
    },
    "team_73_svg_nan": false,
+   "team_80_shot_sum_marks": {
+    "rows": 12,
+    "marked": 5,
+    "chartMarked": true,
+    "unmarkedElsewhere": 0
+   },
    "preview_31264": {
     "circles": 6,
     "svgNaN": false,
     "note": "Matches without xG (most results after 2026-09-20) have no point."
    },
    "analysis_man_utd_last_1": "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —.",
+   "review_r1_r7_sequence": [
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    " | Team not found. Ask about a Premier League or LaLiga club."
+   ],
    "checks": {
     "nan_undefined_infinity_text": false,
     "horizontal_overflow": false,
@@ -177,37 +234,56 @@
    ],
    "match_room": {
     "understat:31232": {
-     "xg": "1.38 Expected goals (xG) 1.68",
+     "xg": "1.38 Expected goals (xG) shot sum 1.68",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31233": {
-     "xg": "1.26 Expected goals (xG) 1.78",
+     "xg": "1.26 Expected goals (xG) shot sum 1.78",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31239": {
-     "xg": "1.66 Expected goals (xG) 2.22",
+     "xg": "1.66 Expected goals (xG) shot sum 2.22",
+     "shot_sum_mark": true,
      "archive_link": true
     },
     "understat:31249": {
      "xg": "0.97 Expected goals (xG) 1.14",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31256": {
      "xg": "0.84 Expected goals (xG) 2.56",
+     "shot_sum_mark": false,
      "archive_link": true
     },
     "understat:31230": {
      "xg": "— Expected goals (xG) —",
+     "shot_sum_mark": null,
      "archive_link": false
     }
    },
    "team_73_svg_nan": false,
+   "team_80_shot_sum_marks": {
+    "rows": 12,
+    "marked": 5,
+    "chartMarked": true,
+    "unmarkedElsewhere": 0
+   },
    "preview_31264": {
     "circles": 6,
     "svgNaN": false,
     "note": "Matches without xG (most results after 2026-09-20) have no point."
    },
    "analysis_man_utd_last_1": "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —.",
+   "review_r1_r7_sequence": [
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    "After 2026-09-20, only 5 of 60 matches have xG (Internet Archive copies of Understat). Totals or averages that include a match without xG show —. | Analysis complete. Ask a follow-up to change the period or metric.",
+    " | Team not found. Ask about a Premier League or LaLiga club."
+   ],
    "checks": {
     "nan_undefined_infinity_text": false,
     "horizontal_overflow": false,

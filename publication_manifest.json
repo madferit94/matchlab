@@ -28,8 +28,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 25377,
-      "sha256": "77fd0850aa1797a3f581bbb1d4dd03c425427e4643e4fd1d425e16e5a24dca94",
+      "bytes": 26188,
+      "sha256": "49f4dbbc73a23fb0996e74061d4fdc06191a917dfa1dcd23f50f2c8824557cc3",
       "snapshot": "0.27.1"
     },
     {
@@ -1175,20 +1175,20 @@
     {
       "path": "analysis/check-result.json",
       "bytes": 112,
-      "sha256": "c25cf546137a255f608fafad70fa05f8963b530233ff817a08747a124b5e2c5c",
+      "sha256": "721360fefcd6b9eb7511e7b929f7cba00a35fcbed20af8a866b620b77739894c",
       "snapshot": "0.27.1"
     },
     {
       "path": "analysis/check.cjs",
-      "bytes": 9630,
-      "sha256": "a59903080e8d3dcdce8f6068091f892d88b71f90872215f92731d6626454657e",
+      "bytes": 14491,
+      "sha256": "51f94d3426005a72b316dd659a66d7a2055439213274655781ad129dfa5ac79a",
       "snapshot": "0.27.1"
     },
     {
       "path": "analysis/record-engine.cjs",
-      "bytes": 10249,
-      "sha256": "b18f804bfe81172e26bbf244ffcb0647e53b7a6aeaffc464096f8f45b17d5c84",
-      "snapshot": "0.27.0"
+      "bytes": 14582,
+      "sha256": "b82b18467e50b0fafee252e0fc517f5ef8164eaa9bec4f2439d0f2346ce8df51",
+      "snapshot": "0.27.1"
     },
     {
       "path": "analysis/release-0.21.3/browser-result.json",
@@ -1468,9 +1468,9 @@
     },
     {
       "path": "analysis/release-0.25.2/check-browser.cjs",
-      "bytes": 6653,
-      "sha256": "36c05718ac361af77861ea31a9102b83e2ec7f56bc1a0e1a5635078aac6dbca6",
-      "snapshot": "0.25.2"
+      "bytes": 6988,
+      "sha256": "9ceb1261c9bec9d291cf20e3247eacd948db0fa3f1d5146bf26fcc32ae23ebb7",
+      "snapshot": "0.27.1"
     },
     {
       "path": "analysis/release-0.25.2/check-core.cjs",
@@ -5824,38 +5824,38 @@
     },
     {
       "path": "design/release-0.27.1/browser-check.cjs",
-      "bytes": 7308,
-      "sha256": "5cdc922a2feb31467087303df361e9534323f506fb4a39032d67fe35b389c27f",
+      "bytes": 9953,
+      "sha256": "ebd503f86690c185fc7b59d726b0614ef5e4772d2de4012b9797bfae1224876c",
       "snapshot": "0.27.1"
     },
     {
       "path": "design/release-0.27.1/browser-result.json",
-      "bytes": 7341,
-      "sha256": "7d4dac3df30569d1335d30db6c69a7d45049fdb90fc5b563d45f9c0534edf9a7",
+      "bytes": 13361,
+      "sha256": "ccb5a18d87c9d4ee1f72b65de0feb93d2528ff564799e450057e4945e6e30b98",
       "snapshot": "0.27.1"
     },
     {
       "path": "design/release-0.27.1/build_pages.py",
-      "bytes": 4094,
-      "sha256": "488a40f61e6f0a4a64c3c83538f94a367b334683967798c973874fb848d6d582",
+      "bytes": 9831,
+      "sha256": "3c299d2ddb33a0249eeba702baed97c172e13efee751396904cb9e410d0355fe",
       "snapshot": "0.27.1"
     },
     {
       "path": "design/release-0.27.1/page-patch.json",
-      "bytes": 716,
-      "sha256": "38508b2542629d6367c01c72e4e069fbe306bb19ad11d53efc67555fbd6e5582",
+      "bytes": 9652,
+      "sha256": "41f49e4755e88674213c3c7b629c0baa787511a731bb21f9320b3b9c18e8f104",
       "snapshot": "0.27.1"
     },
     {
       "path": "design/release-0.27.1/refresh-ui.en.js",
-      "bytes": 12032,
-      "sha256": "2cb1c5ddb73d7a65f597be286e88be36afa034c4e91a9ef60cb3d313488d8658",
+      "bytes": 13076,
+      "sha256": "acc4ba8a87945c73df2b1ff27e3af9b000a12940eb68dc33e469579e3d6cf173",
       "snapshot": "0.27.1"
     },
     {
       "path": "design/release-0.27.1/refresh-ui.ko.js",
-      "bytes": 12137,
-      "sha256": "ff7f47d750153a498a04aca14b3977e441d555caf27094fad2d8ad12ebca6bb5",
+      "bytes": 13181,
+      "sha256": "6a51eeb2e4977f3c861446b666eb00cfa93183edf07c60f006b56b3e69241c1e",
       "snapshot": "0.27.1"
     },
     {
@@ -6226,8 +6226,8 @@
     },
     {
       "path": "docs/SPEC-0.27.1.md",
-      "bytes": 13010,
-      "sha256": "79f9b8f2f7a968d7f5b1f3dbb4482473a387162daa35208dc10a1fda23367e82",
+      "bytes": 19484,
+      "sha256": "42e3ae0e90d9c1716d15f62122c80f39f3f1fccc8ae0464decdabc2d09abc8db",
       "snapshot": "0.27.1"
     },
     {
@@ -9562,14 +9562,14 @@
     },
     {
       "path": "index.en.html",
-      "bytes": 195710,
-      "sha256": "6b0265de70a2cdeb4fb75d9a6a3c7e66d3f0d55a7884c202781590c338e767ae",
+      "bytes": 203383,
+      "sha256": "cc51090c575b654044e7b495f17b518a52c952f4b03ab4c5d5a9d74ee48f4806",
       "snapshot": "0.27.1"
     },
     {
       "path": "index.html",
-      "bytes": 196731,
-      "sha256": "dbe66597cdb516b8827ffd8e7d510e680fda675e308d32f571d0054ba58b0e6a",
+      "bytes": 203267,
+      "sha256": "b888cffa7b601fa16d8dd55fe5df85ad9ddbdd8793783c26b4e30b3d2d6be157",
       "snapshot": "0.27.1"
     },
     {
@@ -10253,7 +10253,7 @@
     {
       "path": "reports/release-0.25.0/checks.json",
       "bytes": 1919,
-      "sha256": "3ccf3a50c55d637f04be989e287b043aaa7664115b08c318239fb7ec74252e15",
+      "sha256": "0248e089916536dd724336b1ae9a6c8a03b8b9075835d08ab647196b7aceb266",
       "snapshot": "0.27.1"
     },
     {
@@ -10325,7 +10325,7 @@
     {
       "path": "server/check-result.json",
       "bytes": 139,
-      "sha256": "ee9b6e244bb794a9ac7be4708f4a00d70c86ff5e99766452bbad74e08dd50fac",
+      "sha256": "4b62dfe10a922ae110c50a81a1b00185aa524de5ab831986c267bffbc882160d",
       "snapshot": "0.27.1"
     },
     {
@@ -10336,8 +10336,8 @@
     },
     {
       "path": "server/check.cjs",
-      "bytes": 19729,
-      "sha256": "a4a8383b82fe58c786928ed9794b9d44c2303e1e72f9ea9512f0801eeea17ab3",
+      "bytes": 20877,
+      "sha256": "e1b500d6f737f32653ab593b36e61a08cb012818e51d99b2e0530cdc2448df9c",
       "snapshot": "0.27.1"
     },
     {
@@ -10348,9 +10348,9 @@
     },
     {
       "path": "server/gemini.cjs",
-      "bytes": 10729,
-      "sha256": "e37da02da10eccfd55c8693b831d6b3ef9796224fb326b2d159300044aa29f0a",
-      "snapshot": "0.26.0"
+      "bytes": 10891,
+      "sha256": "919c6a0a98f53acf42130e827ce7c81a0a0304a7c077960221ce4ebfb6ae8b1c",
+      "snapshot": "0.27.1"
     },
     {
       "path": "server/start.ps1",
@@ -10954,8 +10954,8 @@
     },
     {
       "path": "tools/check_release.py",
-      "bytes": 36695,
-      "sha256": "5552a5ad79743da2f705202fa741213786cacf3c540965d6aaf586418401e23e",
+      "bytes": 36896,
+      "sha256": "ae765fb514169a3238a825f175c1c8c7c976dc41f2111adb83c9495f5d8325cb",
       "snapshot": "0.27.1"
     },
     {
@@ -10972,14 +10972,14 @@
     },
     {
       "path": "tools/football_refresh/apply.cjs",
-      "bytes": 9685,
-      "sha256": "1606f05a03af6bbc3b4d83d936e107bd6b295a40afded90df63a4d864ef510da",
+      "bytes": 10684,
+      "sha256": "6afeba99e0ebc7f4c20966cb1acd53045f30fb6ffacb697bf38d45e6742c4cb1",
       "snapshot": "0.27.1"
     },
     {
       "path": "tools/football_refresh/refresh.py",
-      "bytes": 31862,
-      "sha256": "a7fd55c99e4c14fe1588d3fcff52798d31a1408bdea0dc05226c815f77bdb905",
+      "bytes": 32948,
+      "sha256": "2690ae82be889df8d3efb0b8388c16d56d9400017484f3101f75043f809e4599",
       "snapshot": "0.27.1"
     },
     {

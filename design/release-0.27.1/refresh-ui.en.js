@@ -110,12 +110,25 @@ function snapshotNote(){
  if(!note){note=node('p','note',fill(text.snapshot,{date:info.previous_last_date}));note.id='refresh-snapshot-0270';stats.after(note);}
  note.hidden=!(season&&season.value==='2026/27');
 }
-function update(){style();source();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
+// 0.27.1 review R2: the team metric chart's value table marks shot-sum xG (the chart module itself is unchanged).
+function teamChartMarks(){
+ const host=document.getElementById('teamchart'),select=document.getElementById('teamchartmetric'),team=document.getElementById('teamselect');
+ if(!host||!select||!team||!['xg_for','xg_against'].includes(select.value))return;
+ host.querySelectorAll('tbody tr').forEach(tr=>{
+  const cells=tr.children;if(cells.length<2||tr.querySelector('.xg-mark'))return;
+  const date=cells[0].firstChild?cells[0].firstChild.textContent.trim():'';
+  const m=data.completed.find(x=>x.date===date&&(x.home===team.value||x.away===team.value));
+  if(m&&m.xg_method==='shot_sum'&&hasXg(m))cells[1].append(node('br'),node('small','muted xg-mark',text.shotSum));
+ });
+}
+function update(){style();source();teamChartMarks();if(typeof V!=='undefined'&&V==='matches'){reviewPanel();overdue();}detail();snapshotNote();}
 const previousMatches=renderMatches;renderMatches=function(){previousMatches();update();};
 const previousDetail=renderCompletedMatch;renderCompletedMatch=function(){previousDetail();update();};
 const previousRender=render;render=function(){previousRender();update();};
 document.addEventListener('change',event=>{if(event.target&&(event.target.id==='season'||event.target.id==='teamselect'))snapshotNote();});
 const analysisHost=document.getElementById('analystresult');
 if(analysisHost&&typeof MutationObserver==='function')new MutationObserver(()=>setTimeout(analysisNote,0)).observe(analysisHost,{childList:true});
+let markQueued=false;
+if(typeof MutationObserver==='function')new MutationObserver(()=>{if(markQueued)return;markQueued=true;setTimeout(()=>{markQueued=false;teamChartMarks();},0);}).observe(document.body,{childList:true,subtree:true});
 update();
 })();

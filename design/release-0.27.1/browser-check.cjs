@@ -32,9 +32,10 @@ const XG={'understat:31232':['1.38','1.68','shot_sum'],'understat:31233':['1.26'
   for(const id of Object.keys(XG)){
    await page.goto(BASE+path+'#match='+encodeURIComponent(id));await page.waitForTimeout(500);await page.evaluate(()=>window.dispatchEvent(new HashChangeEvent('hashchange')));await page.waitForTimeout(300);
    text=await state('match '+id);
-   const info=await page.evaluate(()=>{const host=document.getElementById('matchdetail');const stat=host&&host.querySelector('article.panel .stat');const note=document.querySelector('#refresh-stats-0270 .note');return {stat:stat?stat.innerText.replace(/\s+/g,' '):'',note:note?note.innerText:'',link:note&&note.querySelector('a')?note.querySelector('a').href:''}});
+   const info=await page.evaluate(()=>{const host=document.getElementById('matchdetail');const stat=host&&host.querySelector('article.panel .stat');const markShown=!!(stat&&stat.querySelector('.xg-mark'));const note=document.querySelector('#refresh-stats-0270 .note');return {stat:stat?stat.innerText.replace(/\s+/g,' '):'',markShown,note:note?note.innerText:'',link:note&&note.querySelector('a')?note.querySelector('a').href:''}});
    c.views.match[id]=info;const x=XG[id];
    if(!(info.stat.startsWith(x[0])&&info.stat.endsWith(x[1])))fail(c,'match xG '+id+' '+info.stat);
+   if(info.markShown!==(x[2]==='shot_sum'))fail(c,'match room shot-sum mark '+id);
    const method=x[2]==='shot_sum'?(lang==='ko'?'슈팅 합계':'shot sum'):(lang==='ko'?'경기 xG':'match xG');
    if(!info.note.includes(method)||!info.link.startsWith('https://web.archive.org/web/'))fail(c,'match note '+id);
   }
@@ -56,6 +57,20 @@ const XG={'understat:31232':['1.38','1.68','shot_sum'],'understat:31233':['1.26'
   c.views.analysis=asked.slice(0,400);if(!asked.includes('0.84'))fail(c,'analysis value 0.84 missing');
   const noteOk=lang==='ko'?asked.includes('60경기 중 xG가 있는 경기는 5경기뿐'):asked.includes('only 5 of 60 matches have xG');if(!noteOk)fail(c,'analysis note missing');
   await state('analysis');
+  // review R2: Chelsea team page (10-10 shot sum) marks the recent table and the chart value table
+  await page.goto(BASE+path+'#team=understat:80');await page.waitForTimeout(900);await state('team 80');
+  const chelsea=await page.evaluate(()=>{const rows=[...document.querySelectorAll('tr')].filter(r=>r.textContent.includes('2026-10-10'));const marked=rows.filter(r=>r.querySelector('.xg-mark'));const chart=document.querySelector('#teamchart tbody');return {rows:rows.length,marked:marked.length,chartMarked:!!(chart&&chart.querySelector('.xg-mark')),unmarkedElsewhere:[...document.querySelectorAll('.xg-mark')].filter(e=>!e.closest('tr')||!e.closest('tr').textContent.includes('2026-10-10')).length}});
+  c.views.chelsea=chelsea;if(!chelsea.marked||!chelsea.chartMarked||chelsea.unmarkedElsewhere)fail(c,'chelsea marks '+JSON.stringify(chelsea));
+  // review R1 sequence and R2/R7 answers in the analysis box
+  await page.goto(BASE+path+'#matches');await page.waitForTimeout(500);
+  const ask=async q=>{await page.fill('#analystquery',q);await page.click('#analystsubmit');await page.waitForTimeout(500);return page.evaluate(()=>({out:document.getElementById('analystresult').innerText,status:document.getElementById('analyststatus').innerText}));};
+  const seq=lang==='ko'?['토트넘 최근 5경기 기대 득점과 실제 득점 비교','맨유 최근 1경기 기대 실점','EPL 이번 시즌 기대 득점 순위','본머스 최근 3경기 기대 실점과 실제 실점 비교','바이에른 최근 5경기 득점']:['Tottenham last 5 matches compare goals and xG','Manchester United last 1 matches xGA','EPL this season xG ranking','Bournemouth last 3 matches compare goals conceded and xGA','Bayern last 5 matches goals'];
+  const a=[];for(const q of seq){a.push(await ask(q));await state('analysis '+q);}
+  c.views.sequence=a.map(x=>(x.out.split('\n')[0]||'')+' | '+x.status.slice(0,80));
+  if(!a[1].out.includes('2.56')||a[1].out.includes('0.84'))fail(c,'R1 second answer');
+  if(a[2].out.includes('Manchester United\n1\n')||!a[2].out.includes(lang==='ko'?'큰 값부터':'Highest first'))fail(c,'R1 ranking answer');
+  if(!a[3].out.includes(lang==='ko'?'실제 실점':'Goals conceded')||!a[3].out.includes('1.38*')||!a[3].out.includes(lang==='ko'?'슈팅 합계':'Shot sum'))fail(c,'R1/R2 xGA trend answer');
+  if(!(lang==='ko'?a[4].status.includes('팀을 찾지 못했어요'):a[4].status.includes('Team not found'))||a[4].out.includes('Arsenal'))fail(c,'R7 team not found');
   await page.screenshot({path:process.argv[3]+'/'+lang+'-'+width+'.png',fullPage:false});
   c.consoleErrors=errors;if(errors.length)fail(c,'console errors '+errors.join(' | ').slice(0,300));
   out.push(c);await page.close();
